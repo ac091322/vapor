@@ -1,3 +1,4 @@
+/instance/dev.db
 .env
 __pycache__/
 *.py[cod]
