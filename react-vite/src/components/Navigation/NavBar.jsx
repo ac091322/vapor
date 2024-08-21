@@ -1,9 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
-// import "./MiniNavigationBar.css"
 
 
-function MiniNavigationBar() {
+function NavBar() {
   return (
     <NavLink id="container-mini-navigation">
       <ul>
@@ -26,4 +25,4 @@ function MiniNavigationBar() {
 }
 
 
-export default MiniNavigationBar;
+export default NavBar;
