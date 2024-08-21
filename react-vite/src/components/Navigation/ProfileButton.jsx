@@ -6,6 +6,7 @@ import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
+
 function ProfileButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -73,5 +74,6 @@ function ProfileButton() {
     </>
   );
 }
+
 
 export default ProfileButton;
