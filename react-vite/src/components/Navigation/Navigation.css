@@ -1,3 +1,45 @@
 .profile-dropdown {
   position: absolute;
 }
+
+#container-navigation-inner {
+  display: flex;
+  height: 105px;
+  color: var(--nav-font-color-light);
+  max-width: 940px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#container-logo-navlinks {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+#container-navigation-inner img {
+  height: 45px;
+}
+
+#container-navigation-inner ul {
+  display: flex;
+  gap: 15px;
+  font-weight: bold;
+}
+
+#container-install-login {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 7px;
+}
+
+#container-install-login button {
+  height: 25px;
+  background-color: #5C7E10;
+  color: var(--primary-font-color-light);
+  padding: 0 10px;
+}
