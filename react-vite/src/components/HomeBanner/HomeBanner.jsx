@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import banner from "../../../public/wukong-banner.png";
 import "./HomeBanner.css"
-import "../MiniNavigationBar/MiniNavigationBar.css"
+import "../../components/Navigation/NavBar.css"
 
 
 function HomeBanner() {

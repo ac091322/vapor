@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import HomeBanner from '../components/HomeBanner/HomeBanner';
@@ -22,5 +22,9 @@ export const router = createBrowserRouter([
         element: <SignupFormPage />,
       }
     ]
+  },
+  {
+    path: "*",
+    element: <h1>404 Page not found</h1>
   }
 ]);
