@@ -20,7 +20,7 @@ const UploadImage = () => {
     // some sort of loading message is a good idea
     setImageLoading(true);
     await dispatch(thunkImageUpload(formData));
-    navigate.push("/images");
+    navigate("/images");
   }
 
   return (
