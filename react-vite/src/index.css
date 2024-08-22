@@ -1,10 +1,10 @@
 :root {
   --logo-color: #C5C3C0;
-  --nav-font-color-light: #DCDEDF;
+  --light-beige-font-color: #DCDEDF;
   --primary-font-color-light: #E5E4DC;
   --nav-font-color-selected: #1A9FFF;
   --nav-background: #171d25;
-  --footer-background: #000000;
+  --footer-background: #181A21;
   --body-background: rgb(27, 40, 55);
 }
 
@@ -25,8 +25,8 @@ a {
 }
 
 input {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   border: none;
   outline: none;
 }

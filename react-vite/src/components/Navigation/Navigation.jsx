@@ -21,14 +21,14 @@ function Navigation() {
         </div>
 
         <div id="container-install-login">
-          <Link to="https://store.steampowered.com/about/"><button><ImDownload2 />&nbsp;&nbsp;&nbsp;Install Steam</button></Link>
+          <Link to="">
+            <button style={{ cursor: "not-allowed" }}><ImDownload2 />&nbsp;&nbsp;&nbsp;Install Steam</button>
+          </Link>
           <div><ProfileButton /></div>
         </div>
       </div>
 
-
-
-    </section>
+    </section >
   );
 }
 

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
-import banner from "../../../public/wukong-banner.png";
+import homeBanner from "../../../public/wukong-banner.png";
 import "./HomeBanner.css"
 import "../../components/Navigation/NavBar.css"
 
@@ -24,7 +24,7 @@ function HomeBanner() {
         </div>
       </NavLink>
       <div>
-        <img src={banner} alt="Banner" />
+        <img src={homeBanner} alt="homepage_banner" />
       </div>
     </div>
   );

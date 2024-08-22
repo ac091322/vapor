@@ -1,0 +1,63 @@
+#container-login-page-background {
+  display: flex;
+  justify-content: center;
+  height: 640px;
+  background-image: url("../../../public/login-banner.jpg");
+  background-position: center;
+  position: relative;
+}
+
+#container-login-page-background::before {
+  content: ''; /* Necessary to display the pseudo-element */
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#container-login-page {
+  width: 725px;
+  position: absolute;
+  z-index: 1;
+}
+
+#container-login-page h1 {
+  margin-top: 100px;
+  margin-bottom: 40px;
+  font-weight: 900;
+  color: #FFFFFF;
+}
+
+#container-login-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #181A21;
+  padding: 40px;
+}
+
+#container-login-page label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+}
+
+#container-login-page input {
+  width: 395px;
+  height: 40px;
+  background-color: #32353C;
+  color: #FFFFFF;
+}
+
+#container-login-page button {
+  width: 270px;
+  height: 45px;
+  color: #FFFFFF;
+  background: linear-gradient(to right, rgb(37, 190, 251), rgb(48, 118, 249));
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+#container-login-page-background section {
+  height: 100px;
+  background-color: var(--footer-background);
+}

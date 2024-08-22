@@ -5,7 +5,7 @@
 #container-navigation-inner {
   display: flex;
   height: 105px;
-  color: var(--nav-font-color-light);
+  color: var(--light-beige-font-color);
   max-width: 940px;
   margin: 0 auto;
   position: relative;
@@ -35,6 +35,7 @@
   top: 0;
   right: 0;
   margin-top: 7px;
+  margin-right: 5px;
 }
 
 #container-install-login button {
@@ -42,4 +43,5 @@
   background-color: #5C7E10;
   color: var(--primary-font-color-light);
   padding: 0 10px;
+  font-size: 12px;
 }
