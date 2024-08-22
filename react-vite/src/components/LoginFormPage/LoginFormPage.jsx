@@ -2,7 +2,7 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import demoDeveloperAvatar from "../../../public/demo-developer-avatar.png"
+import demoAvatar from "../../../public/demo-avatar.png"
 import "./LoginForm.css";
 
 
@@ -76,7 +76,7 @@ function LoginFormPage() {
               onClick={e => handleSubmit(e, true)}
               style={{ backgroundColor: "transparent" }}
             >
-              <img src={demoDeveloperAvatar} alt="demo-developer-avatar" />
+              <img src={demoAvatar} alt="demo-developer-avatar" />
             </button>
             <span style={{ color: "var(--logo-color)", marginTop: "5px", alignSelf: "center" }}>Click on Wukong's avatar</span>
           </div>

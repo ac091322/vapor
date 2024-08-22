@@ -1,0 +1,48 @@
+#container-user-profile-page {
+  height: 1400px;
+  background-color: rgb(13, 13, 13);
+  background-image:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.7) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.7) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.7) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.7) 75%);
+  background-size: 10px 10px;
+  background-blend-mode: overlay;
+}
+
+#container-profile-content {
+  width: 940px;
+  height: 100%;
+  background:
+    linear-gradient(5deg, rgba(60, 20, 60, 0.6) 0%, rgba(90, 30, 90, 0.6) 50%, rgba(60, 20, 60, 0.6) 80%),
+    linear-gradient(25deg, rgba(60, 20, 60, 0.6) 0%, rgba(90, 30, 90, 0.6) 50%, rgba(60, 20, 60, 0.6) 80%);
+  background-blend-mode: overlay;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "left right";
+  padding: 35px 20px;
+}
+
+#container-profile-content-left {
+  grid-area: left;
+  display: flex;
+  gap: 40px;
+}
+
+#container-profile-content-left-name{
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding-top: 10px;
+}
+
+#container-profile-content img {
+  border: 2px solid gray;
+  width: 185px;
+  height: 185px;
+}
+
+#container-profile-content-right {
+  grid-area: right;
+}

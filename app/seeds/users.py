@@ -99,8 +99,8 @@ def seed_users():
         email="demodeveloper@vapor.io",
         password="password",
         developer_name=None,
-        avatar=None,
-        about=None,
+        avatar="https://vapor-ac.s3.amazonaws.com/01_black_myth_wukong/demo-avatar.png",
+        about="You are now logged in as the Demo Developer.",
     )
 
     db.session.add_all(

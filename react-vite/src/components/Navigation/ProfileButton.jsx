@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { thunkLogout } from "../../redux/session";
 import { IoCaretDownSharp } from "react-icons/io5";
-import demoDeveloperAvatar from "../../../public/demo-developer-avatar.png"
+import defaultAvatar from "../../../public/default-avatar.png"
 
 
 function ProfileButton() {
@@ -11,6 +11,7 @@ function ProfileButton() {
   const ulRef = useRef();
 
   const user = useSelector((store) => store.session.user);
+  console.log("🚀 ~ ProfileButton ~ user:", user)
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -62,7 +63,12 @@ function ProfileButton() {
               </ul>
             )}
 
-            <Link to=""><img src={demoDeveloperAvatar} alt="profile-avatar" /></Link>
+            <Link to="/user">
+              {user.id === 11
+                ? <img src={user.avatar} alt="demo-avatar" />
+                : <img src={defaultAvatar} alt="default-avatar" />
+              }
+            </Link>
           </div>
 
         ) : (

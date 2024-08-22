@@ -1,9 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
+import UserProfile from '../components/UserProfile/UserProfile';
 import Homepage from '../components/HomePage/Homepage';
 import HomeBanner from '../components/HomeBanner/HomeBanner';
 import UploadImage from '../components/Games/UploadImage';
+
 import Layout from './Layout';
 
 
@@ -30,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "/games/upload",
         element: <UploadImage />
+      },
+      {
+        path: "/user",
+        element: <UserProfile />
       }
     ]
   },
