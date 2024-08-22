@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
-import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
-import OpenModalMenuItem from "./OpenModalMenuItem";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+import { IoCaretDownSharp } from "react-icons/io5";
+import demoDeveloperAvatar from "../../../public/demo-developer-avatar.png"
 
 
 function ProfileButton() {
@@ -47,22 +45,33 @@ function ProfileButton() {
     <>
       {
         user ? (
-          <>
-            <button onClick={toggleMenu}>
-              <FaUserCircle />
-            </button>
+          <div id="container-profile-button-avatar">
+            <div
+              id="profile-button"
+              onClick={toggleMenu}
+            >
+              {user.username}<IoCaretDownSharp />
+            </div>
 
             {showMenu && (
               <ul className={"profile-dropdown"} ref={ulRef}>
-                <>
-                  <li>{user.username}</li>
-                  <li>{user.email}</li>
-                  <li><button onClick={logout}>Log Out</button></li>
-                </>
+                <li>View my profile</li>
+                <li>Username: {user.username}</li>
+                <li>Email: {user.email}</li>
+                <Link onClick={logout}>Sign out of account...</Link>
               </ul>
             )}
-          </>
-        ) : <Link style={{ fontSize: "12px" }} to="/login">login</Link>
+
+            <Link to=""><img src={demoDeveloperAvatar} alt="profile-avatar" /></Link>
+          </div>
+
+        ) : (
+
+          <>
+            <Link style={{ fontSize: "12px" }} to="/login">login</Link>
+            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <Link style={{ fontSize: "12px" }} to="/signup">signup</Link>
+          </>)
       }
     </>
   );

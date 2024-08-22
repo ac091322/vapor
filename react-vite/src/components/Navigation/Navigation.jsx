@@ -24,6 +24,7 @@ function Navigation() {
           <Link to="">
             <button style={{ cursor: "not-allowed" }}><ImDownload2 />&nbsp;&nbsp;&nbsp;Install Steam</button>
           </Link>
+
           <div><ProfileButton /></div>
         </div>
       </div>
