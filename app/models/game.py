@@ -19,9 +19,9 @@ class Game(db.Model):
         db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"),
         nullable=False,
     )
-    price = db.Column(db.Numeric(6, 2), nullable=False)
+    price = db.Column(db.Numeric(5, 2), nullable=False)
     release_date = db.Column(db.Date, nullable=False)
-    cover_art = db.Column(db.String(255), nullable=False)
+    cover_art = db.Column(db.String(255), nullable=True)
     min_requirements = db.Column(db.String(255), nullable=False)
     min_os = db.Column(db.String(255), nullable=False)
     min_processor = db.Column(db.String(255), nullable=False)
@@ -98,17 +98,30 @@ class Game(db.Model):
             "release_date": self.release_date,
             "cover_art": self.cover_art,
             "min-requirements": self.min_requirements,
+            "min-os": self.min_os,
+            "min-processor": self.min_processor,
             "min-memory": self.min_memory,
             "min-graphics": self.min_graphics,
+            "min-directx": self.min_graphics,
             "min-storage": self.min_storage,
+            "min-sound_card": self.rec_storage,
+            "min-additional_notes": self.rec_additional_notes,
             "rec-requirements": self.rec_requirements,
+            "rec-os": self.rec_os,
+            "rec-processor": self.rec_processor,
             "rec-memory": self.rec_memory,
             "rec-graphics": self.rec_graphics,
+            "rec-directx": self.rec_directx,
             "rec-storage": self.rec_storage,
+            "rec-sound_card": self.rec_storage,
+            "rec-additional_notes": self.rec_additional_notes,
             "user": self.user.to_dict() if self.user else None,
             "categories": (
-                [category.to_dict() for category in self.game_in_game_category_joined]
-                if self.game_in_game_category_joined
+                [
+                    category.to_dict()
+                    for category in self.category_in_game_category_joined
+                ]
+                if self.category_in_game_category_joined
                 else None
             ),
         }

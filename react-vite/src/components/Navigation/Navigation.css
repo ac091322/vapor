@@ -44,7 +44,7 @@
 #container-profile-button-avatar {
   display: flex;
   gap: 10px;
-  margin-right: 45px;
+  margin-right: 35px;
 }
 
 #container-profile-button-avatar img {
@@ -55,7 +55,6 @@
   top: 0;
   right: 0;
 }
-
 
 #profile-button {
   display: flex;

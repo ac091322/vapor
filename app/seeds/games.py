@@ -27,7 +27,7 @@ def seed_games():
         rec_directx="Version 12",
         rec_storage="130 GB available space",
         rec_sound_card="Windows Compatible Audio Device",
-        rec_additional_notes=" SSD Required. The above specifications were tested with DLSS/FSR/XeSS enabled.",
+        rec_additional_notes="SSD Required. The above specifications were tested with DLSS/FSR/XeSS enabled.",
     )
 
     db.session.add_all([black_myth_wukong])
