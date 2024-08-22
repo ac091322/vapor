@@ -6,12 +6,14 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
-import imageUploadReducer from "./uploadScreenshots";
+import gameReducer from "./game";
+import imageUploadReducer from "./coverArt";
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  imageUpload: imageUploadReducer
+  game: gameReducer,
+  coverArt: imageUploadReducer
 });
 
 let enhancer;

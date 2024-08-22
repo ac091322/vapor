@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux"
-import { thunkImageUpload } from "../../redux/uploadScreenshots";
+import { thunkImageUpload } from "../../redux/coverArt";
 import "./UploadImage.css"
 
 

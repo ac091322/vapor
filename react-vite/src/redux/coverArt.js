@@ -23,12 +23,11 @@ export const thunkImageUpload = (post) => async (dispatch) => {
   }
 };
 
-
 const initialState = {
   posts: []
 };
 
-const imageUploadReducer = (state = initialState, action) => {
+const screenshotReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPLOAD_IMAGE:
       return {
@@ -41,4 +40,4 @@ const imageUploadReducer = (state = initialState, action) => {
 };
 
 
-export default imageUploadReducer;
+export default screenshotReducer;

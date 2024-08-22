@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
+import Homepage from '../components/HomePage/Homepage';
 import HomeBanner from '../components/HomeBanner/HomeBanner';
 import UploadImage from '../components/Games/UploadImage';
 import Layout from './Layout';
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Homepage />
+      },
+      {
+        path: "/banner",
         element: <HomeBanner />
       },
       {

@@ -14,14 +14,13 @@ class Game(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), nullable=False, unique=True)
+    title = db.Column(db.String(40), nullable=False, unique=True)
     user_id = db.Column(
         db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"),
         nullable=False,
     )
     price = db.Column(db.Numeric(5, 2), nullable=False)
     release_date = db.Column(db.Date, nullable=False)
-    cover_art = db.Column(db.String(255), nullable=True)
     min_requirements = db.Column(db.String(255), nullable=False)
     min_os = db.Column(db.String(255), nullable=False)
     min_processor = db.Column(db.String(255), nullable=False)
@@ -82,12 +81,17 @@ class Game(db.Model):
     # many-to-one relationships:
     user = db.relationship("User", back_populates="game")
 
-    # one-to-many relationships:
-    trailer = db.relationship(
-        "Trailer", back_populates="game", cascade="all, delete-orphan"
-    )
+    # one-to-many relationship:
     review = db.relationship(
         "Review", back_populates="game", cascade="all, delete-orphan"
+    )
+
+    # one-to-one relationships
+    cover_art = db.relationship(
+        "CoverArt", back_populates="game", cascade="all, delete-orphan"
+    )
+    trailer = db.relationship(
+        "Trailer", back_populates="game", cascade="all, delete-orphan"
     )
 
     def to_dict(self):
@@ -122,6 +126,24 @@ class Game(db.Model):
                     for category in self.category_in_game_category_joined
                 ]
                 if self.category_in_game_category_joined
+                else None
+            ),
+            "cover_art": (
+                [cover_art.to_dict() for cover_art in self.cover_art]
+                if self.cover_art
+                else None
+            ),
+            "trailer": (
+                [trailer.to_dict() for trailer in self.trailer]
+                if self.trailer
+                else None
+            ),
+            "screenshots": (
+                [
+                    screenshots.to_dict()
+                    for screenshots in self.screenshot_in_game_screenshot_joined
+                ]
+                if self.screenshot_in_game_screenshot_joined
                 else None
             ),
         }

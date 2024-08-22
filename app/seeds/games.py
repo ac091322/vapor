@@ -9,7 +9,6 @@ def seed_games():
         user_id=1,
         price="59.99",
         release_date=datetime(2024, 8, 19).date(),
-        cover_art="https://vapor-ac.s3.amazonaws.com/01_black_myth_wukong/cover-art.jpg",
         min_requirements="Requires a 64-bit processor and operating system",
         min_os="Windows 10 64-bit",
         min_processor="Intel Core i5-8400 / AMD Ryzen 5 1600",

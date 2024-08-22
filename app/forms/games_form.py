@@ -1,6 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalField, DateField, SubmitField, ValidationError
-from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms import StringField, DecimalField, DateField, ValidationError
 from wtforms.validators import DataRequired, Length, NumberRange
 from app.api.aws_helpers import ALLOWED_EXTENSIONS
 from app.models import Game
@@ -15,7 +14,14 @@ def title_exists(form, field):
 
 
 class GameForm(FlaskForm):
-    title = StringField("title", validators=[DataRequired(), title_exists])
+    title = StringField(
+        "title",
+        validators=[
+            DataRequired(),
+            title_exists,
+            Length(min=4, max=40, message="Name must be between 4 and 40 characters"),
+        ],
+    )
     price = DecimalField(
         "price",
         places=2,
@@ -27,11 +33,6 @@ class GameForm(FlaskForm):
     release_date = DateField(
         "release_date", format="%Y-%m-%d", validators=[DataRequired()]
     )
-    cover_art = StringField("cover_art")
-    # cover_art = FileField(
-    # "cover_art", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))]
-    # )
-    # submit = SubmitField("upload_cover_art")
     min_requirements = StringField("min_requirements", validators=[DataRequired()])
     min_os = StringField("min_os", validators=[DataRequired()])
     min_processor = StringField("min_processor", validators=[DataRequired()])

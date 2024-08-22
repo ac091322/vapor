@@ -10,7 +10,7 @@ game_routes = Blueprint("games", __name__)
 # get all games
 # create new game
 @game_routes.route("/", methods=["GET", "POST"])
-def games():
+def get_post_games():
     if request.method == "POST":
         if not current_user.is_authenticated:
             return {"error": "User not authenticated"}, 401
@@ -24,7 +24,6 @@ def games():
                 user_id=current_user.id,
                 price=form.data["price"],
                 release_date=form.data["release_date"],
-                cover_art=form.data["cover_art"],
                 min_requirements=form.data["min_requirements"],
                 min_os=form.data["min_os"],
                 min_processor=form.data["min_processor"],
@@ -53,3 +52,35 @@ def games():
     else:
         games = Game.query.all()
         return [game.to_dict() for game in games], 200
+
+
+# get game by game_id
+# delete game by game_id
+@game_routes.route("/<int:game_id>", methods=["GET", "DELETE"])
+def get_game_id(game_id):
+    game = Game.query.get(game_id)
+
+    if request.method == "DELETE":
+        if not current_user.is_authenticated:
+            return {"error": "User not authenticated"}, 401
+
+        if game is None:
+            return {"error": "Album not found"}, 404
+
+        if game.user_id != current_user.id:
+            return {"error": "Forbidden"}, 403
+
+        db.session.delete(game)
+        db.session.commit()
+        return {"message": "Game deleted"}, 200
+
+    else:
+        if game is None:
+            return {"error": "Game not found"}, 404
+        return game.to_dict(), 200
+
+
+# add cover art to game
+@game_routes.route("/<int:game_id>")
+def cover_art():
+    pass

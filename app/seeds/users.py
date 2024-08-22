@@ -8,6 +8,7 @@ def seed_users():
         username="Game Science",
         email="gamescience@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -16,6 +17,7 @@ def seed_users():
         username="Blizzard Entertainment, Inc.",
         email="blizzardentertainmentinc@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -24,6 +26,7 @@ def seed_users():
         username="Digital Extreme",
         email="digitalextreme@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -32,6 +35,7 @@ def seed_users():
         username="Saber Interactive",
         email="saberinteractive@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -40,6 +44,7 @@ def seed_users():
         username="Sledgehammer Games",
         email="sledgehammergames@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -48,6 +53,7 @@ def seed_users():
         username="Firaxis Games",
         email="firaxisgames@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -56,6 +62,7 @@ def seed_users():
         username="Valve",
         email="valve@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -64,6 +71,7 @@ def seed_users():
         username="Iron Clad Games Corporation",
         email="ironcladgamescorporation@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -72,6 +80,7 @@ def seed_users():
         username="FromSoftware, Inc.",
         email="fromsoftwareinc@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -80,6 +89,7 @@ def seed_users():
         username="Larian Studies",
         email="larianstudios@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )
@@ -88,6 +98,7 @@ def seed_users():
         username="Demo Developer",
         email="demodeveloper@vapor.io",
         password="password",
+        developer_name=None,
         avatar=None,
         about=None,
     )

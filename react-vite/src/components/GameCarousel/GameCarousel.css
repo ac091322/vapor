@@ -1,0 +1,111 @@
+#container-game-carousel {
+  width: 950px;
+  height: 355px;
+  display: grid;
+  grid-template-areas: "left right";
+  margin: 0 auto;
+  background-color: rgb(10, 20, 28);
+  box-shadow: 0 0 10px 1px black;
+  margin-top: 60px;
+  position: relative;
+  ;
+}
+
+#container-game-carousel h3 {
+  position: absolute;
+  top: -35px;
+  color: white;
+}
+
+#container-game-carousel-left {
+  grid-area: left;
+  height: 353px;
+  width: fit-content;
+}
+
+#container-game-carousel-left img {
+  box-shadow: 8px 0 15px 0 black;
+}
+
+#container-game-carousel-right {
+  grid-area: right;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+}
+
+#container-game-title-carousel {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  height: 66px;
+}
+
+
+#container-screenshots-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding-right: 10px;
+}
+
+#container-screenshots-grid img {
+  width: 162px;
+  height: 69px;
+  display: grid;
+}
+
+#container-promotion-text-tag {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#container-promotion-text-tag {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#tag-top-seller {
+  font-size: 11px;
+  background-color: rgb(57, 66, 71);
+  padding: 3px 8px;
+  width: fit-content;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.carousel-left-right-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 108px;
+  position: absolute;
+  top: 115px;
+}
+
+#carousel-left-button {
+  background: linear-gradient(to left, rgb(27, 40, 55), rgb(20, 29, 41));
+  left: -50px;
+}
+
+#carousel-left-button:hover {
+  background: linear-gradient(to left, rgb(27, 40, 55), rgb(67, 89, 108));
+}
+
+#carousel-right-button {
+  background: linear-gradient(to right, rgb(27, 40, 55), rgb(20, 29, 41));
+  right: -50px;
+}
+
+#carousel-right-button:hover {
+  background: linear-gradient(to right, rgb(27, 40, 55), rgb(67, 89, 108));
+}
+
+.carousel-arrows {
+  font-size: 3.2rem;
+  color: white;
+}

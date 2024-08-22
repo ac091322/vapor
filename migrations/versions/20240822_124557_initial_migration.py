@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 1ee1e56f1d1c
+Revision ID: 0794886efd40
 Revises: 
-Create Date: 2024-08-22 11:14:08.680711
+Create Date: 2024-08-22 12:45:57.321842
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1ee1e56f1d1c'
+revision = '0794886efd40'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,6 +35,7 @@ def upgrade():
     sa.Column('username', sa.String(length=20), nullable=False),
     sa.Column('email', sa.String(length=40), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('developer_name', sa.String(length=40), nullable=True),
     sa.Column('avatar', sa.String(length=255), nullable=True),
     sa.Column('about', sa.String(length=2000), nullable=True),
     sa.PrimaryKeyConstraint('id'),
@@ -43,11 +44,10 @@ def upgrade():
     )
     op.create_table('games',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('title', sa.String(length=255), nullable=False),
+    sa.Column('title', sa.String(length=40), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('price', sa.Numeric(precision=5, scale=2), nullable=False),
     sa.Column('release_date', sa.Date(), nullable=False),
-    sa.Column('cover_art', sa.String(length=255), nullable=True),
     sa.Column('min_requirements', sa.String(length=255), nullable=False),
     sa.Column('min_os', sa.String(length=255), nullable=False),
     sa.Column('min_processor', sa.String(length=255), nullable=False),
@@ -85,6 +85,15 @@ def upgrade():
     sa.ForeignKeyConstraint(['game_id'], ['games.id'], ),
     sa.ForeignKeyConstraint(['shopping_cart_id'], ['shopping_carts.id'], ),
     sa.PrimaryKeyConstraint('shopping_cart_id', 'game_id')
+    )
+    op.create_table('cover_arts',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('cover_art_url', sa.String(length=255), nullable=False),
+    sa.Column('game_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['game_id'], ['games.id'], ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('cover_art_url'),
+    sa.UniqueConstraint('game_id')
     )
     op.create_table('games_categories_joined',
     sa.Column('game_id', sa.Integer(), nullable=False),
@@ -125,7 +134,9 @@ def upgrade():
     sa.Column('trailer_url', sa.String(length=255), nullable=False),
     sa.Column('game_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['game_id'], ['games.id'], ondelete='CASCADE'),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('game_id'),
+    sa.UniqueConstraint('trailer_url')
     )
     op.create_table('wishlists_joined',
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -145,6 +156,7 @@ def downgrade():
     op.drop_table('libraries_joined')
     op.drop_table('games_screenshots_joined')
     op.drop_table('games_categories_joined')
+    op.drop_table('cover_arts')
     op.drop_table('carts_items_joined')
     op.drop_table('shopping_carts')
     op.drop_table('games')
