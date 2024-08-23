@@ -6,7 +6,7 @@ class Screenshot(db.Model):
     __tablename__ = "screenshots"
 
     if environment == "production":
-        __table_args__ = {"SCHEM": SCHEMA}
+        __table_args__ = {"SCHEMA": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     screenshot_url = db.Column(db.Integer, nullable=False, unique=True)

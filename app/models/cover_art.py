@@ -5,7 +5,7 @@ class CoverArt(db.Model):
     __tablename__ = "cover_arts"
 
     if environment == "production":
-        __table_args__ = {"Schema": SCHEMA}
+        __table_args__ = {"SCHEMA": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     cover_art_url = db.Column(db.String(255), nullable=False, unique=True)
