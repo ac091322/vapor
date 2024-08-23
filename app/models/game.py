@@ -11,7 +11,7 @@ class Game(db.Model):
     __tablename__ = "games"
 
     if environment == "production":
-        __table_args__ = {"schema": SCHEMA}
+        __table_args__ = {"SCHEMA": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(40), nullable=False, unique=True)
