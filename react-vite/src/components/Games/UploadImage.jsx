@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux"
-import { thunkImageUpload } from "../../redux/coverArt";
+import { thunkCoverArtAdd } from "../../redux/coverArt";
 import "./UploadImage.css"
 
 
@@ -14,12 +14,14 @@ const UploadImage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append("image", image);
+
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
-    await dispatch(thunkImageUpload(formData));
+    await dispatch(thunkCoverArtAdd(formData));
     navigate("/images");
   }
 

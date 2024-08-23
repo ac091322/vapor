@@ -7,13 +7,13 @@ import {
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import gameReducer from "./game";
-import imageUploadReducer from "./coverArt";
+import coverArtReducer from "./coverArt";
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   game: gameReducer,
-  coverArt: imageUploadReducer
+  coverArt: coverArtReducer
 });
 
 let enhancer;

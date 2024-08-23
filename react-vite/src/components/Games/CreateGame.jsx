@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGameCreate } from "../../redux/game";
+import { thunkCoverArtAdd } from "../../redux/coverArt";
 import "./CreateGame.css";
 
 
@@ -25,6 +26,9 @@ function CreateGame() {
     min_sound_card: "Windows Compatible Audio Device",
   });
 
+  const [cover_art, setCoverArt] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
+
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
@@ -33,13 +37,27 @@ function CreateGame() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const newGame = {
       ...formData,
       user_id: Number(currentUser.id),
     };
-    dispatch(thunkGameCreate(newGame));
+
+    const gameResponse = await dispatch(thunkGameCreate(newGame));
+    const gameId = gameResponse.id;
+
+    if (cover_art) {
+      const newCoverArt = new FormData();
+      newCoverArt.append("cover_art", cover_art);
+
+      setImageLoading(true);
+      await dispatch(thunkCoverArtAdd(gameId, newCoverArt));
+      setImageLoading(false);
+    }
+
+    navigate(`/games/${gameId}`);
   };
 
   if (!currentUser) return null;
@@ -61,12 +79,14 @@ function CreateGame() {
 
   return (
     <section id="container-create-game-page">
-      <form onSubmit={handleSubmit} id="container-create-game-form">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        id="container-create-game-form"
+      >
 
-        <h1>Create A Game</h1>
-
-        <div id="container-create-form-input-fields">
-          <h3>Basic Information</h3>
+        <div id="container-create-game-form-left">
+          <h1>Create A Game</h1>
 
           {inputFields.map((field, idx) => (
             <div key={idx} className="input-containers">
@@ -100,10 +120,20 @@ function CreateGame() {
               </div>
             </div>
           ))}
-
-          <button type="submit">Create Game</button>
         </div>
 
+        <div id="container-create-game-form-right">
+          <h4>Upload image</h4>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={e => setCoverArt(e.target.files[0])}
+          />
+        </div>
+
+        <button type="submit">Create Game</button>
+        {(imageLoading) && <p>Loading...</p>}
       </form>
     </section>
   );

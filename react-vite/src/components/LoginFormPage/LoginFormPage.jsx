@@ -35,7 +35,6 @@ function LoginFormPage() {
 
   return (
     <div id="container-login-page">
-
       <div id="container-login-page-form">
         <h1>Sign In</h1>
         {errors.length > 0 &&
@@ -78,13 +77,12 @@ function LoginFormPage() {
             >
               <img src={demoAvatar} alt="demo-developer-avatar" />
             </button>
-            <span style={{ color: "var(--logo-color)", marginTop: "5px", alignSelf: "center" }}>Click on Wukong's avatar</span>
+            <span style={{ color: "var(--logo-color)", marginTop: "5px", alignSelf: "center" }}>Click on Wukong&apos;s avatar</span>
           </div>
 
         </form>
 
       </div >
-
     </div>
   );
 }

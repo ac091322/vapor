@@ -4,8 +4,7 @@ from wtforms import SubmitField
 from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 
-class CoverArt(FlaskForm):
+class CoverArtForm(FlaskForm):
     cover_art = FileField(
         "image_file", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))]
     )
-    submit = SubmitField("upload_cover_art")

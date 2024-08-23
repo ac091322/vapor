@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ImDownload2 } from "react-icons/im";
 import ProfileButton from "./ProfileButton";
 import logo from "../../../public/logo.png"

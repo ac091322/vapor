@@ -12,21 +12,26 @@
 
 #container-create-game-page form {
   width: 940px;
-  height: 100%;
+  height: fit-content;
   background:
     linear-gradient(5deg, rgba(102, 51, 0, 0.6) 0%, rgba(153, 76, 0, 0.6) 50%, rgba(102, 51, 0, 0.6) 80%),
     linear-gradient(25deg, rgba(102, 51, 0, 0.6) 0%, rgba(153, 76, 0, 0.6) 50%, rgba(102, 51, 0, 0.6) 80%);
   background-blend-mode: overlay;
   margin: 0 auto;
-  padding: 35px 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "left right";
+  column-gap: 40px;
+  padding: 35px 20px 100px 20px;
+
 }
 
 #container-create-game-page h1 {
-  margin-bottom: 40px;
   align-self: flex-start;
 }
 
-#container-create-form-input-fields {
+#container-create-game-form-left {
+  grid-area: left;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -50,19 +55,28 @@
   top: -20.5px;
 }
 
-#container-create-game-form input {
+#container-create-game-form-left input {
   height: 40px;
   width: 600px;
 }
 
-#container-create-game-form textarea {
+#container-create-game-form-left textarea {
   height: 100px;
   width: 600px;
   outline: none;
 }
 
-#container-create-game-form button {
+#container-create-game-page button {
   height: 40px;
-  width: 600px;
+  width: 100%;
   outline: none;
+  color: white;
+  background: linear-gradient(to right, rgb(37, 190, 251), rgb(48, 118, 249));
+  font-size: 16px;
+  margin-top: 40px;
+}
+
+#container-create-game-form-right {
+  grid-area: right;
+
 }

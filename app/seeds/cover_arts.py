@@ -5,11 +5,16 @@ from datetime import datetime
 
 def seed_cover_arts():
     black_myth_wukong = CoverArt(
-        cover_art_url="https://vapor-ac.s3.amazonaws.com/01_black_myth_wukong/cover-art.jpg",
+        cover_art_url="https://vapor-ac.s3.amazonaws.com/01_black_myth_wukong/cover-art-wukong.png",
         game_id=1,
     )
 
-    db.session.add_all([black_myth_wukong])
+    counter_strike_2 = CoverArt(
+        cover_art_url="https://vapor-ac.s3.amazonaws.com/counter_strike_2/covert-art-counter-strike.png",
+        game_id=2,
+    )
+
+    db.session.add_all([black_myth_wukong, counter_strike_2])
     db.session.commit()
 
 

@@ -52,6 +52,7 @@ export const thunkGameCreate = (gameData) => async (dispatch) => {
     if (response.ok) {
       const data = await response.json();
       dispatch(createGame(data));
+      return data;
 
     } else {
       const errorData = await response.json();

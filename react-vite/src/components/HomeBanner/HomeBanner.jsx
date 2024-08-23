@@ -1,5 +1,3 @@
-import { NavLink } from "react-router-dom";
-import { IoSearchSharp } from "react-icons/io5";
 import NavBar from "../Navigation/NavBar";
 import homeBanner from "../../../public/wukong-banner.png";
 import "./HomeBanner.css"
