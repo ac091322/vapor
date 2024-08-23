@@ -18,16 +18,6 @@ def seed_games():
         min_directx="Version 11",
         min_storage="130 GB available space",
         min_sound_card="Windows Compatible Audio Device",
-        min_additional_notes="HDD Supported, SSD Recommended. The above specifications were tested with DLSS/FSR/XeSS enabled.",
-        rec_requirements="Requires a 64-bit processor and operating system",
-        rec_os="Windows 10 64-bit",
-        rec_processor="Intel Core i7-9700 / AMD Ryzen 5 5500",
-        rec_memory="16 GB RAM",
-        rec_graphics="NVIDIA GeForce RTX 2060 / AMD Radeon RX 5700 XT / INTEL Arc A750",
-        rec_directx="Version 12",
-        rec_storage="130 GB available space",
-        rec_sound_card="Windows Compatible Audio Device",
-        rec_additional_notes="SSD Required. The above specifications were tested with DLSS/FSR/XeSS enabled.",
     )
 
     db.session.add_all([black_myth_wukong])

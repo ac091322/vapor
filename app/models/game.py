@@ -30,16 +30,6 @@ class Game(db.Model):
     min_directx = db.Column(db.String(255), nullable=False)
     min_storage = db.Column(db.String(255), nullable=False)
     min_sound_card = db.Column(db.String(255), nullable=False)
-    min_additional_notes = db.Column(db.String(255), nullable=False)
-    rec_requirements = db.Column(db.String(255), nullable=False)
-    rec_os = db.Column(db.String(255), nullable=False)
-    rec_processor = db.Column(db.String(255), nullable=False)
-    rec_memory = db.Column(db.String(255), nullable=False)
-    rec_graphics = db.Column(db.String(255), nullable=False)
-    rec_directx = db.Column(db.String(255), nullable=False)
-    rec_storage = db.Column(db.String(255), nullable=False)
-    rec_sound_card = db.Column(db.String(255), nullable=False)
-    rec_additional_notes = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(tz=timezone.utc))
     updated_at = db.Column(
         db.DateTime,
@@ -103,24 +93,14 @@ class Game(db.Model):
             "release_date": self.release_date,
             "description": self.description,
             "cover_art": self.cover_art,
-            "min-requirements": self.min_requirements,
-            "min-os": self.min_os,
-            "min-processor": self.min_processor,
-            "min-memory": self.min_memory,
-            "min-graphics": self.min_graphics,
-            "min-directx": self.min_graphics,
-            "min-storage": self.min_storage,
-            "min-sound_card": self.rec_storage,
-            "min-additional_notes": self.rec_additional_notes,
-            "rec-requirements": self.rec_requirements,
-            "rec-os": self.rec_os,
-            "rec-processor": self.rec_processor,
-            "rec-memory": self.rec_memory,
-            "rec-graphics": self.rec_graphics,
-            "rec-directx": self.rec_directx,
-            "rec-storage": self.rec_storage,
-            "rec-sound_card": self.rec_storage,
-            "rec-additional_notes": self.rec_additional_notes,
+            "min_requirements": self.min_requirements,
+            "min_os": self.min_os,
+            "min_processor": self.min_processor,
+            "min_memory": self.min_memory,
+            "min_graphics": self.min_graphics,
+            "min_directx": self.min_graphics,
+            "min_storage": self.min_storage,
+            "min_sound_card": self.min_storage,
             "user": self.user.to_dict() if self.user else None,
             "categories": (
                 [

@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 22762bfc99c7
+Revision ID: 27c3368b592c
 Revises: 
-Create Date: 2024-08-22 22:20:07.282625
+Create Date: 2024-08-23 09:24:09.946107
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '22762bfc99c7'
+revision = '27c3368b592c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -57,16 +57,6 @@ def upgrade():
     sa.Column('min_directx', sa.String(length=255), nullable=False),
     sa.Column('min_storage', sa.String(length=255), nullable=False),
     sa.Column('min_sound_card', sa.String(length=255), nullable=False),
-    sa.Column('min_additional_notes', sa.String(length=255), nullable=False),
-    sa.Column('rec_requirements', sa.String(length=255), nullable=False),
-    sa.Column('rec_os', sa.String(length=255), nullable=False),
-    sa.Column('rec_processor', sa.String(length=255), nullable=False),
-    sa.Column('rec_memory', sa.String(length=255), nullable=False),
-    sa.Column('rec_graphics', sa.String(length=255), nullable=False),
-    sa.Column('rec_directx', sa.String(length=255), nullable=False),
-    sa.Column('rec_storage', sa.String(length=255), nullable=False),
-    sa.Column('rec_sound_card', sa.String(length=255), nullable=False),
-    sa.Column('rec_additional_notes', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),

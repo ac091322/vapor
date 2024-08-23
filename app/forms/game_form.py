@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalField, DateField, ValidationError
+from wtforms import StringField, DecimalField, DateField, TextAreaField, ValidationError
 from wtforms.validators import DataRequired, Length, NumberRange
 from app.models import Game
 
@@ -32,28 +32,26 @@ class GameForm(FlaskForm):
     release_date = DateField(
         "release_date", format="%Y-%m-%d", validators=[DataRequired()]
     )
-    description = StringField(
+    description = TextAreaField(
         "description", validators=[DataRequired(), Length(min=10, max=2000)]
     )
-    min_requirements = StringField("min_requirements", validators=[DataRequired()])
-    min_os = StringField("min_os", validators=[DataRequired()])
-    min_processor = StringField("min_processor", validators=[DataRequired()])
-    min_memory = StringField("min_memory", validators=[DataRequired()])
-    min_graphics = StringField("min_graphics", validators=[DataRequired()])
-    min_directx = StringField("min_directx", validators=[DataRequired()])
-    min_storage = StringField("min_storage", validators=[DataRequired()])
-    min_sound_card = StringField("min_sound_card", validators=[DataRequired()])
-    min_additional_notes = StringField(
-        "min_additional_notes", validators=[DataRequired()]
+    min_requirements = StringField(
+        "min_requirements", validators=[DataRequired(), Length(max=255)]
     )
-    rec_requirements = StringField("rec_requirements", validators=[DataRequired()])
-    rec_os = StringField("rec_os", validators=[DataRequired()])
-    rec_processor = StringField("rec_processor", validators=[DataRequired()])
-    rec_memory = StringField("rec_memory", validators=[DataRequired()])
-    rec_graphics = StringField("rec_graphics", validators=[DataRequired()])
-    rec_directx = StringField("rec_directx", validators=[DataRequired()])
-    rec_storage = StringField("rec_storage", validators=[DataRequired()])
-    rec_sound_card = StringField("rec_sound_card", validators=[DataRequired()])
-    rec_additional_notes = StringField(
-        "rec_additional_notes", validators=[DataRequired()]
+    min_os = StringField("min_os", validators=[DataRequired(), Length(max=255)])
+    min_processor = StringField(
+        "min_processor", validators=[DataRequired(), Length(max=255)]
+    )
+    min_memory = StringField("min_memory", validators=[DataRequired(), Length(max=255)])
+    min_graphics = StringField(
+        "min_graphics", validators=[DataRequired(), Length(max=255)]
+    )
+    min_directx = StringField(
+        "min_directx", validators=[DataRequired(), Length(max=255)]
+    )
+    min_storage = StringField(
+        "min_storage", validators=[DataRequired(), Length(max=255)]
+    )
+    min_sound_card = StringField(
+        "min_sound_card", validators=[DataRequired(), Length(max=255)]
     )

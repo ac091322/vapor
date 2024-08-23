@@ -29,16 +29,6 @@ def post_game():
             min_directx=form.data["min_directx"],
             min_storage=form.data["min_storage"],
             min_sound_card=form.data["min_sound_card"],
-            min_additional_notes=form.data["min_additional_notes"],
-            rec_requirements=form.data["rec_requirements"],
-            rec_os=form.data["rec_os"],
-            rec_processor=form.data["rec_processor"],
-            rec_memory=form.data["rec_memory"],
-            rec_graphics=form.data["rec_graphics"],
-            rec_directx=form.data["rec_directx"],
-            rec_storage=form.data["rec_storage"],
-            rec_sound_card=form.data["rec_sound_card"],
-            rec_additional_notes=form.data["rec_additional_notes"],
         )
         db.session.add(new_game)
         db.session.commit()
@@ -65,7 +55,7 @@ def get_game_id(game_id):
             return {"error": "User not authenticated"}, 401
 
         if game is None:
-            return {"error": "Album not found"}, 404
+            return {"error": "Game not found"}, 404
 
         if game.user_id != current_user.id:
             return {"error": "Forbidden"}, 403
@@ -81,6 +71,6 @@ def get_game_id(game_id):
 
 
 # add cover art to game
-@game_routes.route("/<int:game_id>")
-def cover_art():
-    pass
+# @game_routes.route("/<int:game_id>")
+# def cover_art():
+#     pass

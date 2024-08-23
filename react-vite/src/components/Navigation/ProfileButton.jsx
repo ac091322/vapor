@@ -29,7 +29,7 @@ function ProfileButton() {
   }, [showMenu]);
 
   const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    e.stopPropagation(); // keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
 
@@ -63,7 +63,6 @@ function ProfileButton() {
                 <Link onClick={logout}>Sign out of account...</Link>
               </ul>
             )}
-
             <Link to="/user">
               {user.id === 11
                 ? <img src={user.avatar} alt="demo-avatar" />
@@ -71,9 +70,7 @@ function ProfileButton() {
               }
             </Link>
           </div>
-
         ) : (
-
           <>
             <Link style={{ fontSize: "12px" }} to="/login">login</Link>
             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
