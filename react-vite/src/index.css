@@ -5,8 +5,8 @@
   --nav-font-color-selected: #1A9FFF;
   --nav-background-color: #171d25;
   --input-background-color: #32353C;
-  --footer-background-color: #181A21;
   --body-background-color: rgb(27, 40, 55);
+  --footer-background-color: #171A21;
 }
 
 * {
@@ -34,6 +34,7 @@ input {
 
 textarea {
   resize: vertical;
+  padding: 10px;
 }
 
 button {

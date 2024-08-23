@@ -4,8 +4,8 @@ import SignupFormPage from '../components/SignupFormPage';
 import UserProfile from '../components/UserProfile/UserProfile';
 import Homepage from '../components/HomePage/Homepage';
 import HomeBanner from '../components/HomeBanner/HomeBanner';
+import CreateGame from '../components/Games/CreateGame';
 import UploadImage from '../components/Games/UploadImage';
-
 import Layout from './Layout';
 
 
@@ -36,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/user",
         element: <UserProfile />
+      },
+      {
+        path: "/create-game",
+        element: <CreateGame />
       }
     ]
   },

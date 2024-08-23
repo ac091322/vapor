@@ -7,11 +7,11 @@ import "./Navigation.css";
 
 function Navigation() {
   return (
-    <section id="container-navigation-outer" style={{ backgroundColor: "#171d25" }}>
+    <section id="container-navigation-outer" style={{ backgroundColor: "var(--nav-background-color)" }}>
 
       <div id="container-navigation-inner">
         <div id="container-logo-navlinks">
-          <NavLink to="/"><img src={logo} /></NavLink>
+          <NavLink to="/"><img src={logo} alt="logo" /></NavLink>
           <ul>
             <li>STORE</li>
             <li style={{ cursor: "not-allowed" }}>COMMUNITY</li>
@@ -21,9 +21,8 @@ function Navigation() {
         </div>
 
         <div id="container-install-login">
-          <Link to="">
-            <button style={{ cursor: "not-allowed" }}><ImDownload2 />&nbsp;&nbsp;&nbsp;Install Steam</button>
-          </Link>
+
+          <button style={{ cursor: "not-allowed" }}><ImDownload2 />&nbsp;&nbsp;&nbsp;Install Steam</button>
 
           <div><ProfileButton /></div>
         </div>

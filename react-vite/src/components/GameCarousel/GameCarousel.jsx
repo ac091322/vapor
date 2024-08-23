@@ -7,7 +7,6 @@ import { BiSolidChevronRight } from "react-icons/bi";
 import "./GameCarousel.css";
 
 
-
 function GameCarousel() {
   const dispatch = useDispatch();
 
@@ -27,8 +26,7 @@ function GameCarousel() {
         <React.Fragment key={game.id}>
           <div id="container-game-carousel-left">
             <img
-
-              style={{ width: "100%", height: "100%" }}
+              style={{ height: "100%", width: "100%"}}
               src={game.cover_art?.[0]?.cover_art_url}
               alt={`${game.title} cover art`}
             />

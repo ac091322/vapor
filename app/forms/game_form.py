@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, DecimalField, DateField, ValidationError
 from wtforms.validators import DataRequired, Length, NumberRange
-from app.api.aws_helpers import ALLOWED_EXTENSIONS
 from app.models import Game
 
 
@@ -10,7 +9,7 @@ def title_exists(form, field):
     title = field.data
     game = Game.query.filter(Game.title == title).first()
     if game:
-        raise ValidationError("Game title is already in use")
+        raise ValidationError("Game title is already in use.")
 
 
 class GameForm(FlaskForm):
@@ -19,7 +18,7 @@ class GameForm(FlaskForm):
         validators=[
             DataRequired(),
             title_exists,
-            Length(min=4, max=40, message="Name must be between 4 and 40 characters"),
+            Length(min=4, max=40, message="Name must be between 4 and 40 characters."),
         ],
     )
     price = DecimalField(
@@ -27,11 +26,14 @@ class GameForm(FlaskForm):
         places=2,
         validators=[
             DataRequired(),
-            NumberRange(min=0, max=999, message="Price must be between 0 and 999.99"),
+            NumberRange(min=0, max=999, message="Price must be between 0 and 999.99."),
         ],
     )
     release_date = DateField(
         "release_date", format="%Y-%m-%d", validators=[DataRequired()]
+    )
+    description = StringField(
+        "description", validators=[DataRequired(), Length(min=10, max=2000)]
     )
     min_requirements = StringField("min_requirements", validators=[DataRequired()])
     min_os = StringField("min_os", validators=[DataRequired()])

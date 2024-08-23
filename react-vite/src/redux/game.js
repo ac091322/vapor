@@ -1,5 +1,6 @@
 const GET_GAMES = "getAllGames/GET_GAMES"
 const GET_GAME = "getGameById/GET_GAME"
+const CREATE_GAME = "createGame/CREATE_GAME"
 
 const getGames = (games) => ({
   type: GET_GAMES,
@@ -8,6 +9,11 @@ const getGames = (games) => ({
 
 const getGame = (game) => ({
   type: GET_GAME,
+  payload: game
+});
+
+const createGame = (game) => ({
+  type: CREATE_GAME,
   payload: game
 });
 
@@ -22,7 +28,33 @@ export const thunkGamesGet = () => async (dispatch) => {
   }
 };
 
+export const thunkGameGetId = (gameId) => async (dispatch) => {
+  const response = await fetch(`/api/games/${gameId}`, {
+    method: "GET"
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getGame(data));
+  }
+};
 
+export const thunkGameCreate = (gameData) => async (dispatch) => {
+  const response = await fetch("/api/games", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(gameData),
+    credentials: 'include'
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(createGame(data));
+  } else {
+    console.error("Error creating game:", response.status);
+  }
+};
 
 const initialState = {}
 
@@ -37,10 +69,22 @@ const gameReducer = (state = initialState, action) => {
       return newState
     }
 
+    case GET_GAME: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload
+      return newState;
+    }
+
+    case CREATE_GAME: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload
+      return newState;
+    }
+
     default:
       return state;
   }
 };
 
 
-export default gameReducer
+export default gameReducer;

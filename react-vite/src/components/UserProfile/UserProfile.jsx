@@ -1,10 +1,19 @@
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import defaultAvatar from "../../../public/default-avatar.png"
 import "./UserProfile.css"
 
 
 function UserProfile() {
-  const currentUser = useSelector(store => store.session.user)
+  const navigate = useNavigate();
+  const currentUser = useSelector(state => state.session.user)
+
+  useEffect(() => {
+    if (!currentUser) navigate("/");
+  }, [currentUser, navigate]);
+
+  if (!currentUser) return null;
 
   return (
     <section id="container-user-profile-page">

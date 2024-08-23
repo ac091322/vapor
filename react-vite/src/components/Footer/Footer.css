@@ -1,0 +1,19 @@
+footer {
+  height: 185px;
+  background-color: var(--footer-background-color);
+  display: flex;
+  align-items: center;
+}
+
+footer div {
+  width: 940px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--light-beige-font-color);
+}
+
+footer img {
+  height: 45px;
+}

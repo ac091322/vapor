@@ -1,17 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { thunkLogout } from "../../redux/session";
 import { IoCaretDownSharp } from "react-icons/io5";
 import defaultAvatar from "../../../public/default-avatar.png"
 
 
 function ProfileButton() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const ulRef = useRef();
-
   const user = useSelector((store) => store.session.user);
-  console.log("🚀 ~ ProfileButton ~ user:", user)
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -40,6 +39,7 @@ function ProfileButton() {
     e.preventDefault();
     dispatch(thunkLogout());
     closeMenu();
+    navigate("/");
   };
 
   return (
@@ -56,9 +56,10 @@ function ProfileButton() {
 
             {showMenu && (
               <ul className={"profile-dropdown"} ref={ulRef}>
-                <li>View my profile</li>
+                <Link to="/user">View my profile</Link>
                 <li>Username: {user.username}</li>
                 <li>Email: {user.email}</li>
+                <Link to="/create-game">Create a game</Link>
                 <Link onClick={logout}>Sign out of account...</Link>
               </ul>
             )}

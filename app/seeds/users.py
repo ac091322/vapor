@@ -100,7 +100,7 @@ def seed_users():
         password="password",
         developer_name=None,
         avatar="https://vapor-ac.s3.amazonaws.com/01_black_myth_wukong/demo-avatar.png",
-        about="You are now logged in as the Demo Developer.",
+        about="You are now logged in as Demo Developer. As Demo Developer, go create a game!",
     )
 
     db.session.add_all(

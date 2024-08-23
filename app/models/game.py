@@ -21,6 +21,7 @@ class Game(db.Model):
     )
     price = db.Column(db.Numeric(5, 2), nullable=False)
     release_date = db.Column(db.Date, nullable=False)
+    description = db.Column(db.String(2000), nullable=False)
     min_requirements = db.Column(db.String(255), nullable=False)
     min_os = db.Column(db.String(255), nullable=False)
     min_processor = db.Column(db.String(255), nullable=False)
@@ -100,6 +101,7 @@ class Game(db.Model):
             "title": self.title,
             "price": self.price,
             "release_date": self.release_date,
+            "description": self.description,
             "cover_art": self.cover_art,
             "min-requirements": self.min_requirements,
             "min-os": self.min_os,
