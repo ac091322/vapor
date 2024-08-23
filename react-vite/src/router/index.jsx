@@ -7,6 +7,7 @@ import HomeBanner from '../components/HomeBanner/HomeBanner';
 import CreateGame from '../components/Games/CreateGame';
 import UploadImage from '../components/Games/UploadImage';
 import Layout from './Layout';
+import UploadPicture from '../components/Games/UploadImage';
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "/create-game",
         element: <CreateGame />
+      },
+      {
+        path: "/add-image",
+        element: <UploadPicture />
       }
     ]
   },

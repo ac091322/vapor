@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import db, Game, CoverArt
+from app.models import db, Game
 from app.forms import GameForm
 
 

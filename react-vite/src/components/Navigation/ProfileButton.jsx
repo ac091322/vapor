@@ -60,6 +60,7 @@ function ProfileButton() {
                 <li>Username: {user.username}</li>
                 <li>Email: {user.email}</li>
                 <Link to="/create-game">Create a game</Link>
+                <Link to="/add-image">Add an image</Link>
                 <Link onClick={logout}>Sign out of account...</Link>
               </ul>
             )}

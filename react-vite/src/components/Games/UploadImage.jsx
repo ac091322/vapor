@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import { createImage } from "../../redux/coverArt";
 
 
 const UploadPicture = () => {
-  const navigate = useNavigate(); // so that you can redirect after the image upload is successful
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
 
@@ -14,11 +16,12 @@ const UploadPicture = () => {
     const formData = new FormData();
     formData.append("image", image);
 
+    console.log([...formData]);
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
     await dispatch(createImage(formData));
-    navigate("/images");
+    // navigate("/images");
   }
 
   return (

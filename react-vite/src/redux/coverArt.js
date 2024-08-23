@@ -10,12 +10,14 @@ You do NOT want to set any headers for this fetch because you should let the bro
 */
 
 export const createImage = (post) => async (dispatch) => {
+  console.log("IN THE THNUNK???")
   const response = await fetch(`/images/new`, {
     method: "POST",
     body: post
   });
 
   if (response.ok) {
+    console.log("SERVER RESPONSE???")
     const { resPost } = await response.json();
     dispatch(addPost(resPost));
   } else {

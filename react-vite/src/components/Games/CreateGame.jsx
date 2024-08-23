@@ -25,7 +25,6 @@ function CreateGame() {
     min_sound_card: "Windows Compatible Audio Device",
   });
 
-
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
@@ -34,7 +33,7 @@ function CreateGame() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const newGame = {
@@ -42,10 +41,9 @@ function CreateGame() {
       user_id: Number(currentUser.id),
     };
 
-    const gameResponse = await dispatch(thunkGameCreate(newGame));
-    const gameId = gameResponse.id;
+    dispatch(thunkGameCreate(newGame));
 
-    navigate(`/games/${gameId}`);
+    // navigate(`/games/${gameId}`);
   };
 
   if (!currentUser) return null;
