@@ -2,19 +2,12 @@
   display: flex;
   background-color: black;
   justify-content: center;
+  align-items: center;
   height: 450px;
   position: relative;
 }
 
 #container-homepage-banner img {
-  margin: 0 auto;
   mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-}
-
-#container-mini-navigation {
-  position: absolute;
-  top: 30px;
-  z-index: 1;
-  opacity: 0.9;
 }

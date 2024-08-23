@@ -4,11 +4,13 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+from .seeds import seed_commands
+from .config import Config
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
-from .seeds import seed_commands
-from .config import Config
+from .api.game_routes import game_routes
+from .api.s3_routes import s3_routes
 
 
 app = Flask(__name__, static_folder="../react-vite/dist", static_url_path="/")
@@ -20,6 +22,7 @@ login.login_view = "auth.unauthorized"
 
 @login.user_loader
 def load_user(id):
+    print("Base route accessed")
     return User.query.get(int(id))
 
 
@@ -29,6 +32,8 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(auth_routes, url_prefix="/api/auth")
+app.register_blueprint(game_routes, url_prefix="/api/games")
+app.register_blueprint(s3_routes, url_prefix="/images")
 db.init_app(app)
 Migrate(app, db)
 
@@ -97,6 +102,6 @@ def not_found(e):
     return app.send_static_file("index.html")
 
 
-@app.route("/api")
-def backend():
-    return "<h1>You found the backend!</h1>"
+# @app.route("/api")
+# def backend():
+#     return "<h1>You found the backend!</h1>"

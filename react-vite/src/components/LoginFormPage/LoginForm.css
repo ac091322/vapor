@@ -1,0 +1,80 @@
+#container-login-page {
+  display: flex;
+  justify-content: center;
+  height: 655px;
+  background-image: url("../../../public/login-banner.jpg");
+  background-position: center;
+}
+
+#container-login-page::before {
+  content: '';
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#container-login-page-form {
+  position: absolute;
+}
+
+#container-login-page-form h1 {
+  margin-top: 100px;
+  margin-bottom: 40px;
+  font-weight: 900;
+  color: white;
+}
+
+#container-login-page-form form {
+  display: grid;
+  column-gap: 40px;
+  grid-template-areas: "left right";
+  background-color: var(--nav-background-color);
+  padding: 40px;
+}
+
+#container-login-page-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+}
+
+#container-login-page-form input {
+  width: 395px;
+  height: 40px;
+  background-color: var(--input-background-color);
+  color: white;
+}
+
+#container-login-form-left {
+  grid-area: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#container-login-form-left button {
+  width: 270px;
+  height: 45px;
+  color: white;
+  background: linear-gradient(to right, rgb(37, 190, 251), rgb(48, 118, 249));
+  font-size: 16px;
+  margin-top: 30px;
+  align-self: center;
+  background-color: transparent;
+}
+
+#container-login-form-right {
+  grid-area: right;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  grid-area: right;
+  font-size: 12px;
+}
+
+#container-login-form-right img {
+  padding: 15px;
+  background-color: var(--light-beige-font-color);
+  border-radius: 10px;
+  box-shadow: 12px 29px 81px 0px rgba(0, 0, 0, 0.75);
+}
