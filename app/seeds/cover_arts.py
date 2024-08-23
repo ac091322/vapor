@@ -1,6 +1,5 @@
 from app.models import db, environment, SCHEMA, CoverArt
 from sqlalchemy.sql import text
-from datetime import datetime
 
 
 def seed_cover_arts():

@@ -84,6 +84,9 @@ class Game(db.Model):
     trailer = db.relationship(
         "Trailer", back_populates="game", cascade="all, delete-orphan"
     )
+    image = db.relationship(
+        "Image", back_populates="game", cascade="all, delete-orphan"
+    )
 
     def to_dict(self):
         return {
@@ -92,15 +95,14 @@ class Game(db.Model):
             "price": self.price,
             "release_date": self.release_date,
             "description": self.description,
-            "cover_art": self.cover_art,
             "min_requirements": self.min_requirements,
             "min_os": self.min_os,
             "min_processor": self.min_processor,
             "min_memory": self.min_memory,
             "min_graphics": self.min_graphics,
-            "min_directx": self.min_graphics,
+            "min_directx": self.min_directx,
             "min_storage": self.min_storage,
-            "min_sound_card": self.min_storage,
+            "min_sound_card": self.min_sound_card,
             "user": self.user.to_dict() if self.user else None,
             "categories": (
                 [
@@ -127,5 +129,8 @@ class Game(db.Model):
                 ]
                 if self.screenshot_in_game_screenshot_joined
                 else None
+            ),
+            "image": (
+                [image.to_dict() for image in self.image] if self.image else None
             ),
         }

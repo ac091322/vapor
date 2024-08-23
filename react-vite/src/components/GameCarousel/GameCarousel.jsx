@@ -17,7 +17,6 @@ function GameCarousel() {
     dispatch(thunkGamesGet());
   }, [dispatch]);
 
-
   return (
     <div id="container-game-carousel">
       <h3>FEATURED AND RECOMMENDED</h3>
@@ -26,7 +25,7 @@ function GameCarousel() {
         <React.Fragment key={game.id}>
           <div id="container-game-carousel-left">
             <img
-              style={{ height: "100%", width: "100%"}}
+              style={{ height: "100%", width: "100%" }}
               src={game.cover_art?.[0]?.cover_art_url}
               alt={`${game.title} cover art`}
             />

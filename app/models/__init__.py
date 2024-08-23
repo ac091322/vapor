@@ -7,3 +7,4 @@ from .trailer import Trailer
 from .screenshot import Screenshot
 from .review import Review
 from .shopping_cart import ShoppingCart
+from .image import Image

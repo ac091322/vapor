@@ -1,4 +1,4 @@
 from .login_form import LoginForm
 from .signup_form import SignUpForm
 from .game_form import GameForm
-from .cover_art_form import CoverArtForm
+from .s3_form import ImageForm

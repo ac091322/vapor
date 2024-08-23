@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGameCreate } from "../../redux/game";
-import { thunkCoverArtAdd } from "../../redux/coverArt";
 import "./CreateGame.css";
 
 
@@ -26,8 +25,6 @@ function CreateGame() {
     min_sound_card: "Windows Compatible Audio Device",
   });
 
-  const [cover_art, setCoverArt] = useState(null);
-  const [imageLoading, setImageLoading] = useState(false);
 
   useEffect(() => {
     if (!currentUser) navigate("/");
@@ -47,15 +44,6 @@ function CreateGame() {
 
     const gameResponse = await dispatch(thunkGameCreate(newGame));
     const gameId = gameResponse.id;
-
-    if (cover_art) {
-      const newCoverArt = new FormData();
-      newCoverArt.append("cover_art", cover_art);
-
-      setImageLoading(true);
-      await dispatch(thunkCoverArtAdd(gameId, newCoverArt));
-      setImageLoading(false);
-    }
 
     navigate(`/games/${gameId}`);
   };
@@ -81,7 +69,7 @@ function CreateGame() {
     <section id="container-create-game-page">
       <form
         onSubmit={handleSubmit}
-        encType="multipart/form-data"
+        // encType="multipart/form-data"
         id="container-create-game-form"
       >
 
@@ -124,16 +112,9 @@ function CreateGame() {
 
         <div id="container-create-game-form-right">
           <h4>Upload image</h4>
-
-          <input
-            type="file"
-            accept="image/*"
-            onChange={e => setCoverArt(e.target.files[0])}
-          />
         </div>
 
         <button type="submit">Create Game</button>
-        {(imageLoading) && <p>Loading...</p>}
       </form>
     </section>
   );

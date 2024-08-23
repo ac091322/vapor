@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 7cff45a2a7b4
+Revision ID: 5418d35cb331
 Revises: 
-Create Date: 2024-08-23 11:49:46.051618
+Create Date: 2024-08-23 13:15:47.092147
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7cff45a2a7b4'
+revision = '5418d35cb331'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -100,6 +100,15 @@ def upgrade():
     sa.ForeignKeyConstraint(['screenshot_id'], ['screenshots.id'], ),
     sa.PrimaryKeyConstraint('game_id', 'screenshot_id')
     )
+    op.create_table('images',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('image', sa.String(length=255), nullable=False),
+    sa.Column('game_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['game_id'], ['games.id'], ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('game_id'),
+    sa.UniqueConstraint('image')
+    )
     op.create_table('libraries_joined',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('game_id', sa.Integer(), nullable=False),
@@ -145,6 +154,7 @@ def downgrade():
     op.drop_table('trailers')
     op.drop_table('reviews')
     op.drop_table('libraries_joined')
+    op.drop_table('images')
     op.drop_table('games_screenshots_joined')
     op.drop_table('games_categories_joined')
     op.drop_table('cover_arts')

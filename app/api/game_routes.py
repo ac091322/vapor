@@ -3,10 +3,6 @@ from flask_login import current_user, login_required
 from app.models import db, Game, CoverArt
 from app.forms import GameForm
 
-from werkzeug.utils import secure_filename
-import boto3
-import os
-
 
 game_routes = Blueprint("games", __name__)
 
@@ -72,50 +68,3 @@ def post_game():
         return new_game.to_dict(), 201
 
     return {"errors": form.errors}, 409
-
-
-# add cover art to game
-@game_routes.route("/<int:game_id>/cover-art", methods=["POST"])
-@login_required
-def add_cover_art(game_id):
-    game = Game.query.get(game_id)
-
-    if game is None:
-        return {"error": "Game not found"}, 404
-
-    if game.user_id != current_user.id:
-        return {"error": "Forbidden"}, 403
-
-    if "cover_art" not in request.files:
-        return {"error": "No file part in the request"}, 400
-
-    file = request.files["cover_art"]
-
-    if file.filename == "":
-        return {"error": "No selected file"}, 400
-
-    if file:
-        try:
-            # Configure AWS S3
-            s3 = boto3.client(
-                "s3",
-                aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
-                aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"),
-                region_name=os.environ.get("AWS_REGION"),
-            )
-
-            filename = secure_filename(file.filename)
-            s3.upload_fileobj(file, os.environ.get("AWS_BUCKET_NAME"), filename)
-
-            cover_art_url = f"https://{os.environ.get('AWS_BUCKET_NAME')}.s3.{os.environ.get('AWS_REGION')}.amazonaws.com/{filename}"
-
-            new_cover_art = CoverArt(cover_art_url=cover_art_url, game_id=game.id)
-            db.session.add(new_cover_art)
-            db.session.commit()
-
-            return new_cover_art.to_dict(), 201
-
-        except Exception as e:
-            return {"error": "File upload failed", "details": str(e)}, 500
-
-    return {"errors": "File upload failed due to an unknown error"}, 500

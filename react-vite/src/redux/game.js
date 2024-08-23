@@ -18,6 +18,7 @@ const createGame = (game) => ({
 });
 
 export const thunkGamesGet = () => async (dispatch) => {
+
   const response = await fetch("/api/games/", {
     method: "GET"
   });

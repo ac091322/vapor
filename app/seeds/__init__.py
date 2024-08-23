@@ -1,5 +1,5 @@
 from flask.cli import AppGroup
-from app.models.db import db, environment, SCHEMA
+from app.models.db import environment, SCHEMA
 from .users import seed_users, undo_users
 from .categories import seed_categories, undo_categories
 from .games import seed_games, undo_games
