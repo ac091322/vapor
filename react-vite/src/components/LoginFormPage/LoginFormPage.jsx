@@ -35,13 +35,13 @@ function LoginFormPage() {
 
   return (
     <div id="container-login-page">
-      <div id="container-login-page-form">
-        <h1>Sign In</h1>
+      <div id="container-login-form">
+
+        <h1>SIGN IN</h1>
         {errors.length > 0 &&
           errors.map((message) => <p key={message}>{message}</p>)}
 
         <form onSubmit={handleSubmit}>
-
           <div id="container-login-form-left">
             <label style={{ color: "var(--nav-font-color-selected)" }}>
               SIGN IN WITH EMAIL
@@ -79,7 +79,6 @@ function LoginFormPage() {
             </button>
             <span style={{ color: "var(--logo-color)", marginTop: "5px", alignSelf: "center" }}>Click on Wukong&apos;s avatar</span>
           </div>
-
         </form>
 
       </div >

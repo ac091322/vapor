@@ -6,10 +6,10 @@ class Review(db.Model):
     __tablename__ = "reviews"
 
     if environment == "production":
-        __table_args__ = {"SCHEMA": SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(2000), nullable=False)
     thumbs_up = db.Column(db.Boolean, nullable=True)
     thumbs_down = db.Column(db.Boolean, nullable=True)
     user_id = db.Column(
@@ -37,7 +37,9 @@ class Review(db.Model):
 
     def validate_review(self):
         if self.thumbs_up == self.thumbs_down:
-            raise ValueError("Exactly one of 'thumbs_up' or 'thumbs_down' must be True")
+            raise ValueError(
+                "Exactly one of 'thumbs_up' or 'thumbs_down' must be True."
+            )
 
     def to_dict(self):
         return {

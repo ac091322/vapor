@@ -16,7 +16,6 @@ const UploadPicture = () => {
     const formData = new FormData();
     formData.append("image", image);
 
-    console.log([...formData]);
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);

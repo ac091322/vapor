@@ -28,6 +28,7 @@
 
 #container-create-game-page h1 {
   align-self: flex-start;
+  color: var(--logo-color);
 }
 
 #container-create-game-form-left {
