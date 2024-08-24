@@ -6,7 +6,7 @@ class Review(db.Model):
     __tablename__ = "reviews"
 
     if environment == "production":
-        __table_args__ = {"SCHEMA": SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(255), nullable=False)

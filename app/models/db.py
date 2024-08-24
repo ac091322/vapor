@@ -3,7 +3,7 @@ import os
 
 
 environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
+SCHEMA = os.environ.get("schema")
 
 
 db = SQLAlchemy()

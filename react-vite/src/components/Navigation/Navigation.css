@@ -33,12 +33,12 @@
   margin-top: 7px;
 }
 
-#container-install-login button {
+#install-button {
   height: 25px;
-  background-color: #5C7E10;
   color: var(--light-beige-font-color);
   padding: 0 10px;
   font-size: 12px;
+  cursor: not-allowed;
 }
 
 #container-profile-button-avatar {

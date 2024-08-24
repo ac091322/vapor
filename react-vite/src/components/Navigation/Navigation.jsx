@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom";
 import { ImDownload2 } from "react-icons/im";
 import ProfileButton from "./ProfileButton";
@@ -6,6 +7,8 @@ import "./Navigation.css";
 
 
 function Navigation() {
+  const currentUser = useSelector(state => state.session.user);
+
   return (
     <section id="container-navigation-outer" style={{ backgroundColor: "var(--nav-background-color)" }}>
 
@@ -22,7 +25,11 @@ function Navigation() {
 
         <div id="container-install-login">
 
-          <button style={{ cursor: "not-allowed" }}><ImDownload2 />&nbsp;&nbsp;&nbsp;Install Steam</button>
+          <button
+            id="install-button"
+            style={currentUser ? { backgroundColor: "rgb(59, 65, 74, 0.8)" } : { backgroundColor: "#5C7E10" }}>
+            <ImDownload2 />&nbsp;&nbsp;&nbsp;Install Steam
+          </button>
 
           <div><ProfileButton /></div>
         </div>
