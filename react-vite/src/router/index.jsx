@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import LoginFormPage from "../components/LoginFormPage";
 import SignupFormPage from "../components/SignupFormPage";
 import UserProfile from "../components/UserProfile/UserProfile";
-import Homepage from "../components/Homepage/Homepage"
+import Homepage from "../components/HomePage/Homepage";
 import GameDetails from "../components/Games/GameDetails";
 import CreateGame from "../components/Games/CreateGame";
 import UploadImage from "../components/Games/UploadImage";
