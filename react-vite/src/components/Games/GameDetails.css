@@ -2,24 +2,61 @@
   background-color: var(--body-background-color);
 }
 
+#container-game-details-page h1 {
+  color: white;
+  font-size: 2rem;
+  width: 940px;
+  margin: 0 auto;
+  padding: 60px 0 20px 0;
+}
+
 #container-game-details-page-inner {
   width: 940px;
   margin: 0 auto;
-  padding-top: 60px;
 }
 
 #container-game-carousel-game-details {
   display: grid;
   grid-template-columns: 1.75fr 1fr;
-  grid-template-areas: "left-banner right-banner";
+  grid-template-areas: "left-carousel right-carousel";
+  background: linear-gradient(to top, rgba(11, 17, 22, 0.7), rgb(27, 40, 55, 0.5));
+  column-gap: 15px;
+  padding-bottom: 15px;
 }
 
 #container-game-carousel-game-details-left {
-  grid-area: left-banner;
+  grid-area: left-carousel;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#main-image-game-details {
+  width: 600px;
+  height: 337px;
+}
+
+#container-thumbnail-images-game-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+#video-placeholder-game-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gray;
+  font-size: 14px;
+  color: var(--logo-color);
+}
+
+.thumbnail-game-details {
+  width: 116px;
+  height: 65px;
 }
 
 #container-game-carousel-game-details-right {
-  grid-area: right-banner;
+  grid-area: right-carousel;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -36,7 +73,6 @@
   grid-template-areas: "left-details right-details";
   display: flex;
   column-gap: 40px;
-
 }
 
 #container-description-game-details-left {
@@ -75,4 +111,136 @@
   font-size: 12px;
   background-color: rgb(33, 56, 71);
   padding: 3px 10px;
+}
+
+#sign-in-wish-list-notice {
+  display: flex;
+  align-items: center;
+  height: 46px;
+  color: var(--light-beige-font-color);
+  font-size: 12px;
+  background-color: rgb(24, 34, 48);
+  margin-bottom: 30px;
+  padding: 0 15px;
+}
+
+#container-bottom-section-game-details {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "left-bottom-details right-bottom-details";
+  column-gap: 20px;
+}
+
+#container-bottom-section-left {
+  grid-area: left-bottom-details;
+}
+
+#container-buy-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 10px 20px;
+  height: 72px;
+  background: linear-gradient(to right, rgb(46, 61, 74), rgb(87, 101, 115));
+  border-radius: 5px;
+  color: white;
+  position: relative;
+}
+
+#container-price-add-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: black;
+  position: absolute;
+  right: 20px;
+  bottom: -18px;
+  width: fit-content;
+  height: 36px;
+  padding-right: 3px;
+}
+
+#container-price-add-button button {
+  height: 30px;
+  background: linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46));
+  font-size: 16px;
+  padding: 0 20px;
+  color: var(--logo-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+}
+
+#container-bottom-description-game-details {
+  margin-top: 50px;
+}
+
+#container-game-details-page hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgb(72, 102, 93), transparent);
+  margin: 3px 0 15px 0;
+}
+
+#container-requirements-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.requirements-title {
+  font-size: 13px;
+  color: #61686D;
+}
+
+.requirements-value {
+  font-size: 13px;
+  color: var(--logo-color)
+}
+
+#container-bottom-section-right {
+  grid-area: right-bottom-details;
+  height: 600px;
+}
+
+#container-game-details-side {
+  font-size: 13px;
+  padding: 20px 15px;
+  background: linear-gradient(to right, rgb(21, 32, 44), rgb(14, 20, 28));
+  height: fit-content;
+}
+
+#container-game-details-side-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#container-external-links-outer {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 15px;
+}
+
+.external-links-container {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 5px;
+  background: linear-gradient(to right, rgb(29, 48, 64), rgb(24, 39, 50));
+  color: #67C1F5;
+}
+
+.social-media-icons {
+  color: white;
+}
+
+.external-links-icon {
+  font-size: 0.75rem;
+  color: var(--logo-color);
+  padding-top: 2px;
+}
+
+#container-reviews-game-details {
+  height: 200px;
 }

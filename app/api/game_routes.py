@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import db, Game
+from app.models import db, Game, Screenshot
 from app.forms import GameForm
 
 
@@ -68,3 +68,14 @@ def post_game():
         return new_game.to_dict(), 201
 
     return {"errors": form.errors}, 409
+
+
+@game_routes.route("/<int:game_id>/screenshots", methods=["GET"])
+def get_screenshots(game_id):
+    game = Game.query.get(game_id)
+
+    if game is None:
+        return {"error": "Game not found"}, 404
+
+    screenshots = Screenshot.query.filter_by(game_id=game.id).all()
+    return [screenshot.to_dict() for screenshot in screenshots], 200

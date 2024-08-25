@@ -1,7 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime, timezone
 from .game_category_joined import game_category_joined
-from .game_screenshot_joined import game_screenshot_joined
 from .wishlist_joined import wishlist_joined
 from .cart_item_joined import cart_item_joined
 from .library_joined import library_joined
@@ -44,12 +43,6 @@ class Game(db.Model):
         back_populates="game_in_game_category_joined",
         passive_deletes=True,
     )
-    screenshot_in_game_screenshot_joined = db.relationship(
-        "Screenshot",
-        secondary=game_screenshot_joined,
-        back_populates="game_in_game_screenshot_joined",
-        passive_deletes=True,
-    )
     user_in_wishlist_joined = db.relationship(
         "User",
         secondary=wishlist_joined,
@@ -73,6 +66,9 @@ class Game(db.Model):
     user = db.relationship("User", back_populates="game")
 
     # one-to-many relationship:
+    screenshot = db.relationship(
+        "Screenshot", back_populates="game", cascade="all, delete-orphan"
+    )
     review = db.relationship(
         "Review", back_populates="game", cascade="all, delete-orphan"
     )
@@ -123,11 +119,8 @@ class Game(db.Model):
                 else None
             ),
             "screenshots": (
-                [
-                    screenshots.to_dict()
-                    for screenshots in self.screenshot_in_game_screenshot_joined
-                ]
-                if self.screenshot_in_game_screenshot_joined
+                [screenshots.to_dict() for screenshots in self.screenshot]
+                if self.screenshot
                 else None
             ),
             "image": (

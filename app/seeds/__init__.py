@@ -4,6 +4,7 @@ from .users import seed_users, undo_users
 from .categories import seed_categories, undo_categories
 from .games import seed_games, undo_games
 from .cover_arts import seed_cover_arts, undo_cover_arts
+from .screenshots import seed_screenshots, undo_screenshots
 from .reviews import seed_reviews, undo_reviews
 
 
@@ -24,11 +25,13 @@ def seed():
         undo_categories()
         undo_games()
         undo_cover_arts()
+        undo_screenshots()
         undo_reviews()
     seed_users()
     seed_games()
     seed_categories()
     seed_cover_arts()
+    seed_screenshots()
     seed_reviews()
     # Add other seed functions here
 
@@ -40,5 +43,6 @@ def undo():
     undo_categories()
     undo_games()
     undo_cover_arts()
+    undo_screenshots()
     undo_reviews()
     # Add other undo functions here

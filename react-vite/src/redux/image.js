@@ -29,11 +29,13 @@ const initialState = {
 
 const imageReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case UPLOAD_COVER_ART:
       return {
         ...state,
         posts: [...state.posts, action.payload],
       };
+
     default:
       return state;
   }

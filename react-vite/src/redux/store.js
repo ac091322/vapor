@@ -8,12 +8,14 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import gameReducer from "./game";
 import imageReducer from "./image";
+import screenshotReducer from "./screenshot";
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   game: gameReducer,
-  coverArt: imageReducer
+  coverArt: imageReducer,
+  screenshot: screenshotReducer
 });
 
 let enhancer;

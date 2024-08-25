@@ -47,7 +47,6 @@ function SignupFormPage() {
       <div id="container-signup-form">
 
         <h1>CREATE YOUR ACCOUNT</h1>
-        {errors.server && <p className="error">{errors.server}</p>}
 
         <form onSubmit={handleSubmit}>
           <label>
@@ -86,7 +85,6 @@ function SignupFormPage() {
             {errors.password && <p className="error">{errors.password}</p>}
           </label>
 
-
           <label>
             CONFIRM PASSWORD
             <input
@@ -98,7 +96,7 @@ function SignupFormPage() {
             {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
           </label>
 
-
+          {errors.server && <p className="error">{errors.server}</p>}
           <button type="submit">Sign Up</button>
         </form>
 
