@@ -49,16 +49,16 @@ class Game(db.Model):
         back_populates="game_in_wishlist_joined",
         passive_deletes=True,
     )
-    shopping_cart_in_cart_item_joined = db.relationship(
-        "ShoppingCart",
-        secondary=cart_item_joined,
-        back_populates="game_in_cart_item_joined",
-        passive_deletes=True,
-    )
     user_in_library_joined = db.relationship(
         "User",
         secondary=library_joined,
         back_populates="game_in_library_joined",
+        passive_deletes=True,
+    )
+    shopping_cart_in_cart_item_joined = db.relationship(
+        "ShoppingCart",
+        secondary=cart_item_joined,
+        back_populates="game_in_cart_item_joined",
         passive_deletes=True,
     )
 

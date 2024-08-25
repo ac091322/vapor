@@ -10,7 +10,9 @@ class ShoppingCart(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(
-        db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False, unique=True
+        db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"),
+        nullable=False,
+        unique=True,
     )
 
     # many-to-many relationship
