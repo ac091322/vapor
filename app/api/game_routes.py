@@ -70,6 +70,7 @@ def post_game():
     return {"errors": form.errors}, 409
 
 
+# get all screenshots by game_id
 @game_routes.route("/<int:game_id>/screenshots", methods=["GET"])
 def get_screenshots(game_id):
     game = Game.query.get(game_id)

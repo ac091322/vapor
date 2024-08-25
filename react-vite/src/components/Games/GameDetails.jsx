@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { BiLogoWindows } from "react-icons/bi";
@@ -9,7 +9,8 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
-import { thunkScreenshotsGet, thunkScreenshotsGetAll } from "../../redux/screenshot";
+import { thunkScreenshotsGetByGame } from "../../redux/screenshot";
+import videoPlaceholder from "../../../public/video-placeholder.png"
 import "./GameDetails.css";
 
 
@@ -18,13 +19,17 @@ function GameDetails() {
   const { gameId } = useParams();
   const game = useSelector(state => state.game[gameId])
   const screenshotsObj = useSelector(state => state.screenshot)
-  const screenshots = Object.values(screenshotsObj)
-  const filteredScreenshots = screenshots.filter(screenshot => screenshot.game_id === +gameId);
+  const screenshots = Object.values(screenshotsObj).filter(screenshot => screenshot.game_id === +gameId);
+
+  const [selectedScreenshot, setSelectedScreenshot] = useState("");
+  const [selectedVideo, setSelectedVideo] = useState("");
 
   useEffect(() => {
     dispatch(thunkGameGetId(gameId));
-    dispatch(thunkScreenshotsGetAll(gameId));
-  }, [dispatch, gameId, game]);
+    dispatch(thunkScreenshotsGetByGame(gameId));
+  }, [dispatch, gameId]);
+
+  const mainImage = selectedScreenshot || selectedVideo || screenshots?.[0]?.screenshot_url;
 
   return (
     <section id="container-game-details-page">
@@ -32,14 +37,37 @@ function GameDetails() {
       <div id="container-game-details-page-inner">
         <div id="container-game-carousel-game-details">
           <div id="container-game-carousel-game-details-left">
-            <img id="main-image-game-details" src={filteredScreenshots?.[0]?.screenshot_url} />
+
+            <img
+              id="main-image-game-details"
+              src={mainImage}
+              alt="main-screenshot"
+            />
 
             <div id="container-thumbnail-images-game-details">
-              <div className="thumbnail-game-details" id="video-placeholder-game-details">video placeholder</div>
-              <img className="thumbnail-game-details" alt="screenshot" src={filteredScreenshots?.[1]?.screenshot_url} />
-              <img className="thumbnail-game-details" alt="screenshot" src={filteredScreenshots?.[2]?.screenshot_url} />
-              <img className="thumbnail-game-details" alt="screenshot" src={filteredScreenshots?.[3]?.screenshot_url} />
-              <img className="thumbnail-game-details" alt="screenshot" src={filteredScreenshots?.[4]?.screenshot_url} />
+              <img
+                className="thumbnail-game-details"
+                id="video-placeholder-game-details"
+                src={videoPlaceholder}
+                alt="video-placeholder"
+                onClick={() => {
+                  setSelectedScreenshot("")
+                  setSelectedVideo(prev => prev ? "" : videoPlaceholder)
+                }}
+              />
+
+              {screenshots?.map((screenshot) => (
+                <img
+                  key={screenshot.id}
+                  className="thumbnail-game-details"
+                  alt="screenshot"
+                  src={screenshot.screenshot_url}
+                  onClick={() => {
+                    setSelectedScreenshot(screenshot.screenshot_url)
+                    setSelectedVideo("")
+                  }}
+                />
+              ))}
             </div>
           </div>
 

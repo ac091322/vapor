@@ -5,6 +5,7 @@ from app.models import Screenshot
 screenshot_routes = Blueprint("screenshots", __name__)
 
 
+# get all screenshots
 @screenshot_routes.route("/all", methods=["GET"])
 def get_all_screenshots():
     screenshots = Screenshot.query.all()

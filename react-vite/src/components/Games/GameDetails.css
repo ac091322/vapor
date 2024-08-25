@@ -28,7 +28,7 @@
   grid-area: left-carousel;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 #main-image-game-details {
@@ -39,6 +39,11 @@
 #container-thumbnail-images-game-details {
   display: flex;
   justify-content: space-between;
+  width: 600px;
+  gap: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
 }
 
 #video-placeholder-game-details {
@@ -91,12 +96,6 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-}
-
-#container-categories-game-details {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
 
 #container-tags-game-details {
