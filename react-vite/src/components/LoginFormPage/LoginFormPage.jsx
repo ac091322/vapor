@@ -38,8 +38,6 @@ function LoginFormPage() {
       <div id="container-login-form">
 
         <h1>SIGN IN</h1>
-        {errors.length > 0 &&
-          errors.map((message) => <p key={message}>{message}</p>)}
 
         <form onSubmit={handleSubmit}>
           <div id="container-login-form-left">
@@ -51,8 +49,9 @@ function LoginFormPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+              {errors.email && <p className="error">{errors.email}</p>}
             </label>
-            {errors.email && <p>{errors.email}</p>}
+
 
             <label style={{ color: "var(--logo-color)" }}>
               PASSWORD
@@ -62,9 +61,10 @@ function LoginFormPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              {errors.password && <p className="error">{errors.password}</p>}
             </label>
-            {errors.password && <p>{errors.password}</p>}
 
+            {errors.server && <p className="error">{errors.server}</p>}
             <button type="submit">Sign In</button>
           </div>
 
@@ -79,6 +79,7 @@ function LoginFormPage() {
             </button>
             <span style={{ color: "var(--logo-color)", marginTop: "5px", alignSelf: "center" }}>Click on Wukong&apos;s avatar</span>
           </div>
+
         </form>
 
       </div >

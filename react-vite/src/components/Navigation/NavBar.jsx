@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
+import "./NavBar.css"
 
 
 function NavBar() {

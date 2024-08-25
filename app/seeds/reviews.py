@@ -8,7 +8,7 @@ def seed_reviews():
         thumbs_up=True,
         thumbs_down=False,
         user_id=1,
-        game_id=2,
+        game_id=3,
     )
 
     gamescience_review_callofduty = Review(
@@ -16,7 +16,7 @@ def seed_reviews():
         thumbs_up=True,
         thumbs_down=False,
         user_id=1,
-        game_id=2,
+        game_id=100,
     )
 
     gamescience_review_eldenring = Review(
@@ -24,7 +24,7 @@ def seed_reviews():
         thumbs_up=False,
         thumbs_down=True,
         user_id=1,
-        game_id=2,
+        game_id=100,
     )
 
     gamescience_brotato = Review(
@@ -32,7 +32,7 @@ def seed_reviews():
         thumbs_up=True,
         thumbs_down=False,
         user_id=1,
-        game_id=2,
+        game_id=100,
     )
 
     db.session.add_all(

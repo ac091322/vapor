@@ -22,6 +22,10 @@ export const router = createBrowserRouter([
         element: <SignupFormPage />,
       },
       {
+        path: "/user",
+        element: <UserProfile />
+      },
+      {
         path: "/",
         element: <Homepage />
       },
@@ -36,10 +40,6 @@ export const router = createBrowserRouter([
       {
         path: "/games/upload",
         element: <UploadImage />
-      },
-      {
-        path: "/user",
-        element: <UserProfile />
       },
       {
         path: "/create-game",

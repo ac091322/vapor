@@ -13,7 +13,12 @@ def seed_cover_arts():
         game_id=2,
     )
 
-    db.session.add_all([black_myth_wukong, counter_strike_2])
+    overwatch_2 = CoverArt(
+        cover_art_url="https://vapor-ac.s3.amazonaws.com/03_overwatch_2/cover-art-overwatch-2.png",
+        game_id=3,
+    )
+
+    db.session.add_all([black_myth_wukong, counter_strike_2, overwatch_2])
     db.session.commit()
 
 

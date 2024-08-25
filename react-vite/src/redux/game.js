@@ -18,7 +18,6 @@ const createGame = (game) => ({
 });
 
 export const thunkGamesGet = () => async (dispatch) => {
-
   const response = await fetch("/api/games/", {
     method: "GET"
   });
@@ -33,6 +32,7 @@ export const thunkGameGetId = (gameId) => async (dispatch) => {
   const response = await fetch(`/api/games/${gameId}`, {
     method: "GET"
   });
+
   if (response.ok) {
     const data = await response.json();
     dispatch(getGame(data));

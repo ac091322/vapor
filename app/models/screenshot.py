@@ -1,5 +1,4 @@
-from .db import db, environment, SCHEMA
-from .game_screenshot_joined import game_screenshot_joined
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
 class Screenshot(db.Model):
@@ -9,23 +8,18 @@ class Screenshot(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    screenshot_url = db.Column(db.Integer, nullable=False, unique=True)
-
-    # many-to-many relationship
-    game_in_game_screenshot_joined = db.relationship(
-        "Game",
-        secondary=game_screenshot_joined,
-        back_populates="screenshot_in_game_screenshot_joined",
-        passive_deletes=True,
+    screenshot_url = db.Column(db.String(255), nullable=False, unique=True)
+    game_id = db.Column(
+        db.ForeignKey(add_prefix_for_prod("games.id"), ondelete="CASCADE"),
+        nullable=False,
     )
+
+    # many-to-one relationship
+    game = db.relationship("Game", back_populates="screenshot")
 
     def to_dict(self):
         return {
             "id": self.id,
             "screenshot_url": self.screenshot_url,
-            "game": (
-                [game.to_dict() for game in game_screenshot_joined]
-                if self.game_in_game_screenshot_joined
-                else None
-            ),
+            "game_id": self.game_id,
         }
