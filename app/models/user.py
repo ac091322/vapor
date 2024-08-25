@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .wishlist_joined import wishlist_joined
-from .library_joined import library_joined
+from .wishlist import wishlist
+from .library import library
 
 
 class User(db.Model, UserMixin):
@@ -20,16 +20,16 @@ class User(db.Model, UserMixin):
     about = db.Column(db.String(2000), nullable=True)
 
     # many-to-many relationships:
-    game_in_wishlist_joined = db.relationship(
+    game_in_wishlist = db.relationship(
         "Game",
-        secondary=wishlist_joined,
-        back_populates="user_in_wishlist_joined",
+        secondary=wishlist,
+        back_populates="user_in_wishlist",
         passive_deletes=True,
     )
-    game_in_library_joined = db.relationship(
+    game_in_library = db.relationship(
         "Game",
-        secondary=library_joined,
-        back_populates="user_in_library_joined",
+        secondary=library,
+        back_populates="user_in_library",
         passive_deletes=True,
     )
 
@@ -60,15 +60,19 @@ class User(db.Model, UserMixin):
             "email": self.email,
             "avatar": self.avatar,
             "about": self.about,
-            "shopping_cart": self.shopping_cart if self.shopping_cart else None,
+            "shopping_cart": (
+                [cart.to_dict() for cart in self.shopping_cart]
+                if self.shopping_cart
+                else None
+            ),
             "games_in_wishlist": (
-                [game.to_dict() for game in self.game_in_wishlist_joined]
-                if self.game_in_wishlist_joined
+                [game.to_dict() for game in self.game_in_wishlist]
+                if self.game_in_wishlist
                 else None
             ),
             "games_in_library": (
-                [game.to_dict() for game in self.game_in_library_joined]
-                if self.game_in_library_joined
+                [game.to_dict() for game in self.game_in_library]
+                if self.game_in_library
                 else None
             ),
         }

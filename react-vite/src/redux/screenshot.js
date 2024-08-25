@@ -1,5 +1,5 @@
 const GET_ALL_SCREENSHOTS = "getAllScreenshots/GET_ALL_SCREENSHOTS"
-const GET_SCREENSHOTS = "getScreenshotsByGame/GET_SCREENSHOTS"
+// const GET_SCREENSHOTS = "getScreenshotsByGame/GET_SCREENSHOTS"
 
 const getAllScreenshots = (screenshots) => ({
   type: GET_ALL_SCREENSHOTS,

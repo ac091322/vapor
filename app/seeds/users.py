@@ -86,7 +86,7 @@ def seed_users():
     )
 
     larian_studios = User(
-        username="Larian Studies",
+        username="Larian Studios",
         email="larianstudios@vapor.io",
         password="password",
         developer_name=None,

@@ -1,12 +1,12 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-library_joined = db.Table(
-    "libraries_joined",
+shopping_cart_item = db.Table(
+    "shopping_cart_items",
     db.Column(
-        "user_id",
+        "shopping_cart_id",
         db.Integer,
-        db.ForeignKey(add_prefix_for_prod("users.id")),
+        db.ForeignKey(add_prefix_for_prod("shopping_carts.id")),
         primary_key=True,
     ),
     db.Column(
@@ -18,4 +18,4 @@ library_joined = db.Table(
 )
 
 if environment == "production":
-    library_joined.schema = SCHEMA
+    shopping_cart_item.schema = SCHEMA

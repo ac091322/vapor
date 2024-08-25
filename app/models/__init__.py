@@ -7,7 +7,10 @@ from .screenshot import Screenshot
 from .trailer import Trailer
 from .review import Review
 from .shopping_cart import ShoppingCart
+from .shopping_cart_item import shopping_cart_item
+from .game_category import game_category
+from .wishlist import wishlist
+from .library import library
+
+
 from .image import Image
-from .wishlist_joined import wishlist_joined
-from .library_joined import library_joined
-from .cart_item_joined import cart_item_joined
