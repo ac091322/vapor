@@ -1,20 +1,36 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { thunkGameGetId } from "../../redux/game";
+import { useParams, useNavigate } from "react-router-dom";
 import { BiLogoWindows } from "react-icons/bi";
+import { thunkGameGetId } from "../../redux/game";
 import "./GameDetails.css";
 
 
 function GameDetails() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { gameId } = useParams();
   const game = useSelector(state => state.game[gameId])
-  console.log("🚀 ~ GameDetails ~ game:", game)
+
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    dispatch(thunkGameGetId(gameId))
-  }, [dispatch])
+    const fetchGame = async () => {
+      await dispatch(thunkGameGetId(gameId));
+      setLoading(false);
+    };
+    fetchGame();
+  }, [dispatch, gameId]);
+
+  useEffect(() => {
+    if (!loading && !game) {
+      navigate("/");
+    }
+  }, [loading, game, navigate]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section id="container-game-details-page">
@@ -67,7 +83,6 @@ function GameDetails() {
             </div>
           </div>
         </div>
-
 
         <div>
           <div>
