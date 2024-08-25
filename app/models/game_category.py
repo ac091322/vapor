@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-game_category_joined = db.Table(
-    "games_categories_joined",
+game_category = db.Table(
+    "game_categories",
     db.Column(
         "game_id",
         db.Integer,
@@ -18,4 +18,4 @@ game_category_joined = db.Table(
 )
 
 if environment == "production":
-    game_category_joined.schema = SCHEMA
+    game_category.schema = SCHEMA

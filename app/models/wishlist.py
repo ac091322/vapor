@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-wishlist_joined = db.Table(
-    "wishlists_joined",
+wishlist = db.Table(
+    "wishlists",
     db.Column(
         "user_id",
         db.Integer,
@@ -18,4 +18,4 @@ wishlist_joined = db.Table(
 )
 
 if environment == "production":
-    wishlist_joined.schema = SCHEMA
+    wishlist.schema = SCHEMA

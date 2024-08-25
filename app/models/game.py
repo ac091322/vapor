@@ -1,9 +1,9 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime, timezone
-from .game_category_joined import game_category_joined
-from .wishlist_joined import wishlist_joined
-from .cart_item_joined import cart_item_joined
-from .library_joined import library_joined
+from .game_category import game_category
+from .wishlist import wishlist
+from .library import library
+from .shopping_cart_item import shopping_cart_item
 
 
 class Game(db.Model):
@@ -37,28 +37,28 @@ class Game(db.Model):
     )
 
     # many-to-many relationships:
-    category_in_game_category_joined = db.relationship(
+    category_in_game_category = db.relationship(
         "Category",
-        secondary=game_category_joined,
-        back_populates="game_in_game_category_joined",
+        secondary=game_category,
+        back_populates="game_in_game_category",
         passive_deletes=True,
     )
-    user_in_wishlist_joined = db.relationship(
+    user_in_wishlist = db.relationship(
         "User",
-        secondary=wishlist_joined,
-        back_populates="game_in_wishlist_joined",
+        secondary=wishlist,
+        back_populates="game_in_wishlist",
         passive_deletes=True,
     )
-    user_in_library_joined = db.relationship(
+    user_in_library = db.relationship(
         "User",
-        secondary=library_joined,
-        back_populates="game_in_library_joined",
+        secondary=library,
+        back_populates="game_in_library",
         passive_deletes=True,
     )
-    shopping_cart_in_cart_item_joined = db.relationship(
+    shopping_cart_in_shopping_cart_item = db.relationship(
         "ShoppingCart",
-        secondary=cart_item_joined,
-        back_populates="game_in_cart_item_joined",
+        secondary=shopping_cart_item,
+        back_populates="game_in_shopping_cart_item",
         passive_deletes=True,
     )
 
@@ -101,11 +101,8 @@ class Game(db.Model):
             "min_sound_card": self.min_sound_card,
             "user": self.user.to_dict() if self.user else None,
             "categories": (
-                [
-                    category.to_dict()
-                    for category in self.category_in_game_category_joined
-                ]
-                if self.category_in_game_category_joined
+                [category.to_dict() for category in self.category_in_game_category]
+                if self.category_in_game_category
                 else None
             ),
             "cover_art": (

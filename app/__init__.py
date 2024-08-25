@@ -9,8 +9,10 @@ from .config import Config
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.category_routes import category_routes
 from .api.game_routes import game_routes
 from .api.screenshot_routes import screenshot_routes
+from .api.shopping_cart_routes import shopping_cart_routes
 from .api.s3_routes import s3_routes
 
 
@@ -33,8 +35,10 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(auth_routes, url_prefix="/api/auth")
+app.register_blueprint(category_routes, url_prefix="/api/categories")
 app.register_blueprint(game_routes, url_prefix="/api/games")
 app.register_blueprint(screenshot_routes, url_prefix="/api/screenshots")
+app.register_blueprint(shopping_cart_routes, url_prefix="/api/shopping-carts")
 app.register_blueprint(s3_routes, url_prefix="/api/images")
 db.init_app(app)
 Migrate(app, db)

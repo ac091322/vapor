@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .cart_item_joined import cart_item_joined
+from .shopping_cart_item import shopping_cart_item
 
 
 class ShoppingCart(db.Model):
@@ -16,10 +16,10 @@ class ShoppingCart(db.Model):
     )
 
     # many-to-many relationship
-    game_in_cart_item_joined = db.relationship(
+    game_in_shopping_cart_item = db.relationship(
         "Game",
-        secondary=cart_item_joined,
-        back_populates="shopping_cart_in_cart_item_joined",
+        secondary=shopping_cart_item,
+        back_populates="shopping_cart_in_shopping_cart_item",
         passive_deletes=True,
     )
 
