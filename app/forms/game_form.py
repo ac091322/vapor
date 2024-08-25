@@ -14,7 +14,7 @@ def title_exists(form, field):
 
 class GameForm(FlaskForm):
     title = StringField(
-        "title",
+        "Title",
         validators=[
             DataRequired(),
             title_exists,
@@ -22,7 +22,7 @@ class GameForm(FlaskForm):
         ],
     )
     price = DecimalField(
-        "price",
+        "Price",
         places=2,
         validators=[
             DataRequired(),
@@ -30,28 +30,28 @@ class GameForm(FlaskForm):
         ],
     )
     release_date = DateField(
-        "release_date", format="%Y-%m-%d", validators=[DataRequired()]
+        "Release date", format="%Y-%m-%d", validators=[DataRequired()]
     )
     description = TextAreaField(
-        "description", validators=[DataRequired(), Length(min=10, max=2000)]
+        "Description", validators=[DataRequired(), Length(min=10, max=2000)]
     )
     min_requirements = StringField(
-        "min_requirements", validators=[DataRequired(), Length(max=255)]
+        "Mininum requirements", validators=[DataRequired(), Length(max=255)]
     )
     min_os = StringField("min_os", validators=[DataRequired(), Length(max=255)])
     min_processor = StringField(
-        "min_processor", validators=[DataRequired(), Length(max=255)]
+        "Mininum processor", validators=[DataRequired(), Length(max=255)]
     )
     min_memory = StringField("min_memory", validators=[DataRequired(), Length(max=255)])
     min_graphics = StringField(
-        "min_graphics", validators=[DataRequired(), Length(max=255)]
+        "Mininum graphics", validators=[DataRequired(), Length(max=255)]
     )
     min_directx = StringField(
-        "min_directx", validators=[DataRequired(), Length(max=255)]
+        "Mininum directx", validators=[DataRequired(), Length(max=255)]
     )
     min_storage = StringField(
-        "min_storage", validators=[DataRequired(), Length(max=255)]
+        "Mininum storage", validators=[DataRequired(), Length(max=255)]
     )
     min_sound_card = StringField(
-        "min_sound_card", validators=[DataRequired(), Length(max=255)]
+        "Mininum sound_card", validators=[DataRequired(), Length(max=255)]
     )

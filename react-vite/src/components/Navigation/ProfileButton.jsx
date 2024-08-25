@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom"
-import { thunkLogout } from "../../redux/session";
 import { IoCaretDownSharp } from "react-icons/io5";
+import { thunkLogout } from "../../redux/session";
 import defaultAvatar from "../../../public/default-avatar.png"
 
 

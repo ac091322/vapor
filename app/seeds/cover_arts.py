@@ -9,7 +9,7 @@ def seed_cover_arts():
     )
 
     counter_strike_2 = CoverArt(
-        cover_art_url="https://vapor-ac.s3.amazonaws.com/counter_strike_2/covert-art-counter-strike.png",
+        cover_art_url="https://vapor-ac.s3.amazonaws.com/02_counter_strike_2/covert-art-counter-strike-2.png",
         game_id=2,
     )
 

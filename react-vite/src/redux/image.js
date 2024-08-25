@@ -1,6 +1,6 @@
 const UPLOAD_COVER_ART = "uploadCoverArt/UPLOAD_COVER_ART"
 
-const addPost = (post) => ({
+const uploadCoverArt = (post) => ({
   type: UPLOAD_COVER_ART,
   payload: post
 });
@@ -9,7 +9,7 @@ const addPost = (post) => ({
 You do NOT want to set any headers for this fetch because you should let the browser set that info for us. You also do NOT want to JSON.stringify() the body of the request, because you are using formData and not JSON
 */
 
-export const createImage = (post) => async (dispatch) => {
+export const thunkCoverArtAdd = (post) => async (dispatch) => {
   const response = await fetch("/api/images/new", {
     method: "POST",
     body: post
@@ -17,9 +17,9 @@ export const createImage = (post) => async (dispatch) => {
 
   if (response.ok) {
     const { resPost } = await response.json();
-    dispatch(addPost(resPost));
+    dispatch(uploadCoverArt(resPost));
   } else {
-    console.log("There was an error making your post!");
+    console.log("Upload image failed");
   }
 };
 
@@ -27,7 +27,7 @@ const initialState = {
   posts: []
 };
 
-const coverArtReducer = (state = initialState, action) => {
+const imageReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPLOAD_COVER_ART:
       return {
@@ -40,4 +40,4 @@ const coverArtReducer = (state = initialState, action) => {
 };
 
 
-export default coverArtReducer;
+export default imageReducer;

@@ -51,7 +51,7 @@ function SignupFormPage() {
 
         <form onSubmit={handleSubmit}>
           <label>
-            Email
+            EMAIL
             <input
               type="text"
               value={email}
@@ -62,7 +62,7 @@ function SignupFormPage() {
           {errors.email && <p>{errors.email}</p>}
 
           <label style={{ color: "var(--nav-font-color-selected)" }}>
-            Developer name
+            DEVELOPER NAME
             <input
               type="text"
               value={username}
@@ -73,7 +73,7 @@ function SignupFormPage() {
           {errors.username && <p>{errors.username}</p>}
 
           <label>
-            Password
+            PASSWORD
             <input
               type="password"
               value={password}
@@ -84,7 +84,7 @@ function SignupFormPage() {
           {errors.password && <p>{errors.password}</p>}
 
           <label>
-            Confirm Password
+            CONFIRM PASSWORD
             <input
               type="password"
               value={confirmPassword}

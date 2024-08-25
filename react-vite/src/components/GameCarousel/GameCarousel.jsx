@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGamesGet } from "../../redux/game";
 import { BiSolidChevronLeft } from "react-icons/bi";
 import { BiSolidChevronRight } from "react-icons/bi";
+import { thunkGamesGet } from "../../redux/game";
 import "./GameCarousel.css";
 
 

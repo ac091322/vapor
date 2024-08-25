@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 0d73e2d790fb
+Revision ID: 79e7591250fe
 Revises: 
-Create Date: 2024-08-24 12:24:05.046136
+Create Date: 2024-08-24 17:24:53.666827
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0d73e2d790fb'
+revision = '79e7591250fe'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,10 +32,10 @@ def upgrade():
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(length=20), nullable=False),
-    sa.Column('email', sa.String(length=40), nullable=False),
+    sa.Column('username', sa.String(length=60), nullable=False),
+    sa.Column('email', sa.String(length=60), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
-    sa.Column('developer_name', sa.String(length=40), nullable=True),
+    sa.Column('developer_name', sa.String(length=60), nullable=True),
     sa.Column('avatar', sa.String(length=255), nullable=True),
     sa.Column('about', sa.String(length=2000), nullable=True),
     sa.PrimaryKeyConstraint('id'),
@@ -118,7 +118,7 @@ def upgrade():
     )
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('description', sa.String(length=255), nullable=False),
+    sa.Column('description', sa.String(length=2000), nullable=False),
     sa.Column('thumbs_up', sa.Boolean(), nullable=True),
     sa.Column('thumbs_down', sa.Boolean(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
