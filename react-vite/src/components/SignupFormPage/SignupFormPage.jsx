@@ -23,7 +23,7 @@ function SignupFormPage() {
     if (password !== confirmPassword) {
       return setErrors({
         confirmPassword:
-          "Confirm Password field must be the same as the Password field",
+          "Passwords do not match",
       });
     }
 
@@ -47,19 +47,21 @@ function SignupFormPage() {
       <div id="container-signup-form">
 
         <h1>CREATE YOUR ACCOUNT</h1>
-        {errors.server && <p>{errors.server}</p>}
+        {errors.server && <p className="error">{errors.server}</p>}
 
         <form onSubmit={handleSubmit}>
           <label>
             EMAIL
+
             <input
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+            {errors.email && <p className="error">{errors.email}</p>}
           </label>
-          {errors.email && <p>{errors.email}</p>}
+
 
           <label style={{ color: "var(--nav-font-color-selected)" }}>
             DEVELOPER NAME
@@ -69,8 +71,9 @@ function SignupFormPage() {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
+            {errors.username && <p className="error">{errors.username}</p>}
           </label>
-          {errors.username && <p>{errors.username}</p>}
+
 
           <label>
             PASSWORD
@@ -80,8 +83,9 @@ function SignupFormPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            {errors.password && <p className="error">{errors.password}</p>}
           </label>
-          {errors.password && <p>{errors.password}</p>}
+
 
           <label>
             CONFIRM PASSWORD
@@ -91,8 +95,9 @@ function SignupFormPage() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
+            {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
           </label>
-          {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+
 
           <button type="submit">Sign Up</button>
         </form>

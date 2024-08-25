@@ -37,6 +37,7 @@
   gap: 3px;
   font-size: 12px;
   color: var(--logo-color);
+  position: relative;
 }
 
 #container-signup-form input {
