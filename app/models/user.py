@@ -38,7 +38,9 @@ class User(db.Model, UserMixin):
     review = db.relationship("Review", back_populates="user")
 
     # one-to-one relationship
-    shopping_cart = db.relationship("ShoppingCart", back_populates="user")
+    shopping_cart = db.relationship(
+        "ShoppingCart", back_populates="user", cascade="all, delete-orphan"
+    )
 
     @property
     def password(self):
@@ -59,4 +61,14 @@ class User(db.Model, UserMixin):
             "avatar": self.avatar,
             "about": self.about,
             "shopping_cart": self.shopping_cart if self.shopping_cart else None,
+            "games_in_wishlist": (
+                [game.to_dict() for game in self.game_in_wishlist_joined]
+                if self.game_in_wishlist_joined
+                else None
+            ),
+            "games_in_library": (
+                [game.to_dict() for game in self.game_in_library_joined]
+                if self.game_in_library_joined
+                else None
+            ),
         }
