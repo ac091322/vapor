@@ -1,32 +1,56 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
 import { thunkCoverArtAdd } from "../../redux/image";
-
 
 const UploadPicture = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
+  const [imageURL, setImageURL] = useState(""); // store image preview URL
+  const [filename, setFilename] = useState(""); // store the image file name
   const [game_id, setGameId] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
+  const [error, setError] = useState(""); // store error messages
 
+  const fileWrap = (e) => {
+    e.stopPropagation();
+
+    const tempFile = e.target.files[0];
+
+
+    if (tempFile.size > 5000000) {
+      setError("Selected image exceeds the maximum file size of 5MB");
+      return;
+    }
+
+    const newImageURL = URL.createObjectURL(tempFile); // generate a local URL for the image preview
+    setImageURL(newImageURL);
+    setImage(tempFile);
+    setFilename(tempFile.name);
+    setError(""); // clear any previous errors
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!image) {
+      setError("No image selected");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("image", image);
     formData.append("game_id", game_id);
 
-    // for (let pair of formData.entries()) {
-    // console.log("!!!!!", `${pair[0]}: ${pair[1]}`);
-    // };
-
-    // aws uploads can be a bit slow—displaying
-    // some sort of loading message is a good idea
     setImageLoading(true);
-    await dispatch(thunkCoverArtAdd(formData));
+
+    try {
+      await dispatch(thunkCoverArtAdd(formData));
+    } catch (err) {
+      setError("Image upload failed");
+    }
+
     setImageLoading(false);
-  }
+  };
 
   return (
     <form
@@ -36,8 +60,20 @@ const UploadPicture = () => {
       <input
         type="file"
         accept="image/*"
-        onChange={(e) => setImage(e.target.files[0])}
+        onChange={fileWrap}
       />
+      {imageURL && (
+        <div>
+          <img
+            src={imageURL}
+            alt="Preview"
+            style={{ maxWidth: '200px', maxHeight: '200px', marginTop: '10px' }}
+          />
+          <p>{filename}</p>
+        </div>
+      )}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
       <input
         type="text"
         placeholder="Enter Game ID"
@@ -47,9 +83,10 @@ const UploadPicture = () => {
       />
 
       <button type="submit">Submit</button>
-      {(imageLoading) && <p>Loading...</p>}
+      {imageLoading && <p>Loading...</p>}
     </form>
-  )
-}
+  );
+};
+
 
 export default UploadPicture;

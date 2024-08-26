@@ -72,7 +72,7 @@ function CreateGame() {
       >
 
         <div id="container-create-game-form-left">
-          <h1>Create A Game</h1>
+          <h1>Create a Game</h1>
 
           {inputFields.map((field, idx) => (
             <div key={idx} className="input-containers">
