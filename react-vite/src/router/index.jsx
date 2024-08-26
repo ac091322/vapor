@@ -5,7 +5,6 @@ import UserProfile from "../components/UserProfile/UserProfile";
 import Homepage from "../components/HomePage/Homepage";
 import GameDetails from "../components/Games/GameDetails";
 import CreateGame from "../components/Games/CreateGame";
-import UploadImage from "../components/Games/UploadImage";
 import Layout from "./Layout";
 
 

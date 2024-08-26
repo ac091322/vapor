@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, CoverArt
+from app.models import db, CoverArt, Game
 from flask_login import login_required
 from app.api.s3_helpers import upload_file_to_s3, get_unique_filename
 
@@ -31,7 +31,7 @@ def upload_image():
 
     if cover_art_url:
         cover_art_url.filename = get_unique_filename(cover_art_url.filename)
-        # image.filename = f"{folder_name}/{get_unique_filename(image.filename)}"
+        # cover_art_url.filename = f"{folder_name}/{get_unique_filename(cover_art_url.filename)}"
         upload = upload_file_to_s3(cover_art_url)
         print(upload)
 
