@@ -11,9 +11,9 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.category_routes import category_routes
 from .api.game_routes import game_routes
+from .api.cover_art_routes import cover_art_routes
 from .api.screenshot_routes import screenshot_routes
 from .api.shopping_cart_routes import shopping_cart_routes
-from .api.s3_routes import s3_routes
 
 
 app = Flask(__name__, static_folder="../react-vite/dist", static_url_path="/")
@@ -39,7 +39,7 @@ app.register_blueprint(category_routes, url_prefix="/api/categories")
 app.register_blueprint(game_routes, url_prefix="/api/games")
 app.register_blueprint(screenshot_routes, url_prefix="/api/screenshots")
 app.register_blueprint(shopping_cart_routes, url_prefix="/api/shopping-carts")
-app.register_blueprint(s3_routes, url_prefix="/api/images")
+app.register_blueprint(cover_art_routes, url_prefix="/api/cover-arts")
 db.init_app(app)
 Migrate(app, db)
 

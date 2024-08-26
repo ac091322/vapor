@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { thunkCoverArtAdd } from "../../redux/image";
 
+
 const UploadPicture = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
@@ -15,7 +16,6 @@ const UploadPicture = () => {
     e.stopPropagation();
 
     const tempFile = e.target.files[0];
-
 
     if (tempFile.size > 5000000) {
       setError("Selected image exceeds the maximum file size of 5MB");
@@ -66,7 +66,7 @@ const UploadPicture = () => {
         <div>
           <img
             src={imageURL}
-            alt="Preview"
+            alt="image-preview"
             style={{ maxWidth: '200px', maxHeight: '200px', marginTop: '10px' }}
           />
           <p>{filename}</p>

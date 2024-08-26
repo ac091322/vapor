@@ -5,6 +5,7 @@ import { BiSolidChevronLeft } from "react-icons/bi";
 import { BiSolidChevronRight } from "react-icons/bi";
 import { thunkGamesGet } from "../../redux/game";
 import { thunkScreenshotsGetAll } from "../../redux/screenshot";
+import screenshotPlaceholder from "../../../public/screenshot-placeholder.png"
 import "./GameCarousel.css";
 
 
@@ -53,11 +54,18 @@ function GameCarousel() {
               to={`/games/${currentGame.id}`}
               id="container-game-carousel-left"
             >
-              <img
-                style={{ height: "100%", width: "100%", boxShadow: "10px 0 15px black" }}
-                src={firstScreenshot}
-                alt={`${currentGame.title} cover art`}
-              />
+              {filteredScreenshots.length > 0
+                ? <img
+                  style={{ height: "100%", width: "100%", boxShadow: "10px 0 15px black" }}
+                  src={firstScreenshot}
+                  alt={`${currentGame.title} cover art`}
+                />
+                : <img
+                  style={{ height: "100%", width: "100%", boxShadow: "10px 0 15px black" }}
+                  src={screenshotPlaceholder}
+                  alt={`${currentGame.title} cover art`}
+                />}
+
             </Link>
 
             <Link
@@ -65,14 +73,30 @@ function GameCarousel() {
               id="container-game-carousel-right"
             >
               <div id="container-game-title-carousel">
-                <h2 style={{ paddingLeft: "20px" }}>{currentGame.title}</h2>
+                <h2 style={{ padding: "10px 25px 0 20px" }}>{currentGame.title}</h2>
               </div>
 
               <div id="container-screenshots-grid">
-                <img src={firstScreenshot} alt="screenshot" />
-                <img src={secondScreenshot} alt="screenshot" />
-                <img src={thirdScreenshot} alt="screenshot" />
-                <img src={fourthScreenshot} alt="screenshot" />
+                <div className="screenshot-container-game-carousel">
+                  {filteredScreenshots.length > 0
+                    ? <img src={firstScreenshot} alt="screenshot" />
+                    : <img src={screenshotPlaceholder} alt="screenshot" />}
+                </div>
+                <div className="screenshot-container-game-carousel">
+                  {filteredScreenshots.length > 0
+                    ? <img src={secondScreenshot} alt="screenshot" />
+                    : <img src={screenshotPlaceholder} alt="screenshot" />}
+                </div>
+                <div className="screenshot-container-game-carousel">
+                  {filteredScreenshots.length > 0
+                    ? <img src={thirdScreenshot} alt="screenshot" />
+                    : <img src={screenshotPlaceholder} alt="screenshot" />}
+                </div>
+                <div className="screenshot-container-game-carousel">
+                  {filteredScreenshots.length > 0
+                    ? <img src={fourthScreenshot} alt="screenshot" />
+                    : <img src={screenshotPlaceholder} alt="screenshot" />}
+                </div>
               </div>
               <div id="container-promotion-text-tag">
                 <span style={{ fontSize: "20px" }}>Now available!</span>

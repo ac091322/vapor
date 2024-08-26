@@ -19,9 +19,7 @@
 
 #container-game-carousel-left {
   grid-area: left-carousel;
-  width: 100%;
-  height: 100%;
-  width: fit-content;
+  width: 606px;
   z-index: 1;
 }
 
@@ -37,15 +35,12 @@
   color: white;
 }
 
-
-
 #container-game-title-carousel {
   display: flex;
   align-items: center;
   margin-top: 5px;
   height: 66px;
 }
-
 
 #container-screenshots-grid {
   display: grid;
@@ -54,10 +49,14 @@
   padding-right: 10px;
 }
 
-#container-screenshots-grid img {
+.screenshot-container-game-carousel {
   width: 162px;
   height: 69px;
-  display: grid;
+}
+
+#container-screenshots-grid img {
+  width: 100%;
+  height: 100%;
 }
 
 #container-promotion-text-tag {

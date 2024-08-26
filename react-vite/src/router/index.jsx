@@ -38,10 +38,6 @@ export const router = createBrowserRouter([
         element: <GameDetails />
       },
       {
-        path: "/games/upload",
-        element: <UploadImage />
-      },
-      {
         path: "/create-game",
         element: <CreateGame />
       }

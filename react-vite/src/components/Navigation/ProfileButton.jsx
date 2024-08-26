@@ -56,11 +56,10 @@ function ProfileButton() {
 
             {showMenu && (
               <ul className={"profile-dropdown"} ref={ulRef}>
-                <Link to="/user">View my profile</Link>
+                <Link to="/user" onClick={closeMenu}>View my profile</Link>
                 <li>Username: {user.username}</li>
                 <li>Email: {user.email}</li>
-                <Link to="/create-game">Create a game</Link>
-                <Link to="/games/upload">Add an image</Link>
+                <Link to="/create-game" onClick={closeMenu}>Create a game</Link>
                 <Link onClick={logout}>Sign out of account...</Link>
               </ul>
             )}

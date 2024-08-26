@@ -1,12 +1,12 @@
 from flask import Blueprint, request
-from app.models import db, Image, Game
+from app.models import db, CoverArt
 from flask_login import login_required
 from app.api.s3_helpers import upload_file_to_s3, get_unique_filename
 
 # import re
 
 
-s3_routes = Blueprint("images", __name__)
+cover_art_routes = Blueprint("images", __name__)
 
 
 # def to_snake_case(name):
@@ -14,10 +14,10 @@ s3_routes = Blueprint("images", __name__)
 #     return name.lower().strip("_")
 
 
-@s3_routes.route("/new", methods=["POST"])
+@cover_art_routes.route("/post", methods=["POST"])
 @login_required
 def upload_image():
-    image = request.files.get("image")
+    cover_art_url = request.files.get("cover_art_url")
     game_id = request.form.get("game_id")
 
     if not game_id:
@@ -29,18 +29,18 @@ def upload_image():
 
     # folder_name = to_snake_case(game.name)
 
-    if image:
-        image.filename = get_unique_filename(image.filename)
+    if cover_art_url:
+        cover_art_url.filename = get_unique_filename(cover_art_url.filename)
         # image.filename = f"{folder_name}/{get_unique_filename(image.filename)}"
-        upload = upload_file_to_s3(image)
+        upload = upload_file_to_s3(cover_art_url)
         print(upload)
 
         if "url" not in upload:
             return {"errors": [upload]}, 400
 
         url = upload["url"]
-        new_image = Image(image=url, game_id=game_id)
-        db.session.add(new_image)
+        new_cover_art = CoverArt(cover_art_url=url, game_id=game_id)
+        db.session.add(new_cover_art)
         db.session.commit()
         return {"url": url}, 200
 

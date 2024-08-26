@@ -10,6 +10,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { thunkScreenshotsGetByGame } from "../../redux/screenshot";
+import screenshotPlaceholder from "../../../public/screenshot-placeholder.png"
 import videoPlaceholder from "../../../public/video-placeholder.png"
 import "./GameDetails.css";
 
@@ -29,7 +30,7 @@ function GameDetails() {
     dispatch(thunkScreenshotsGetByGame(gameId));
   }, [dispatch, gameId]);
 
-  const mainImage = selectedScreenshot || selectedVideo || screenshots?.[0]?.screenshot_url;
+  const mainImage = selectedScreenshot || selectedVideo || screenshots?.[0]?.screenshot_url || screenshotPlaceholder;
 
   return (
     <section id="container-game-details-page">
@@ -56,23 +57,64 @@ function GameDetails() {
                 }}
               />
 
-              {screenshots?.map((screenshot) => (
-                <img
-                  key={screenshot.id}
-                  className="thumbnail-game-details"
-                  alt="screenshot"
-                  src={screenshot.screenshot_url}
-                  onClick={() => {
-                    setSelectedScreenshot(screenshot.screenshot_url)
-                    setSelectedVideo("")
-                  }}
-                />
-              ))}
+              {screenshots.length > 0 ? (
+                screenshots.map((screenshot) => (
+                  <img
+                    key={screenshot.id}
+                    className="thumbnail-game-details"
+                    alt="screenshot"
+                    src={screenshot.screenshot_url}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshot.screenshot_url)
+                      setSelectedVideo("")
+                    }}
+                  />
+                ))
+              ) : (
+                <>
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                </>
+              )}
             </div>
           </div>
 
           <div id="container-game-carousel-game-details-right">
-            <img src={game?.cover_art?.[0]?.cover_art_url} alt="cover-art" />
+            <img style={{ width: "325px", height: "150px" }} src={game?.cover_art?.[0]?.cover_art_url} alt="cover-art" />
             <p style={{ paddingRight: "15px" }}>{game?.description}</p>
 
             <div id="container-description-game-details">
