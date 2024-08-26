@@ -5,12 +5,13 @@ from wtforms.validators import DataRequired
 from app.api.s3_helpers import ALLOWED_EXTENSIONS
 
 
-class ImageForm(FlaskForm):
-    image = FileField(
-        "Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))]
+class CoverArtForm(FlaskForm):
+    cover_art_url = FileField(
+        "Cover art file",
+        validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))],
     )
     game_id = IntegerField("Game ID", validators=[DataRequired()])
-    submit = SubmitField("Upload image")
+    submit = SubmitField("Upload cover art")
 
 
 """

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkGameCreate } from "../../redux/game";
+import { thunkCoverArtAdd } from "../../redux/image";
 import "./CreateGame.css";
 
 
@@ -10,11 +11,17 @@ function CreateGame() {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.session.user);
 
+  const [cover_art_url, setCoverArtUrl] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(""); // store image preview URL
+  const [filename, setFilename] = useState(""); // store the image file name
+  const [imageLoading, setImageLoading] = useState(false);
+  const [error, setError] = useState(""); // store error messages
+
   const [formData, setFormData] = useState({
     title: "The Legend of Zelda: Breath of the Wild",
     price: "35.99",
     release_date: "",
-    description: 'The Legend of Zelda: Breath of the Wild” is an open-world action-adventure game focused on exploration, player freedom, and immersive interactions. The dynamic world lets players explore without set paths, uncovering hidden areas and solving puzzles naturally. The game’s physics-based engine supports seamless climbing, gliding, and combat, while a stamina system, varied weather, and complex AI enhance the experience. The goal is to evoke adventure and wonder through innovative mechanics and a richly detailed world.',
+    description: "The Legend of Zelda: Breath of the Wild is an open-world action-adventure game that emphasizes exploration, freedom, and immersive interactions. Players can explore a dynamic world without set paths, discovering hidden areas and solving puzzles organically. Its physics-based engine supports climbing, gliding, and combat, while stamina, weather, and AI systems enrich the experience. The game aims to inspire adventure and wonder through innovative mechanics and a detailed world.",
     min_requirements: "Requires a 64-bit processor and operating system",
     min_os: "Windows 10 64-bit",
     min_processor: "Intel Core i5-8400 / AMD Ryzen 5 1600",
@@ -33,17 +40,47 @@ function CreateGame() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const fileWrap = (e) => {
+    e.stopPropagation();
+
+    const tempFile = e.target.files[0];
+
+    if (tempFile.size > 5000000) {
+      setError("Selected image exceeds the maximum file size of 5MB");
+      return;
+    }
+
+    const newCoverArtURL = URL.createObjectURL(tempFile); // generate a local URL for the image preview
+    setPreviewUrl(newCoverArtURL);
+    setCoverArtUrl(tempFile);
+    setFilename(tempFile.name);
+    setError(""); // clear any previous errors
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!cover_art_url) {
+      setError("No cover art selected");
+      return;
+    }
 
     const newGame = {
       ...formData,
       user_id: Number(currentUser.id),
     };
 
-    dispatch(thunkGameCreate(newGame));
+    const gameReponse = await dispatch(thunkGameCreate(newGame));
+    const gameId = gameReponse.id;
 
-    // navigate(`/games/${gameId}`);
+    const coverArtData = new FormData();
+    coverArtData.append("cover_art_url", cover_art_url);
+    coverArtData.append("game_id", gameId);
+
+    setImageLoading(true);
+    await dispatch(thunkCoverArtAdd(coverArtData));
+    setImageLoading(false);
+    navigate(`/games/${gameReponse.id}`);
   };
 
   if (!currentUser) return null;
@@ -67,12 +104,12 @@ function CreateGame() {
     <section id="container-create-game-page">
       <form
         onSubmit={handleSubmit}
-        // encType="multipart/form-data"
+        encType="multipart/form-data"
         id="container-create-game-form"
       >
 
         <div id="container-create-game-form-left">
-          <h1>Create A Game</h1>
+          <h1>Create a Game</h1>
 
           {inputFields.map((field, idx) => (
             <div key={idx} className="input-containers">
@@ -110,6 +147,26 @@ function CreateGame() {
 
         <div id="container-create-game-form-right">
           <h4>Upload image</h4>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={fileWrap}
+          />
+
+          {previewUrl && (
+            <div>
+              <img
+                src={previewUrl}
+                alt="Preview"
+                style={{ maxWidth: '200px', maxHeight: '200px', marginTop: '10px' }}
+              />
+              <p>{filename}</p>
+            </div>
+          )}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+
+          {imageLoading && <p>Loading...</p>}
         </div>
 
         <button type="submit">Create Game</button>

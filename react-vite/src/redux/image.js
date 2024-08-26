@@ -10,7 +10,7 @@ You do NOT want to set any headers for this fetch because you should let the bro
 */
 
 export const thunkCoverArtAdd = (post) => async (dispatch) => {
-  const response = await fetch("/api/images/new", {
+  const response = await fetch("/api/cover-arts/post", {
     method: "POST",
     body: post
   });
@@ -18,6 +18,7 @@ export const thunkCoverArtAdd = (post) => async (dispatch) => {
   if (response.ok) {
     const { resPost } = await response.json();
     dispatch(uploadCoverArt(resPost));
+
   } else {
     console.log("Upload image failed");
   }
