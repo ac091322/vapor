@@ -66,12 +66,12 @@ class User(db.Model, UserMixin):
                 else None
             ),
             "games_in_wishlist": (
-                [game.to_dict() for game in self.game_in_wishlist]
+                [(game.title, game.id) for game in self.game_in_wishlist]
                 if self.game_in_wishlist
                 else None
             ),
             "games_in_library": (
-                [game.to_dict() for game in self.game_in_library]
+                [(game.title, game.id) for game in self.game_in_library]
                 if self.game_in_library
                 else None
             ),
