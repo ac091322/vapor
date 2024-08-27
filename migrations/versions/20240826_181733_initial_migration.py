@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 8f5d03a5bd6e
+Revision ID: 81afa24f18e0
 Revises: 
-Create Date: 2024-08-26 01:08:55.522592
+Create Date: 2024-08-26 18:17:33.558628
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8f5d03a5bd6e'
+revision = '81afa24f18e0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -68,6 +68,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('cover_art_url', sa.String(length=255), nullable=False),
     sa.Column('game_id', sa.Integer(), nullable=False),
+    sa.Column('filename', sa.String(length=255), nullable=False),
     sa.ForeignKeyConstraint(['game_id'], ['games.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('cover_art_url'),
@@ -79,15 +80,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
     sa.ForeignKeyConstraint(['game_id'], ['games.id'], ),
     sa.PrimaryKeyConstraint('game_id', 'category_id')
-    )
-    op.create_table('images',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('image', sa.String(length=255), nullable=False),
-    sa.Column('game_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['game_id'], ['games.id'], ondelete='CASCADE'),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('game_id'),
-    sa.UniqueConstraint('image')
     )
     op.create_table('libraries',
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -151,7 +143,6 @@ def downgrade():
     op.drop_table('screenshots')
     op.drop_table('reviews')
     op.drop_table('libraries')
-    op.drop_table('images')
     op.drop_table('game_categories')
     op.drop_table('cover_arts')
     op.drop_table('shopping_carts')

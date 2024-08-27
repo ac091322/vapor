@@ -14,6 +14,7 @@ class CoverArt(db.Model):
         nullable=False,
         unique=True,
     )
+    filename = db.Column(db.String(255), nullable=False)
 
     # one-to-one relationship
     game = db.relationship("Game", back_populates="cover_art")
@@ -23,5 +24,6 @@ class CoverArt(db.Model):
             "id": self.id,
             "cover_art_url": self.cover_art_url,
             "game_id": self.game_id,
+            "filename": self.filename,
             "game_title": self.game.title if self.game else None,
         }

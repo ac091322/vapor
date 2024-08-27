@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom"
+import MyGames from "./MyGames"
 import defaultAvatar from "../../../public/default-avatar.png"
 import "./UserProfile.css"
 
@@ -35,9 +36,7 @@ function UserProfile() {
             </div>
           </div>
 
-          <div id="user-profile-placeholder-left">
-            left side place holder
-          </div>
+          <MyGames />
         </div>
 
         <div id="container-profile-content-right">

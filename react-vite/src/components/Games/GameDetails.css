@@ -170,7 +170,7 @@
 }
 
 #container-bottom-description-game-details {
-  margin-top: 50px;
+  margin-top: 45px;
 }
 
 #container-game-details-page hr {
@@ -198,7 +198,6 @@
 
 #container-bottom-section-right {
   grid-area: right-bottom-details;
-  height: 600px;
 }
 
 #container-game-details-side {

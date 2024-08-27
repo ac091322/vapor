@@ -80,9 +80,6 @@ class Game(db.Model):
     trailer = db.relationship(
         "Trailer", back_populates="game", cascade="all, delete-orphan"
     )
-    image = db.relationship(
-        "Image", back_populates="game", cascade="all, delete-orphan"
-    )
 
     def to_dict(self):
         return {
@@ -119,8 +116,5 @@ class Game(db.Model):
                 [screenshots.to_dict() for screenshots in self.screenshot]
                 if self.screenshot
                 else None
-            ),
-            "image": (
-                [image.to_dict() for image in self.image] if self.image else None
             ),
         }

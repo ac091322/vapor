@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { BiLogoWindows } from "react-icons/bi";
-import { thunkGameGetId } from "../../redux/game";
 import { BiLogoApple } from "react-icons/bi";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
+import { thunkGameGetId } from "../../redux/game";
 import { thunkScreenshotsGetByGame } from "../../redux/screenshot";
 import screenshotPlaceholder from "../../../public/screenshot-placeholder.png"
 import videoPlaceholder from "../../../public/video-placeholder.png"
@@ -172,7 +172,7 @@ function GameDetails() {
               <p style={{ color: "var(--logo-color)", fontSize: "14px" }}>{game?.description}</p>
             </div>
 
-            <div style={{ marginTop: "30px" }}>
+            <div style={{ marginTop: "45px" }}>
               <h4 style={{ color: "white" }}>SYSTEM REQUIREMENTS</h4>
               <hr />
 
@@ -220,7 +220,7 @@ function GameDetails() {
                 </div>
                 <div>
                   <span className="requirements-title">GENRE:&nbsp;</span>
-                  <span className="requirements-value">game?.genre</span>
+                  <span className="requirements-value">{game?.categories?.[0]?.name || "None"}</span>
                 </div>
                 <div>
                   <span className="requirements-title">DEVELOPER:&nbsp;</span>
@@ -272,7 +272,7 @@ function GameDetails() {
         </div>
 
         <div id="container-reviews-game-details">
-          <h4 style={{ color: "white" }}>CUSTOMER REVIEWS</h4>
+          <h4 style={{ color: "white", marginTop: "45px" }}>CUSTOMER REVIEWS</h4>
           <hr />
         </div>
       </div>

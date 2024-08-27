@@ -1,15 +1,11 @@
-const GET_ALL_SCREENSHOTS = "getAllScreenshots/GET_ALL_SCREENSHOTS"
-// const GET_SCREENSHOTS = "getScreenshotsByGame/GET_SCREENSHOTS"
+const GET_SCREENSHOTS = "getScreenshots/GET_ALL_SCREENSHOTS"
 
-const getAllScreenshots = (screenshots) => ({
-  type: GET_ALL_SCREENSHOTS,
+
+const getScreenshots = (screenshots) => ({
+  type: GET_SCREENSHOTS,
   payload: screenshots
 });
 
-// const getScreenshots = (screenshots) => ({
-//   type: GET_SCREENSHOTS,
-//   payload: screenshots
-// });
 
 export const thunkScreenshotsGetAll = () => async (dispatch) => {
   const response = await fetch("/api/screenshots/all", {
@@ -18,7 +14,7 @@ export const thunkScreenshotsGetAll = () => async (dispatch) => {
 
   if (response.ok) {
     const screenshots = await response.json();
-    dispatch(getAllScreenshots(screenshots));
+    dispatch(getScreenshots(screenshots));
   }
 };
 
@@ -28,7 +24,7 @@ export const thunkScreenshotsGetByGame = (gameId) => async (dispatch) => {
   });
   if (response.ok) {
     const screenshots = await response.json();
-    dispatch(getAllScreenshots(screenshots));
+    dispatch(getScreenshots(screenshots));
   }
 };
 
@@ -37,7 +33,7 @@ const initialState = {};
 const screenshotReducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case GET_ALL_SCREENSHOTS: {
+    case GET_SCREENSHOTS: {
       const newState = { ...state };
       action.payload.forEach(screenshot => {
         newState[screenshot.id] = screenshot;

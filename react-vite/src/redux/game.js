@@ -1,6 +1,8 @@
 const GET_GAMES = "getAllGames/GET_GAMES"
 const GET_GAME = "getGameById/GET_GAME"
 const CREATE_GAME = "createGame/CREATE_GAME"
+const EDIT_GAME = "editGameById/EDIT_GAME"
+const DELETE_GAME = "deleteGameById/DELETE_GAME"
 
 const getGames = (games) => ({
   type: GET_GAMES,
@@ -15,6 +17,16 @@ const getGame = (game) => ({
 const createGame = (game) => ({
   type: CREATE_GAME,
   payload: game
+});
+
+const editGame = (game) => ({
+  type: EDIT_GAME,
+  payload: game
+});
+
+const deleteGame = (gameId) => ({
+  type: DELETE_GAME,
+  payload: gameId
 });
 
 export const thunkGamesGet = () => async (dispatch) => {
@@ -39,15 +51,13 @@ export const thunkGameGetId = (gameId) => async (dispatch) => {
   }
 };
 
-export const thunkGameCreate = (gameData) => async (dispatch) => {
+export const thunkGameCreate = (game) => async (dispatch) => {
   try {
     const response = await fetch("/api/games/", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(gameData),
-      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(game),
+      credentials: "include"
     });
 
     if (response.ok) {
@@ -65,28 +75,64 @@ export const thunkGameCreate = (gameData) => async (dispatch) => {
   }
 };
 
+export const thunkGameEdit = (game) => async (dispatch) => {
+  const response = await fetch(`/api/games/${game.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(game),
+    credentials: "include"
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(editGame(data));
+    return data;
+  }
+};
+
+export const thunkGameDeleteId = (gameId) => async (dispatch) => {
+  const response = await fetch(`/api/games/${gameId}`, {
+    method: "DELETE"
+  });
+  if (response.ok) {
+    dispatch(deleteGame(gameId));
+  }
+};
+
 const initialState = {}
 
 const gameReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case GET_GAMES: {
-      const newState = { ...state };
+      const newState = { ...state }
       action.payload.forEach(game => {
         newState[game.id] = game
-      });
-      return newState
+      })
+      return newState;
     }
 
     case GET_GAME: {
-      const newState = { ...state };
+      const newState = { ...state }
       newState[action.payload.id] = action.payload
       return newState;
     }
 
     case CREATE_GAME: {
-      const newState = { ...state };
+      const newState = { ...state }
       newState[action.payload.id] = action.payload
+      return newState;
+    }
+
+    case EDIT_GAME: {
+      const newState = { ...state }
+      newState[action.payload.id] = action.payload
+      return newState;
+    }
+
+    case DELETE_GAME: {
+      const newState = { ...state }
+      delete newState[action.payload]
       return newState;
     }
 

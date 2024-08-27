@@ -7,14 +7,14 @@ import {
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import gameReducer from "./game";
-import imageReducer from "./image";
+import coverArtReducer from "./coverArt";
 import screenshotReducer from "./screenshot";
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   game: gameReducer,
-  coverArt: imageReducer,
+  coverArt: coverArtReducer,
   screenshot: screenshotReducer
 });
 
