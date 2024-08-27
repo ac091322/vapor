@@ -29,6 +29,7 @@ def upload_file_to_s3(file, acl="public-read"):
             file.filename,
             ExtraArgs={"ACL": acl, "ContentType": file.content_type},
         )
+
     except Exception as e:
         # in case the your s3 upload fails
         return {"errors": str(e)}
@@ -41,8 +42,10 @@ def remove_file_from_s3(image_url):
     # so you split that out of the URL
     key = image_url.rsplit("/", 1)[1]
     print(key)
+
     try:
         s3.delete_object(Bucket=BUCKET_NAME, Key=key)
     except Exception as e:
         return {"errors": str(e)}
+
     return True

@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import current_user, login_required
 from app.models import db, Game, Screenshot
 from app.forms import GameForm
+from datetime import datetime
 
 
 game_routes = Blueprint("games", __name__)
@@ -17,7 +18,7 @@ def get_games():
 # get game by game_id
 # delete game by game_id
 @game_routes.route("/<int:game_id>", methods=["GET", "DELETE"])
-def get_game_id(game_id):
+def get_delete_game_id(game_id):
     game = Game.query.get(game_id)
 
     if request.method == "DELETE":
@@ -68,6 +69,47 @@ def post_game():
         return new_game.to_dict(), 201
 
     return {"errors": form.errors}, 409
+
+
+# edit game by game_id
+@game_routes.route("/<int:game_id>", methods=["PUT"])
+@login_required
+def edit_game(game_id):
+    game = Game.query.get(game_id)
+    form = GameForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if game is None:
+        return {"error": "Game not found"}, 404
+
+    if game.user_id != current_user.id:
+        return {"error": "Forbidden"}, 403
+
+    data = request.json
+    print("!!!!!!!!", data)
+
+    if form.validate_on_submit():
+        release_date_str = data.get("release_date", game.release_date)
+        if isinstance(release_date_str, str):
+            release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
+
+        game.title = data.get("title", game.title)
+        game.price = data.get("price", game.price)
+        game.release_date = release_date
+        game.description = data.get("description", game.description)
+        game.min_requirements = data.get("min_requirements", game.min_requirements)
+        game.min_os = data.get("min_os", game.min_os)
+        game.min_processor = data.get("min_processor", game.min_processor)
+        game.min_memory = data.get("min_memory", game.min_memory)
+        game.min_graphics = data.get("min_graphics", game.min_graphics)
+        game.min_directx = data.get("min_directx", game.min_directx)
+        game.min_storage = data.get("min_storage", game.min_storage)
+        game.min_sound_card = data.get("min_sound_card", game.min_sound_card)
+
+        db.session.commit()
+        return game.to_dict(), 200
+
+    return {"errors": form.errors}, 400
 
 
 # get all screenshots by game_id

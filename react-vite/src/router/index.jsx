@@ -5,6 +5,7 @@ import UserProfile from "../components/UserProfile/UserProfile";
 import Homepage from "../components/HomePage/Homepage";
 import GameDetails from "../components/Games/GameDetails";
 import CreateGame from "../components/Games/CreateGame";
+import EditGame from "../components/UserProfile/EditGame";
 import Layout from "./Layout";
 
 
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/games/:gameId",
         element: <GameDetails />
+      },
+      {
+        path: "games/:gameId/edit",
+        element: <EditGame />
       },
       {
         path: "/create-game",

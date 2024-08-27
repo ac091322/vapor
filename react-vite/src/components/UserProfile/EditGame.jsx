@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { thunkGameCreate } from "../../redux/game";
-import { thunkCoverArtAdd } from "../../redux/coverArt";
-import "./CreateGame.css";
+import { thunkGameGetId, thunkGameEdit } from "../../redux/game";
+import { thunkCoverArtEdit } from "../../redux/coverArt";
 
 
-function CreateGame() {
+function EditGame() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const currentUser = useSelector((state) => state.session.user);
+  const { gameId } = useParams();
+  const currentUser = useSelector(state => state.session.user);
+  const game = useSelector(state => state.game[gameId]);
+  const coverArt = game?.cover_art?.[0];
+  const coverArtId = coverArt?.id
 
   const [cover_art_url, setCoverArtUrl] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(""); // store image preview URL
@@ -18,23 +22,54 @@ function CreateGame() {
   const [error, setError] = useState(""); // store error messages
 
   const [formData, setFormData] = useState({
-    title: "The Legend of Zelda: Breath of the Wild",
-    price: "35.99",
-    release_date: "2024-07-11",
-    description: "The Legend of Zelda: Breath of the Wild is an open-world action-adventure game that emphasizes exploration, freedom, and immersive interactions. Players can explore a dynamic world without set paths, discovering hidden areas and solving puzzles organically. Its physics-based engine supports climbing, gliding, and combat, while stamina, weather, and AI systems enrich the experience. The game aims to inspire adventure and wonder through innovative mechanics and a detailed world.",
-    min_requirements: "Requires a 64-bit processor and operating system",
-    min_os: "Windows 10 64-bit",
-    min_processor: "Intel Core i5-8400 / AMD Ryzen 5 1600",
-    min_memory: "16 GB RAM",
-    min_graphics: "NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB",
-    min_directx: "Version 11",
-    min_storage: "130 GB available space",
-    min_sound_card: "Windows Compatible Audio Device",
+    title: "",
+    price: "",
+    release_date: "",
+    description: "",
+    min_requirements: "",
+    min_os: "",
+    min_processor: "",
+    min_memory: "",
+    min_graphics: "",
+    min_directx: "",
+    min_storage: "",
+    min_sound_card: ""
   });
 
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
+
+  useEffect(() => {
+    dispatch(thunkGameGetId(gameId));
+  }, [dispatch, gameId]);
+
+  useEffect(() => {
+    if (game) {
+      const formattedReleaseDate = new Date(game.release_date).toISOString().split('T')[0];
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        title: game.title,
+        price: game.price,
+        release_date: formattedReleaseDate,
+        description: game.description,
+        min_requirements: game.min_requirements,
+        min_os: game.min_os,
+        min_processor: game.min_processor,
+        min_memory: game.min_memory,
+        min_graphics: game.min_graphics,
+        min_directx: game.min_directx,
+        min_storage: game.min_storage,
+        min_sound_card: game.min_sound_card
+      }));
+    }
+
+    if (coverArt) {
+      setPreviewUrl(coverArt.cover_art_url);
+      setFilename(coverArt.filename);
+
+    }
+  }, [game, coverArt]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -63,28 +98,26 @@ function CreateGame() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!cover_art_url) {
-      setError("No cover art file");
-      return;
-    }
-
-    const newGame = {
+    const updatedGame = {
       ...formData,
+      id: Number(gameId),
       user_id: Number(currentUser.id),
     };
 
-    const gameReponse = await dispatch(thunkGameCreate(newGame));
-    const gameId = gameReponse.id;
+    dispatch(thunkGameEdit(updatedGame));
 
-    const coverArtData = new FormData();
-    coverArtData.append("cover_art_url", cover_art_url);
-    coverArtData.append("game_id", gameId);
-    coverArtData.append("filename", filename);
+    if (cover_art_url) {
+      const updatedCoverArtData = new FormData();
+      updatedCoverArtData.append("cover_art_url", cover_art_url);
+      updatedCoverArtData.append("game_id", gameId);
+      updatedCoverArtData.append("filename", filename);
 
-    setImageLoading(true);
-    await dispatch(thunkCoverArtAdd(coverArtData));
-    setImageLoading(false);
-    navigate(`/games/${gameReponse.id}`);
+      setImageLoading(true);
+      await dispatch(thunkCoverArtEdit(coverArtId, updatedCoverArtData));
+      setImageLoading(false);
+    }
+
+    navigate(`/games/${gameId}`);
   };
 
   if (!currentUser) return null;
@@ -113,7 +146,7 @@ function CreateGame() {
       >
 
         <div className="container-create-game-form-left">
-          <h1>Create a Game</h1>
+          <h1>Edit Game</h1>
 
           {inputFields.map((field, idx) => (
             <div key={idx} className="input-containers">
@@ -169,10 +202,9 @@ function CreateGame() {
               <p style={{ fontSize: "13px", color: "#999" }}>{filename}</p>
             </div>
           )}
-
           {error && <p>{error}</p>}
-          {imageLoading && <p>Uploading...</p>}
 
+          {imageLoading && <p>Uploading...</p>}
         </div>
 
         <button
@@ -180,10 +212,11 @@ function CreateGame() {
           style={imageLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
           disabled={imageLoading}
         >
-          Create Game</button>
+          Update Game
+        </button>
       </form>
     </section>
   );
 }
 
-export default CreateGame;
+export default EditGame;

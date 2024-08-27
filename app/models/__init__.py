@@ -11,6 +11,3 @@ from .shopping_cart_item import shopping_cart_item
 from .game_category import game_category
 from .wishlist import wishlist
 from .library import library
-
-
-from .image import Image
