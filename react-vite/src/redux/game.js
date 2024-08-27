@@ -30,7 +30,7 @@ const deleteGame = (gameId) => ({
 });
 
 export const thunkGamesGet = () => async (dispatch) => {
-  const response = await fetch("/api/games/", {
+  const response = await fetch("/api/games/all", {
     method: "GET"
   });
 
@@ -41,7 +41,7 @@ export const thunkGamesGet = () => async (dispatch) => {
 };
 
 export const thunkGameGetId = (gameId) => async (dispatch) => {
-  const response = await fetch(`/api/games/${gameId}`, {
+  const response = await fetch(`/api/games/${gameId}/get`, {
     method: "GET"
   });
 
@@ -53,7 +53,7 @@ export const thunkGameGetId = (gameId) => async (dispatch) => {
 
 export const thunkGameCreate = (game) => async (dispatch) => {
   try {
-    const response = await fetch("/api/games/", {
+    const response = await fetch("/api/games/post", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(game),
@@ -76,7 +76,7 @@ export const thunkGameCreate = (game) => async (dispatch) => {
 };
 
 export const thunkGameEdit = (game) => async (dispatch) => {
-  const response = await fetch(`/api/games/${game.id}`, {
+  const response = await fetch(`/api/games/${game.id}/put`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(game),
@@ -91,7 +91,7 @@ export const thunkGameEdit = (game) => async (dispatch) => {
 };
 
 export const thunkGameDeleteId = (gameId) => async (dispatch) => {
-  const response = await fetch(`/api/games/${gameId}`, {
+  const response = await fetch(`/api/games/${gameId}/delete`, {
     method: "DELETE"
   });
   if (response.ok) {

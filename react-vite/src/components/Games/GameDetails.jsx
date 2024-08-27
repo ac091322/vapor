@@ -9,7 +9,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { thunkGameGetId } from "../../redux/game";
-import { thunkScreenshotsGetByGame } from "../../redux/screenshot";
+import Reviews from "../Reviews/Reviews";
 import screenshotPlaceholder from "../../../public/screenshot-placeholder.png"
 import videoPlaceholder from "../../../public/video-placeholder.png"
 import "./GameDetails.css";
@@ -19,18 +19,15 @@ function GameDetails() {
   const dispatch = useDispatch();
   const { gameId } = useParams();
   const game = useSelector(state => state.game[gameId])
-  const screenshotsObj = useSelector(state => state.screenshot)
-  const screenshots = Object.values(screenshotsObj).filter(screenshot => screenshot.game_id === +gameId);
 
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");
 
   useEffect(() => {
     dispatch(thunkGameGetId(gameId));
-    dispatch(thunkScreenshotsGetByGame(gameId));
   }, [dispatch, gameId]);
 
-  const mainImage = selectedScreenshot || selectedVideo || screenshots?.[0]?.screenshot_url || screenshotPlaceholder;
+  const mainImage = selectedScreenshot || selectedVideo || game?.screenshots?.[0]?.screenshot_url || screenshotPlaceholder;
 
   return (
     <section id="container-game-details-page">
@@ -57,8 +54,8 @@ function GameDetails() {
                 }}
               />
 
-              {screenshots.length > 0 ? (
-                screenshots.map((screenshot) => (
+              {game?.screenshots?.length > 0 ? (
+                game?.screenshots?.map((screenshot) => (
                   <img
                     key={screenshot.id}
                     className="thumbnail-game-details"
@@ -274,6 +271,7 @@ function GameDetails() {
         <div id="container-reviews-game-details">
           <h4 style={{ color: "white", marginTop: "45px" }}>CUSTOMER REVIEWS</h4>
           <hr />
+          <Reviews />
         </div>
       </div>
     </section>

@@ -760,5 +760,4 @@ def undo_screenshots():
         )
     else:
         db.session.execute(text("DELETE FROM screenshots"))
-
     db.session.commit()

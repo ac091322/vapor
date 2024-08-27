@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import db, Game, Screenshot
+from app.models import db, Game
 from app.forms import GameForm
 from datetime import datetime
 
@@ -9,16 +9,15 @@ game_routes = Blueprint("games", __name__)
 
 
 # get all games
-@game_routes.route("/", methods=["GET"])
+@game_routes.route("/all", methods=["GET"])
 def get_games():
     games = Game.query.all()
     return [game.to_dict() for game in games], 200
 
 
 # get game by game_id
-# delete game by game_id
-@game_routes.route("/<int:game_id>", methods=["GET", "DELETE"])
-def get_delete_game_id(game_id):
+@game_routes.route("/<int:game_id>/get", methods=["GET", "DELETE"])
+def get_game(game_id):
     game = Game.query.get(game_id)
 
     if request.method == "DELETE":
@@ -42,7 +41,7 @@ def get_delete_game_id(game_id):
 
 
 # create new game
-@game_routes.route("/", methods=["POST"])
+@game_routes.route("/post", methods=["POST"])
 @login_required
 def post_game():
     form = GameForm()
@@ -72,7 +71,7 @@ def post_game():
 
 
 # edit game by game_id
-@game_routes.route("/<int:game_id>", methods=["PUT"])
+@game_routes.route("/<int:game_id>/put", methods=["PUT"])
 @login_required
 def edit_game(game_id):
     game = Game.query.get(game_id)
@@ -86,7 +85,6 @@ def edit_game(game_id):
         return {"error": "Forbidden"}, 403
 
     data = request.json
-    print("!!!!!!!!", data)
 
     if form.validate_on_submit():
         release_date_str = data.get("release_date", game.release_date)
@@ -112,13 +110,28 @@ def edit_game(game_id):
     return {"errors": form.errors}, 400
 
 
-# get all screenshots by game_id
-@game_routes.route("/<int:game_id>/screenshots", methods=["GET"])
-def get_screenshots(game_id):
+# delete game by game_id
+@game_routes.route("/<int:game_id>/delete", methods=["DELETE"])
+def delete_game(game_id):
     game = Game.query.get(game_id)
+
+    if not current_user.is_authenticated:
+        return {"error": "User not authenticated"}, 401
 
     if game is None:
         return {"error": "Game not found"}, 404
 
-    screenshots = Screenshot.query.filter_by(game_id=game.id).all()
-    return [screenshot.to_dict() for screenshot in screenshots], 200
+    if game.user_id != current_user.id:
+        return {"error": "Forbidden"}, 403
+
+    db.session.delete(game)
+    db.session.commit()
+    return {"message": "Game deleted"}, 200
+
+
+# get reviews by game_id
+@game_routes.route("/<int:game_id>/reviews", methods=["GET"])
+def get_game_reviews(game_id):
+    game = Game.query.get(game_id)
+    reviews = game.review
+    return [review.to_dict() for review in reviews], 200

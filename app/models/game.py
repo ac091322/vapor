@@ -13,7 +13,7 @@ class Game(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(40), nullable=False, unique=True)
+    title = db.Column(db.String(40), nullable=False)
     user_id = db.Column(
         db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"),
         nullable=False,
@@ -96,7 +96,7 @@ class Game(db.Model):
             "min_directx": self.min_directx,
             "min_storage": self.min_storage,
             "min_sound_card": self.min_sound_card,
-            "user": self.user.to_dict() if self.user else None,
+            "username": self.user.username if hasattr(self.user, "username") else self.user,
             "categories": (
                 [category.to_dict() for category in self.category_in_game_category]
                 if self.category_in_game_category
@@ -116,5 +116,8 @@ class Game(db.Model):
                 [screenshots.to_dict() for screenshots in self.screenshot]
                 if self.screenshot
                 else None
+            ),
+            "reviews": (
+                [review.to_dict() for review in self.review] if self.review else None
             ),
         }

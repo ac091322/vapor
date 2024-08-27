@@ -60,18 +60,27 @@ class User(db.Model, UserMixin):
             "email": self.email,
             "avatar": self.avatar,
             "about": self.about,
+            "reviews": (
+                [reviews.to_dict() for reviews in self.review] if self.review else None
+            ),
             "shopping_cart": (
-                [cart.to_dict() for cart in self.shopping_cart]
+                [shopping_cart.to_dict() for shopping_cart in self.shopping_cart]
                 if self.shopping_cart
                 else None
             ),
             "games_in_wishlist": (
-                [(game.title, game.id) for game in self.game_in_wishlist]
+                [
+                    {"title": game.title, "game_id": game.id}
+                    for game in self.game_in_wishlist
+                ]
                 if self.game_in_wishlist
                 else None
             ),
             "games_in_library": (
-                [(game.title, game.id) for game in self.game_in_library]
+                [
+                    {"title": game.title, "game_id": game.id}
+                    for game in self.game_in_library
+                ]
                 if self.game_in_library
                 else None
             ),

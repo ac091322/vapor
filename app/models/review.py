@@ -46,6 +46,12 @@ class Review(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "game_id": self.game_id,
+            "description": self.description,
             "thumbs_up": self.thumbs_up,
             "thumbs_down": self.thumbs_down,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "username": (
+                self.user.username if hasattr(self.user, "username") else self.user
+            ),
         }

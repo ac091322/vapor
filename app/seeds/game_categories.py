@@ -33,5 +33,4 @@ def undo_game_categories():
         )
     else:
         db.session.execute(text("DELETE FROM game_categories"))
-
     db.session.commit()

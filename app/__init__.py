@@ -13,6 +13,7 @@ from .api.category_routes import category_routes
 from .api.game_routes import game_routes
 from .api.cover_art_routes import cover_art_routes
 from .api.screenshot_routes import screenshot_routes
+from .api.review_routes import review_routes
 from .api.shopping_cart_routes import shopping_cart_routes
 
 
@@ -37,9 +38,11 @@ app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(auth_routes, url_prefix="/api/auth")
 app.register_blueprint(category_routes, url_prefix="/api/categories")
 app.register_blueprint(game_routes, url_prefix="/api/games")
-app.register_blueprint(screenshot_routes, url_prefix="/api/screenshots")
-app.register_blueprint(shopping_cart_routes, url_prefix="/api/shopping-carts")
 app.register_blueprint(cover_art_routes, url_prefix="/api/cover-arts")
+app.register_blueprint(screenshot_routes, url_prefix="/api/screenshots")
+app.register_blueprint(review_routes, url_prefix="/api/reviews")
+app.register_blueprint(shopping_cart_routes, url_prefix="/api/shopping-carts")
+
 db.init_app(app)
 Migrate(app, db)
 

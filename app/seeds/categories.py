@@ -68,5 +68,4 @@ def undo_categories():
         )
     else:
         db.session.execute(text("DELETE FROM categories"))
-
     db.session.commit()
