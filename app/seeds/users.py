@@ -15,16 +15,16 @@ def seed_users():
 
     blizzard_entertainment_inc = User(
         username="Blizzard Entertainment, Inc.",
-        email="blizzardentertainmentinc@vapor.io",
+        email="blizzard@vapor.io",
         password="password",
         developer_name=None,
         avatar=None,
         about=None,
     )
 
-    digital_extreme = User(
-        username="Digital Extreme",
-        email="digitalextreme@vapor.io",
+    nexon_korea_corporation = User(
+        username="NEXON Korea Corporation",
+        email="nexon@vapor.io",
         password="password",
         developer_name=None,
         avatar=None,
@@ -40,9 +40,9 @@ def seed_users():
         about=None,
     )
 
-    sledgehammer_games = User(
-        username="Sledgehammer Games",
-        email="sledgehammergames@vapor.io",
+    arsi_kaita_patala = User(
+        username='Arsi "Hakita" Patala',
+        email="arsikaitapatala@vapor.io",
         password="password",
         developer_name=None,
         avatar=None,
@@ -69,25 +69,43 @@ def seed_users():
 
     iron_clad_games_corporation = User(
         username="Iron Clad Games Corporation",
-        email="ironcladgamescorporation@vapor.io",
+        email="ironcladgames@vapor.io",
         password="password",
         developer_name=None,
         avatar=None,
         about=None,
     )
 
-    fromsoftware_inc = User(
-        username="FromSoftware, Inc.",
-        email="fromsoftwareinc@vapor.io",
+    suspicious_developments_inc = User(
+        username="Suspicious Developments Inc",
+        email="suspiciousdevelopments@vapor.io",
         password="password",
         developer_name=None,
         avatar=None,
         about=None,
     )
 
-    larian_studios = User(
-        username="Larian Studios",
-        email="larianstudios@vapor.io",
+    scopely = User(
+        username="Scopely",
+        email="scopely@vapor.io",
+        password="password",
+        developer_name=None,
+        avatar=None,
+        about=None,
+    )
+
+    tobspr_games = User(
+        username="Tobspr Games",
+        email="tobsprgames@vapor.io",
+        password="password",
+        developer_name=None,
+        avatar=None,
+        about=None,
+    )
+
+    massive_monster = User(
+        username="Massive Monster",
+        email="massivemonster@vapor.io",
         password="password",
         developer_name=None,
         avatar=None,
@@ -107,14 +125,16 @@ def seed_users():
         [
             game_science,
             blizzard_entertainment_inc,
-            digital_extreme,
+            nexon_korea_corporation,
             saber_interactive,
-            sledgehammer_games,
+            arsi_kaita_patala,
             firaxis_games,
             valve,
             iron_clad_games_corporation,
-            fromsoftware_inc,
-            larian_studios,
+            suspicious_developments_inc,
+            scopely,
+            tobspr_games,
+            massive_monster,
             demo_developer,
         ]
     )

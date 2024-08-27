@@ -13,6 +13,7 @@ class Screenshot(db.Model):
         db.ForeignKey(add_prefix_for_prod("games.id"), ondelete="CASCADE"),
         nullable=False,
     )
+    filename = db.Column(db.String(255), nullable=False)
 
     # many-to-one relationship
     game = db.relationship("Game", back_populates="screenshot")
