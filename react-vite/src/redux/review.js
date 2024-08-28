@@ -1,4 +1,5 @@
 const GET_REVIEWS = "getAllReviews/GET_REVIEWS"
+const CREATE_REVIEW = "createReviewbyGameId/CREATE_REVIEW"
 const DELETE_REVIEW = "deleteReviewById/DELETE_REVIEW"
 
 const getReviews = (reviews) => ({
@@ -11,6 +12,11 @@ const deleteReview = (reviewId) => ({
   payload: reviewId
 });
 
+const createReview = (review) => ({
+  type: CREATE_REVIEW,
+  payload: review
+});
+
 export const thunkReviewsGet = () => async (dispatch) => {
   const response = await fetch("/api/reviews/all", {
     method: "GET"
@@ -18,6 +24,30 @@ export const thunkReviewsGet = () => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(getReviews(data));
+  }
+};
+
+export const thunkReviewsGetId = (gameId) => async (dispatch) => {
+  const response = await fetch(`/api/games/${gameId}/reviews`, {
+    method: "GET"
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getReviews(data));
+  }
+};
+
+export const thunkReviewCreate = (gameId, reviewData) => async (dispatch) => {
+  const response = await fetch(`/api/games/${gameId}/review/post`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(reviewData),
+    credentials: "include"
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(createReview(data));
+    return data;
   }
 };
 
@@ -41,6 +71,12 @@ function reviewReducer(state = initialState, action) {
         newState[review.id] = review;
       })
       return newState;
+    }
+
+    case CREATE_REVIEW: {
+      const newState = { ...state }
+      newState[action.payload.id] = action.payload
+      return newState
     }
 
     case DELETE_REVIEW: {

@@ -44,7 +44,7 @@ function MyReviews() {
     <section id="container-my-reviews-component">
 
       {filteredReviews?.map(review => {
-        const game = games[review.game_id];
+        const game = games.find(game => game.id === review.game_id)
 
         return (
           <div
