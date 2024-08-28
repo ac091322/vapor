@@ -29,18 +29,18 @@
   grid-area: left-user-profile;
   display: flex;
   flex-direction: column;
-
+  width: 650px;
 }
 
 #container-profile-details-left {
   display: flex;
   gap: 40px;
+  margin-bottom: 25px;
 }
 
 #container-profile-details-user-profile {
   display: flex;
 }
-
 
 #container-profile-content-left-name {
   display: flex;
@@ -82,16 +82,28 @@
   border-radius: 50%;
 }
 
-#container-level-user-profile+p {
+
+
+#container-points-description {
+  background-color: rgb(0, 0, 0, 0.4);
+  padding: 10px 10px 10px 10px;
+  margin-top: 10px;
+}
+
+#container-points-description p {
   color: var(--logo-color);
   font-size: 13px;
-  background-color: rgb(0, 0, 0, 0.4);
-  padding: 10px 10px 25px 10px;
-  margin-top: 15px;
+}
+
+#container-points-accumulated {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
 }
 
 #container-tab-items-user-profile {
-  margin-top: 40px;
+  margin-top: 20px;
   background-color: rgb(0, 0, 0, 0.4);
   padding: 15px 10px 45px 10px;
 }
@@ -102,4 +114,9 @@
   gap: 20px;
   color: white;
   margin-top: 40px;
+}
+
+.active-link {
+  text-decoration: underline;
+  color: #67C1F5;
 }

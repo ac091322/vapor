@@ -33,7 +33,6 @@ export const thunkGamesGet = () => async (dispatch) => {
   const response = await fetch("/api/games/all", {
     method: "GET"
   });
-
   if (response.ok) {
     const data = await response.json();
     dispatch(getGames(data));
@@ -44,7 +43,6 @@ export const thunkGameGetId = (gameId) => async (dispatch) => {
   const response = await fetch(`/api/games/${gameId}/get`, {
     method: "GET"
   });
-
   if (response.ok) {
     const data = await response.json();
     dispatch(getGame(data));
@@ -82,7 +80,6 @@ export const thunkGameEdit = (game) => async (dispatch) => {
     body: JSON.stringify(game),
     credentials: "include"
   });
-
   if (response.ok) {
     const data = await response.json();
     dispatch(editGame(data));
@@ -90,7 +87,7 @@ export const thunkGameEdit = (game) => async (dispatch) => {
   }
 };
 
-export const thunkGameDeleteId = (gameId) => async (dispatch) => {
+export const thunkGameDelete = (gameId) => async (dispatch) => {
   const response = await fetch(`/api/games/${gameId}/delete`, {
     method: "DELETE"
   });

@@ -96,7 +96,11 @@ class Game(db.Model):
             "min_directx": self.min_directx,
             "min_storage": self.min_storage,
             "min_sound_card": self.min_sound_card,
-            "username": self.user.username if hasattr(self.user, "username") else self.user,
+            "user": (
+                {"user_id": self.user.id, "username": self.user.username}
+                if self.user
+                else None
+            ),
             "categories": (
                 [category.to_dict() for category in self.category_in_game_category]
                 if self.category_in_game_category

@@ -18,7 +18,7 @@ import "./GameDetails.css";
 function GameDetails() {
   const dispatch = useDispatch();
   const { gameId } = useParams();
-  const game = useSelector(state => state.game[gameId])
+  const game = useSelector(state => state.game[gameId]);
 
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");

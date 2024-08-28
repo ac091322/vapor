@@ -112,11 +112,9 @@ def edit_game(game_id):
 
 # delete game by game_id
 @game_routes.route("/<int:game_id>/delete", methods=["DELETE"])
+@login_required
 def delete_game(game_id):
     game = Game.query.get(game_id)
-
-    if not current_user.is_authenticated:
-        return {"error": "User not authenticated"}, 401
 
     if game is None:
         return {"error": "Game not found"}, 404

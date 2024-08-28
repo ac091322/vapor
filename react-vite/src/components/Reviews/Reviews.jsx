@@ -22,11 +22,15 @@ function Reviews() {
 
   return (
     <section id="container-review-component">
+
       {game?.reviews?.length > 0 && game.reviews.map((review) => {
         const user = users[review.user_id];
 
         return (
-          <div key={review.id} id="container-review-block">
+          <div
+            key={review.id}
+            id="container-review-block"
+          >
             <div id="container-review-left">
               <img
                 style={{ width: "35px", height: "35px", border: "1px solid gray" }}
@@ -86,17 +90,17 @@ function Reviews() {
               <span style={{ color: "#8091A2", fontSize: "11px" }}>
                 POSTED: {review.updated_at}
               </span>
-              <p
-                style={{ color: "#ACB2B8", paddingRight: "10px", fontSize: "13px" }}
-              >
+              <p style={{ color: "#ACB2B8", paddingRight: "10px", fontSize: "13px" }}>
                 {review.description}
               </p>
             </div>
+
           </div>
         );
 
       })}
-    </section>
+
+    </section >
   );
 }
 

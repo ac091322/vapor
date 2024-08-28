@@ -1,5 +1,4 @@
 .container-create-game-page {
-  min-height: 1200px;
   background-color: rgb(13, 13, 13);
   background-image:
     linear-gradient(45deg, rgba(255, 255, 255, 0.7) 25%, transparent 25%),
@@ -12,7 +11,6 @@
 
 .container-create-game-page form {
   width: 940px;
-  min-height: 1200px;
   background:
     linear-gradient(5deg, rgba(102, 51, 0, 0.6) 0%, rgba(153, 76, 0, 0.6) 50%, rgba(102, 51, 0, 0.6) 80%),
     linear-gradient(25deg, rgba(102, 51, 0, 0.6) 0%, rgba(153, 76, 0, 0.6) 50%, rgba(102, 51, 0, 0.6) 80%);
@@ -35,6 +33,12 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+
+.container-buttons-game-form-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .input-containers {
@@ -72,7 +76,7 @@
   color: white;
   background: linear-gradient(to right, rgb(37, 190, 251), rgb(48, 118, 249));
   font-size: 16px;
-  margin-top: 40px;
+
 }
 
 .container-create-game-form-right {

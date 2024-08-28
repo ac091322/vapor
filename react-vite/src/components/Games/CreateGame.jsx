@@ -147,11 +147,23 @@ function CreateGame() {
               </div>
             </div>
           ))}
+
+          <div className="container-buttons-game-form-left">
+            <button
+              type="submit"
+              style={imageLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
+              disabled={imageLoading}
+            >
+              Create Game
+            </button>
+
+            <button type="button" onClick={() => { navigate("/", { replace: true }) }}>Go Back</button>
+          </div>
         </div>
 
         <div className="container-create-game-form-right">
           <div>
-            <span style={{ color: "#999" }}>Upload image</span>
+            <span style={{ color: "#999" }}>Upload cover art</span>
             <input
               className="upload-cover-art-input"
               type="file"
@@ -172,15 +184,8 @@ function CreateGame() {
 
           {error && <p>{error}</p>}
           {imageLoading && <p>Uploading...</p>}
-
         </div>
 
-        <button
-          type="submit"
-          style={imageLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
-          disabled={imageLoading}
-        >
-          Create Game</button>
       </form>
     </section>
   );

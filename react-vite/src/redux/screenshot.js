@@ -11,7 +11,6 @@ export const thunkScreenshotsGet = () => async (dispatch) => {
   const response = await fetch("/api/screenshots/all", {
     method: "GET",
   });
-
   if (response.ok) {
     const screenshots = await response.json();
     dispatch(getScreenshots(screenshots));

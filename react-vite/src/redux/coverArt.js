@@ -41,7 +41,7 @@ export const thunkCoverArtEdit = (coverArtId, coverArtData) => async (dispatch) 
     dispatch(editCoverArt(resPost));
 
   } else {
-    console.log("Edit cover art failed")
+    console.log("Update cover art failed")
   }
 };
 
