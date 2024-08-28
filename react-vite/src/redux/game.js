@@ -50,26 +50,16 @@ export const thunkGameGetId = (gameId) => async (dispatch) => {
 };
 
 export const thunkGameCreate = (game) => async (dispatch) => {
-  try {
-    const response = await fetch("/api/games/post", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(game),
-      credentials: "include"
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(createGame(data));
-      return data;
-
-    } else {
-      const errorData = await response.json();
-      console.error("Error creating game:", errorData.errors || response.statusText);
-
-    }
-  } catch (error) {
-    console.error("Network or server error:", error);
+  const response = await fetch("/api/games/post", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(game),
+    credentials: "include"
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(createGame(data));
+    return data;
   }
 };
 

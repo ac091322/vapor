@@ -18,7 +18,7 @@ function ReviewFormModal({ userId, gameId }) {
   const [submit, setSubmit] = useState(false);
 
   useEffect(() => {
-    const formErrors = {};
+    const formErrors = {}
     if (description.length < 10) formErrors.description = "Your review is too short";
     if (description.length > 2000) formErrors.description = "Your review is too long";
 

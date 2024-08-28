@@ -189,7 +189,7 @@ function EditGame() {
               Update Game
             </button>
 
-            <button type="button" onClick={() => { navigate("/user", { replace: true }) }}>Go Back</button>
+            <button type="button" onClick={() => { navigate(-1, { replace: true }) }}>Go Back</button>
           </div>
         </div>
 
