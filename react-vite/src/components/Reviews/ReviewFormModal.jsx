@@ -43,7 +43,7 @@ function ReviewFormModal({ userId, gameId }) {
 
   return (
     <section className="container-submit-review-component">
-      <h1 style={{ color: "white", marginBottom: "30px" }}>Review</h1>
+      <h1 style={{ color: "white", marginBottom: "30px" }}>Write a Review</h1>
       <form onSubmit={handleSubmit}>
 
         <div className="container-radio-buttons-review-modal">

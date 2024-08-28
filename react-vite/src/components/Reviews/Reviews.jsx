@@ -16,7 +16,7 @@ function Reviews() {
   const { gameId } = useParams();
   const users = useSelector(state => state.user);
   const reviewsObj = useSelector(state => state.review);
-  const reviews = Object.values(reviewsObj)
+  const reviews = Object.values(reviewsObj);
   const filteredReviews = reviews.filter(review => review.game_id === +gameId);
 
   useEffect(() => {

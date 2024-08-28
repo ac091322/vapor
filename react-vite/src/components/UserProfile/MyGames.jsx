@@ -11,7 +11,7 @@ function MyGames() {
   const navigate = useNavigate();
   const currentUser = useSelector(state => state.session.user);
   const gamesObj = useSelector(state => state.game);
-  const games = Object.values(gamesObj)
+  const games = Object.values(gamesObj);
   const filteredGames = games?.filter(game => game.user.user_id === currentUser.id);
 
   const [editGame, setEditGame] = useState(null);

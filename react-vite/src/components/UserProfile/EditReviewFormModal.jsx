@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal"
-import { thunkReviewEdit } from "../../redux/review";
+import { thunkReviewEdit, thunkReviewsGet } from "../../redux/review";
 
 
 function EditReviewFormModal({ userId, gameId, reviewId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
+  const review = useSelector(state => state.review[reviewId]);
 
-  const [thumbs_up, setThumbsUp] = useState(true);
-  const [thumbs_down, setThumbsDown] = useState(false);
-  const [description, setDescription] = useState("");
+  const [thumbs_up, setThumbsUp] = useState(review.thumbs_up);
+  const [thumbs_down, setThumbsDown] = useState(review.thumbs_down);
+  const [description, setDescription] = useState(review.description);
 
   const handleRadioChange = (e) => {
     const { value } = e.target;
@@ -29,20 +30,22 @@ function EditReviewFormModal({ userId, gameId, reviewId }) {
     e.preventDefault();
 
     const reviewData = {
+      id: Number(review.id),
       thumbs_up: thumbs_up,
       thumbs_down: thumbs_down,
       description: description,
-      user_id: userId,
-      game_id: gameId
-    }
+      user_id: Number(userId),
+      game_id: Number(gameId)
+    };
 
-    dispatch(thunkReviewEdit(gameId, reviewData));
+    dispatch(thunkReviewEdit(reviewData))
+      .then(() => dispatch(thunkReviewsGet()));
     closeModal();
   }
 
   return (
     <section className="container-submit-review-component">
-      <h1 style={{ color: "white", marginBottom: "30px" }}>Edit Review</h1>
+      <h1 style={{ color: "white", marginBottom: "30px" }}>Edit this Review</h1>
       <form onSubmit={handleSubmit}>
 
         <div className="container-radio-buttons-review-modal">
@@ -55,7 +58,7 @@ function EditReviewFormModal({ userId, gameId, reviewId }) {
               checked={thumbs_up}
               onChange={handleRadioChange}
             />
-            <label htmlFor="thumbs_up">Recommend this game</label>
+            <label htmlFor="thumbs_up">Still recommend this game</label>
           </div>
           <div className="radio-button-set-review-modal">
             <input
@@ -66,7 +69,7 @@ function EditReviewFormModal({ userId, gameId, reviewId }) {
               checked={thumbs_down}
               onChange={handleRadioChange}
             />
-            <label htmlFor="thumbs_down">Don&apos;t recommend this game</label>
+            <label htmlFor="thumbs_down">Still don&apos;t recommend this game</label>
           </div>
         </div>
 

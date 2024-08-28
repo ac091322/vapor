@@ -36,7 +36,7 @@
 
 .container-submit-review-component textarea {
   width: 395px;
-  height: 100px;
+  height: 150px;
   background-color: var(--input-background-color);
   color: white;
   outline: none;
