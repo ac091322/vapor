@@ -293,28 +293,38 @@ function GameDetails() {
         <div id="container-reviews-game-details">
           <div>
             <h4 style={{ color: "white", marginTop: "45px" }}>CUSTOMER REVIEWS</h4>
-            {currentUser ? (
-              reviews?.find(review => review.user_id === currentUser.id && review.game_id === +gameId)
+            {currentUser
+
+              ? (game?.user.user_id === currentUser?.id ? (
+                <button disabled={true}
+                  style={{ cursor: "not-allowed", background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))" }}
+                >
+                  Own Game
+                </button>
+
+              ) : (reviews?.find(review => review.user_id === currentUser.id && review.game_id === +gameId)
                 ? (
                   <button disabled={true}
                     style={{ cursor: "not-allowed", background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))" }}
                   >
                     Reviewed
                   </button>
+
                 ) : (
                   <button>
                     <OpenModalMenuItem
-                      itemText="Leave review"
+                      itemText="Leave Review"
                       onItemClick={closeMenu}
                       modalComponent={<ReviewFormModal userId={currentUser.id} gameId={gameId} />}
                     />
                   </button>
-                )
-            ) : (
-              <button onClick={() => navigate("/login")}>
-                Leave review
-              </button>
-            )}
+                ))
+
+              ) : (
+                <button onClick={() => navigate("/login")}>
+                  Leave Review
+                </button>
+              )}
           </div>
           <hr />
           <Reviews />

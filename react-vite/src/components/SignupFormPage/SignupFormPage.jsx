@@ -61,7 +61,6 @@ function SignupFormPage() {
             {errors.email && <p className="error">{errors.email}</p>}
           </label>
 
-
           <label style={{ color: "var(--nav-font-color-selected)" }}>
             DEVELOPER NAME
             <input
@@ -72,7 +71,6 @@ function SignupFormPage() {
             />
             {errors.username && <p className="error">{errors.username}</p>}
           </label>
-
 
           <label>
             PASSWORD
@@ -94,9 +92,9 @@ function SignupFormPage() {
               required
             />
             {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
+            {errors.server && <p className="error">{errors.server}</p>}
           </label>
 
-          {errors.server && <p className="error">{errors.server}</p>}
           <button type="submit">Sign Up</button>
         </form>
 

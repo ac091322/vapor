@@ -61,9 +61,9 @@ function LoginFormPage() {
                 required
               />
               {errors.password && <p className="error">{errors.password}</p>}
+              {errors.server && <p className="error">{errors.server}</p>}
             </label>
 
-            {errors.server && <p className="error">{errors.server}</p>}
             <button type="submit">Sign In</button>
           </div>
 

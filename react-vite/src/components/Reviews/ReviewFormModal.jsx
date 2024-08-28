@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux"
 import { IoThumbsUp } from "react-icons/io5";
 import { IoThumbsDown } from "react-icons/io5";
@@ -14,7 +14,16 @@ function ReviewFormModal({ userId, gameId }) {
   const [thumbs_up, setThumbsUp] = useState(true);
   const [thumbs_down, setThumbsDown] = useState(false);
   const [description, setDescription] = useState("");
-  const [errors, setErrors] = useState({});
+  const [validations, setValidations] = useState({});
+  const [submit, setSubmit] = useState(false);
+
+  useEffect(() => {
+    const formErrors = {};
+    if (description.length < 10) formErrors.description = "Your review is too short";
+    if (description.length > 2000) formErrors.description = "Your review is too long";
+
+    setValidations(formErrors);
+  }, [description]);
 
   const handleRadioChange = (e) => {
     const { value } = e.target;
@@ -31,6 +40,9 @@ function ReviewFormModal({ userId, gameId }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmit(true);
+
+    if (Object.keys(validations).length > 0) return;
 
     const reviewData = {
       thumbs_up: thumbs_up,
@@ -41,7 +53,6 @@ function ReviewFormModal({ userId, gameId }) {
     }
 
     dispatch(thunkReviewCreate(gameId, reviewData));
-    if (serverResponse) setErrors(serverResponse);
     closeModal();
   }
 
@@ -80,7 +91,9 @@ function ReviewFormModal({ userId, gameId }) {
           <textarea
             value={description}
             onChange={e => setDescription(e.target.value)}
+            required
           />
+          {submit && validations.description && <p className="error">{validations.description}</p>}
         </label>
 
         <div className="container-buttons-review-modal">
