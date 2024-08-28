@@ -1,11 +1,9 @@
-const GET_SCREENSHOTS = "getScreenshots/GET_ALL_SCREENSHOTS"
-
+const GET_SCREENSHOTS = "getScreenshots/GET_ALL_SCREENSHOTS";
 
 const getScreenshots = (screenshots) => ({
   type: GET_SCREENSHOTS,
   payload: screenshots
 });
-
 
 export const thunkScreenshotsGet = () => async (dispatch) => {
   const response = await fetch("/api/screenshots/all", {

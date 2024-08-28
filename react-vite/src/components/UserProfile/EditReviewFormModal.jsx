@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal"
-import { thunkReviewCreate } from "../../redux/review";
-import "./ReviewFormModal.css"
+import { thunkReviewEdit } from "../../redux/review";
 
 
-function ReviewFormModal({ userId, gameId }) {
+function EditReviewFormModal({ userId, gameId, reviewId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
@@ -33,17 +32,17 @@ function ReviewFormModal({ userId, gameId }) {
       thumbs_up: thumbs_up,
       thumbs_down: thumbs_down,
       description: description,
-      user_id: Number(userId),
-      game_id: Number(gameId)
+      user_id: userId,
+      game_id: gameId
     }
 
-    dispatch(thunkReviewCreate(gameId, reviewData));
+    dispatch(thunkReviewEdit(gameId, reviewData));
     closeModal();
   }
 
   return (
     <section className="container-submit-review-component">
-      <h1 style={{ color: "white", marginBottom: "30px" }}>Review</h1>
+      <h1 style={{ color: "white", marginBottom: "30px" }}>Edit Review</h1>
       <form onSubmit={handleSubmit}>
 
         <div className="container-radio-buttons-review-modal">
@@ -91,4 +90,4 @@ function ReviewFormModal({ userId, gameId }) {
 }
 
 
-export default ReviewFormModal;
+export default EditReviewFormModal;

@@ -1,10 +1,21 @@
-const GET_REVIEWS = "getAllReviews/GET_REVIEWS"
-const CREATE_REVIEW = "createReviewbyGameId/CREATE_REVIEW"
-const DELETE_REVIEW = "deleteReviewById/DELETE_REVIEW"
+const GET_REVIEWS = "getAllReviews/GET_REVIEWS";
+const CREATE_REVIEW = "createReviewbyGameId/CREATE_REVIEW";
+const EDIT_REVIEW = "editReviewById/EDIT_REVIEW";
+const DELETE_REVIEW = "deleteReviewById/DELETE_REVIEW";
 
 const getReviews = (reviews) => ({
   type: GET_REVIEWS,
   payload: reviews
+});
+
+const editReview = (review) => ({
+  type: EDIT_REVIEW,
+  payload: review
+});
+
+const createReview = (review) => ({
+  type: CREATE_REVIEW,
+  payload: review
 });
 
 const deleteReview = (reviewId) => ({
@@ -12,10 +23,6 @@ const deleteReview = (reviewId) => ({
   payload: reviewId
 });
 
-const createReview = (review) => ({
-  type: CREATE_REVIEW,
-  payload: review
-});
 
 export const thunkReviewsGet = () => async (dispatch) => {
   const response = await fetch("/api/reviews/all", {
@@ -51,6 +58,20 @@ export const thunkReviewCreate = (gameId, reviewData) => async (dispatch) => {
   }
 };
 
+export const thunkReviewEdit = (review) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${review.id}/put`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(review),
+    credentials: "include"
+  });
+  if (response.ok) {
+    const data = response.json();
+    dispatch(editReview(data));
+    return data;
+  }
+};
+
 export const thunkReviewDelete = (reviewId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}/delete`, {
     method: "DELETE"
@@ -79,6 +100,12 @@ function reviewReducer(state = initialState, action) {
       return newState
     }
 
+    case EDIT_REVIEW: {
+      const newState = { ...state }
+      newState[action.payload.id] = action.payload
+      return newState;
+    }
+
     case DELETE_REVIEW: {
       const newState = { ...state }
       delete newState[action.payload]
@@ -88,7 +115,7 @@ function reviewReducer(state = initialState, action) {
     default:
       return state;
   }
-};
+}
 
 
 export default reviewReducer;

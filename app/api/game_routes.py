@@ -75,8 +75,6 @@ def post_game():
 @login_required
 def edit_game(game_id):
     game = Game.query.get(game_id)
-    form = GameForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if game is None:
         return {"error": "Game not found"}, 404
@@ -84,6 +82,8 @@ def edit_game(game_id):
     if game.user_id != current_user.id:
         return {"error": "Forbidden"}, 403
 
+    form = GameForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
     data = request.json
 
     if form.validate_on_submit():

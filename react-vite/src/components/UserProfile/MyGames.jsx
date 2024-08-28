@@ -34,11 +34,11 @@ function MyGames() {
           key={game.id}
           className="container-own-game-inner"
         >
-          <Link
-            to={`/games/${game.id}`}
-            className="container-own-game-inner"
+          <div className="container-own-game-inner"
           >
-            <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+            <Link to={`/games/${game.id}`} >
+              <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+            </Link>
 
             <div className="container-game-details-my-games">
 
@@ -51,63 +51,36 @@ function MyGames() {
               </div>
 
               <div className="container-buttons-my-games">
-                <button
-                  type="button"
-                  onClick={e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setEditGame(game.id);
-                  }}
+                <button type="button"
+                  onClick={() => setEditGame(game.id)}
                 >
                   Edit
                 </button>
 
-                <button
-                  type="button"
-                  onClick={e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setDeleteGame(game.id);
-                  }}
+                <button type="button"
+                  onClick={() => setDeleteGame(game.id)}
                 >
                   Delete
                 </button>
 
                 {editGame === game.id &&
                   <div className="container-edit-game-confirmation">
-                    <button onClick={e => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      navigate(`/games/${game.id}/edit`);
-                    }}>
+                    <button onClick={() => navigate(`/games/${game.id}/edit`)}>
                       Yes
                     </button>
 
-                    <button onClick={e => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setEditGame(null);
-                    }}>
+                    <button onClick={() => setEditGame(null)}>
                       No
                     </button>
                   </div>}
 
                 {deleteGame === game.id &&
                   <div className="container-delete-game-confirmation">
-                    <button onClick={e => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      handleDeleteGame(game.id)
-                    }}
-                    >
+                    <button onClick={() => handleDeleteGame(game.id)}>
                       Yes
                     </button>
 
-                    <button onClick={e => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setDeleteGame(null);
-                    }}>
+                    <button onClick={() => setDeleteGame(null)}>
                       No
                     </button>
                   </div>}
@@ -115,11 +88,12 @@ function MyGames() {
 
             </div>
 
-          </Link>
+          </div>
         </div>
-      ))}
+      ))
+      }
 
-    </section>
+    </section >
   );
 }
 

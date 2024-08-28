@@ -1,17 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom"
 import { IoThumbsUp } from "react-icons/io5";
 import { IoThumbsDown } from "react-icons/io5";
 import { GoStarFill } from "react-icons/go";
 import { GoStar } from "react-icons/go";
 import { thunkGamesGet } from "../../redux/game";
-import { thunkReviewDelete, thunkReviewsGet } from "../../redux/review";
-import { thunkUsersGet } from "../../redux/user";
+import { thunkReviewsGet, thunkReviewDelete } from "../../redux/review";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import EditReviewFormModal from "./EditReviewFormModal";
 import "./MyReviews.css"
 
 
 function MyReviews() {
   const dispatch = useDispatch();
+  const ulRef = useRef();
   const currentUser = useSelector(state => state.session.user);
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj);
@@ -21,19 +24,28 @@ function MyReviews() {
 
   const [editReview, setEditReview] = useState(null);
   const [deleteReview, setDeleteReview] = useState(null);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     if (currentUser) {
       dispatch(thunkGamesGet());
-      dispatch(thunkReviewsGet())
+      dispatch(thunkReviewsGet());
     }
   }, [dispatch, currentUser]);
 
+  useEffect(() => {
+    if (!showMenu) return;
 
-  const handleEditReview = (reviewId) => {
-    dispatch()
-    setEditReview(null);
-  };
+    const closeMenu = (e) => {
+      if (ulRef.current && !ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("click", closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
 
   const handleDeleteReview = (reviewId) => {
     dispatch(thunkReviewDelete(reviewId));
@@ -52,7 +64,9 @@ function MyReviews() {
           >
             <div id="container-game-cover-art-review">
               <div>
-                <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+                <Link to={`/games/${game.id}`}>
+                  <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+                </Link>
 
                 <div id="container-buttons-my-reviews">
                   <button
@@ -72,7 +86,11 @@ function MyReviews() {
                   {editReview === review.id &&
                     <div id="container-edit-review-confirmation">
                       <button>
-                        Yes
+                        <OpenModalMenuItem
+                          itemText="Yes"
+                          onItemClick={closeMenu}
+                          modalComponent={<EditReviewFormModal userId={currentUser.id} gameId={game.id} reviewId={review.id} />}
+                        />
                       </button>
 
                       <button onClick={() => setEditReview(null)}>

@@ -20,7 +20,7 @@ function UserProfile() {
 
   useEffect(() => {
     if (currentUser) dispatch(thunkGamesGet());
-  }, [currentUser, navigate]);
+  }, [dispatch, currentUser]);
 
   useEffect(() => {
     if (!currentUser) navigate("/");
