@@ -5,8 +5,8 @@ from app.models import Review
 
 
 class ReviewForm(FlaskForm):
-    thumbs_up = BooleanField("Recommend")
-    thumbs_down = BooleanField("Not recommend")
+    thumbs_up = BooleanField("Thumbs up", validators=[DataRequired()])
+    thumbs_down = BooleanField("Thumbs down", validators=[DataRequired()])
     description = StringField(
         "Description",
         validators=[

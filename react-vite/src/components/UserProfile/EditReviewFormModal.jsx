@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
+import { IoThumbsUp } from "react-icons/io5";
+import { IoThumbsDown } from "react-icons/io5";
 import { useModal } from "../../context/Modal"
 import { thunkReviewEdit, thunkReviewsGet } from "../../redux/review";
 
@@ -58,7 +60,7 @@ function EditReviewFormModal({ userId, gameId, reviewId }) {
               checked={thumbs_up}
               onChange={handleRadioChange}
             />
-            <label htmlFor="thumbs_up">Still recommend this game</label>
+            <label htmlFor="thumbs_up"><span>Thumbs up <IoThumbsUp /></span></label>
           </div>
           <div className="radio-button-set-review-modal">
             <input
@@ -69,7 +71,7 @@ function EditReviewFormModal({ userId, gameId, reviewId }) {
               checked={thumbs_down}
               onChange={handleRadioChange}
             />
-            <label htmlFor="thumbs_down">Still don&apos;t recommend this game</label>
+            <label htmlFor="thumbs_down"><span>Thumbs down <IoThumbsDown /></span></label>
           </div>
         </div>
 

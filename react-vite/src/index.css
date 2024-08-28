@@ -46,4 +46,6 @@ button {
 .error {
   color: var(--error-font-color);
   font-size: 12px;
+  position: absolute;
+  right: 0
 }

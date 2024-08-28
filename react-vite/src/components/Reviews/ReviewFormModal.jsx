@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux"
+import { IoThumbsUp } from "react-icons/io5";
+import { IoThumbsDown } from "react-icons/io5";
 import { useModal } from "../../context/Modal"
 import { thunkReviewCreate } from "../../redux/review";
 import "./ReviewFormModal.css"
@@ -12,6 +14,7 @@ function ReviewFormModal({ userId, gameId }) {
   const [thumbs_up, setThumbsUp] = useState(true);
   const [thumbs_down, setThumbsDown] = useState(false);
   const [description, setDescription] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleRadioChange = (e) => {
     const { value } = e.target;
@@ -38,6 +41,7 @@ function ReviewFormModal({ userId, gameId }) {
     }
 
     dispatch(thunkReviewCreate(gameId, reviewData));
+    if (serverResponse) setErrors(serverResponse);
     closeModal();
   }
 
@@ -56,7 +60,7 @@ function ReviewFormModal({ userId, gameId }) {
               checked={thumbs_up}
               onChange={handleRadioChange}
             />
-            <label htmlFor="thumbs_up">Recommend this game</label>
+            <label htmlFor="thumbs_up"><span>Thumbs up <IoThumbsUp /></span></label>
           </div>
           <div className="radio-button-set-review-modal">
             <input
@@ -67,7 +71,7 @@ function ReviewFormModal({ userId, gameId }) {
               checked={thumbs_down}
               onChange={handleRadioChange}
             />
-            <label htmlFor="thumbs_down">Don&apos;t recommend this game</label>
+            <label htmlFor="thumbs_down"><span>Thumbs down <IoThumbsDown /></span></label>
           </div>
         </div>
 

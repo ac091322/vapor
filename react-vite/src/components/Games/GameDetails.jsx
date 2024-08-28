@@ -24,6 +24,8 @@ function GameDetails() {
   const { gameId } = useParams();
   const currentUser = useSelector(state => state.session.user);
   const game = useSelector(state => state.game[gameId]);
+  const reviewsObj = useSelector(state => state.review);
+  const reviews = Object.values(reviewsObj);
 
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");
@@ -291,21 +293,34 @@ function GameDetails() {
         <div id="container-reviews-game-details">
           <div>
             <h4 style={{ color: "white", marginTop: "45px" }}>CUSTOMER REVIEWS</h4>
-            {currentUser
-              ? <button>
-                <OpenModalMenuItem
-                  itemText="Leave review"
-                  onItemClick={closeMenu}
-                  modalComponent={<ReviewFormModal userId={currentUser.id} gameId={gameId} />}
-                />
+            {currentUser ? (
+              reviews?.find(review => review.user_id === currentUser.id && review.game_id === +gameId)
+                ? (
+                  <button disabled={true}
+                    style={{ cursor: "not-allowed", background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))" }}
+                  >
+                    Reviewed
+                  </button>
+                ) : (
+                  <button>
+                    <OpenModalMenuItem
+                      itemText="Leave review"
+                      onItemClick={closeMenu}
+                      modalComponent={<ReviewFormModal userId={currentUser.id} gameId={gameId} />}
+                    />
+                  </button>
+                )
+            ) : (
+              <button onClick={() => navigate("/login")}>
+                Leave review
               </button>
-              : <button onClick={() => navigate("/login")}>Leave review</button>}
+            )}
           </div>
           <hr />
           <Reviews />
         </div>
       </div>
-    </section>
+    </section >
   );
 }
 

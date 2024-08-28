@@ -49,7 +49,7 @@ function LoginFormPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              {errors.email && <p className="error">{errors.email}</p>}
+              {errors.email && <p id="email-error" className="error">{errors.email}</p>}
             </label>
 
             <label style={{ color: "var(--logo-color)" }}>

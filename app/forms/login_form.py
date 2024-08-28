@@ -26,6 +26,6 @@ def password_matches(form, field):
 class LoginForm(FlaskForm):
     email = EmailField(
         "Email",
-        validators=[DataRequired(), Email(message="Invalid email "), user_exists],
+        validators=[DataRequired(), Email(message="Invalid email & "), user_exists],
     )
     password = StringField("Password", validators=[DataRequired(), password_matches])
