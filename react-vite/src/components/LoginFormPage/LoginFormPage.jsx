@@ -52,7 +52,6 @@ function LoginFormPage() {
               {errors.email && <p className="error">{errors.email}</p>}
             </label>
 
-
             <label style={{ color: "var(--logo-color)" }}>
               PASSWORD
               <input

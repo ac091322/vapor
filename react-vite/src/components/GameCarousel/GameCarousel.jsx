@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { BiSolidChevronLeft } from "react-icons/bi";
 import { BiSolidChevronRight } from "react-icons/bi";
 import { thunkGamesGet } from "../../redux/game";
-import { thunkScreenshotsGetAll } from "../../redux/screenshot";
+import { thunkScreenshotsGet } from "../../redux/screenshot";
 import screenshotPlaceholder from "../../../public/screenshot-placeholder.png"
 import "./GameCarousel.css";
 
@@ -20,7 +20,7 @@ function GameCarousel() {
 
   useEffect(() => {
     dispatch(thunkGamesGet());
-    dispatch(thunkScreenshotsGetAll());
+    dispatch(thunkScreenshotsGet());
   }, [dispatch]);
 
   const handleNext = () => {
@@ -37,7 +37,6 @@ function GameCarousel() {
 
   const currentGame = gamesObj[gameKeys[currentIndex]];
   const filteredScreenshots = screenshots?.filter(screenshot => screenshot.game_id === currentGame?.id);
-
   const firstScreenshot = filteredScreenshots?.length > 0 ? filteredScreenshots[0].screenshot_url : "";
   const secondScreenshot = filteredScreenshots?.length > 1 ? filteredScreenshots[1].screenshot_url : "";
   const thirdScreenshot = filteredScreenshots?.length > 2 ? filteredScreenshots[2].screenshot_url : "";

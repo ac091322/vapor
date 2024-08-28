@@ -1,0 +1,57 @@
+.container-submit-review-component {
+  background-color: var(--nav-background-color);
+  padding: 30px 20px;
+}
+
+.container-submit-review-component form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.container-label-input-review {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-submit-review-component label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 13px;
+  color: var(--logo-color);
+}
+
+.container-radio-buttons-review-modal {
+  display: flex;
+  gap: 25px;
+}
+
+.radio-button-set-review-modal {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.container-submit-review-component textarea {
+  width: 395px;
+  height: 100px;
+  background-color: var(--input-background-color);
+  color: white;
+  outline: none;
+}
+
+.container-buttons-review-modal {
+  display: flex;
+  gap: 10px;
+}
+
+.container-submit-review-component button {
+  width: 100%;
+  height: 45px;
+  color: white;
+  background: linear-gradient(to right, rgb(37, 190, 251), rgb(48, 118, 249));
+  font-size: 16px;
+  background-color: transparent;
+}

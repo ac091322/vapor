@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { thunkGameGetId, thunkGameEdit } from "../../redux/game";
 import { thunkCoverArtEdit } from "../../redux/coverArt";
 
@@ -180,11 +179,23 @@ function EditGame() {
               </div>
             </div>
           ))}
+
+          <div className="container-buttons-game-form-left">
+            <button
+              type="submit"
+              style={imageLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
+              disabled={imageLoading}
+            >
+              Update Game
+            </button>
+
+            <button type="button" onClick={() => { navigate("/user", { replace: true }) }}>Go Back</button>
+          </div>
         </div>
 
         <div className="container-create-game-form-right">
           <div>
-            <span style={{ color: "#999" }}>Upload image</span>
+            <span style={{ color: "#999" }}>Update cover art</span>
             <input
               className="upload-cover-art-input"
               type="file"
@@ -207,13 +218,6 @@ function EditGame() {
           {imageLoading && <p>Uploading...</p>}
         </div>
 
-        <button
-          type="submit"
-          style={imageLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
-          disabled={imageLoading}
-        >
-          Update Game
-        </button>
       </form>
     </section>
   );

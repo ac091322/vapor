@@ -1,25 +1,12 @@
-const GET_SCREENSHOTS = "getScreenshots/GET_ALL_SCREENSHOTS"
-
+const GET_SCREENSHOTS = "getScreenshots/GET_ALL_SCREENSHOTS";
 
 const getScreenshots = (screenshots) => ({
   type: GET_SCREENSHOTS,
   payload: screenshots
 });
 
-
-export const thunkScreenshotsGetAll = () => async (dispatch) => {
+export const thunkScreenshotsGet = () => async (dispatch) => {
   const response = await fetch("/api/screenshots/all", {
-    method: "GET",
-  });
-
-  if (response.ok) {
-    const screenshots = await response.json();
-    dispatch(getScreenshots(screenshots));
-  }
-};
-
-export const thunkScreenshotsGetByGame = (gameId) => async (dispatch) => {
-  const response = await fetch(`/api/games/${gameId}/screenshots`, {
     method: "GET",
   });
   if (response.ok) {

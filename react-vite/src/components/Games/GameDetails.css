@@ -240,5 +240,19 @@
 }
 
 #container-reviews-game-details {
-  height: 200px;
+  min-height: 200px;
+}
+
+#container-reviews-game-details button {
+  height: 30px;
+  width: 110px;
+  background-color: rgb(34, 186, 251);
+  color: white;
+  font-size: 16px;
+}
+
+#container-reviews-game-details>div {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }

@@ -25,5 +25,4 @@ def undo_wishlists():
         )
     else:
         db.session.execute(text("DELETE FROM wishlists"))
-
     db.session.commit()

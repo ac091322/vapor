@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { FaLinkedin } from "react-icons/fa";
+import { FaGithubSquare } from "react-icons/fa";
 import logo from "../../../public/logo.png"
 import "./Footer.css"
 
@@ -17,6 +19,22 @@ function Footer() {
     <footer>
       <div>
         <Link to="/"><img style={{}} src={logo} alt="logo" /></Link>
+
+        <Link
+          to="https://www.linkedin.com/in/alanchang091322"
+          target="_blank"
+          style={{ display: "flex", alignItems: "center", gap: "3px" }}
+        >
+          <FaLinkedin /> LINKEDIN
+        </Link>
+
+        <Link to="https://github.com/ac091322"
+          target="_blank"
+          style={{ display: "flex", alignItems: "center", gap: "3px" }}
+        >
+          <FaGithubSquare /> GITHUB
+        </Link>
+
         <span>©{year} VAPOR, INC.</span>
       </div>
     </footer>

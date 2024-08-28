@@ -1,0 +1,63 @@
+#container-review-component {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 100px;
+}
+
+#container-review-block {
+  display: grid;
+  grid-template-columns: 1.25fr 3fr;
+  grid-template-areas: "left-review right-review";
+  background-color: rgb(22, 32, 44);
+  padding-top: 7px;
+  position: relative;
+}
+
+#container-review-block:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.5px;
+  background: linear-gradient(to right, rgb(102, 183, 230), transparent);
+}
+
+#container-review-left {
+  grid-area: left-review;
+  color: #C1DBF4;
+  display: flex;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+#container-review-left>div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#container-review-right {
+  grid-area: right-review;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+
+.container-recommendation-review {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  background-color: rgb(18, 26, 35);
+  padding-right: 10px;
+}
+
+.container-recommendation-review>div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

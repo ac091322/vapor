@@ -24,5 +24,4 @@ def undo_shopping_cart_items():
         )
     else:
         db.session.execute(text("DELETE FROM shopping_cart_items"))
-
     db.session.commit()

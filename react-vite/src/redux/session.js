@@ -17,7 +17,6 @@ export const thunkAuthenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-
     dispatch(setUser(data));
   }
 };
@@ -32,9 +31,11 @@ export const thunkLogin = (credentials) => async dispatch => {
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data));
+
   } else if (response.status < 500) {
     const errorMessages = await response.json();
     return errorMessages
+
   } else {
     return { server: "Something went wrong, please try again" }
   }

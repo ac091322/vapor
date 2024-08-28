@@ -115,5 +115,4 @@ def undo_cover_arts():
         )
     else:
         db.session.execute(text("DELETE FROM cover_arts"))
-
     db.session.commit()

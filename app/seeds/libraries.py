@@ -25,5 +25,4 @@ def undo_libraries():
         )
     else:
         db.session.execute(text("DELETE FROM libraries"))
-
     db.session.commit()

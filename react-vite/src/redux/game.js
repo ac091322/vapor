@@ -1,8 +1,8 @@
-const GET_GAMES = "getAllGames/GET_GAMES"
-const GET_GAME = "getGameById/GET_GAME"
-const CREATE_GAME = "createGame/CREATE_GAME"
-const EDIT_GAME = "editGameById/EDIT_GAME"
-const DELETE_GAME = "deleteGameById/DELETE_GAME"
+const GET_GAMES = "getAllGames/GET_GAMES";
+const GET_GAME = "getGameById/GET_GAME";
+const CREATE_GAME = "createGame/CREATE_GAME";
+const EDIT_GAME = "editGameById/EDIT_GAME";
+const DELETE_GAME = "deleteGameById/DELETE_GAME";
 
 const getGames = (games) => ({
   type: GET_GAMES,
@@ -30,10 +30,9 @@ const deleteGame = (gameId) => ({
 });
 
 export const thunkGamesGet = () => async (dispatch) => {
-  const response = await fetch("/api/games/", {
+  const response = await fetch("/api/games/all", {
     method: "GET"
   });
-
   if (response.ok) {
     const data = await response.json();
     dispatch(getGames(data));
@@ -41,10 +40,9 @@ export const thunkGamesGet = () => async (dispatch) => {
 };
 
 export const thunkGameGetId = (gameId) => async (dispatch) => {
-  const response = await fetch(`/api/games/${gameId}`, {
+  const response = await fetch(`/api/games/${gameId}/get`, {
     method: "GET"
   });
-
   if (response.ok) {
     const data = await response.json();
     dispatch(getGame(data));
@@ -53,7 +51,7 @@ export const thunkGameGetId = (gameId) => async (dispatch) => {
 
 export const thunkGameCreate = (game) => async (dispatch) => {
   try {
-    const response = await fetch("/api/games/", {
+    const response = await fetch("/api/games/post", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(game),
@@ -76,13 +74,12 @@ export const thunkGameCreate = (game) => async (dispatch) => {
 };
 
 export const thunkGameEdit = (game) => async (dispatch) => {
-  const response = await fetch(`/api/games/${game.id}`, {
+  const response = await fetch(`/api/games/${game.id}/put`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(game),
     credentials: "include"
   });
-
   if (response.ok) {
     const data = await response.json();
     dispatch(editGame(data));
@@ -90,8 +87,8 @@ export const thunkGameEdit = (game) => async (dispatch) => {
   }
 };
 
-export const thunkGameDeleteId = (gameId) => async (dispatch) => {
-  const response = await fetch(`/api/games/${gameId}`, {
+export const thunkGameDelete = (gameId) => async (dispatch) => {
+  const response = await fetch(`/api/games/${gameId}/delete`, {
     method: "DELETE"
   });
   if (response.ok) {

@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import db, Game, Screenshot
-from app.forms import GameForm
+from app.models import db, Game, Review
+from app.forms import GameForm, ReviewForm
 from datetime import datetime
 
 
@@ -9,16 +9,15 @@ game_routes = Blueprint("games", __name__)
 
 
 # get all games
-@game_routes.route("/", methods=["GET"])
+@game_routes.route("/all", methods=["GET"])
 def get_games():
     games = Game.query.all()
     return [game.to_dict() for game in games], 200
 
 
 # get game by game_id
-# delete game by game_id
-@game_routes.route("/<int:game_id>", methods=["GET", "DELETE"])
-def get_delete_game_id(game_id):
+@game_routes.route("/<int:game_id>/get", methods=["GET", "DELETE"])
+def get_game(game_id):
     game = Game.query.get(game_id)
 
     if request.method == "DELETE":
@@ -42,7 +41,7 @@ def get_delete_game_id(game_id):
 
 
 # create new game
-@game_routes.route("/", methods=["POST"])
+@game_routes.route("/post", methods=["POST"])
 @login_required
 def post_game():
     form = GameForm()
@@ -72,12 +71,10 @@ def post_game():
 
 
 # edit game by game_id
-@game_routes.route("/<int:game_id>", methods=["PUT"])
+@game_routes.route("/<int:game_id>/put", methods=["PUT"])
 @login_required
 def edit_game(game_id):
     game = Game.query.get(game_id)
-    form = GameForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if game is None:
         return {"error": "Game not found"}, 404
@@ -85,8 +82,9 @@ def edit_game(game_id):
     if game.user_id != current_user.id:
         return {"error": "Forbidden"}, 403
 
+    form = GameForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
     data = request.json
-    print("!!!!!!!!", data)
 
     if form.validate_on_submit():
         release_date_str = data.get("release_date", game.release_date)
@@ -112,13 +110,62 @@ def edit_game(game_id):
     return {"errors": form.errors}, 400
 
 
-# get all screenshots by game_id
-@game_routes.route("/<int:game_id>/screenshots", methods=["GET"])
-def get_screenshots(game_id):
+# delete game by game_id
+@game_routes.route("/<int:game_id>/delete", methods=["DELETE"])
+@login_required
+def delete_game(game_id):
     game = Game.query.get(game_id)
 
     if game is None:
         return {"error": "Game not found"}, 404
 
-    screenshots = Screenshot.query.filter_by(game_id=game.id).all()
-    return [screenshot.to_dict() for screenshot in screenshots], 200
+    if game.user_id != current_user.id:
+        return {"error": "Forbidden"}, 403
+
+    db.session.delete(game)
+    db.session.commit()
+    return {"message": "Game deleted"}, 200
+
+
+# get reviews by game_id
+@game_routes.route("/<int:game_id>/reviews", methods=["GET"])
+def get_game_reviews(game_id):
+    game = Game.query.get(game_id)
+    reviews = game.review
+    return [review.to_dict() for review in reviews], 200
+
+
+# post a review by game_id
+@game_routes.route("/<int:game_id>/review/post", methods=["POST"])
+@login_required
+def post_review(game_id):
+    game = Game.query.get(game_id)
+
+    if game is None:
+        return {"error": "Game not found"}, 404
+
+    if game.user_id == current_user.id:
+        return {"error": "Cannot review your own game"}, 409
+
+    exiting_review = Review.query.filter_by(
+        game_id=game_id, user_id=current_user.id
+    ).first()
+    if exiting_review:
+        return {"error": "You already reviewed this game"}, 409
+
+    form = ReviewForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        new_review = Review(
+            thumbs_up=form.data["thumbs_up"],
+            thumbs_down=form.data["thumbs_down"],
+            description=form.data["description"],
+            user_id=current_user.id,
+            game_id=game_id,
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict(), 201
+
+    return {"errors": form.errors}, 409
