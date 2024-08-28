@@ -29,6 +29,12 @@ function MyReviews() {
     }
   }, [dispatch, currentUser]);
 
+
+  const handleEditReview = (reviewId) => {
+    dispatch()
+    setEditReview(null);
+  };
+
   const handleDeleteReview = (reviewId) => {
     dispatch(thunkReviewDelete(reviewId));
     setDeleteReview(null);
@@ -43,7 +49,6 @@ function MyReviews() {
         return (
           <div
             key={review.id}
-            id="container-my-reviews-block"
           >
             <div id="container-game-cover-art-review">
               <div>

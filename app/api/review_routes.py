@@ -1,6 +1,8 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from app.models import db, Review
-from flask_login import current_user
+from flask_login import current_user, login_required
+from app.models import db, Review
+# from app.forms import ReviewForm
 
 
 review_routes = Blueprint("reviews", __name__)
@@ -15,6 +17,7 @@ def get_reviews():
 
 # delete review by review_id
 @review_routes.route("/<int:review_id>/delete", methods=["DELETE"])
+@login_required
 def delete_review(review_id):
     review = Review.query.get(review_id)
 

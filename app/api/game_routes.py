@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import db, Game
-from app.forms import GameForm
+from app.models import db, Game, Review
+from app.forms import GameForm, ReviewForm
 from datetime import datetime
 
 
@@ -133,3 +133,39 @@ def get_game_reviews(game_id):
     game = Game.query.get(game_id)
     reviews = game.review
     return [review.to_dict() for review in reviews], 200
+
+
+# post a review by game_id
+@game_routes.route("/<int:game_id>/review/post", methods=["POST"])
+@login_required
+def post_review(game_id):
+    game = Game.query.get(game_id)
+
+    if game is None:
+        return {"error": "Game not found"}, 404
+
+    if game.user_id == current_user.id:
+        return {"error": "Cannot review your own game"}, 409
+
+    exiting_review = Review.query.filter_by(
+        game_id=game_id, user_id=current_user.id
+    ).first()
+    if exiting_review:
+        return {"error": "You already reviewed this game"}, 409
+
+    form = ReviewForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        new_review = Review(
+            thumbs_up=form.data["thumbs_up"],
+            thumbs_down=form.data["thumbs_down"],
+            description=form.data["description"],
+            user_id=current_user.id,
+            game_id=game_id,
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict(), 201
+
+    return {"errors": form.errors}, 409

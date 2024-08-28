@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom"
+import { thunkGamesGet } from "../../redux/game"
 import MyGames from "./MyGames"
 import MyReviews from "./MyReviews"
 import defaultAvatar from "../../../public/default-avatar.png"
@@ -8,19 +9,29 @@ import "./UserProfile.css"
 
 
 function UserProfile() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const currentUser = useSelector(state => state.session.user)
-
-  // const [myGamesState, setMyGamesState] = useState(true);
-  // const [myReviewsState, setMyReviewsState] = useState(false);
+  const currentUser = useSelector(state => state.session.user);
+  const gamesObj = useSelector(state => state.game)
+  const games = Object.values(gamesObj);
+  const filteredGames = games?.filter(game => game.user.user_id === currentUser.id);
 
   const [activeTab, setActiveTab] = useState("myGames");
+
+  useEffect(() => {
+    if (currentUser) dispatch(thunkGamesGet());
+  }, [currentUser, navigate]);
 
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
 
   if (!currentUser) return null;
+
+  const createdGameCount = Array.isArray(filteredGames) ? filteredGames?.length : 0;
+  // const purchasedGameCount = Array.isArray(filteredGames) ? filteredGames?.length : 0;
+  const reviewedGameCount = Array.isArray(currentUser?.reviews) ? currentUser?.reviews?.length : 0;
+  const levelCalculation = createdGameCount * 5 + reviewedGameCount * 1;
 
   return (
     <section id="container-user-profile-page">
@@ -42,8 +53,6 @@ function UserProfile() {
             </div>
           </div>
 
-          {/* <MyGames /> */}
-          {/* <MyReviews /> */}
           {activeTab === "myGames" && <MyGames />}
           {activeTab === "myReviews" && <MyReviews />}
         </div>
@@ -51,9 +60,8 @@ function UserProfile() {
         <div id="container-profile-content-right">
           <div id="container-level-user-profile">
             <span style={{ fontSize: "24px" }} id="container-level-inner">Level </span>
-            <div>0</div>
+            <div>{levelCalculation}</div>
           </div>
-
 
           <div id="container-points-description">
             <p>
@@ -61,9 +69,9 @@ function UserProfile() {
             </p>
 
             <div id="container-points-accumulated">
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Created:</span>
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Purchased:</span>
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Reviewed:</span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>Created: {createdGameCount}</span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>Purchased: None yet...</span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>Reviewed: {reviewedGameCount}</span>
             </div>
           </div>
 
