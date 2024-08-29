@@ -2,7 +2,6 @@ import HomeBanner from "../HomeBanner/HomeBanner";
 import GameCarousel from "../GameCarousel/GameCarousel";
 import "./Homepage.css";
 
-import UploadScreenshots from "../Games/UploadScreenshots";
 
 function Homepage() {
   return (

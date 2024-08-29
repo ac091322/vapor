@@ -38,7 +38,7 @@
 
 #container-thumbnail-images-game-details {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 600px;
   gap: 5px;
   cursor: pointer;

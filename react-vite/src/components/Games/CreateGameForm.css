@@ -45,7 +45,7 @@
   position: relative;
 }
 
-.input-containers>input{
+.input-containers>input {
   cursor: pointer;
 }
 
@@ -60,6 +60,24 @@
 
 .post-inputs:focus+.floating-placeholders {
   top: -20.5px;
+}
+
+#calendar-arrow {
+  position: absolute;
+  top: 11px;
+  right: 40px;
+  color: white;
+  font-size: 1.1rem;
+}
+
+#calendar-circle {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 7px;
+  right: 6px;
 }
 
 .container-create-game-form-left input {
@@ -95,15 +113,11 @@
 .container-create-game-form-right {
   grid-area: right-create-game;
   margin-top: 45px;
-}
-
-.container-create-game-form-right>div {
   display: flex;
   flex-direction: column;
-  margin-top: 6px;
 }
 
-.container-label-input-cover-art {
+.container-label-input-image {
   display: flex;
   flex-direction: column-reverse;
   gap: 3px;
@@ -111,7 +125,7 @@
   color: #999;
 }
 
-.input-file-cover-art {
+.input-file-image {
   width: 100%;
   background-color: rgb(0, 0, 0, 0.3);
   padding: 9px;
@@ -120,7 +134,7 @@
   color: #999;
 }
 
-.cover-art-preview {
-  width: 100%;
-  max-height: 270px;
+#container-screenshot-previews {
+  display: flex;
+  flex-direction: column;
 }
