@@ -11,14 +11,6 @@ function CreateGame() {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.session.user);
 
-  const [cover_art_url, setCoverArtUrl] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(""); // store image preview URL
-  const [filename, setFilename] = useState(""); // store the image file name
-  const [imageLoading, setImageLoading] = useState(false);
-  const [validations, setValidations] = useState({});
-  const [submit, setSumbit] = useState(false);
-  const [fileError, setFileError] = useState("");
-
   // const [title, setTitle] = useState("The Legend of Zelda: Breath of the Wild");
   // const [price, setPrice] = useState("35.99");
   // const [release_date, setReleaseDate] = useState("2024-07-11")
@@ -43,6 +35,14 @@ function CreateGame() {
   const [min_directx, setMinDirectX] = useState("");
   const [min_storage, setMinStorage] = useState("");
   const [min_sound_card, setMinSoundCard] = useState("");
+  const [cover_art_url, setCoverArtUrl] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(""); // store image preview URL
+  const [filename, setFilename] = useState(""); // store the image file name
+  const [imageLoading, setImageLoading] = useState(false);
+  const [validations, setValidations] = useState({});
+  const [submit, setSumbit] = useState(false);
+  const [fileError, setFileError] = useState("");
+
 
   useEffect(() => {
     if (!currentUser) navigate("/");
@@ -65,7 +65,7 @@ function CreateGame() {
     if (!cover_art_url) formErrors.cover_art_url = "Must include cover art";
 
     setValidations(formErrors);
-  }, [title, price, description, min_requirements, min_os, min_processor, min_memory, min_graphics, min_directx, min_storage, min_sound_card, cover_art_url])
+  }, [title, price, description, min_requirements, min_os, min_processor, min_memory, min_graphics, min_directx, min_storage, min_sound_card, cover_art_url]);
 
   const fileWrap = (e) => {
     e.stopPropagation();
