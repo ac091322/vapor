@@ -45,6 +45,10 @@
   position: relative;
 }
 
+.input-containers>input{
+  cursor: pointer;
+}
+
 .floating-placeholders {
   position: absolute;
   top: 10px;

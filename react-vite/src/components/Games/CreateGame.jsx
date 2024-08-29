@@ -43,7 +43,6 @@ function CreateGame() {
   const [submit, setSumbit] = useState(false);
   const [fileError, setFileError] = useState("");
 
-
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
@@ -183,6 +182,7 @@ function CreateGame() {
               required
               style={release_date ? { color: "white" } : { color: "transparent" }}
             />
+
             <div
               className="floating-placeholders"
               style={release_date ? { top: "-20.5px" } : null}

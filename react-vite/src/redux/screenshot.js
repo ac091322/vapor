@@ -1,8 +1,14 @@
 const GET_SCREENSHOTS = "getScreenshots/GET_ALL_SCREENSHOTS";
+const UPLOAD_SCREENSHOTS = "uploadScreenshots/UPLOAD_SCREENSHOTS"
 
 const getScreenshots = (screenshots) => ({
   type: GET_SCREENSHOTS,
   payload: screenshots
+});
+
+const uploadScreenshots = (posts) => ({
+  type: UPLOAD_SCREENSHOTS,
+  payload: posts
 });
 
 export const thunkScreenshotsGet = () => async (dispatch) => {
@@ -15,7 +21,24 @@ export const thunkScreenshotsGet = () => async (dispatch) => {
   }
 };
 
-const initialState = {};
+export const thunkScreenshotsAdd = (posts) => async (dispatch) => {
+  const response = await fetch("/api/screenshots/post", {
+    method: "POST",
+    body: posts
+  });
+
+  if (response.ok) {
+    const { resPosts } = await response.json();
+    dispatch(uploadScreenshots(resPosts));
+
+  } else {
+    console.log("Upload screenshots failed");
+  }
+};
+
+const initialState = {
+  posts: []
+};
 
 const screenshotReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -27,6 +50,12 @@ const screenshotReducer = (state = initialState, action) => {
       });
       return newState;
     }
+
+    case UPLOAD_SCREENSHOTS:
+      return {
+        ...state,
+        posts: [...state.posts, action.payload]
+      }
 
     default:
       return state;
