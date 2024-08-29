@@ -14,7 +14,6 @@ function MyGames() {
   const games = Object.values(gamesObj);
   const filteredGames = games?.filter(game => game.user.user_id === currentUser.id);
 
-  const [editGame, setEditGame] = useState(null);
   const [deleteGame, setDeleteGame] = useState(null);
 
   useEffect(() => {
@@ -46,7 +45,7 @@ function MyGames() {
 
               <div className="container-title-date">
                 <span style={{ color: "white", fontSize: "15px" }}>{game?.title}</span>
-                <div style={{ color: "var(--logo-color)", fontSize: "13px" }}>
+                <div style={{ color: "var(--logo-color)", fontSize: "13px", display: "flex", flexDirection: "column", gap: "5px" }}>
                   <span >{game?.release_date.split("00")[0].trim()}</span>
                   <span>${game?.price}</span>
                 </div>
@@ -54,7 +53,7 @@ function MyGames() {
 
               <div className="container-buttons-my-games">
                 <button type="button"
-                  onClick={() => setEditGame(game.id)}
+                  onClick={() => navigate(`/games/${game.id}/edit`)}
                 >
                   Edit
                 </button>
@@ -64,17 +63,6 @@ function MyGames() {
                 >
                   Delete
                 </button>
-
-                {editGame === game.id &&
-                  <div className="container-edit-game-confirmation">
-                    <button onClick={() => navigate(`/games/${game.id}/edit`)}>
-                      Yes
-                    </button>
-
-                    <button onClick={() => setEditGame(null)}>
-                      No
-                    </button>
-                  </div>}
 
                 {deleteGame === game.id &&
                   <div className="container-delete-game-confirmation">

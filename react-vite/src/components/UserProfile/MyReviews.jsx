@@ -22,7 +22,6 @@ function MyReviews() {
   const reviews = Object.values(reviewsObj);
   const filteredReviews = reviews.filter(review => review.user_id === currentUser.id);
 
-  const [editReview, setEditReview] = useState(null);
   const [deleteReview, setDeleteReview] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -69,11 +68,12 @@ function MyReviews() {
                 </Link>
 
                 <div id="container-buttons-my-reviews">
-                  <button
-                    type="button"
-                    onClick={() => (setEditReview(review.id))}
-                  >
-                    Edit
+                  <button>
+                    <OpenModalMenuItem
+                      itemText="Edit"
+                      onItemClick={closeMenu}
+                      modalComponent={<EditReviewFormModal userId={currentUser.id} gameId={game.id} reviewId={review.id} />}
+                    />
                   </button>
 
                   <button
@@ -82,21 +82,6 @@ function MyReviews() {
                   >
                     Delete
                   </button>
-
-                  {editReview === review.id &&
-                    <div id="container-edit-review-confirmation">
-                      <button>
-                        <OpenModalMenuItem
-                          itemText="Yes"
-                          onItemClick={closeMenu}
-                          modalComponent={<EditReviewFormModal userId={currentUser.id} gameId={game.id} reviewId={review.id} />}
-                        />
-                      </button>
-
-                      <button onClick={() => setEditReview(null)}>
-                        No
-                      </button>
-                    </div>}
 
                   {deleteReview === review.id &&
                     <div id="container-delete-review-confirmation">
@@ -152,7 +137,14 @@ function MyReviews() {
                     POSTED: {review.updated_at}
                   </span>
 
-                  <p style={{ color: "#ACB2B8", fontSize: "13px" }}>
+                  <p style={{
+                    color: "#ACB2B8",
+                    fontSize: "13px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    width: "315px",
+                    paddingRight: "10px"
+                  }}>
                     {review.description}
                   </p>
                 </div>

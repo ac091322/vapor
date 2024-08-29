@@ -69,13 +69,13 @@ function EditGame() {
     if (description.length < 10) formErrors.description = "Your description is too short";
     if (description.length > 2000) formErrors.description = "Your deescription is too long";
     if (min_requirements.length < 2 || min_requirements.length > 255) formErrors.min_requirements = "Must be between 2 and 255 characters";
-    if (min_os.length < 2 || min_os.length > 255) formErrors.min_os = "Must be between 2 and 255 characters";
-    if (min_processor.length < 2 || min_processor.length > 255) formErrors.min_processor = "Must be between 2 and 255 characters";
-    if (min_memory.length < 2 || min_memory.length > 255) formErrors.min_memory = "Must be between 2 and 255 characters";
-    if (min_graphics.length < 2 || min_graphics.length > 255) formErrors.min_graphics = "Must be between 2 and 255 characters";
-    if (min_directx.length < 2 || min_directx.length > 255) formErrors.min_directx = "Must be between 2 and 255 characters";
-    if (min_storage.length < 2 || min_storage.length > 255) formErrors.min_storage = "Must be between 2 and 255 characters";
-    if (min_sound_card.length < 2 || min_sound_card.length > 255) formErrors.min_sound_card = "Must be between 2 and 255 characters";
+    if (min_os.length < 2 || min_os.length > 100) formErrors.min_os = "Must be between 2 and 100 characters";
+    if (min_processor.length < 2 || min_processor.length > 100) formErrors.min_processor = "Must be between 2 and 100 characters";
+    if (min_memory.length < 2 || min_memory.length > 100) formErrors.min_memory = "Must be between 2 and 100 characters";
+    if (min_graphics.length < 2 || min_graphics.length > 100) formErrors.min_graphics = "Must be between 2 and 100 characters";
+    if (min_directx.length < 2 || min_directx.length > 100) formErrors.min_directx = "Must be between 2 and 100 characters";
+    if (min_storage.length < 2 || min_storage.length > 100) formErrors.min_storage = "Must be between 2 and 100 characters";
+    if (min_sound_card.length < 2 || min_sound_card.length > 100) formErrors.min_sound_card = "Must be between 2 and 255 characters";
     if (!cover_art_url) formErrors.cover_art_url = "Must include cover art";
 
     setValidations(formErrors);

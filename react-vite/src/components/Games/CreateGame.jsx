@@ -11,34 +11,34 @@ function CreateGame() {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.session.user);
 
-  // const [title, setTitle] = useState("The Legend of Zelda: Breath of the Wild");
-  // const [price, setPrice] = useState("35.99");
-  // const [release_date, setReleaseDate] = useState("2024-07-11")
-  // const [description, setDescription] = useState("The Legend of Zelda: Breath of the Wild is an open-world action-adventure game that emphasizes exploration, freedom, and immersive interactions. Players can explore a dynamic world without set paths, discovering hidden areas and solving puzzles organically. Its physics-based engine supports climbing, gliding, and combat, while stamina, weather, and AI systems enrich the experience. The game aims to inspire adventure and wonder through innovative mechanics and a detailed world.")
-  // const [min_requirements, setMinRequirements] = useState("Requires a 64-bit processor and operating system");
-  // const [min_os, setMinOs] = useState("Windows 10 64-bit");
-  // const [min_processor, setMinProcessor] = useState("Intel Core i5-8400 / AMD Ryzen 5 1600");
-  // const [min_memory, setMinMemory] = useState("16 GB RAM");
-  // const [min_graphics, setMinGraphics] = useState("NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB");
-  // const [min_directx, setMinDirectX] = useState("Version 11");
-  // const [min_storage, setMinStorage] = useState("130 GB available space");
-  // const [min_sound_card, setMinSoundCard] = useState("Windows Compatible Audio Device");
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [release_date, setReleaseDate] = useState("")
-  const [description, setDescription] = useState("")
-  const [min_requirements, setMinRequirements] = useState("");
-  const [min_os, setMinOs] = useState("");
-  const [min_processor, setMinProcessor] = useState("");
-  const [min_memory, setMinMemory] = useState("");
-  const [min_graphics, setMinGraphics] = useState("");
-  const [min_directx, setMinDirectX] = useState("");
-  const [min_storage, setMinStorage] = useState("");
-  const [min_sound_card, setMinSoundCard] = useState("");
+  const [title, setTitle] = useState("The Legend of Zelda: Breath of the Wild");
+  const [price, setPrice] = useState("35.99");
+  const [release_date, setReleaseDate] = useState("2024-07-11")
+  const [description, setDescription] = useState("The Legend of Zelda: Breath of the Wild is an open-world action-adventure game that emphasizes exploration, freedom, and immersive interactions. Players can explore a dynamic world without set paths, discovering hidden areas and solving puzzles organically. Its physics-based engine supports climbing, gliding, and combat, while stamina, weather, and AI systems enrich the experience. The game aims to inspire adventure and wonder through innovative mechanics and a detailed world.")
+  const [min_requirements, setMinRequirements] = useState("Requires a 64-bit processor and operating system");
+  const [min_os, setMinOs] = useState("Windows 10 64-bit");
+  const [min_processor, setMinProcessor] = useState("Intel Core i5-8400 / AMD Ryzen 5 1600");
+  const [min_memory, setMinMemory] = useState("16 GB RAM");
+  const [min_graphics, setMinGraphics] = useState("NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB");
+  const [min_directx, setMinDirectX] = useState("Version 11");
+  const [min_storage, setMinStorage] = useState("130 GB available space");
+  const [min_sound_card, setMinSoundCard] = useState("Windows Compatible Audio Device");
+  // const [title, setTitle] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [release_date, setReleaseDate] = useState("")
+  // const [description, setDescription] = useState("")
+  // const [min_requirements, setMinRequirements] = useState("");
+  // const [min_os, setMinOs] = useState("");
+  // const [min_processor, setMinProcessor] = useState("");
+  // const [min_memory, setMinMemory] = useState("");
+  // const [min_graphics, setMinGraphics] = useState("");
+  // const [min_directx, setMinDirectX] = useState("");
+  // const [min_storage, setMinStorage] = useState("");
+  // const [min_sound_card, setMinSoundCard] = useState("");
   const [cover_art_url, setCoverArtUrl] = useState("");
-  const [previewUrl, setPreviewUrl] = useState(""); // store image preview URL
+  const [coverArtPreviewUrl, setCoverArtPreviewUrl] = useState(""); // store image preview URL
   const [filename, setFilename] = useState(""); // store the image file name
-  const [imageLoading, setImageLoading] = useState(false);
+  const [coverArtLoading, setCoverArtLoading] = useState(false);
   const [validations, setValidations] = useState({});
   const [submit, setSumbit] = useState(false);
   const [fileError, setFileError] = useState("");
@@ -53,14 +53,14 @@ function CreateGame() {
     if (price < 0 || price > 999.99) formErrors.price = "Must be between 0 and 999.99";
     if (description.length < 10) formErrors.description = "Your description is too short";
     if (description.length > 2000) formErrors.description = "Your deescription is too long";
-    if (min_requirements.length < 2 || min_requirements.length > 255) formErrors.min_requirements = "Must be between 2 and 255 characters";
-    if (min_os.length < 2 || min_os.length > 255) formErrors.min_os = "Must be between 2 and 255 characters";
-    if (min_processor.length < 2 || min_processor.length > 255) formErrors.min_processor = "Must be between 2 and 255 characters";
-    if (min_memory.length < 2 || min_memory.length > 255) formErrors.min_memory = "Must be between 2 and 255 characters";
-    if (min_graphics.length < 2 || min_graphics.length > 255) formErrors.min_graphics = "Must be between 2 and 255 characters";
-    if (min_directx.length < 2 || min_directx.length > 255) formErrors.min_directx = "Must be between 2 and 255 characters";
-    if (min_storage.length < 2 || min_storage.length > 255) formErrors.min_storage = "Must be between 2 and 255 characters";
-    if (min_sound_card.length < 2 || min_sound_card.length > 255) formErrors.min_sound_card = "Must be between 2 and 255 characters";
+    if (min_requirements.length < 2 || min_requirements.length > 100) formErrors.min_requirements = "Must be between 2 and 100 characters";
+    if (min_os.length < 2 || min_os.length > 100) formErrors.min_os = "Must be between 2 and 100 characters";
+    if (min_processor.length < 2 || min_processor.length > 100) formErrors.min_processor = "Must be between 2 and 100 characters";
+    if (min_memory.length < 2 || min_memory.length > 100) formErrors.min_memory = "Must be between 2 and 100 characters";
+    if (min_graphics.length < 2 || min_graphics.length > 100) formErrors.min_graphics = "Must be between 2 and 100 characters";
+    if (min_directx.length < 2 || min_directx.length > 100) formErrors.min_directx = "Must be between 2 and 100 characters";
+    if (min_storage.length < 2 || min_storage.length > 100) formErrors.min_storage = "Must be between 2 and 100 characters";
+    if (min_sound_card.length < 2 || min_sound_card.length > 100) formErrors.min_sound_card = "Must be between 2 and 100 characters";
     if (!cover_art_url) formErrors.cover_art_url = "Must include cover art";
 
     setValidations(formErrors);
@@ -73,7 +73,7 @@ function CreateGame() {
 
     if (tempFile.size > 5000000) {
       setFileError("Image exceeds the maximum file size of 5MB");
-      setPreviewUrl("");
+      setCoverArtPreviewUrl("");
       setFilename("");
       return;
     }
@@ -82,7 +82,7 @@ function CreateGame() {
     const newFile = new File([tempFile], newFilename, { type: tempFile.type });
     const newCoverArtURL = URL.createObjectURL(tempFile); // generate a local URL for the image preview
 
-    setPreviewUrl(newCoverArtURL);
+    setCoverArtPreviewUrl(newCoverArtURL);
     setCoverArtUrl(newFile);
     setFilename(newFile.name);
     setFileError("");
@@ -118,9 +118,9 @@ function CreateGame() {
     coverArtData.append("game_id", gameId);
     coverArtData.append("filename", filename);
 
-    setImageLoading(true);
+    setCoverArtLoading(true);
     await dispatch(thunkCoverArtAdd(coverArtData));
-    setImageLoading(false);
+    setCoverArtLoading(false);
     navigate(`/games/${gameReponse.id}`);
   };
 
@@ -354,8 +354,8 @@ function CreateGame() {
 
           <div className="container-buttons-game-form-left">
             <button type="submit"
-              style={imageLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
-              disabled={imageLoading}
+              style={coverArtLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
+              disabled={coverArtLoading}
             >
               Create Game
             </button>
@@ -385,15 +385,15 @@ function CreateGame() {
               </label>
             </div>
 
-            {previewUrl && (
+            {coverArtPreviewUrl && (
               <img
-                src={previewUrl}
+                src={coverArtPreviewUrl}
                 alt="cover art preview"
                 className="cover-art-preview"
               />
             )}
             {filename && <span style={{ color: "#999", fontSize: "12px" }}>{filename}</span>}
-            {imageLoading && <p style={{ color: "#999", fontSize: "12px" }}>Uploading file...</p>}
+            {coverArtLoading && <p style={{ color: "#999", fontSize: "12px" }}>Uploading file...</p>}
             {submit && validations.cover_art_url && <p className="error-game" style={{ top: "0" }}>{validations.cover_art_url}</p>}
           </div>
         </div>
