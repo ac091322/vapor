@@ -49,7 +49,7 @@ function LoginFormPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              {errors.email && <p className="error">{errors.email}</p>}
+              {errors.email && <p id="email-error" className="error">{errors.email}</p>}
             </label>
 
             <label style={{ color: "var(--logo-color)" }}>
@@ -61,9 +61,9 @@ function LoginFormPage() {
                 required
               />
               {errors.password && <p className="error">{errors.password}</p>}
+              {errors.server && <p className="error">{errors.server}</p>}
             </label>
 
-            {errors.server && <p className="error">{errors.server}</p>}
             <button type="submit">Sign In</button>
           </div>
 

@@ -11,7 +11,7 @@ function MyGames() {
   const navigate = useNavigate();
   const currentUser = useSelector(state => state.session.user);
   const gamesObj = useSelector(state => state.game);
-  const games = Object.values(gamesObj)
+  const games = Object.values(gamesObj);
   const filteredGames = games?.filter(game => game.user.user_id === currentUser.id);
 
   const [editGame, setEditGame] = useState(null);
@@ -37,7 +37,9 @@ function MyGames() {
           <div className="container-own-game-inner"
           >
             <Link to={`/games/${game.id}`} >
-              <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+              <div style={{ width: "325px" }}>
+                <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+              </div>
             </Link>
 
             <div className="container-game-details-my-games">

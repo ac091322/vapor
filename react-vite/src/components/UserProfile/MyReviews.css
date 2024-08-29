@@ -24,6 +24,7 @@
 
 .container-recommendation-my-reviews {
   height: 40px;
+  width: 315px;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -145,7 +145,7 @@ def post_review(game_id):
         return {"error": "Game not found"}, 404
 
     if game.user_id == current_user.id:
-        return {"error": "Cannot review your own game"}, 409
+        return {"error": "Cannot review your own game"}, 403
 
     exiting_review = Review.query.filter_by(
         game_id=game_id, user_id=current_user.id
@@ -168,4 +168,4 @@ def post_review(game_id):
         db.session.commit()
         return new_review.to_dict(), 201
 
-    return {"errors": form.errors}, 409
+    return {"errors": form.errors}, 400

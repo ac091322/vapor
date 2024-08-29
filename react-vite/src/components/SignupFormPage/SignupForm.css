@@ -7,7 +7,7 @@
 }
 
 #container-signup-page::before {
-  content: '';
+  content: "";
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -25,7 +25,7 @@
 
 #container-signup-form form {
   background-color: var(--nav-background-color);
-  padding: 40px;
+  padding: 60px 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -45,6 +45,7 @@
   height: 40px;
   background-color: var(--input-background-color);
   color: white;
+  position: relative;
 }
 
 #container-signup-form button {

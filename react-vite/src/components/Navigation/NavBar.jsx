@@ -7,9 +7,9 @@ function NavBar() {
   return (
     <NavLink id="container-navbar">
       <ul>
-        <li>Your Store</li>
-        <li>New & Noteworthy</li>
-        <li>Categories</li>
+        <li style={{ cursor: "not-allowed" }}>Your Store</li>
+        <li style={{ cursor: "not-allowed" }}>New & Noteworthy</li>
+        <li style={{ cursor: "not-allowed" }}>Categories</li>
         <li style={{ cursor: "not-allowed" }}>Points Shop</li>
         <li style={{ cursor: "not-allowed" }}>News</li>
         <li style={{ cursor: "not-allowed" }}>Labs</li>

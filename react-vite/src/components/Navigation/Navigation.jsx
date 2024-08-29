@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { ImDownload2 } from "react-icons/im";
 import ProfileButton from "./ProfileButton";
 import logo from "../../../public/logo.png"
@@ -16,7 +16,7 @@ function Navigation() {
         <div id="container-logo-navlinks">
           <NavLink to="/"><img src={logo} alt="logo" /></NavLink>
           <ul>
-            <li>STORE</li>
+            <li><Link to="/">STORE</Link></li>
             <li style={{ cursor: "not-allowed" }}>COMMUNITY</li>
             <li style={{ cursor: "not-allowed" }}>ABOUT</li>
             <li style={{ cursor: "not-allowed" }}>SUPPORT</li>

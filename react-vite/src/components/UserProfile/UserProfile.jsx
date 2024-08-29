@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom"
 import { thunkGamesGet } from "../../redux/game"
+import { thunkReviewsGet } from "../../redux/review";
 import MyGames from "./MyGames"
 import MyReviews from "./MyReviews"
 import defaultAvatar from "../../../public/default-avatar.png"
@@ -12,14 +13,20 @@ function UserProfile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUser = useSelector(state => state.session.user);
-  const gamesObj = useSelector(state => state.game)
+  const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj);
   const filteredGames = games?.filter(game => game.user.user_id === currentUser.id);
+  const reviewsObj = useSelector(state => state.review);
+  const reviews = Object.values(reviewsObj);
+  const filteredReviews = reviews?.filter(review => review.user_id === currentUser.id);
 
   const [activeTab, setActiveTab] = useState("myGames");
 
   useEffect(() => {
-    if (currentUser) dispatch(thunkGamesGet());
+    if (currentUser) {
+      dispatch(thunkGamesGet());
+      dispatch(thunkReviewsGet());
+    }
   }, [dispatch, currentUser]);
 
   useEffect(() => {
@@ -30,7 +37,7 @@ function UserProfile() {
 
   const createdGameCount = Array.isArray(filteredGames) ? filteredGames?.length : 0;
   // const purchasedGameCount = Array.isArray(filteredGames) ? filteredGames?.length : 0;
-  const reviewedGameCount = Array.isArray(currentUser?.reviews) ? currentUser?.reviews?.length : 0;
+  const reviewedGameCount = Array.isArray(filteredReviews) ? filteredReviews?.length : 0;
   const levelCalculation = createdGameCount * 5 + reviewedGameCount * 1;
 
   return (

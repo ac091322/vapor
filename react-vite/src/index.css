@@ -46,4 +46,14 @@ button {
 .error {
   color: var(--error-font-color);
   font-size: 12px;
+  position: absolute;
+  right: 0;
+}
+
+.error-game {
+  color: var(--nav-font-color-selected);
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: -18px;
 }

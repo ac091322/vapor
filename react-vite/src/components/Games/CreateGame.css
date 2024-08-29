@@ -19,7 +19,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-areas: "left-create-game right-create-game";
-  column-gap: 40px;
+  column-gap: 20px;
   padding: 40px 15px 100px 15px;
 }
 
@@ -61,12 +61,21 @@
 .container-create-game-form-left input {
   height: 40px;
   width: 600px;
+  background-color: rgb(0, 0, 0, 0.4);
+  z-index: 1;
+  position: relative;
+  color: white;
 }
 
 .container-create-game-form-left textarea {
-  height: 100px;
+  height: 150px;
   width: 600px;
   outline: none;
+  background-color: rgb(0, 0, 0, 0.3);
+  z-index: 1;
+  position: relative;
+  border: none;
+  color: white;
 }
 
 .container-create-game-page button {
@@ -87,17 +96,27 @@
 .container-create-game-form-right>div {
   display: flex;
   flex-direction: column;
+  margin-top: 6px;
+}
+
+.container-label-input-cover-art {
+  display: flex;
+  flex-direction: column-reverse;
   gap: 3px;
+  font-size: 12px;
+  color: #999;
 }
 
-.upload-cover-art-input {
+.input-file-cover-art {
   width: 100%;
-  background-color: white;
+  background-color: rgb(0, 0, 0, 0.3);
   padding: 9px;
+  color: white;
+  font-size: 12px;
+  color: #999;
 }
 
-.container-create-game-form-right img {
+.cover-art-preview {
   width: 100%;
-  margin-top: 10px;
   max-height: 270px;
 }

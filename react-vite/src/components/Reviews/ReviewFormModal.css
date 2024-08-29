@@ -1,6 +1,6 @@
 .container-submit-review-component {
   background-color: var(--nav-background-color);
-  padding: 30px 20px;
+  padding: 50px 30px;
 }
 
 .container-submit-review-component form {
@@ -21,11 +21,18 @@
   gap: 3px;
   font-size: 13px;
   color: var(--logo-color);
+  position: relative;
+}
+
+.container-submit-review-component label>span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .container-radio-buttons-review-modal {
   display: flex;
-  gap: 25px;
+  justify-content: space-evenly;
 }
 
 .radio-button-set-review-modal {
@@ -36,7 +43,7 @@
 
 .container-submit-review-component textarea {
   width: 395px;
-  height: 100px;
+  height: 150px;
   background-color: var(--input-background-color);
   color: white;
   outline: none;

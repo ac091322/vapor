@@ -26,9 +26,9 @@
 #container-login-form form {
   display: grid;
   column-gap: 40px;
-  grid-template-areas: "left right";
+  grid-template-areas: "left-login right-login";
   background-color: var(--nav-background-color);
-  padding: 40px;
+  padding: 60px 40px;
 }
 
 #container-login-form label {
@@ -36,6 +36,7 @@
   flex-direction: column;
   gap: 3px;
   font-size: 12px;
+  position: relative;
 }
 
 #container-login-form input {
@@ -46,7 +47,7 @@
 }
 
 #container-login-form-left {
-  grid-area: left;
+  grid-area: left-login;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -64,11 +65,10 @@
 }
 
 #container-login-form-right {
-  grid-area: right;
+  grid-area: right-login;
   display: flex;
   flex-direction: column;
   gap: 3px;
-  grid-area: right;
   font-size: 12px;
 }
 
