@@ -26,7 +26,7 @@ function EditGame() {
   const [min_directx, setMinDirectX] = useState("");
   const [min_storage, setMinStorage] = useState("");
   const [min_sound_card, setMinSoundCard] = useState("");
-  const [cover_art_url, setCoverArtUrl] = useState(null);
+  const [cover_art_url, setCoverArtUrl] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [filename, setFilename] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
@@ -40,9 +40,10 @@ function EditGame() {
 
   useEffect(() => {
     if (game) {
+      const formattedReleaseDate = new Date(game.release_date).toISOString().split('T')[0];
       setTitle(game.title);
       setPrice(game.price);
-      setReleaseDate(game.release_date);
+      setReleaseDate(formattedReleaseDate);
       setDescription(game.description);
       setMinRequirements(game.min_requirements);
       setMinOs(game.min_os);
@@ -52,9 +53,14 @@ function EditGame() {
       setMinDirectX(game.min_directx);
       setMinStorage(game.min_storage);
       setMinSoundCard(game.min_sound_card);
-      // setCoverArtUrl(coverArt);
     }
-  }, [game]);
+
+    if (coverArt) {
+      setCoverArtUrl(coverArt.cover_art_url);
+      setFilename(coverArt.filename);
+      setPreviewUrl(coverArt.cover_art_url)
+    }
+  }, [game, coverArt]);
 
   useEffect(() => {
     const formErrors = {}
@@ -396,7 +402,7 @@ function EditGame() {
               />
               {fileError && <p className="error-game" style={{ top: "55px", left: "0" }}>{fileError}</p>}
               <label htmlFor="cover-upload" className="cover-art-label">
-                Upload cover art
+                Change cover art
               </label>
             </div>
 
@@ -417,5 +423,6 @@ function EditGame() {
     </section >
   );
 }
+
 
 export default EditGame;

@@ -35,7 +35,7 @@ function CreateGame() {
   const [min_directx, setMinDirectX] = useState("");
   const [min_storage, setMinStorage] = useState("");
   const [min_sound_card, setMinSoundCard] = useState("");
-  const [cover_art_url, setCoverArtUrl] = useState(null);
+  const [cover_art_url, setCoverArtUrl] = useState("");
   const [previewUrl, setPreviewUrl] = useState(""); // store image preview URL
   const [filename, setFilename] = useState(""); // store the image file name
   const [imageLoading, setImageLoading] = useState(false);
