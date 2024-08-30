@@ -6,7 +6,7 @@
   margin: 0 auto;
   background-color: rgb(10, 20, 28);
   box-shadow: 0 0 10px 1px black;
-  margin-top: 89px;
+  margin-top: 90px;
   position: relative;
   ;
 }
@@ -76,8 +76,6 @@
   background-color: rgb(57, 66, 71);
   padding: 3px 8px;
   width: fit-content;
-  margin-top: auto;
-  margin-bottom: 10px;
 }
 
 .carousel-left-right-buttons {

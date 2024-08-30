@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 80ee972e4df6
+Revision ID: 4d2b3412e157
 Revises: 
-Create Date: 2024-08-28 17:25:41.013770
+Create Date: 2024-08-30 00:19:57.417900
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '80ee972e4df6'
+revision = '4d2b3412e157'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,14 +43,14 @@ def upgrade():
     sa.Column('price', sa.Numeric(precision=5, scale=2), nullable=False),
     sa.Column('release_date', sa.Date(), nullable=False),
     sa.Column('description', sa.String(length=2000), nullable=False),
-    sa.Column('min_requirements', sa.String(length=255), nullable=False),
+    sa.Column('min_requirements', sa.String(length=100), nullable=False),
     sa.Column('min_os', sa.String(length=255), nullable=False),
-    sa.Column('min_processor', sa.String(length=255), nullable=False),
-    sa.Column('min_memory', sa.String(length=255), nullable=False),
-    sa.Column('min_graphics', sa.String(length=255), nullable=False),
-    sa.Column('min_directx', sa.String(length=255), nullable=False),
-    sa.Column('min_storage', sa.String(length=255), nullable=False),
-    sa.Column('min_sound_card', sa.String(length=255), nullable=False),
+    sa.Column('min_processor', sa.String(length=100), nullable=False),
+    sa.Column('min_memory', sa.String(length=100), nullable=False),
+    sa.Column('min_graphics', sa.String(length=100), nullable=False),
+    sa.Column('min_directx', sa.String(length=100), nullable=False),
+    sa.Column('min_storage', sa.String(length=100), nullable=False),
+    sa.Column('min_sound_card', sa.String(length=100), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),

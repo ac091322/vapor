@@ -134,7 +134,7 @@ function GameDetails() {
 
           <div id="container-game-carousel-game-details-right">
             <img style={{ width: "325px", height: "150px" }} src={game?.cover_art?.[0]?.cover_art_url} alt="cover-art" />
-            <p style={{ paddingRight: "15px" }}>{game?.description}</p>
+            <p>{game?.description}</p>
 
             <div id="container-description-game-details">
               <div id="container-description-game-details-left">
@@ -188,7 +188,7 @@ function GameDetails() {
             <div id="container-bottom-description-game-details">
               <h4 style={{ color: "white" }}>ABOUT THIS GAME</h4>
               <hr />
-              <p style={{ color: "var(--logo-color)", fontSize: "14px" }}>{game?.description}</p>
+              <p style={{ width: "613px", paddingRight: "15px", color: "var(--logo-color)", fontSize: "14px", overflow: "hidden", textOverflow: "ellipsis" }}>{game?.description}</p>
             </div>
 
             <div style={{ marginTop: "45px" }}>
@@ -196,31 +196,31 @@ function GameDetails() {
               <hr />
 
               <div id="container-requirements-inner">
-                <div>
-                  <span className="requirements-value">MINIMUM:&nbsp;&nbsp;&nbsp;</span>
-                  <div className="requirements-title">{game?.min_requirements}</div>
+                <div className="container-requirements-inner-value-title">
+                  <span className="requirements-title">MINIMUM:&nbsp;&nbsp;&nbsp;</span>
+                  <span className="requirements-value">{game?.min_requirements}</span>
                 </div>
-                <div>
+                <div className="container-requirements-inner-value-title">
                   <span className="requirements-title">OS:&nbsp;&nbsp;&nbsp;</span>
                   <span className="requirements-value">{game?.min_os}</span>
                 </div>
-                <div>
+                <div className="container-requirements-inner-value-title">
                   <span className="requirements-title">Processor:&nbsp;&nbsp;&nbsp;</span>
                   <span className="requirements-value">{game?.min_processor}</span>
                 </div>
-                <div>
+                <div className="container-requirements-inner-value-title">
                   <span className="requirements-title">Memory:&nbsp;&nbsp;&nbsp;</span>
                   <span className="requirements-value">{game?.min_memory}</span>
                 </div>
-                <div>
+                <div className="container-requirements-inner-value-title">
                   <span className="requirements-title">Graphics:&nbsp;&nbsp;&nbsp;</span>
                   <span className="requirements-value">{game?.min_graphics}</span>
                 </div>
-                <div>
+                <div className="container-requirements-inner-value-title">
                   <span className="requirements-title">DirectX:&nbsp;&nbsp;&nbsp;</span>
                   <span className="requirements-value">{game?.min_directx}</span>
                 </div>
-                <div>
+                <div className="container-requirements-inner-value-title">
                   <span className="requirements-title">Storage:&nbsp;&nbsp;&nbsp;</span>
                   <span className="requirements-value"> {game?.min_storage}</span>
                 </div>

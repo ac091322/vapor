@@ -82,17 +82,17 @@ function GameCarousel() {
                     : <img src={screenshotPlaceholder} alt="screenshot" />}
                 </div>
                 <div className="screenshot-container-game-carousel">
-                  {filteredScreenshots.length > 0
+                  {filteredScreenshots.length > 1
                     ? <img src={secondScreenshot} alt="screenshot" />
                     : <img src={screenshotPlaceholder} alt="screenshot" />}
                 </div>
                 <div className="screenshot-container-game-carousel">
-                  {filteredScreenshots.length > 0
+                  {filteredScreenshots.length > 2
                     ? <img src={thirdScreenshot} alt="screenshot" />
                     : <img src={screenshotPlaceholder} alt="screenshot" />}
                 </div>
                 <div className="screenshot-container-game-carousel">
-                  {filteredScreenshots.length > 0
+                  {filteredScreenshots.length > 3
                     ? <img src={fourthScreenshot} alt="screenshot" />
                     : <img src={screenshotPlaceholder} alt="screenshot" />}
                 </div>

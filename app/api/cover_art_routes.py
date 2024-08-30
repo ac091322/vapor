@@ -1,13 +1,13 @@
 from flask import Blueprint, request
-from app.models import db, CoverArt
 from flask_login import login_required
 from app.api.s3_helpers import upload_file_to_s3
+from app.models import db, CoverArt
 
 
 cover_art_routes = Blueprint("images", __name__)
 
 
-# create cover_art through game_id
+# upload cover art through game_id
 @cover_art_routes.route("/post", methods=["POST"])
 @login_required
 def upload_cover_art():
@@ -30,7 +30,7 @@ def upload_cover_art():
     return {"error": "No file uploaded"}, 400
 
 
-# edit cover_art by cover_art_id
+# update cover art by cover_art_id
 @cover_art_routes.route("/<int:cover_art_id>/put", methods=["PUT"])
 @login_required
 def edit_cover_art(cover_art_id):

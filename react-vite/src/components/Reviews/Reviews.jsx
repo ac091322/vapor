@@ -94,7 +94,14 @@ function Reviews() {
               <span style={{ color: "#8091A2", fontSize: "11px" }}>
                 POSTED: {review.updated_at}
               </span>
-              <p style={{ color: "#ACB2B8", paddingRight: "10px", fontSize: "13px" }}>
+              <p style={{
+                color: "#ACB2B8",
+                paddingRight: "10px",
+                fontSize: "13px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "663px"
+              }}>
                 {review.description}
               </p>
             </div>

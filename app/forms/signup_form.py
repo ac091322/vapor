@@ -15,7 +15,8 @@ def user_exists(form, field):
 def username_exists(form, field):
     # checking if username is already in use
     username = field.data.lower()
-    user = User.query.filter(User.username == username).first()
+    # user = User.query.filter(User.username == username).first()
+    user = User.query.filter(User.username.ilike(username)).first()
     if user:
         raise ValidationError("Developer name is already in use")
 

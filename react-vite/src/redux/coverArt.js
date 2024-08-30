@@ -55,7 +55,7 @@ const coverArtReducer = (state = initialState, action) => {
     case UPLOAD_COVER_ART:
       return {
         ...state,
-        posts: [...state.posts, action.payload],
+        posts: [...state.posts, action.payload]
       }
 
     case EDIT_COVER_ART:

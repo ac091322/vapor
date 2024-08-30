@@ -4,8 +4,8 @@ import SignupFormPage from "../components/SignupFormPage";
 import UserProfile from "../components/UserProfile/UserProfile";
 import Homepage from "../components/HomePage/Homepage";
 import GameDetails from "../components/Games/GameDetails";
-import CreateGame from "../components/Games/CreateGame";
-import EditGame from "../components/UserProfile/EditGame";
+import CreateGameForm from "../components/Games/CreateGameForm";
+import EditGameForm from "../components/UserProfile/EditGameForm";
 import Layout from "./Layout";
 
 
@@ -38,12 +38,12 @@ export const router = createBrowserRouter([
         element: <GameDetails />
       },
       {
-        path: "games/:gameId/edit",
-        element: <EditGame />
+        path: "/games/:gameId/edit",
+        element: <EditGameForm />
       },
       {
         path: "/create-game",
-        element: <CreateGame />
+        element: <CreateGameForm />
       }
     ]
   },

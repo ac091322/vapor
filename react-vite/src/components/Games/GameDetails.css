@@ -38,7 +38,7 @@
 
 #container-thumbnail-images-game-details {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 600px;
   gap: 5px;
   cursor: pointer;
@@ -67,9 +67,13 @@
   gap: 15px;
 }
 
-#container-game-carousel-game-details-right p {
+#container-game-carousel-game-details-right>p {
   color: var(--light-beige-font-color);
   font-size: 13px;
+  width: 325px;
+  padding-right: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #container-description-game-details {
@@ -186,6 +190,10 @@
   gap: 5px;
 }
 
+.container-requirements-inner-value-title {
+  display: flex;
+}
+
 .requirements-title {
   font-size: 13px;
   color: #61686D;
@@ -193,7 +201,9 @@
 
 .requirements-value {
   font-size: 13px;
-  color: var(--logo-color)
+  color: var(--logo-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #container-bottom-section-right {

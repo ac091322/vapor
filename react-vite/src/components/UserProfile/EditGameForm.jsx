@@ -5,7 +5,7 @@ import { thunkGameGetId, thunkGameEdit } from "../../redux/game";
 import { thunkCoverArtEdit } from "../../redux/coverArt";
 
 
-function EditGame() {
+function EditGameForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { gameId } = useParams();
@@ -27,12 +27,12 @@ function EditGame() {
   const [min_storage, setMinStorage] = useState("");
   const [min_sound_card, setMinSoundCard] = useState("");
   const [cover_art_url, setCoverArtUrl] = useState("");
-  const [previewUrl, setPreviewUrl] = useState("");
-  const [filename, setFilename] = useState("");
-  const [imageLoading, setImageLoading] = useState(false);
+  const [coverArtPreviewUrl, setCoverArtPreviewUrl] = useState("");
+  const [coverArtfilename, setCoverArtFilename] = useState("");
+  const [coverArtLoading, setCoverArtLoading] = useState(false);
   const [validations, setValidations] = useState({});
   const [submit, setSumbit] = useState(false);
-  const [fileError, setFileError] = useState("");
+  const [coverArtfileError, setCoverArtFileError] = useState("");
 
   useEffect(() => {
     if (!currentUser) navigate("/");
@@ -57,8 +57,8 @@ function EditGame() {
 
     if (coverArt) {
       setCoverArtUrl(coverArt.cover_art_url);
-      setFilename(coverArt.filename);
-      setPreviewUrl(coverArt.cover_art_url)
+      setCoverArtFilename(coverArt.filename);
+      setCoverArtPreviewUrl(coverArt.cover_art_url)
     }
   }, [game, coverArt]);
 
@@ -69,13 +69,13 @@ function EditGame() {
     if (description.length < 10) formErrors.description = "Your description is too short";
     if (description.length > 2000) formErrors.description = "Your deescription is too long";
     if (min_requirements.length < 2 || min_requirements.length > 255) formErrors.min_requirements = "Must be between 2 and 255 characters";
-    if (min_os.length < 2 || min_os.length > 255) formErrors.min_os = "Must be between 2 and 255 characters";
-    if (min_processor.length < 2 || min_processor.length > 255) formErrors.min_processor = "Must be between 2 and 255 characters";
-    if (min_memory.length < 2 || min_memory.length > 255) formErrors.min_memory = "Must be between 2 and 255 characters";
-    if (min_graphics.length < 2 || min_graphics.length > 255) formErrors.min_graphics = "Must be between 2 and 255 characters";
-    if (min_directx.length < 2 || min_directx.length > 255) formErrors.min_directx = "Must be between 2 and 255 characters";
-    if (min_storage.length < 2 || min_storage.length > 255) formErrors.min_storage = "Must be between 2 and 255 characters";
-    if (min_sound_card.length < 2 || min_sound_card.length > 255) formErrors.min_sound_card = "Must be between 2 and 255 characters";
+    if (min_os.length < 2 || min_os.length > 100) formErrors.min_os = "Must be between 2 and 100 characters";
+    if (min_processor.length < 2 || min_processor.length > 100) formErrors.min_processor = "Must be between 2 and 100 characters";
+    if (min_memory.length < 2 || min_memory.length > 100) formErrors.min_memory = "Must be between 2 and 100 characters";
+    if (min_graphics.length < 2 || min_graphics.length > 100) formErrors.min_graphics = "Must be between 2 and 100 characters";
+    if (min_directx.length < 2 || min_directx.length > 100) formErrors.min_directx = "Must be between 2 and 100 characters";
+    if (min_storage.length < 2 || min_storage.length > 100) formErrors.min_storage = "Must be between 2 and 100 characters";
+    if (min_sound_card.length < 2 || min_sound_card.length > 100) formErrors.min_sound_card = "Must be between 2 and 255 characters";
     if (!cover_art_url) formErrors.cover_art_url = "Must include cover art";
 
     setValidations(formErrors);
@@ -91,9 +91,9 @@ function EditGame() {
     const tempFile = e.target.files[0];
 
     if (tempFile.size > 5000000) {
-      setFileError("Image exceeds the maximum file size of 5MB");
-      setPreviewUrl("");
-      setFilename("");
+      setCoverArtFileError("Image exceeds the maximum file size of 5MB");
+      setCoverArtPreviewUrl("");
+      setCoverArtFilename("");
       return;
     }
 
@@ -101,17 +101,19 @@ function EditGame() {
     const newFile = new File([tempFile], newFilename, { type: tempFile.type });
 
     const newCoverArtURL = URL.createObjectURL(tempFile); // generate a local URL for the image preview
-    setPreviewUrl(newCoverArtURL);
+    setCoverArtPreviewUrl(newCoverArtURL);
     setCoverArtUrl(newFile);
-    setFilename(newFile.name);
-    setFileError("");
+    setCoverArtFilename(newFile.name);
+    setCoverArtFileError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSumbit(true);
 
-    if (Object.keys(validations).length > 0 || Object.keys(fileError).length > 0) return;
+    if (Object.keys(validations).length > 0
+      || Object.keys(coverArtfileError).length > 0
+    ) return;
 
     const updatedGame = {
       id: Number(gameId),
@@ -136,11 +138,11 @@ function EditGame() {
       const updatedCoverArtData = new FormData();
       updatedCoverArtData.append("cover_art_url", cover_art_url);
       updatedCoverArtData.append("game_id", gameId);
-      updatedCoverArtData.append("filename", filename);
+      updatedCoverArtData.append("filename", coverArtfilename);
 
-      setImageLoading(true);
+      setCoverArtLoading(true);
       await dispatch(thunkCoverArtEdit(coverArtId, updatedCoverArtData));
-      setImageLoading(false);
+      setCoverArtLoading(false);
     }
 
     navigate(`/games/${gameId}`);
@@ -375,8 +377,8 @@ function EditGame() {
 
           <div className="container-buttons-game-form-left">
             <button type="submit"
-              style={imageLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
-              disabled={imageLoading}
+              style={coverArtLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
+              disabled={coverArtLoading}
             >
               Update Game
             </button>
@@ -390,32 +392,31 @@ function EditGame() {
         </div>
 
         <div className="container-create-game-form-right">
-          <div style={{ position: "relative" }}>
-            <div className="container-label-input-cover-art">
+          <div style={{ position: "relative", height: "240px", marginTop: "6px" }}>
+            <div className="container-label-input-image">
               <input
                 id="cover-upload"
                 type="file"
                 accept="image/*"
                 name="cover_art"
                 onChange={fileWrap}
-                className="input-file-cover-art"
+                className="input-file-image"
               />
-              {fileError && <p className="error-game" style={{ top: "55px", left: "0" }}>{fileError}</p>}
+              {submit && validations.cover_art_url && <p className="error-game" style={{ top: "0" }}>{validations.cover_art_url}</p>}
               <label htmlFor="cover-upload" className="cover-art-label">
                 Change cover art
               </label>
             </div>
 
-            {previewUrl && (
+            {coverArtPreviewUrl && (
               <img
-                src={previewUrl}
+                src={coverArtPreviewUrl}
                 alt="cover art preview"
-                className="cover-art-preview"
+                style={{ width: "100%", maxHeight: "135px" }}
               />
             )}
-            {filename && <span style={{ color: "#999", fontSize: "12px" }}>{filename}</span>}
-            {imageLoading && <p style={{ color: "#999", fontSize: "12px" }}>Uploading file...</p>}
-            {submit && validations.cover_art_url && <p className="error-game" style={{ top: "0" }}>{validations.cover_art_url}</p>}
+            {coverArtfilename && <span style={{ color: "#999", fontSize: "12px" }}>{coverArtfilename}</span>}
+            {coverArtLoading && <p style={{ color: "#999", fontSize: "12px" }}>Uploading file...</p>}
           </div>
         </div>
 
@@ -425,4 +426,4 @@ function EditGame() {
 }
 
 
-export default EditGame;
+export default EditGameForm;

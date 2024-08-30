@@ -1,0 +1,802 @@
+{
+	"info": {
+		"_postman_id": "13b51583-dc33-43df-b75f-b5d77e8cb50f",
+		"name": "vapor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34930416"
+	},
+	"item": [
+		{
+			"name": "log in demo user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"demodeveloper@vapor.io\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "log in game science user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"gamescience@vapor.io\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"gamescience@vapor.io\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/users/13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"demodeveloper11@vapor.io\",\n    \"username\": \"Demo Developer111\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "log out user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"demodeveloper@vapor.io\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/categories/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categories",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/games/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get game by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/games/2/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"2",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post game",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test Game Name\",\n    \"price\": \"29.99\",\n    \"release_date\": \"2024-07-10\",\n    \"description\": \"This is the description\",\n    \"min_requirements\": \"Requires a 64-bit processor and operating system\",\n    \"min_os\": \"Windows 10 64-bit\",\n    \"min_processor\": \"Intel Core i5-8400 / AMD Ryzen 5 1600\",\n    \"min_memory\": \"16 GB RAM\",\n    \"min_graphics\": \"NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB\",\n    \"min_directx\": \"Version 11\",\n    \"min_storage\": \"130 GB available space\",\n    \"min_sound_card\": \"Windows Compatible Audio Device\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/games/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit game by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Edited Game Title\",\n    \"price\": \"30.25\",\n    \"release_date\": \"2024-01-10\",\n    \"description\": \"This is the description321\",\n    \"min_requirements\": \"Requires a 64-bit processor and operating system\",\n    \"min_os\": \"Windows 10 64-bit\",\n    \"min_processor\": \"Intel Core i5-8400 / AMD Ryzen 5 1600\",\n    \"min_memory\": \"16 GB RAM\",\n    \"min_graphics\": \"NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB\",\n    \"min_directx\": \"Version 11\",\n    \"min_storage\": \"130 GB available space\",\n    \"min_sound_card\": \"Windows Compatible Audio Device\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/games/15/put",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"15",
+						"put"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete game by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test Game Name111\",\n    \"price\": \"29.99\",\n    \"release_date\": \"2024-07-10\",\n    \"min_requirements\": \"Requires a 64-bit processor and operating system\",\n    \"min_os\": \"Windows 10 64-bit\",\n    \"min_processor\": \"Intel Core i5-8400 / AMD Ryzen 5 1600\",\n    \"min_memory\": \"16 GB RAM\",\n    \"min_graphics\": \"NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB\",\n    \"min_directx\": \"Version 11\",\n    \"min_storage\": \"130 GB available space\",\n    \"min_sound_card\": \"Windows Compatible Audio Device\",\n    \"min_additional_notes\": \"HDD Supported, SSD Recommended. The above specifications were tested with DLSS/FSR/XeSS enabled.\",\n    \"rec_requirements\": \"Requires a 64-bit processor and operating system\",\n    \"rec_os\": \"Windows 10 64-bit\",\n    \"rec_processor\": \"Intel Core i7-9700 / AMD Ryzen 5 5500\",\n    \"rec_memory\": \"16 GB RAM\",\n    \"rec_graphics\": \"NVIDIA GeForce RTX 2060 / AMD Radeon RX 5700 XT / INTEL Arc A750\",\n    \"rec_directx\": \"Version 12\",\n    \"rec_storage\": \"130 GB available space\",\n    \"rec_sound_card\": \"Windows Compatible Audio Device\",\n    \"rec_additional_notes\": \"SSD Required. The above specifications were tested with DLSS/FSR/XeSS enabled.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/games/15/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"15",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post cover art",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "game_id",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "cover_art_0000000000000.png",
+							"type": "text"
+						},
+						{
+							"key": "cover_art_url",
+							"type": "file",
+							"src": "postman-cloud:///1ef669ed-abe8-4680-991d-bf74ca12d9da"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/cover-arts/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cover-arts",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit cover art by cover art id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cover_art_url",
+							"type": "file",
+							"src": "postman-cloud:///1ef63f35-ba53-4090-887c-1977862f3b6f"
+						},
+						{
+							"key": "game_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "cover_art_172470297.png2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/cover-arts/2/put",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cover-arts",
+						"2",
+						"put"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all screenshots",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/screenshots/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"screenshots",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post screenshots",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "game_id",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "screenshot_0000000000000.png",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "screenshot_0000000000001png",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "screenshot_0000000000002.png",
+							"type": "text"
+						},
+						{
+							"key": "screenshot_url",
+							"type": "file",
+							"src": [
+								"/Users/alanc/Desktop/screenshot1.jpg",
+								"/Users/alanc/Desktop/screenshot6.jpg",
+								"/Users/alanc/Desktop/screenshot5.jpg",
+								"/Users/alanc/Desktop/screenshot4.jpg",
+								"/Users/alanc/Desktop/screenshot3.jpg",
+								"/Users/alanc/Desktop/screenshot2.jpg"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/screenshots/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"screenshots",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get reviews by game id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/games/1/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"1",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post review to game id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"thumbs_up\": true,\n    \"thumbs_down\": false,\n    \"description\": \"This is a test review. This game sucked.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/games/3/review/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"3",
+						"review",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit review by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"thumbs_up\": false,\n    \"thumbs_down\": true,\n    \"description\": \"This is an edited review.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/9/put",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"9",
+						"put"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete review by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/16/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"16",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit review by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/16/put",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"16",
+						"put"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all wishlists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/wishlists/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wishlists",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get wishlist of current user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/wishlists/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wishlists",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add game to wishlist through user id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/games/1/wishlist/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"1",
+						"wishlist",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove game from wishlist through game id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/wishlists/1/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wishlists",
+						"1",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all shopping carts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/shopping-carts/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shopping-carts",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get shopping cart of current user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/shopping-carts/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shopping-carts",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
