@@ -7,7 +7,7 @@ def seed_games():
     black_myth_wukong = Game(
         title="Black Myth Wukong",
         user_id=1,
-        price="59.99",
+        price=59.99,
         release_date=datetime(2024, 8, 19).date(),
         description="Black Myth: Wukong is an action RPG rooted in Chinese mythology. The story is based on Journey to the West, one of the Four Great Classical Novels of Chinese literature. You shall set out as the Destined One to venture into the challenges and marvels ahead, to uncover the obscured truth beneath the veil of a glorious legend from the past.",
         min_requirements="Requires a 64-bit processor and operating system",
@@ -23,7 +23,7 @@ def seed_games():
     counter_strike_2 = Game(
         title="Counter-Strike 2",
         user_id=7,
-        price="59.99",
+        price=59.99,
         release_date=datetime(2012, 8, 21).date(),
         description="For over two decades, Counter-Strike has offered an elite competitive experience, one shaped by millions of players from across the globe. And now the next chapter in the CS story is about to begin. This is Counter-Strike 2. A free upgrade to CS:GO, Counter-Strike 2 marks the largest technical leap in Counter-Strike’s history. Built on the Source 2 engine, Counter-Strike 2 is modernized with realistic physically-based rendering, state of the art networking, and upgraded Community Workshop tools.",
         min_requirements="Requires a 32-bit processor and operating system",
@@ -39,7 +39,7 @@ def seed_games():
     overwatch_2 = Game(
         title="Overwatch 2",
         user_id=2,
-        price="14.99",
+        price=14.99,
         release_date=datetime(2023, 8, 10).date(),
         description="Overwatch 2 builds on the award-winning foundation of the original Overwatch, delivering a fresh and evolved experience while staying true to the heart of the franchise. Featuring all-new content, including engaging cooperative missions, reimagined heroes, and updated maps, Overwatch 2 enhances the fast-paced, team-based gameplay players love. With an expanded PvE experience, deeper storytelling, and the introduction of the 5v5 format, Overwatch 2 represents a significant evolution that's designed to bring players together while offering new ways to experience the vibrant world of Overwatch.",
         min_requirements="Requires a 64-bit processor and operating system",
@@ -55,7 +55,7 @@ def seed_games():
     maplestory = Game(
         title="MapleStory",
         user_id=3,
-        price="10.00",
+        price=10.00,
         release_date=datetime(2012, 8, 9).date(),
         description="Join over 260 Million Global Players in MapleStory, one of the original MMORPGs, where epic adventure, action-packed gameplay, & good friends await you! Featuring an iconic 2D art style, MapleStory offers the thrill of explosive power, bold anime-style self-expression, and absolute control of your characters' awesome abilities. Build your perfect custom hero from over 40 distinct classes with thousands of unique cosmetic options, and set off on your journey to face never-ending challenges and enjoy extraordinary rewards. Discover Your Story!",
         min_requirements="Requires a 32-bit processor and operating system",
@@ -71,7 +71,7 @@ def seed_games():
     space_marine_2 = Game(
         title="Warhammer 40,000: Space Marine 2",
         user_id=4,
-        price="59.99",
+        price=59.99,
         release_date=datetime(2024, 9, 9).date(),
         description="Embody the superhuman skill and brutality of a Space Marine. Unleash deadly abilities and devastating weaponry to obliterate the relentless Tyranid swarms. Defend the Imperium in spectacular third-person action in solo or multiplayer modes.",
         min_requirements="Requires a 64-bit processor and operating system",
@@ -87,7 +87,7 @@ def seed_games():
     sin_of_a_solar_empire_ii = Game(
         title="Sin of a Solar Empire II",
         user_id=8,
-        price="39.99",
+        price=39.99,
         release_date=datetime(2024, 8, 15).date(),
         description="Battle for galactic dominance in this real-time 4X strategy game with unrivaled scale! You'll explore, expand, exploit, and exterminate through military force, diplomacy, trade, culture, influence, and other underhanded tactics.",
         min_requirements="Requires a 64-bit processor and operating system",
@@ -103,7 +103,7 @@ def seed_games():
     art_of_war_red_tides = Game(
         title="Art of War: Red Tides",
         user_id=1,
-        price="1.99",
+        price=1.00,
         release_date=datetime(2016, 12, 22).date(),
         description="Art of War: Red Tides is a fair multiplayer strategy game that allows different teams on the same platform (e.g. smartphones, PC, etc.) to battle against each other. You will encounter players around the world!",
         min_requirements="Requires a 32-bit processor and operating system",
@@ -119,7 +119,7 @@ def seed_games():
     sid_meiers_civilization_vi = Game(
         title="Sid Meier's Civilization® VI",
         user_id=6,
-        price="24.93",
+        price=24.93,
         release_date=datetime(2016, 10, 20).date(),
         description="Civilization VI is the newest installment in the award winning Civilization Franchise. Expand your empire, advance your culture and go head-to-head against history’s greatest leaders. Will your civilization stand the test of time?",
         min_requirements="Requires a 32-bit processor and operating system",
@@ -135,7 +135,7 @@ def seed_games():
     ultrakill = Game(
         title="ULTRAKILL",
         user_id=5,
-        price="38.23",
+        price=38.23,
         release_date=datetime(2020, 9, 3).date(),
         description="ULTRAKILL is a fast-paced ultraviolent retro FPS combining the skill-based style scoring from character action games with unadulterated carnage inspired by the best shooters of the '90s. Rip apart your foes with varied destructive weapons and shower in their blood to regain your health.",
         min_requirements="Requires a 64-bit processor and operating system",
@@ -151,7 +151,7 @@ def seed_games():
     tactical_breach_wizards = Game(
         title="Tactical Breach Wizards",
         user_id=9,
-        price="17.99",
+        price=17.99,
         release_date=datetime(2024, 8, 22).date(),
         description="In Tactical Breach Wizards, you lead a team of renegade wizards in kevlar through turn-based battles to unravel a modern conspiracy plot. Combine their unique spells in clever ways, or rewind time to try every crazy plan you can think of to punch a Traffic Warlock through a 4th story window.",
         min_requirements="Requires a 64-bit processor and operating system",
@@ -167,7 +167,7 @@ def seed_games():
     stumble_guys = Game(
         title="Stumble Guys",
         user_id=9,
-        price="0.01",
+        price=0.10,
         release_date=datetime(2021, 10, 7).date(),
         description="Race through obstacle courses against up to 32 players online. Run, jump and dash to the finish line until the best player takes the crown!",
         min_requirements="Requires a 64-bit processor and operating system",
@@ -183,7 +183,7 @@ def seed_games():
     dota_2 = Game(
         title="Dota 2",
         user_id=7,
-        price="9.99",
+        price=9.99,
         release_date=datetime(2013, 7, 9).date(),
         description="Every day, millions of players worldwide enter battle as one of over a hundred Dota heroes. And no matter if it's their 10th hour of play or 1,000th, there's always something new to discover. With regular updates that ensure a constant evolution of gameplay, features, and heroes, Dota 2 has taken on a life of its own.",
         min_requirements="Requires a 32-bit processor and operating system",
@@ -199,7 +199,7 @@ def seed_games():
     shapez_2 = Game(
         title="shapez 2",
         user_id=11,
-        price="19.99",
+        price=19.99,
         release_date=datetime(2024, 8, 15).date(),
         description="Dive into a factory-building game where the focus is on just that — building huge factories! Construct sprawling multi-level factories and min-max your layouts without limits. Shapez 2 is tailor-made for enthusiasts who crave the thrill of optimizing production lines and perfecting automation.",
         min_requirements="Requires a 64-bit processor and operating system",
@@ -215,7 +215,7 @@ def seed_games():
     cult_of_the_lamb = Game(
         title="Cult of the Lamb",
         user_id=12,
-        price="24.99",
+        price=24.99,
         release_date=datetime(2022, 8, 11).date(),
         description="Start your own cult in a land of false prophets, venturing out into diverse and mysterious regions to build a loyal community of woodland Followers and spread your Word to become the one true cult.",
         min_requirements="Requires a 64-bit processor and operating system",
