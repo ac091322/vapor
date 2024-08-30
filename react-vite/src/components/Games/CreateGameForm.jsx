@@ -163,6 +163,10 @@ function CreateGame() {
     coverArtData.append("game_id", gameId);
     coverArtData.append("filename", coverArtfilename);
 
+    for (let pair of coverArtData.entries()) {
+      console.log("!!!!!!!!!!!!!!!", pair[0] + ": " + pair[1]);
+    }
+
     setCoverArtLoading(true);
     await dispatch(thunkCoverArtAdd(coverArtData));
     setCoverArtLoading(false);
@@ -229,7 +233,7 @@ function CreateGame() {
             </div>
           </div>
 
-          <div style={{position: "relative"}} className="input-containers">
+          <div style={{ position: "relative" }} className="input-containers">
             <input
               name="release_date"
               type="date"
@@ -239,7 +243,7 @@ function CreateGame() {
               required
               style={release_date ? { color: "white" } : { color: "transparent" }}
             />
-            <FaArrowRightFromBracket id="calendar-arrow"/>
+            <FaArrowRightFromBracket id="calendar-arrow" />
             <div id="calendar-circle"></div>
             <div
               className="floating-placeholders"
@@ -493,7 +497,6 @@ function CreateGame() {
                 ))}
               </>
             )}
-            {screenshotsLoading && <p>Uploading screenshots...</p>}
             {screenshotsLoading && <p style={{ color: "#999", fontSize: "12px" }}>Uploading screenshots...</p>}
           </div>
 

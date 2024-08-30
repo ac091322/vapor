@@ -169,3 +169,23 @@ def post_review(game_id):
         return new_review.to_dict(), 201
 
     return {"errors": form.errors}, 400
+
+
+# add game to current user's wishlist
+@game_routes.route("/<int:game_id>/wishlist/post", methods=["POST"])
+@login_required
+def add_game_to_wishlist(game_id):
+    game = Game.query.get(game_id)
+
+    if game is None:
+        return {"error": "Game not found"}, 404
+
+    if game.user_id == current_user.id:
+        return {"error": "Forbidden"}, 403
+
+    if game in current_user.game_in_wishlist:
+        return {"error": "Game already in wishlist"}, 409
+
+    current_user.game_in_wishlist.append(game)
+    db.session.commit()
+    return {"message": "Game added to wishlist"}, 201
