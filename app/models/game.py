@@ -22,7 +22,7 @@ class Game(db.Model):
     release_date = db.Column(db.Date, nullable=False)
     description = db.Column(db.String(2000), nullable=False)
     min_requirements = db.Column(db.String(100), nullable=False)
-    min_os = db.Column(db.String(255), nullable=False)
+    min_os = db.Column(db.String(100), nullable=False)
     min_processor = db.Column(db.String(100), nullable=False)
     min_memory = db.Column(db.String(100), nullable=False)
     min_graphics = db.Column(db.String(100), nullable=False)

@@ -33,7 +33,9 @@ class GameForm(FlaskForm):
     min_processor = StringField(
         "Mininum processor", validators=[DataRequired(), Length(min=2, max=100)]
     )
-    min_memory = StringField("min_memory", validators=[DataRequired(), Length(max=100)])
+    min_memory = StringField(
+        "min_memory", validators=[DataRequired(), Length(min=2, max=100)]
+    )
     min_graphics = StringField(
         "Mininum graphics", validators=[DataRequired(), Length(min=2, max=100)]
     )
@@ -44,5 +46,5 @@ class GameForm(FlaskForm):
         "Mininum storage", validators=[DataRequired(), Length(min=2, max=100)]
     )
     min_sound_card = StringField(
-        "Mininum sound_card", validators=[DataRequired(), Length(max=100)]
+        "Mininum sound_card", validators=[DataRequired(), Length(min=2, max=100)]
     )
