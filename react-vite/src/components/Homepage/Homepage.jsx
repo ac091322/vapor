@@ -1,5 +1,6 @@
 import HomeBanner from "../HomeBanner/HomeBanner";
 import GameCarousel from "../GameCarousel/GameCarousel";
+import HomepageGameListings from "../HomepageListing/HomepageGameListings";
 import "./Homepage.css";
 
 
@@ -9,6 +10,7 @@ function Homepage() {
 
       <HomeBanner />
       <GameCarousel />
+      <HomepageGameListings />
 
     </section >
   );

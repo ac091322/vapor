@@ -37,7 +37,6 @@ function GameCarousel() {
 
   const currentGame = gamesObj[gameKeys[currentIndex]];
   const filteredScreenshots = screenshots?.filter(screenshot => screenshot.game_id === currentGame?.id);
-  console.log("🚀 ~ GameCarousel ~ filteredScreenshots:", filteredScreenshots)
   const firstScreenshot = filteredScreenshots?.length > 0 ? filteredScreenshots[0].screenshot_url : "";
   const secondScreenshot = filteredScreenshots?.length > 1 ? filteredScreenshots[1].screenshot_url : "";
   const thirdScreenshot = filteredScreenshots?.length > 2 ? filteredScreenshots[2].screenshot_url : "";
