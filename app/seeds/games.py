@@ -30,7 +30,7 @@ def seed_games():
         min_os="Windows® 10",
         min_processor="4 hardware CPU threads - Intel® Core™ i5 750 or higher",
         min_memory="8 GB RAM",
-        min_graphics="Video card must be 1 GB or more and should be a DirectX 11-compatible with support for Shader Model 5.0",
+        min_graphics="Video card must be 1 GB or more and should be a DirectX 11-compatible and support Shader Model 5.0",
         min_directx="Version 11",
         min_storage="85 GB available space",
         min_sound_card="Windows Compatible Audio Device",
