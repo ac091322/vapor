@@ -44,7 +44,7 @@ function LoginFormPage() {
             <label style={{ color: "var(--nav-font-color-selected)" }}>
               SIGN IN WITH EMAIL
               <input
-                type="text"
+                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required

@@ -1,6 +1,6 @@
 import HomeBanner from "../HomeBanner/HomeBanner";
 import GameCarousel from "../GameCarousel/GameCarousel";
-import HomepageGameListings from "../HomepageListing/HomepageGameListings";
+import HomepageGameListings from "../HomepageGameListings/HomepageGameListings";
 import "./Homepage.css";
 
 

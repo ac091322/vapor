@@ -1,34 +1,29 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import { thunkWishlistGameGet, thunkWishlistGameGetByUser } from "../../redux/wishlist";
 import { thunkGamesGet } from "../../redux/game";
-import { thunkGameDelete } from "../../redux/game";
-import "./MyGames.css";
+import "./MyWishlist.css"
 
 
-function MyGames() {
+function MyWishlist() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUser = useSelector(state => state.session.user);
-  const gamesObj = useSelector(state => state.game);
-  const games = Object.values(gamesObj);
-  const filteredGames = games?.filter(game => game.user.user_id === currentUser.id);
 
-  const [deleteGame, setDeleteGame] = useState(null);
+  const wishlistObj = useSelector(state => state.wishlist);
+  console.log("🚀 ~ MyWishlist ~ wishlistObj:", wishlistObj)
+
+
 
   useEffect(() => {
-    if (currentUser) dispatch(thunkGamesGet());
-  }, [dispatch, currentUser]);
-
-  const handleDeleteGame = (gameId) => {
-    dispatch(thunkGameDelete(gameId));
-    setDeleteGame(null);
-  };
+    dispatch(thunkWishlistGameGetByUser());
+  }, [dispatch]);
 
   return (
-    <section id="container-my-games-component">
+    < section id="container-my-wishlist-component" >
 
-      {filteredGames?.map(game => (
+      {/* {filteredGames?.map(game => (
         <div
           key={game.id}
           className="container-own-game-inner"
@@ -80,11 +75,11 @@ function MyGames() {
 
           </div>
         </div>
-      ))}
+      ))} */}
 
     </section >
   );
 }
 
 
-export default MyGames;
+export default MyWishlist;

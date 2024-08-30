@@ -5,6 +5,7 @@ import { thunkGamesGet } from "../../redux/game"
 import { thunkReviewsGet } from "../../redux/review";
 import MyGames from "./MyGames"
 import MyReviews from "./MyReviews"
+import MyWishlist from "./MyWishlist";
 import defaultAvatar from "../../../public/default-avatar.png"
 import "./UserProfile.css"
 
@@ -62,6 +63,8 @@ function UserProfile() {
 
           {activeTab === "myGames" && <MyGames />}
           {activeTab === "myReviews" && <MyReviews />}
+          {activeTab === "myGames" && <MyGames />}
+          {activeTab === "wishlist" && <MyWishlist />}
         </div>
 
         <div id="container-profile-content-right">
@@ -86,7 +89,11 @@ function UserProfile() {
             <span style={{ fontSize: "24px", color: "#898989" }} >Profile Tabs</span>
             <nav>
               <NavLink>Shopping Cart</NavLink>
-              <NavLink>Wishlist</NavLink>
+              <NavLink
+                to="#"
+                className={activeTab === "wishlist" ? "active-link" : ""}
+                onClick={() => setActiveTab("wishlist")}
+              >Wishlist</NavLink>
               <NavLink>Library</NavLink>
 
               <NavLink

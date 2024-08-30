@@ -11,6 +11,7 @@ import gameReducer from "./game";
 import coverArtReducer from "./coverArt";
 import reviewReducer from "./review";
 import screenshotReducer from "./screenshot";
+import wishlistReducer from "./wishlist";
 
 
 const rootReducer = combineReducers({
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   game: gameReducer,
   coverArt: coverArtReducer,
   screenshot: screenshotReducer,
-  review: reviewReducer
+  review: reviewReducer,
+  wishlist: wishlistReducer
 });
 
 let enhancer;

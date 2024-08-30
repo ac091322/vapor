@@ -96,6 +96,7 @@ class Game(db.Model):
             "min_directx": self.min_directx,
             "min_storage": self.min_storage,
             "min_sound_card": self.min_sound_card,
+            "cover_art_url": self.cover_art[0].url if self.cover_art else None,
             "user": (
                 {"user_id": self.user.id, "username": self.user.username}
                 if self.user
@@ -106,11 +107,12 @@ class Game(db.Model):
                 if self.category_in_game_category
                 else None
             ),
-            "cover_art": (
-                [cover_art.to_dict() for cover_art in self.cover_art]
-                if self.cover_art
-                else None
-            ),
+            # "cover_art": (
+            #     [cover_art.to_dict() for cover_art in self.cover_art]
+            #     if self.cover_art
+            #     else None
+            # ),
+
             "trailer": (
                 [trailer.to_dict() for trailer in self.trailer]
                 if self.trailer

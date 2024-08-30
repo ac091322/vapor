@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, wishlist, Game, User
+from app.models import db, wishlist, Game, User, CoverArt
 
 
 wishlist_routes = Blueprint("wishlists", __name__)
@@ -12,8 +12,15 @@ wishlist_routes = Blueprint("wishlists", __name__)
 def get_wishlists():
     wishlist_entries = (
         db.session.query(
-            wishlist.c.user_id, wishlist.c.game_id, User.username, Game.title
+            wishlist.c.user_id,
+            wishlist.c.game_id,
+            User.username,
+            Game.title,
+            Game.release_date,
+            Game.price,
+            # Game.cover_art,
         )
+        # .distinct(wishlist.c.game_id)
         .join(User, User.id == wishlist.c.user_id)
         .join(Game, Game.id == wishlist.c.game_id)
         .all()
@@ -25,8 +32,11 @@ def get_wishlists():
             "game_id": game_id,
             "username": username,
             "game_title": title,
+            "release_date": release_date,
+            "price": price,
+            # "cover_art": cover_art,
         }
-        for user_id, game_id, username, title in wishlist_entries
+        for user_id, game_id, username, title, release_date, price in wishlist_entries
     ]
 
     return wishlists, 200
@@ -38,10 +48,18 @@ def get_wishlists():
 def get_user_wishlist():
     wishlist_entries = (
         db.session.query(
-            wishlist.c.user_id, wishlist.c.game_id, User.username, Game.title
+            wishlist.c.user_id,
+            wishlist.c.game_id,
+            User.username,
+            Game.title,
+            Game.release_date,
+            Game.price,
+            Game.cover_art,
         )
+        .distinct(wishlist.c.game_id)  # Add distinct here
         .join(User, User.id == wishlist.c.user_id)
         .join(Game, Game.id == wishlist.c.game_id)
+        .outerjoin(CoverArt, CoverArt.game_id == Game.id)
         .filter(wishlist.c.user_id == current_user.id)
         .all()
     )
@@ -52,8 +70,11 @@ def get_user_wishlist():
             "game_id": game_id,
             "username": username,
             "game_title": title,
+            "release_date": release_date,
+            "price": price,
+            "cover_art_url": cover_art,
         }
-        for user_id, game_id, username, title in wishlist_entries
+        for user_id, game_id, username, title, release_date, price, cover_art in wishlist_entries
     ]
 
     return wishlists, 200

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import { BiLogoWindows } from "react-icons/bi";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { BiCurrentLocation, BiLogoWindows } from "react-icons/bi";
 import { BiLogoApple } from "react-icons/bi";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
@@ -13,7 +13,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../Reviews/ReviewFormModal";
 import Reviews from "../Reviews/Reviews";
 import screenshotPlaceholder from "../../../public/screenshot-placeholder.png"
-import videoPlaceholder from "../../../public/video-placeholder.png"
+// import videoPlaceholder from "../../../public/video-placeholder.png"
 import "./GameDetails.css";
 
 
@@ -65,7 +65,7 @@ function GameDetails() {
             />
 
             <div id="container-thumbnail-images-game-details">
-              <img
+              {/* <img
                 className="thumbnail-game-details"
                 id="video-placeholder-game-details"
                 src={videoPlaceholder}
@@ -74,7 +74,7 @@ function GameDetails() {
                   setSelectedScreenshot("")
                   setSelectedVideo(prev => prev ? "" : videoPlaceholder)
                 }}
-              />
+              /> */}
 
               {game?.screenshots?.length > 0 ? (
                 game?.screenshots?.map((screenshot) => (
@@ -168,7 +168,23 @@ function GameDetails() {
           </div>
         </div>
 
-        <div id="sign-in-wish-list-notice">Sign in to add this item to your wishlist or shopping cart</div>
+        {currentUser ? (
+          game?.user.user_id === currentUser.id ? (
+            <div className="sign-in-wish-list-bar">
+              Cannot add your own game to wishlist or shopping cart
+              <button style={{ cursor: "not-allowed" }}>Own Game</button>
+            </div>
+          ) : (
+            <div className="sign-in-wish-list-bar">
+              Add this game to your wishlist
+              <button>Add to Wishlist</button>
+            </div>)
+        ) : (
+          <div className="sign-in-wish-list-bar">
+            Sign in to add this item to your wishlist or shopping cart
+            <Link to="/login"><button>Sign In</button></Link>
+          </div>
+        )}
 
         <div id="container-bottom-section-game-details">
           <div id="container-bottom-section-left">
@@ -181,7 +197,11 @@ function GameDetails() {
               </div>
               <div id="container-price-add-button">
                 <span style={{ color: "var(--logo-color)", fontSize: "14px", padding: "0 15px" }}>${game?.price}</span>
-                <button>Add to Cart</button>
+
+                {currentUser
+                  ? <button>Add to Cart</button>
+                  : <Link to="/login"><button>Sign In</button></Link>
+                }
               </div>
             </div>
 

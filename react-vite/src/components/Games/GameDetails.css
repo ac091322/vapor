@@ -116,15 +116,23 @@
   padding: 3px 10px;
 }
 
-#sign-in-wish-list-notice {
+.sign-in-wish-list-bar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 46px;
   color: var(--light-beige-font-color);
   font-size: 12px;
   background-color: rgb(24, 34, 48);
   margin-bottom: 30px;
   padding: 0 15px;
+}
+
+.sign-in-wish-list-bar button {
+  height: 30px;
+  padding: 0 20px;
+  color: #67C1F5;
+  background-color: rgb(40, 65, 85);
 }
 
 #container-bottom-section-game-details {
