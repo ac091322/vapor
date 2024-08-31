@@ -232,7 +232,7 @@ function GameDetails() {
 
           <div className="sign-in-wish-list-bar">
             Sign in to add this game to your wishlist or shopping cart, or leave a review
-            <Link to="/login"><button>Sign In</button></Link>
+            <Link to="/login"><button>Add to Wishlist</button></Link>
           </div>
         )}
 
@@ -254,7 +254,7 @@ function GameDetails() {
 
                 {currentUser
                   ? <button>Add to Cart</button>
-                  : <Link to="/login"><button>Sign In</button></Link>
+                  : <Link to="/login"><button>Add to Cart</button></Link>
                 }
               </div>
             </div>
@@ -411,7 +411,7 @@ function GameDetails() {
 
               ) : (
                 <button onClick={() => navigate("/login")}>
-                  Sign in
+                  Review
                 </button>
               )}
           </div>
