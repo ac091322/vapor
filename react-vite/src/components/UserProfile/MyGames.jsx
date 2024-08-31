@@ -17,7 +17,7 @@ function MyGames() {
   const [deleteGame, setDeleteGame] = useState(null);
 
   useEffect(() => {
-    if (currentUser) dispatch(thunkGamesGet());
+    dispatch(thunkGamesGet());
   }, [dispatch, currentUser]);
 
   const handleDeleteGame = (gameId) => {
@@ -33,49 +33,44 @@ function MyGames() {
           key={game.id}
           className="container-own-game-inner"
         >
-          <div className="container-own-game-inner"
-          >
-            <Link to={`/games/${game.id}`} >
-              <div style={{ width: "325px" }}>
-                <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+          <Link to={`/games/${game.id}`} >
+            <div style={{ width: "325px" }}>
+              <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+            </div>
+          </Link>
+
+          <div className="container-game-details-my-games">
+            <div className="container-title-date">
+              <span style={{ color: "white", fontSize: "15px" }}>{game?.title}</span>
+              <div style={{ color: "var(--logo-color)", fontSize: "13px", display: "flex", flexDirection: "column", gap: "5px" }}>
+                <span >{game?.release_date.split("00")[0].trim()}</span>
+                <span>${game?.price}</span>
               </div>
-            </Link>
+            </div>
 
-            <div className="container-game-details-my-games">
+            <div className="container-buttons-my-games">
+              <button type="button"
+                onClick={() => navigate(`/games/${game.id}/edit`)}
+              >
+                Edit
+              </button>
 
-              <div className="container-title-date">
-                <span style={{ color: "white", fontSize: "15px" }}>{game?.title}</span>
-                <div style={{ color: "var(--logo-color)", fontSize: "13px", display: "flex", flexDirection: "column", gap: "5px" }}>
-                  <span >{game?.release_date.split("00")[0].trim()}</span>
-                  <span>${game?.price}</span>
-                </div>
-              </div>
+              <button type="button"
+                onClick={() => setDeleteGame(game.id)}
+              >
+                Delete
+              </button>
 
-              <div className="container-buttons-my-games">
-                <button type="button"
-                  onClick={() => navigate(`/games/${game.id}/edit`)}
-                >
-                  Edit
-                </button>
+              {deleteGame === game.id &&
+                <div className="container-delete-game-confirmation">
+                  <button onClick={() => handleDeleteGame(game.id)}>
+                    Yes
+                  </button>
 
-                <button type="button"
-                  onClick={() => setDeleteGame(game.id)}
-                >
-                  Delete
-                </button>
-
-                {deleteGame === game.id &&
-                  <div className="container-delete-game-confirmation">
-                    <button onClick={() => handleDeleteGame(game.id)}>
-                      Yes
-                    </button>
-
-                    <button onClick={() => setDeleteGame(null)}>
-                      No
-                    </button>
-                  </div>}
-              </div>
-
+                  <button onClick={() => setDeleteGame(null)}>
+                    No
+                  </button>
+                </div>}
             </div>
 
           </div>

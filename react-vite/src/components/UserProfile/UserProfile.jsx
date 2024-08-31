@@ -24,13 +24,6 @@ function UserProfile() {
   const [activeTab, setActiveTab] = useState("myGames");
 
   useEffect(() => {
-    if (currentUser) {
-      dispatch(thunkGamesGet());
-      dispatch(thunkReviewsGet());
-    }
-  }, [dispatch, currentUser]);
-
-  useEffect(() => {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
 

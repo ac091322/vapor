@@ -53,12 +53,14 @@ function GameDetails() {
   }, [showMenu]);
 
   const addGameToWishlist = (gameId) => {
-    dispatch(thunkWishlistGameAdd(gameId));
+    dispatch(thunkWishlistGameAdd(gameId))
+      .then(() => dispatch(thunkWishlistGet()))
+
   };
 
   const removeGameFromWishlist = (gameId) => {
     dispatch(thunkWishlistGameRemove(gameId));
-  }
+  };
 
   const closeMenu = () => setShowMenu(false);
 
@@ -104,6 +106,15 @@ function GameDetails() {
                 ))
               ) : (
                 <>
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
                   <img
                     className="thumbnail-game-details"
                     alt="screenshot-placeholder"

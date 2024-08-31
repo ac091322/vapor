@@ -77,7 +77,7 @@ function wishlistReducer(state = initialState, action) {
 
     case ADD_GAME: {
       const newState = { ...state }
-      newState[action.payload.id] = action.payload
+      newState[action.payload.game_id] = action.payload
       return newState
     }
 

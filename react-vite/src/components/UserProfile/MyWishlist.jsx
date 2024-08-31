@@ -34,43 +34,39 @@ function MyWishlist() {
           key={game.id}
           className="container-own-game-inner"
         >
-          <div className="container-own-game-inner"
-          >
-            <Link to={`/games/${game.id}`} >
-              <div style={{ width: "325px" }}>
-                <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+          <Link to={`/games/${game.id}`} >
+            <div style={{ width: "325px" }}>
+              <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+            </div>
+          </Link>
+
+          <div className="container-game-details-my-games">
+
+            <div className="container-title-date">
+              <span style={{ color: "white", fontSize: "15px" }}>{game.title}</span>
+              <div style={{ color: "var(--logo-color)", fontSize: "13px", display: "flex", flexDirection: "column", gap: "5px" }}>
+                <span >{game.release_date.split("00")[0].trim()}</span>
+                <span>${game.price}</span>
               </div>
-            </Link>
+            </div>
 
-            <div className="container-game-details-my-games">
+            <div className="container-buttons-my-games">
+              <button type="button"
+                onClick={() => setRemoveGame(game.id)}
+              >
+                Remove
+              </button>
 
-              <div className="container-title-date">
-                <span style={{ color: "white", fontSize: "15px" }}>{game.title}</span>
-                <div style={{ color: "var(--logo-color)", fontSize: "13px", display: "flex", flexDirection: "column", gap: "5px" }}>
-                  <span >{game.release_date.split("00")[0].trim()}</span>
-                  <span>${game.price}</span>
-                </div>
-              </div>
+              {removeGame === game.id &&
+                <div className="container-delete-game-confirmation">
+                  <button onClick={() => handleRemoveGame(game.id)}>
+                    Yes
+                  </button>
 
-              <div className="container-buttons-my-games">
-                <button type="button"
-                  onClick={() => setRemoveGame(game.id)}
-                >
-                  Remove
-                </button>
-
-                {removeGame === game.id &&
-                  <div className="container-delete-game-confirmation">
-                    <button onClick={() => handleRemoveGame(game.id)}>
-                      Yes
-                    </button>
-
-                    <button onClick={() => setRemoveGame(null)}>
-                      No
-                    </button>
-                  </div>}
-              </div>
-
+                  <button onClick={() => setRemoveGame(null)}>
+                    No
+                  </button>
+                </div>}
             </div>
 
           </div>
