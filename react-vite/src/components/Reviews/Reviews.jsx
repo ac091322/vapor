@@ -27,7 +27,7 @@ function Reviews() {
   return (
     <section id="container-review-component">
 
-      {filteredReviews?.length > 0 && filteredReviews?.map((review) => {
+      {filteredReviews?.length > 0 ? filteredReviews?.map((review) => {
         const user = users[review.user_id];
 
         return (
@@ -109,12 +109,18 @@ function Reviews() {
           </div>
         );
 
-      })}
+      }) : (
+
+        <div style={{
+          color: "var(--logo-color)",
+          fontSize: "20px"
+        }}
+        >New game, be the first to leave a review!</div>
+      )}
 
     </section >
   );
 }
-
 
 
 export default Reviews;

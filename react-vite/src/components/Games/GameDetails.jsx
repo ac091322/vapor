@@ -157,7 +157,10 @@ function GameDetails() {
           </div>
 
           <div id="container-game-carousel-game-details-right">
-            <img style={{ width: "325px", height: "150px" }} src={game?.cover_art?.[0]?.cover_art_url} alt="cover-art" />
+            <img
+              style={{ width: "325px", height: "150px" }}
+              src={game?.cover_art?.[0]?.cover_art_url} alt="cover-art"
+            />
             <p>{game?.description}</p>
 
             <div id="container-description-game-details">
@@ -173,7 +176,11 @@ function GameDetails() {
                 <span>50,000 reviews</span>
                 <span>310 reviews</span>
                 <span>{game?.release_date.split("00")[0].trim()}</span>
-                <span style={{ color: "#67C1F5", fontWeight: "bold", fontSize: "12px" }}>{game?.user?.username}</span>
+                <span style={{
+                  color: "#67C1F5",
+                  fontWeight: "bold",
+                  fontSize: "12px"
+                }}>{game?.user?.username}</span>
                 <span >{game?.user?.username}</span>
               </div>
             </div>
@@ -198,7 +205,7 @@ function GameDetails() {
 
             <div className="sign-in-wish-list-bar">
               Cannot add your own game to your wishlist or shopping cart
-              <button style={{ cursor: "not-allowed" }}>Own Game</button>
+              <button style={{ cursor: "not-allowed", color: "var(--logo-color)" }}>Own Game</button>
             </div>
 
           ) : (
@@ -209,9 +216,9 @@ function GameDetails() {
                 <button
                   onClick={() => removeGameFromWishlist(gameId)}
                   style={{
-                    color: "white",
+                    color: "var(--logo-color)",
                     background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))"
-                  }}>Added to Wishlist</button>
+                  }}>In Wishlist</button>
               </div>
             ) : (
               < div className="sign-in-wish-list-bar">
@@ -224,7 +231,7 @@ function GameDetails() {
         ) : (
 
           <div className="sign-in-wish-list-bar">
-            Sign in to add this item to your wishlist or shopping cart
+            Sign in to add this game to your wishlist or shopping cart, or leave a review
             <Link to="/login"><button>Sign In</button></Link>
           </div>
         )}
@@ -239,7 +246,11 @@ function GameDetails() {
                 <BiLogoApple />
               </div>
               <div id="container-price-add-button">
-                <span style={{ color: "var(--logo-color)", fontSize: "14px", padding: "0 15px" }}>${game?.price}</span>
+                <span style={{
+                  color: "var(--logo-color)",
+                  fontSize: "14px",
+                  padding: "0 15px"
+                }}>${game?.price}</span>
 
                 {currentUser
                   ? <button>Add to Cart</button>
@@ -251,7 +262,14 @@ function GameDetails() {
             <div id="container-bottom-description-game-details">
               <h4 style={{ color: "white" }}>ABOUT THIS GAME</h4>
               <hr />
-              <p style={{ width: "613px", paddingRight: "15px", color: "var(--logo-color)", fontSize: "14px", overflow: "hidden", textOverflow: "ellipsis" }}>{game?.description}</p>
+              <p style={{
+                width: "613px",
+                paddingRight: "15px",
+                color: "var(--logo-color)",
+                fontSize: "14px",
+                overflow: "hidden",
+                textOverflow: "ellipsis"
+              }}>{game?.description}</p>
             </div>
 
             <div style={{ marginTop: "45px" }}>
@@ -360,7 +378,11 @@ function GameDetails() {
 
               ? (game?.user.user_id === currentUser?.id ? (
                 <button disabled={true}
-                  style={{ cursor: "not-allowed", background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))" }}
+                  style={{
+                    cursor: "not-allowed",
+                    background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))",
+                    color: "var(--logo-color)"
+                  }}
                 >
                   Own Game
                 </button>
@@ -368,7 +390,11 @@ function GameDetails() {
               ) : (reviews?.find(review => review.user_id === currentUser.id && review.game_id === +gameId)
                 ? (
                   <button disabled={true}
-                    style={{ cursor: "not-allowed", background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))" }}
+                    style={{
+                      cursor: "not-allowed",
+                      background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))",
+                      color: "var(--logo-color"
+                    }}
                   >
                     Reviewed
                   </button>
@@ -385,7 +411,7 @@ function GameDetails() {
 
               ) : (
                 <button onClick={() => navigate("/login")}>
-                  Leave Review
+                  Sign in
                 </button>
               )}
           </div>
