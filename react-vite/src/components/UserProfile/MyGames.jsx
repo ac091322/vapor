@@ -40,6 +40,7 @@ function MyGames() {
           </Link>
 
           <div className="container-game-details-my-games">
+
             <div className="container-title-date">
               <span style={{ color: "white", fontSize: "15px" }}>{game?.title}</span>
               <div style={{ color: "var(--logo-color)", fontSize: "13px", display: "flex", flexDirection: "column", gap: "5px" }}>

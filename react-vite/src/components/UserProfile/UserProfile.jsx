@@ -54,10 +54,9 @@ function UserProfile() {
             </div>
           </div>
 
+          {activeTab === "wishlist" && <MyWishlist />}
           {activeTab === "myGames" && <MyGames />}
           {activeTab === "myReviews" && <MyReviews />}
-          {activeTab === "myGames" && <MyGames />}
-          {activeTab === "wishlist" && <MyWishlist />}
         </div>
 
         <div id="container-profile-content-right">
