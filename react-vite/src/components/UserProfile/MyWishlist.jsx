@@ -1,29 +1,35 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
-import { thunkWishlistGameGet, thunkWishlistGameGetByUser } from "../../redux/wishlist";
+import { Link } from "react-router-dom";
+import { thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
 import { thunkGamesGet } from "../../redux/game";
 import "./MyWishlist.css"
 
 
 function MyWishlist() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const currentUser = useSelector(state => state.session.user);
-
   const wishlistObj = useSelector(state => state.wishlist);
-  console.log("🚀 ~ MyWishlist ~ wishlistObj:", wishlistObj)
+  const myWishlist = Object.values(wishlistObj);
+  const gamesObj = useSelector(state => state.game);
+  const games = Object.values(gamesObj)
+  const wishlistGames = games.filter(game => myWishlist.some(wishlistGame => wishlistGame.game_id === game.id));
 
+  const [removeGame, setRemoveGame] = useState(null);
 
+  const handleRemoveGame = (gameId) => {
+    dispatch(thunkWishlistGameRemove(gameId));
+    setRemoveGame(null);
+  };
 
   useEffect(() => {
-    dispatch(thunkWishlistGameGetByUser());
+    dispatch(thunkWishlistUserGet());
+    dispatch(thunkGamesGet());
   }, [dispatch]);
 
   return (
     < section id="container-my-wishlist-component" >
 
-      {/* {filteredGames?.map(game => (
+      {wishlistGames?.map(game => (
         <div
           key={game.id}
           className="container-own-game-inner"
@@ -39,33 +45,27 @@ function MyWishlist() {
             <div className="container-game-details-my-games">
 
               <div className="container-title-date">
-                <span style={{ color: "white", fontSize: "15px" }}>{game?.title}</span>
+                <span style={{ color: "white", fontSize: "15px" }}>{game.title}</span>
                 <div style={{ color: "var(--logo-color)", fontSize: "13px", display: "flex", flexDirection: "column", gap: "5px" }}>
-                  <span >{game?.release_date.split("00")[0].trim()}</span>
-                  <span>${game?.price}</span>
+                  <span >{game.release_date.split("00")[0].trim()}</span>
+                  <span>${game.price}</span>
                 </div>
               </div>
 
               <div className="container-buttons-my-games">
                 <button type="button"
-                  onClick={() => navigate(`/games/${game.id}/edit`)}
+                  onClick={() => setRemoveGame(game.id)}
                 >
-                  Edit
+                  Remove
                 </button>
 
-                <button type="button"
-                  onClick={() => setDeleteGame(game.id)}
-                >
-                  Delete
-                </button>
-
-                {deleteGame === game.id &&
+                {removeGame === game.id &&
                   <div className="container-delete-game-confirmation">
-                    <button onClick={() => handleDeleteGame(game.id)}>
+                    <button onClick={() => handleRemoveGame(game.id)}>
                       Yes
                     </button>
 
-                    <button onClick={() => setDeleteGame(null)}>
+                    <button onClick={() => setRemoveGame(null)}>
                       No
                     </button>
                   </div>}
@@ -75,7 +75,7 @@ function MyWishlist() {
 
           </div>
         </div>
-      ))} */}
+      ))}
 
     </section >
   );

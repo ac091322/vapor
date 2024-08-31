@@ -18,7 +18,7 @@ const removeGame = (gameId) => ({
   payload: gameId
 });
 
-export const thunkWishlistGameGet = () => async (dispatch) => {
+export const thunkWishlistGet = () => async (dispatch) => {
   const response = await fetch("/api/wishlists/all", {
     method: "GET"
   });
@@ -28,7 +28,7 @@ export const thunkWishlistGameGet = () => async (dispatch) => {
   }
 };
 
-export const thunkWishlistGameGetByUser = () => async (dispatch) => {
+export const thunkWishlistUserGet = () => async (dispatch) => {
   const response = await fetch(`/api/wishlists/user`, {
     method: "GET"
   });
@@ -38,11 +38,11 @@ export const thunkWishlistGameGetByUser = () => async (dispatch) => {
   }
 };
 
-export const thunkWishlistGameAdd = (game) => async (dispatch) => {
-  const response = await fetch(`/api/games/${game.id}/wishlist/post`, {
+export const thunkWishlistGameAdd = (gameId) => async (dispatch) => {
+  const response = await fetch(`/api/games/${gameId}/wishlist/post`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(game),
+    body: JSON.stringify(gameId),
     credentials: "include"
   });
   if (response.ok) {
@@ -77,7 +77,7 @@ function wishlistReducer(state = initialState, action) {
 
     case ADD_GAME: {
       const newState = { ...state }
-      newState[action.payload.game_id] = action.payload
+      newState[action.payload.id] = action.payload
       return newState
     }
 

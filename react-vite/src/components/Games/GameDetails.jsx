@@ -9,6 +9,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { thunkGameGetId } from "../../redux/game";
+import { thunkWishlistGameAdd, thunkWishlistGet, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
+import { thunkUsersGet } from "../../redux/user";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../Reviews/ReviewFormModal";
 import Reviews from "../Reviews/Reviews";
@@ -26,6 +28,8 @@ function GameDetails() {
   const game = useSelector(state => state.game[gameId]);
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);
+  const wishlistObj = useSelector(state => state.wishlist);
+  const myWishlist = Object.values(wishlistObj);
 
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");
@@ -33,6 +37,7 @@ function GameDetails() {
 
   useEffect(() => {
     dispatch(thunkGameGetId(gameId));
+    dispatch(thunkWishlistUserGet());
   }, [dispatch, gameId]);
 
   useEffect(() => {
@@ -46,6 +51,14 @@ function GameDetails() {
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
+
+  const addGameToWishlist = (gameId) => {
+    dispatch(thunkWishlistGameAdd(gameId));
+  };
+
+  const removeGameFromWishlist = (gameId) => {
+    dispatch(thunkWishlistGameRemove(gameId));
+  }
 
   const closeMenu = () => setShowMenu(false);
 
@@ -169,17 +182,36 @@ function GameDetails() {
         </div>
 
         {currentUser ? (
+
           game?.user.user_id === currentUser.id ? (
+
             <div className="sign-in-wish-list-bar">
-              Cannot add your own game to wishlist or shopping cart
+              Cannot add your own game to your wishlist or shopping cart
               <button style={{ cursor: "not-allowed" }}>Own Game</button>
             </div>
+
           ) : (
-            <div className="sign-in-wish-list-bar">
-              Add this game to your wishlist
-              <button>Add to Wishlist</button>
-            </div>)
+
+            myWishlist.find(game => game.game_id === +gameId) ? (
+              < div className="sign-in-wish-list-bar">
+                Click on the button to remove the game from your wishlist
+                <button
+                  onClick={() => removeGameFromWishlist(gameId)}
+                  style={{
+                    color: "white",
+                    background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))"
+                  }}>Added to Wishlist</button>
+              </div>
+            ) : (
+              < div className="sign-in-wish-list-bar">
+                Add this game to your wishlist
+                <button onClick={() => addGameToWishlist(gameId)}>Add to Wishlist</button>
+              </div>
+            )
+          )
+
         ) : (
+
           <div className="sign-in-wish-list-bar">
             Sign in to add this item to your wishlist or shopping cart
             <Link to="/login"><button>Sign In</button></Link>
