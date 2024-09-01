@@ -20,7 +20,7 @@ function MyReviews() {
   const games = Object.values(gamesObj);
   const reviewsObj = useSelector(state => state.review)
   const reviews = Object.values(reviewsObj);
-  const filteredReviews = reviews.filter(review => review.user_id === currentUser.id);
+  const filteredReviews = reviews?.filter(review => review.user_id === currentUser.id);
 
   const [deleteReview, setDeleteReview] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
