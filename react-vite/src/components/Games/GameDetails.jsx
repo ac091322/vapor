@@ -9,8 +9,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { thunkGameGetId } from "../../redux/game";
-import { thunkWishlistGameAdd, thunkWishlistsGet, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
-import { thunkUsersGet } from "../../redux/user";
+import { thunkWishlistGameAdd, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
+import NavBar from "../Navigation/NavBar";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../Reviews/ReviewFormModal";
 import Reviews from "../Reviews/Reviews";
@@ -37,8 +37,8 @@ function GameDetails() {
 
   useEffect(() => {
     dispatch(thunkGameGetId(gameId));
-    dispatch(thunkWishlistUserGet());
-  }, [dispatch, gameId]);
+    if (currentUser) dispatch(thunkWishlistUserGet());
+  }, [dispatch, currentUser, gameId]);
 
   useEffect(() => {
     if (!showMenu) return;
@@ -54,8 +54,7 @@ function GameDetails() {
 
   const addGameToWishlist = (gameId) => {
     dispatch(thunkWishlistGameAdd(gameId))
-      .then(() => dispatch(thunkWishlistsGet()))
-
+      .then(() => dispatch(thunkWishlistUserGet()));
   };
 
   const removeGameFromWishlist = (gameId) => {
@@ -67,7 +66,17 @@ function GameDetails() {
   const mainImage = selectedScreenshot || selectedVideo || game?.screenshots?.[0]?.screenshot_url || screenshotPlaceholder;
 
   return (
-    <section id="container-game-details-page">
+    <section
+      id="container-game-details-page"
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+      }}>
+
+      <NavBar />
+
       <h1>{game?.title}</h1>
       <div id="container-game-details-page-inner">
         <div id="container-game-carousel-game-details">

@@ -49,7 +49,7 @@
 }
 
 #container-signup-form button {
-  width: 100%;
+  width: 270px;
   height: 45px;
   color: white;
   background: linear-gradient(to right, rgb(37, 190, 251), rgb(48, 118, 249));

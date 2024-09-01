@@ -87,6 +87,12 @@ def seed_cover_arts():
         filename="cover_art_0000000000013.png",
     )
 
+    gundam_breaker_4 = CoverArt(
+        cover_art_url="https://vapor-ac.s3.amazonaws.com/15-gundam-breaker-4/cover-art-gundam-breaker-4.png",
+        game_id=15,
+        filename="cover_art_0000000000014.png",
+    )
+
     db.session.add_all(
         [
             black_myth_wukong,
@@ -103,6 +109,7 @@ def seed_cover_arts():
             dota_2,
             shapez_2,
             cult_of_the_lamb,
+            gundam_breaker_4,
         ]
     )
     db.session.commit()

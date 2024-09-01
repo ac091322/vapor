@@ -1,10 +1,10 @@
-const GET_SHOPPING_CARTS = "get_all_shopping_carts/GET_SHOPPING_CARTS";
+const GET_SHOPPING_CART = "get_games_in_shopping_cart/GET_SHOPPING_CART";
 const ADD_GAME = "add_game_to_shopping_cart/ADD_GAME"
-const REMOVE_GAME = "remove_game_from_shopping_cart/"
+const REMOVE_GAME = "remove_game_from_shopping_cart/REMOVE_GAME"
 
-const getShoppingCarts = (shoppingCarts) => ({
-  tpe: GET_SHOPPING_CARTS,
-  payload: shoppingCarts
+const getGames = (shoppingCart) => ({
+  type: GET_SHOPPING_CART,
+  payload: shoppingCart
 });
 
 const addGame = (game) => ({
@@ -14,26 +14,16 @@ const addGame = (game) => ({
 
 const removeGame = (gameId) => ({
   type: REMOVE_GAME,
-  payload: gamdId
+  payload: gameId
 });
 
-export const thunkShoppingCartsGet = () => async (dispatch) => {
-  const response = await fetch("/api/shopping-carts/all", {
+export const thunkShoppingCartUserGet = (shoppingCartId) => async (dispatch) => {
+  const response = await fetch(`/api/shopping-carts/${shoppingCartId}/user`, {
     method: "GET"
   });
   if (response.ok) {
     const data = await response.json();
-    dispatch(getShoppingCarts());
-  }
-};
-
-export const thunkShoppingCartUserGet = () => async (dispatch) => {
-  const response = await fetch("/api/shopping-carts/user", {
-    method: "GET"
-  });
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(getShoppingCarts());
+    dispatch(getGames(data));
   }
 };
 
@@ -56,7 +46,7 @@ export const thunkShoppingCartGameRemove = (shoppingCartId, gameId) => async (di
     method: "DELETE"
   });
   if (response.ok) {
-    dispatch(removeGame(shoppingCartId, gameId));
+    dispatch(removeGame(gameId));
   }
 };
 
@@ -65,12 +55,24 @@ const initialState = {}
 function shoppingCartReducer(state = initialState, action) {
   switch (action.type) {
 
+    case GET_SHOPPING_CART: {
+      const newState = { ...state }
+      action.payload.forEach(game => {
+        newState[game.game_id] = game
+      })
+      return newState
+    }
 
+    case REMOVE_GAME: {
+      const newState = { ...state }
+      delete newState[action.payload]
+      return newState
+    }
 
     default:
       return state
   }
-};
+}
 
 
 export default shoppingCartReducer;

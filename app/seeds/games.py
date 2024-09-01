@@ -228,6 +228,22 @@ def seed_games():
         min_sound_card="Windows Compatible Audio Device",
     )
 
+    gundam_breaker_4 = Game(
+        title="GUNDAM BREAKER 4",
+        user_id=13,
+        price=59.99,
+        release_date=datetime(2024, 8, 28).date(),
+        description="Create your own ultimate Gundam in the newest Gundam Breaker! With more customizable parts than ever before, you finally have the freedom to build your perfect Gunpla. Test it in battle using the brand new dual-weapon system and break parts off of your enemies and add them to your collection.",
+        min_requirements="Requires a 64-bit processor and operating system",
+        min_os="Windows 10",
+        min_processor="Intel Core i5-2400 / AMD FX-6300",
+        min_memory="8 GB RAM",
+        min_graphics="Nvidia GeForce GTX 760 / AMD Radeon RX 280 / Intel Arc A380",
+        min_directx="Version 11",
+        min_storage="14 GB available space",
+        min_sound_card="Windows Compatible Audio Device",
+    )
+
     db.session.add_all(
         [
             black_myth_wukong,
@@ -244,6 +260,7 @@ def seed_games():
             dota_2,
             shapez_2,
             cult_of_the_lamb,
+            gundam_breaker_4,
         ]
     )
     db.session.commit()

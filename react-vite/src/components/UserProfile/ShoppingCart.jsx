@@ -1,40 +1,42 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
+import { Link } from "react-router-dom"
+import { thunkShoppingCartGameRemove, thunkShoppingCartUserGet } from "../../redux/shoppingCart";
 import { thunkGamesGet } from "../../redux/game";
-import "./MyWishlist.css"
+import "./ShoppingCart.css"
 
 
-function MyWishlist() {
+function ShoppingCart() {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-  const wishlistObj = useSelector(state => state.wishlist);
-  const wishlist = Object.values(wishlistObj);
-  const myWishlist = wishlist?.filter(wishlist => wishlist.user_id === currentUser?.id);
+  const shoppingCartId = currentUser.shopping_cart[0].id;
+  const shoppingCartObj = useSelector(state => state.shoppingCart);
+  const shoppingCart = Object.values(shoppingCartObj);
+  const myShoppingCart = shoppingCart.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
   const gamesObj = useSelector(state => state.game);
-  const games = Object.values(gamesObj)
-  const wishlistGames = games.filter(game => myWishlist.some(wishlistGame => wishlistGame.game_id === game.id));
+  const games = Object.values(gamesObj);
+  const shoppingCartGames = games.filter(game => myShoppingCart.some(shoppingCart => shoppingCart.game_id === game.id));
 
   const [removeGame, setRemoveGame] = useState(null);
 
   useEffect(() => {
-    dispatch(thunkWishlistUserGet());
+    dispatch(thunkShoppingCartUserGet(shoppingCartId));
     dispatch(thunkGamesGet());
-  }, [dispatch]);
+  }, [dispatch, shoppingCartId]);
 
-  const handleRemoveGame = (gameId) => {
-    dispatch(thunkWishlistGameRemove(gameId));
+  const handleRemoveGame = (shoppingCartId, gameId) => {
+    dispatch(thunkShoppingCartGameRemove(shoppingCartId, gameId))
+      .then(() => dispatch(thunkShoppingCartUserGet(shoppingCartId)));
     setRemoveGame(null);
   };
 
   return (
-    < section id="container-my-wishlist-component" >
+    < section id="container-shopping-cart-component" >
 
-      {wishlistGames?.map(game => (
+      {shoppingCartGames?.map(game => (
         <div
           key={game.id}
-          className="container-wishlist-inner"
+          className="container-shopping-cart-inner"
         >
           <Link to={`/games/${game.id}`} >
             <div style={{ width: "325px" }}>
@@ -61,7 +63,7 @@ function MyWishlist() {
 
               {removeGame === game.id &&
                 <div className="container-delete-game-confirmation">
-                  <button onClick={() => handleRemoveGame(game.id)}>
+                  <button onClick={() => handleRemoveGame(shoppingCartId, game.id)}>
                     Yes
                   </button>
 
@@ -75,9 +77,9 @@ function MyWishlist() {
         </div>
       ))}
 
-    </section >
+    </section>
   );
 }
 
 
-export default MyWishlist;
+export default ShoppingCart;

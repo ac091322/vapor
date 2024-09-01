@@ -40,7 +40,7 @@ def get_games_in_shopping_cart(shopping_cart_id):
         .all()
     )
 
-    shopping_cart = [
+    user_shopping_cart = [
         {
             "shopping_cart_id": shopping_cart_id,
             "game_id": game_id,
@@ -51,7 +51,7 @@ def get_games_in_shopping_cart(shopping_cart_id):
         for shopping_cart_id, game_id, title, release_date, price in shopping_cart_entries
     ]
 
-    return shopping_cart, 200
+    return user_shopping_cart, 200
 
 
 # remove game from current user's shopping cart by game_id and shopping_cart_id

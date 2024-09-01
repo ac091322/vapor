@@ -14,6 +14,7 @@ import "./Reviews.css";
 function Reviews() {
   const dispatch = useDispatch();
   const { gameId } = useParams();
+
   const users = useSelector(state => state.user);
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);

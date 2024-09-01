@@ -31,7 +31,7 @@ function MyGames() {
       {filteredGames?.map(game => (
         <div
           key={game.id}
-          className="container-own-game-inner"
+          className="container-own-games-inner"
         >
           <Link to={`/games/${game.id}`} >
             <div style={{ width: "325px" }}>

@@ -19,10 +19,8 @@ def get_wishlists():
             Game.release_date,
             Game.price,
         )
-        .distinct(wishlist.c.game_id)
         .join(User, User.id == wishlist.c.user_id)
         .join(Game, Game.id == wishlist.c.game_id)
-        .outerjoin(CoverArt, CoverArt.game_id == Game.id)
         .all()
     )
 
@@ -54,15 +52,13 @@ def get_user_wishlist():
             Game.release_date,
             Game.price,
         )
-        .distinct(wishlist.c.game_id)
         .join(User, User.id == wishlist.c.user_id)
         .join(Game, Game.id == wishlist.c.game_id)
-        .outerjoin(CoverArt, CoverArt.game_id == Game.id)
         .filter(wishlist.c.user_id == current_user.id)
         .all()
     )
 
-    wishlist = [
+    user_wishlist = [
         {
             "user_id": user_id,
             "game_id": game_id,
@@ -74,7 +70,7 @@ def get_user_wishlist():
         for user_id, game_id, username, title, release_date, price in wishlist_entries
     ]
 
-    return wishlist, 200
+    return user_wishlist, 200
 
 
 # remove game from current user's wishlist by game_id
