@@ -14,7 +14,7 @@ function MyWishlist() {
   const myWishlist = wishlist?.filter(wishlist => wishlist.user_id === currentUser?.id);
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj)
-  const wishlistGames = games.filter(game => myWishlist.some(wishlistGame => wishlistGame.game_id === game.id));
+  const wishlistGames = games?.filter(game => myWishlist.some(wishlistGame => wishlistGame.game_id === game.id));
 
   const [removeGame, setRemoveGame] = useState(null);
 
