@@ -1,5 +1,5 @@
-const UPLOAD_COVER_ART = "uploadCoverArt/UPLOAD_COVER_ART";
-const EDIT_COVER_ART = "editCoverArtById/EDIT_COVER_ART";
+const UPLOAD_COVER_ART = "upload_cover_rrt/UPLOAD_COVER_ART";
+const EDIT_COVER_ART = "edit_cover_art/EDIT_COVER_ART";
 
 const uploadCoverArt = (post) => ({
   type: UPLOAD_COVER_ART,

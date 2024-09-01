@@ -1,9 +1,9 @@
-const GET_WISHLIST = "getCurrentUserWishlist/GET_WISHLIST";
-const ADD_GAME = "addGameToWishlist/ADD_GAME";
-const REMOVE_GAME = "removeGameFromWishlist/REMOVE_GAME";
+const GET_WISHLIST = "get_all_wishlists/GET_WISHLIST";
+const ADD_GAME = "add_game_to_wishlist/ADD_GAME";
+const REMOVE_GAME = "remove_game_from_wishlist/REMOVE_GAME";
 
 
-const getWishlist = (wishlist) => ({
+const getWishlists = (wishlist) => ({
   type: GET_WISHLIST,
   payload: wishlist
 });
@@ -18,13 +18,13 @@ const removeGame = (gameId) => ({
   payload: gameId
 });
 
-export const thunkWishlistGet = () => async (dispatch) => {
+export const thunkWishlistsGet = () => async (dispatch) => {
   const response = await fetch("/api/wishlists/all", {
     method: "GET"
   });
   if (response.ok) {
     const data = await response.json();
-    dispatch(getWishlist(data));
+    dispatch(getWishlists(data));
   }
 };
 
@@ -34,7 +34,7 @@ export const thunkWishlistUserGet = () => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
-    dispatch(getWishlist(data));
+    dispatch(getWishlists(data));
   }
 };
 

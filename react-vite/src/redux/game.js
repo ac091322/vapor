@@ -1,8 +1,8 @@
-const GET_GAMES = "getAllGames/GET_GAMES";
-const GET_GAME = "getGameById/GET_GAME";
-const CREATE_GAME = "createGame/CREATE_GAME";
-const EDIT_GAME = "editGameById/EDIT_GAME";
-const DELETE_GAME = "deleteGameById/DELETE_GAME";
+const GET_GAMES = "get_all_games/GET_GAMES";
+const GET_GAME = "get_game_by_id/GET_GAME";
+const CREATE_GAME = "create_game/CREATE_GAME";
+const EDIT_GAME = "edit_game/EDIT_GAME";
+const DELETE_GAME = "delete_game/DELETE_GAME";
 
 const getGames = (games) => ({
   type: GET_GAMES,

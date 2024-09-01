@@ -9,7 +9,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { thunkGameGetId } from "../../redux/game";
-import { thunkWishlistGameAdd, thunkWishlistGet, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
+import { thunkWishlistGameAdd, thunkWishlistsGet, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
 import { thunkUsersGet } from "../../redux/user";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../Reviews/ReviewFormModal";
@@ -54,7 +54,7 @@ function GameDetails() {
 
   const addGameToWishlist = (gameId) => {
     dispatch(thunkWishlistGameAdd(gameId))
-      .then(() => dispatch(thunkWishlistGet()))
+      .then(() => dispatch(thunkWishlistsGet()))
 
   };
 
