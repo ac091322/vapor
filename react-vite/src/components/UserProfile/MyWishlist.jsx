@@ -79,7 +79,7 @@ function MyWishlist() {
                       type="button"
                       onClick={() => handleAddGameToShoppingCart(game.id)}
                     >
-                      Add to Shopping Cart
+                      Add to Cart
                     </button>
                   )}
                 <button

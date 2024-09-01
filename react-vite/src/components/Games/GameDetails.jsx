@@ -10,6 +10,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { thunkGameGetId } from "../../redux/game";
 import { thunkWishlistGameAdd, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
+import { thunkShoppingCartUserGet, thunkShoppingCartGameAdd } from "../../redux/shoppingCart";
 import NavBar from "../Navigation/NavBar";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../Reviews/ReviewFormModal";
@@ -30,6 +31,11 @@ function GameDetails() {
   const reviews = Object.values(reviewsObj);
   const wishlistObj = useSelector(state => state.wishlist);
   const myWishlist = Object.values(wishlistObj);
+  const shoppingCartId = currentUser?.shopping_cart?.[0]?.id;
+  const shoppingCartObj = useSelector(state => state.shoppingCart);
+  const shoppingCart = Object.values(shoppingCartObj);
+  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
+
 
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");
@@ -37,12 +43,14 @@ function GameDetails() {
 
   useEffect(() => {
     dispatch(thunkGameGetId(gameId));
-    if (currentUser) dispatch(thunkWishlistUserGet());
-  }, [dispatch, currentUser, gameId]);
+    if (currentUser) {
+      dispatch(thunkWishlistUserGet());
+      dispatch(thunkShoppingCartUserGet(shoppingCartId));
+    }
+  }, [dispatch, currentUser, gameId, shoppingCartId]);
 
   useEffect(() => {
     if (!showMenu) return;
-
     const closeMenu = (e) => {
       if (ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
@@ -59,6 +67,11 @@ function GameDetails() {
 
   const removeGameFromWishlist = (gameId) => {
     dispatch(thunkWishlistGameRemove(gameId));
+  };
+
+  const handleAddGameToShoppingCart = (gameId) => {
+    dispatch(thunkShoppingCartGameAdd(gameId, shoppingCartId))
+      .then(() => dispatch(thunkShoppingCartUserGet(shoppingCartId)));
   };
 
   const closeMenu = () => setShowMenu(false);
@@ -218,7 +231,6 @@ function GameDetails() {
             </div>
 
           ) : (
-
             myWishlist.find(game => game.game_id === +gameId) ? (
               < div className="sign-in-wish-list-bar">
                 Click on the button to remove the game from your wishlist
@@ -262,8 +274,36 @@ function GameDetails() {
                 }}>${game?.price}</span>
 
                 {currentUser
-                  ? <button>Add to Cart</button>
-                  : <Link to="/login"><button>Add to Cart</button></Link>
+                  ? (game?.user.user_id === +currentUser.id
+                    ? (
+                      <button
+                        type="button"
+                        style={{ cursor: "not-allowed" }}>Own Game</button>
+                    ) : (
+
+                      myShoppingCart.find(cartItem => cartItem.game_id === game.id)
+                        ? (
+                          <button
+                            type="button"
+                            style={{ cursor: "not-allowed" }}
+                          >
+                            In Shopping Cart
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => handleAddGameToShoppingCart(game.id)}
+                          >
+                            Add to Cart
+                          </button>
+                        )
+
+                    )
+                  ) : (
+                    <Link to="/login">
+                      <button type="button">Add to Cart</button>
+                    </Link>
+                  )
                 }
               </div>
             </div>
