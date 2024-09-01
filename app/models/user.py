@@ -64,7 +64,7 @@ class User(db.Model, UserMixin):
                 [reviews.to_dict() for reviews in self.review] if self.review else None
             ),
             "shopping_cart": (
-                [shopping_cart.to_dict() for shopping_cart in self.shopping_cart]
+                [cart.to_dict() for cart in self.shopping_cart]
                 if self.shopping_cart
                 else None
             ),

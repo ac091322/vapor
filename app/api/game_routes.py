@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import db, Game, Review
+from app.models import db, Game, Review, ShoppingCart
 from app.forms import GameForm, ReviewForm
 from datetime import datetime
 
@@ -75,7 +75,6 @@ def post_game():
 @login_required
 def edit_game(game_id):
     game = Game.query.get(game_id)
-
     if game is None:
         return {"error": "Game not found"}, 404
 
@@ -115,7 +114,6 @@ def edit_game(game_id):
 @login_required
 def delete_game(game_id):
     game = Game.query.get(game_id)
-
     if game is None:
         return {"error": "Game not found"}, 404
 
@@ -140,7 +138,6 @@ def get_game_reviews(game_id):
 @login_required
 def post_review(game_id):
     game = Game.query.get(game_id)
-
     if game is None:
         return {"error": "Game not found"}, 404
 
@@ -171,12 +168,11 @@ def post_review(game_id):
     return {"errors": form.errors}, 400
 
 
-# add game to current user's wishlist
-@game_routes.route("/<int:game_id>/wishlist/post", methods=["POST"])
+# add game to current user's wishlist by game_id
+@game_routes.route("/<int:game_id>/user/wishlist/post", methods=["POST"])
 @login_required
 def add_game_to_wishlist(game_id):
     game = Game.query.get(game_id)
-
     if game is None:
         return {"error": "Game not found"}, 404
 
@@ -189,3 +185,29 @@ def add_game_to_wishlist(game_id):
     current_user.game_in_wishlist.append(game)
     db.session.commit()
     return {"message": "Game added to wishlist"}, 201
+
+
+# add game to current user's shopping cart by ganme_id and shopping_card_id
+@game_routes.route(
+    "/<int:game_id>/<int:shopping_cart_id>/user/shopping-cart/post", methods=["POST"]
+)
+@login_required
+def add_game_to_shopping_cart(game_id, shopping_cart_id):
+    shopping_cart = ShoppingCart.query.get(shopping_cart_id)
+    if shopping_cart is None:
+        return {"error": "Shopping cart not found"}, 404
+
+    game = Game.query.get(game_id)
+    if game is None:
+        return {"error": "Game not found"}, 404
+
+    if shopping_cart_id != current_user.id:
+        return {"error": "Forbidden"}, 403
+
+    if game in shopping_cart.game_in_shopping_cart_item:
+        return {"error": "Game already in shopping cart"}, 409
+
+    shopping_cart.game_in_shopping_cart_item.append(game)
+    db.session.commit()
+
+    return {"message": "Game added to shopping cart"}, 201

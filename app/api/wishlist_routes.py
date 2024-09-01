@@ -62,7 +62,7 @@ def get_user_wishlist():
         .all()
     )
 
-    wishlists = [
+    wishlist = [
         {
             "user_id": user_id,
             "game_id": game_id,
@@ -74,10 +74,11 @@ def get_user_wishlist():
         for user_id, game_id, username, title, release_date, price in wishlist_entries
     ]
 
-    return wishlists, 200
+    return wishlist, 200
 
 
-@wishlist_routes.route("/<int:game_id>/delete", methods=["DELETE"])
+# remove game from current user's wishlist by game_id
+@wishlist_routes.route("/<int:game_id>/user/delete", methods=["DELETE"])
 @login_required
 def remove_game_from_wishlist(game_id):
     game = Game.query.get(game_id)

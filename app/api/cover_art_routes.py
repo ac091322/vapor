@@ -12,7 +12,6 @@ cover_art_routes = Blueprint("images", __name__)
 @login_required
 def upload_cover_art():
     game_id = request.form.get("game_id")
-
     cover_art_url = request.files.get("cover_art_url")
     filename = request.form.get("filename")
 
@@ -35,8 +34,7 @@ def upload_cover_art():
 @login_required
 def edit_cover_art(cover_art_id):
     cover_art = CoverArt.query.get(cover_art_id)
-
-    if not cover_art:
+    if cover_art is None:
         return {"error": "Cover art not found"}
 
     cover_art_url = request.files.get("cover_art_url")

@@ -39,7 +39,7 @@ export const thunkWishlistUserGet = () => async (dispatch) => {
 };
 
 export const thunkWishlistGameAdd = (gameId) => async (dispatch) => {
-  const response = await fetch(`/api/games/${gameId}/wishlist/post`, {
+  const response = await fetch(`/api/games/${gameId}/user/wishlist/post`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(gameId),
@@ -53,7 +53,7 @@ export const thunkWishlistGameAdd = (gameId) => async (dispatch) => {
 };
 
 export const thunkWishlistGameRemove = (gameId) => async (dispatch) => {
-  const response = await fetch(`/api/wishlists/${gameId}/delete`, {
+  const response = await fetch(`/api/wishlists/${gameId}/user/delete`, {
     method: "DELETE",
     credentials: "include"
   });

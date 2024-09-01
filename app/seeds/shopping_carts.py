@@ -6,28 +6,32 @@ from datetime import datetime
 def seed_shopping_carts():
     game_science = ShoppingCart(user_id=1)
     blizzard_entertainment = ShoppingCart(user_id=2)
-    digital_extreme = ShoppingCart(user_id=3)
+    nexon_korea_corporation = ShoppingCart(user_id=3)
     saber_interactive = ShoppingCart(user_id=4)
-    sledgehammer_games = ShoppingCart(user_id=5)
+    arsi_kaita_patala = ShoppingCart(user_id=5)
     firaxis_games = ShoppingCart(user_id=6)
     valve = ShoppingCart(user_id=7)
     iron_clad_games_corporation = ShoppingCart(user_id=8)
-    fromsoftware_inc = ShoppingCart(user_id=9)
-    larian_studios = ShoppingCart(user_id=10)
-    demo_developer = ShoppingCart(user_id=11)
+    suspicious_developments_inc = ShoppingCart(user_id=9)
+    scopely = ShoppingCart(user_id=10)
+    tobspr_games = ShoppingCart(user_id=11)
+    massive_monster = ShoppingCart(user_id=12)
+    demo_developer = ShoppingCart(user_id=13)
 
     db.session.add_all(
         [
             game_science,
             blizzard_entertainment,
-            digital_extreme,
+            nexon_korea_corporation,
             saber_interactive,
-            sledgehammer_games,
+            arsi_kaita_patala,
             firaxis_games,
             valve,
             iron_clad_games_corporation,
-            fromsoftware_inc,
-            larian_studios,
+            suspicious_developments_inc,
+            scopely,
+            tobspr_games,
+            massive_monster,
             demo_developer,
         ]
     )
