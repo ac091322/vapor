@@ -6,7 +6,7 @@ import { thunkGamesGet } from "../../redux/game";
 import "./ShoppingCart.css"
 
 
-function ShoppingCart() {
+function ShoppingCart({ calculateTotal }) {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const shoppingCartId = currentUser.shopping_cart?.[0]?.id;
@@ -17,12 +17,22 @@ function ShoppingCart() {
   const games = Object.values(gamesObj);
   const shoppingCartGames = games?.filter(game => myShoppingCart?.some(shoppingCart => shoppingCart.game_id === game.id));
 
+  const total = shoppingCartGames.reduce((accum, game) => accum + parseFloat(game.price), 0);
+  const roundedTotal = Math.round(total * 100) / 100;
+
   const [removeGame, setRemoveGame] = useState(null);
 
   useEffect(() => {
     dispatch(thunkShoppingCartUserGet(shoppingCartId));
     dispatch(thunkGamesGet());
   }, [dispatch, shoppingCartId]);
+
+  useEffect(() => {
+    if (calculateTotal) {
+      calculateTotal(roundedTotal)
+    }
+  }, [calculateTotal, roundedTotal]);
+
 
   const handleRemoveGame = (shoppingCartId, gameId) => {
     dispatch(thunkShoppingCartGameRemove(shoppingCartId, gameId))
@@ -58,7 +68,7 @@ function ShoppingCart() {
               <button type="button"
                 onClick={() => setRemoveGame(game.id)}
               >
-                Remove
+                Remove from Shopping Cart
               </button>
 
               {removeGame === game.id &&

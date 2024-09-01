@@ -8,7 +8,6 @@ import MyReviews from "./MyReviews"
 import defaultAvatar from "../../../public/default-avatar.png"
 import "./UserProfile.css"
 
-
 function UserProfile() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -21,10 +20,16 @@ function UserProfile() {
   const filteredReviews = reviews?.filter(review => review.user_id === currentUser?.id);
 
   const [activeTab, setActiveTab] = useState(searchParams.get("activeTab") || "myGames");
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
+
+
+  const calculateTotal = (roundedTotal) => {
+    setTotal(roundedTotal);
+  };
 
   if (!currentUser) return null;
 
@@ -53,7 +58,7 @@ function UserProfile() {
             </div>
           </div>
 
-          {activeTab === "shoppingCart" && <ShoppingCart />}
+          {activeTab === "shoppingCart" && <ShoppingCart calculateTotal={calculateTotal} />}
           {activeTab === "wishlist" && <MyWishlist />}
           {activeTab === "myGames" && <MyGames />}
           {activeTab === "myReviews" && <MyReviews />}
@@ -111,6 +116,16 @@ function UserProfile() {
               </NavLink>
             </nav>
           </div>
+
+          {activeTab === "shoppingCart" &&
+            <div id="container-shopping-cart-total-calculations">
+              <div id="container-total-calculations">
+                <span>Estimated total</span>
+                <span style={{ fontWeight: "bold", fontSize: "20px" }}>${total}</span>
+              </div>
+              <p style={{ fontSize: "13px" }}>Sales tax will be calculated during checkout where applicable</p>
+              <button>Continue to Payment</button>
+            </div>}
         </div>
       </div>
     </section >
