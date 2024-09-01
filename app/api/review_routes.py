@@ -20,7 +20,6 @@ def get_reviews():
 @login_required
 def edit_review(review_id):
     review = Review.query.get(review_id)
-
     if review is None:
         return {"error": "Review not found"}, 404
 
@@ -53,7 +52,6 @@ def edit_review(review_id):
 @login_required
 def delete_review(review_id):
     review = Review.query.get(review_id)
-
     if review is None:
         return {"error": "Review not found"}, 404
 

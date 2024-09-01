@@ -1,3 +1,42 @@
+#container-wishlist-shoppingcart-buttons {
+  display: flex;
+  gap: 3px;
+  position: absolute;
+  right: 0;
+  top: -22px;
+}
+
+#container-wishlist-shoppingcart-buttons button {
+  border-radius: 1px;
+  width: 95px;
+  height: 20px;
+  font-size: 11px;
+  color: white;
+  font-weight: bold;
+  opacity: 0.95;
+}
+
+#navbar-wishlist-button {
+  background-color: rgb(112, 150, 162);
+}
+
+#navbar-shopping-cart-button {
+  background-color: #5C7E10;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
+#navbar-wishlist-button:hover {
+  background: linear-gradient(to right, rgb(255, 255, 255), rgb(159, 167, 174));
+  color: black;
+}
+
+#navbar-shopping-cart-button:hover {
+  background-color: rgb(127, 166, 85);
+}
+
 #container-navbar {
   display: flex;
   justify-content: space-between;
@@ -13,12 +52,26 @@
   top: 30px;
   z-index: 1;
   opacity: 0.8;
+  margin: 0 auto;
+}
+
+#container-avatar-store-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
 }
 
 #container-navbar ul {
   display: flex;
   align-items: center;
   gap: 30px;
+}
+
+#container-navbar li {
+  cursor: not-allowed;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1.5px 1.5px 3px rgb(0, 0, 0, 0.6);
 }
 
 #container-search-bar-nav {
@@ -41,7 +94,7 @@
   height: 26px;
   border-radius: 2px 0 0 2px;
   background-color: rgba(52, 98, 128);
-  width: 180px;
+  width: 165px;
   color: #E5E5E5;
 }
 

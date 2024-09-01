@@ -163,10 +163,6 @@ function CreateGame() {
     coverArtData.append("game_id", gameId);
     coverArtData.append("filename", coverArtfilename);
 
-    for (let pair of coverArtData.entries()) {
-      console.log("!!!!!!!!!!!!!!!", pair[0] + ": " + pair[1]);
-    }
-
     setCoverArtLoading(true);
     await dispatch(thunkCoverArtAdd(coverArtData));
     setCoverArtLoading(false);

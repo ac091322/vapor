@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, wishlist, Game, User
+from app.models import db, wishlist, Game, User, CoverArt
 
 
 wishlist_routes = Blueprint("wishlists", __name__)
@@ -12,7 +12,12 @@ wishlist_routes = Blueprint("wishlists", __name__)
 def get_wishlists():
     wishlist_entries = (
         db.session.query(
-            wishlist.c.user_id, wishlist.c.game_id, User.username, Game.title
+            wishlist.c.user_id,
+            wishlist.c.game_id,
+            User.username,
+            Game.title,
+            Game.release_date,
+            Game.price,
         )
         .join(User, User.id == wishlist.c.user_id)
         .join(Game, Game.id == wishlist.c.game_id)
@@ -25,8 +30,10 @@ def get_wishlists():
             "game_id": game_id,
             "username": username,
             "game_title": title,
+            "release_date": release_date,
+            "price": price,
         }
-        for user_id, game_id, username, title in wishlist_entries
+        for user_id, game_id, username, title, release_date, price in wishlist_entries
     ]
 
     return wishlists, 200
@@ -38,7 +45,12 @@ def get_wishlists():
 def get_user_wishlist():
     wishlist_entries = (
         db.session.query(
-            wishlist.c.user_id, wishlist.c.game_id, User.username, Game.title
+            wishlist.c.user_id,
+            wishlist.c.game_id,
+            User.username,
+            Game.title,
+            Game.release_date,
+            Game.price,
         )
         .join(User, User.id == wishlist.c.user_id)
         .join(Game, Game.id == wishlist.c.game_id)
@@ -46,20 +58,23 @@ def get_user_wishlist():
         .all()
     )
 
-    wishlists = [
+    user_wishlist = [
         {
             "user_id": user_id,
             "game_id": game_id,
             "username": username,
             "game_title": title,
+            "release_date": release_date,
+            "price": price,
         }
-        for user_id, game_id, username, title in wishlist_entries
+        for user_id, game_id, username, title, release_date, price in wishlist_entries
     ]
 
-    return wishlists, 200
+    return user_wishlist, 200
 
 
-@wishlist_routes.route("/<int:game_id>/delete", methods=["DELETE"])
+# remove game from current user's wishlist by game_id
+@wishlist_routes.route("/<int:game_id>/user/delete", methods=["DELETE"])
 @login_required
 def remove_game_from_wishlist(game_id):
     game = Game.query.get(game_id)

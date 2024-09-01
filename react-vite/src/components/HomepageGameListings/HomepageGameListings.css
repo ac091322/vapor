@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-areas: "left-listing right-listing";
-  column-gap: 20px;
+  column-gap: 12px;
   padding-top: 10px;
 }
 
@@ -19,7 +19,6 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-
 }
 
 #container-game-listing-bar {
@@ -31,24 +30,19 @@
 #container-game-listing-details-left {
   display: flex;
   align-items: center;
+  position: relative;
   justify-content: space-between;
-  width: 100%;
-  padding-right: 15px;
-
+  width: 72%;
 }
 
-#container-game-listing-details-left-left {
+#container-game-listing-details-left-inner {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-left: 15px;
+  gap: 15px;
+  padding-left: 12px;
 }
-
-
-
-
-
 
 #container-game-listing-right {
   grid-area: right-listing;
+  background: linear-gradient(to right, rgb(151, 187, 210), rgb(133, 155, 171));
 }

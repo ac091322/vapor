@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { NavLink, useNavigate } from "react-router-dom"
-import { thunkGamesGet } from "../../redux/game"
-import { thunkReviewsGet } from "../../redux/review";
+import { useSelector } from "react-redux"
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom"
+import ShoppingCart from "./ShoppingCart";
+import MyWishlist from "./MyWishlist";
 import MyGames from "./MyGames"
 import MyReviews from "./MyReviews"
 import defaultAvatar from "../../../public/default-avatar.png"
@@ -10,24 +10,17 @@ import "./UserProfile.css"
 
 
 function UserProfile() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const currentUser = useSelector(state => state.session.user);
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj);
-  const filteredGames = games?.filter(game => game.user.user_id === currentUser.id);
+  const filteredGames = games?.filter(game => game.user.user_id === currentUser?.id);
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);
-  const filteredReviews = reviews?.filter(review => review.user_id === currentUser.id);
+  const filteredReviews = reviews?.filter(review => review.user_id === currentUser?.id);
 
-  const [activeTab, setActiveTab] = useState("myGames");
-
-  useEffect(() => {
-    if (currentUser) {
-      dispatch(thunkGamesGet());
-      dispatch(thunkReviewsGet());
-    }
-  }, [dispatch, currentUser]);
+  const [activeTab, setActiveTab] = useState(searchParams.get("activeTab") || "myGames");
 
   useEffect(() => {
     if (!currentUser) navigate("/");
@@ -60,6 +53,8 @@ function UserProfile() {
             </div>
           </div>
 
+          {activeTab === "shoppingCart" && <ShoppingCart />}
+          {activeTab === "wishlist" && <MyWishlist />}
           {activeTab === "myGames" && <MyGames />}
           {activeTab === "myReviews" && <MyReviews />}
         </div>
@@ -85,8 +80,18 @@ function UserProfile() {
           <div id="container-tab-items-user-profile">
             <span style={{ fontSize: "24px", color: "#898989" }} >Profile Tabs</span>
             <nav>
-              <NavLink>Shopping Cart</NavLink>
-              <NavLink>Wishlist</NavLink>
+              <NavLink
+                to="#"
+                className={activeTab === "shoppingCart" ? "active-link" : ""}
+                onClick={() => setActiveTab("shoppingCart")}
+              >
+                Shopping Cart
+              </NavLink>
+              <NavLink
+                to="#"
+                className={activeTab === "wishlist" ? "active-link" : ""}
+                onClick={() => setActiveTab("wishlist")}
+              >Wishlist</NavLink>
               <NavLink>Library</NavLink>
 
               <NavLink

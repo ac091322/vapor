@@ -1,0 +1,11 @@
+#container-shopping-cart-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container-shopping-cart-inner {
+  display: flex;
+  font-size: 0;
+}

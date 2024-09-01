@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import { BiLogoWindows } from "react-icons/bi";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { BiCurrentLocation, BiLogoWindows } from "react-icons/bi";
 import { BiLogoApple } from "react-icons/bi";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
@@ -9,11 +9,13 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { thunkGameGetId } from "../../redux/game";
+import { thunkWishlistGameAdd, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
+import NavBar from "../Navigation/NavBar";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../Reviews/ReviewFormModal";
 import Reviews from "../Reviews/Reviews";
 import screenshotPlaceholder from "../../../public/screenshot-placeholder.png"
-import videoPlaceholder from "../../../public/video-placeholder.png"
+// import videoPlaceholder from "../../../public/video-placeholder.png"
 import "./GameDetails.css";
 
 
@@ -26,6 +28,8 @@ function GameDetails() {
   const game = useSelector(state => state.game[gameId]);
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);
+  const wishlistObj = useSelector(state => state.wishlist);
+  const myWishlist = Object.values(wishlistObj);
 
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");
@@ -33,7 +37,8 @@ function GameDetails() {
 
   useEffect(() => {
     dispatch(thunkGameGetId(gameId));
-  }, [dispatch, gameId]);
+    if (currentUser) dispatch(thunkWishlistUserGet());
+  }, [dispatch, currentUser, gameId]);
 
   useEffect(() => {
     if (!showMenu) return;
@@ -47,12 +52,31 @@ function GameDetails() {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  const addGameToWishlist = (gameId) => {
+    dispatch(thunkWishlistGameAdd(gameId))
+      .then(() => dispatch(thunkWishlistUserGet()));
+  };
+
+  const removeGameFromWishlist = (gameId) => {
+    dispatch(thunkWishlistGameRemove(gameId));
+  };
+
   const closeMenu = () => setShowMenu(false);
 
   const mainImage = selectedScreenshot || selectedVideo || game?.screenshots?.[0]?.screenshot_url || screenshotPlaceholder;
 
   return (
-    <section id="container-game-details-page">
+    <section
+      id="container-game-details-page"
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+      }}>
+
+      <NavBar />
+
       <h1>{game?.title}</h1>
       <div id="container-game-details-page-inner">
         <div id="container-game-carousel-game-details">
@@ -65,7 +89,7 @@ function GameDetails() {
             />
 
             <div id="container-thumbnail-images-game-details">
-              <img
+              {/* <img
                 className="thumbnail-game-details"
                 id="video-placeholder-game-details"
                 src={videoPlaceholder}
@@ -74,7 +98,7 @@ function GameDetails() {
                   setSelectedScreenshot("")
                   setSelectedVideo(prev => prev ? "" : videoPlaceholder)
                 }}
-              />
+              /> */}
 
               {game?.screenshots?.length > 0 ? (
                 game?.screenshots?.map((screenshot) => (
@@ -127,13 +151,25 @@ function GameDetails() {
                       setSelectedVideo("")
                     }}
                   />
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
                 </>
               )}
             </div>
           </div>
 
           <div id="container-game-carousel-game-details-right">
-            <img style={{ width: "325px", height: "150px" }} src={game?.cover_art?.[0]?.cover_art_url} alt="cover-art" />
+            <img
+              style={{ width: "325px", height: "150px" }}
+              src={game?.cover_art?.[0]?.cover_art_url} alt="cover-art"
+            />
             <p>{game?.description}</p>
 
             <div id="container-description-game-details">
@@ -149,7 +185,11 @@ function GameDetails() {
                 <span>50,000 reviews</span>
                 <span>310 reviews</span>
                 <span>{game?.release_date.split("00")[0].trim()}</span>
-                <span style={{ color: "#67C1F5", fontWeight: "bold", fontSize: "12px" }}>{game?.user?.username}</span>
+                <span style={{
+                  color: "#67C1F5",
+                  fontWeight: "bold",
+                  fontSize: "12px"
+                }}>{game?.user?.username}</span>
                 <span >{game?.user?.username}</span>
               </div>
             </div>
@@ -168,7 +208,42 @@ function GameDetails() {
           </div>
         </div>
 
-        <div id="sign-in-wish-list-notice">Sign in to add this item to your wishlist or shopping cart</div>
+        {currentUser ? (
+
+          game?.user.user_id === currentUser.id ? (
+
+            <div className="sign-in-wish-list-bar">
+              Cannot add your own game to your wishlist or shopping cart
+              <button style={{ cursor: "not-allowed", color: "var(--logo-color)" }}>Own Game</button>
+            </div>
+
+          ) : (
+
+            myWishlist.find(game => game.game_id === +gameId) ? (
+              < div className="sign-in-wish-list-bar">
+                Click on the button to remove the game from your wishlist
+                <button
+                  onClick={() => removeGameFromWishlist(gameId)}
+                  style={{
+                    color: "var(--logo-color)",
+                    background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))"
+                  }}>In Wishlist</button>
+              </div>
+            ) : (
+              < div className="sign-in-wish-list-bar">
+                Add this game to your wishlist
+                <button onClick={() => addGameToWishlist(gameId)}>Add to Wishlist</button>
+              </div>
+            )
+          )
+
+        ) : (
+
+          <div className="sign-in-wish-list-bar">
+            Sign in to add this game to your wishlist or shopping cart, or leave a review
+            <Link to="/login"><button>Add to Wishlist</button></Link>
+          </div>
+        )}
 
         <div id="container-bottom-section-game-details">
           <div id="container-bottom-section-left">
@@ -180,15 +255,30 @@ function GameDetails() {
                 <BiLogoApple />
               </div>
               <div id="container-price-add-button">
-                <span style={{ color: "var(--logo-color)", fontSize: "14px", padding: "0 15px" }}>${game?.price}</span>
-                <button>Add to Cart</button>
+                <span style={{
+                  color: "var(--logo-color)",
+                  fontSize: "14px",
+                  padding: "0 15px"
+                }}>${game?.price}</span>
+
+                {currentUser
+                  ? <button>Add to Cart</button>
+                  : <Link to="/login"><button>Add to Cart</button></Link>
+                }
               </div>
             </div>
 
             <div id="container-bottom-description-game-details">
               <h4 style={{ color: "white" }}>ABOUT THIS GAME</h4>
               <hr />
-              <p style={{ width: "613px", paddingRight: "15px", color: "var(--logo-color)", fontSize: "14px", overflow: "hidden", textOverflow: "ellipsis" }}>{game?.description}</p>
+              <p style={{
+                width: "613px",
+                paddingRight: "15px",
+                color: "var(--logo-color)",
+                fontSize: "14px",
+                overflow: "hidden",
+                textOverflow: "ellipsis"
+              }}>{game?.description}</p>
             </div>
 
             <div style={{ marginTop: "45px" }}>
@@ -297,7 +387,11 @@ function GameDetails() {
 
               ? (game?.user.user_id === currentUser?.id ? (
                 <button disabled={true}
-                  style={{ cursor: "not-allowed", background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))" }}
+                  style={{
+                    cursor: "not-allowed",
+                    background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))",
+                    color: "var(--logo-color)"
+                  }}
                 >
                   Own Game
                 </button>
@@ -305,7 +399,11 @@ function GameDetails() {
               ) : (reviews?.find(review => review.user_id === currentUser.id && review.game_id === +gameId)
                 ? (
                   <button disabled={true}
-                    style={{ cursor: "not-allowed", background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))" }}
+                    style={{
+                      cursor: "not-allowed",
+                      background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))",
+                      color: "var(--logo-color"
+                    }}
                   >
                     Reviewed
                   </button>
@@ -322,7 +420,7 @@ function GameDetails() {
 
               ) : (
                 <button onClick={() => navigate("/login")}>
-                  Leave Review
+                  Review
                 </button>
               )}
           </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
@@ -9,16 +9,31 @@ function SignupFormPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
+
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [validations, setValidations] = useState({});
+  const [submit, setSubmit] = useState(false);
+
+  useEffect(() => {
+    const formErrors = {}
+    if (username.length < 2 || username.length > 60) formErrors.username = "Must be between 2 and 60 characters";
+    if (email.length < 8 || email.length > 60) formErrors.email = "Must be between 8 and 60 characters";
+    if (password.length < 4) formErrors.password = "Must be 4 characters or more"
+
+    setValidations(formErrors);
+  }, [username, email, password]);
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmit(true);
+
+    if (Object.keys(validations).length > 0) return;
 
     if (password !== confirmPassword) {
       return setErrors({
@@ -53,12 +68,13 @@ function SignupFormPage() {
             EMAIL
 
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
             {errors.email && <p className="error">{errors.email}</p>}
+            {submit && validations.email && <p className="error">{validations.email}</p>}
           </label>
 
           <label style={{ color: "var(--nav-font-color-selected)" }}>
@@ -70,6 +86,7 @@ function SignupFormPage() {
               required
             />
             {errors.username && <p className="error">{errors.username}</p>}
+            {submit && validations.username && <p className="error">{validations.username}</p>}
           </label>
 
           <label>
@@ -81,6 +98,7 @@ function SignupFormPage() {
               required
             />
             {errors.password && <p className="error">{errors.password}</p>}
+            {submit && validations.password && <p className="error">{validations.password}</p>}
           </label>
 
           <label>
@@ -102,5 +120,6 @@ function SignupFormPage() {
     </div>
   );
 }
+
 
 export default SignupFormPage;

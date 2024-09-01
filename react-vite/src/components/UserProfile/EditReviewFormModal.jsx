@@ -4,7 +4,6 @@ import { IoThumbsUp } from "react-icons/io5";
 import { IoThumbsDown } from "react-icons/io5";
 import { useModal } from "../../context/Modal"
 import { thunkReviewEdit, thunkReviewsGet } from "../../redux/review";
-import "../Reviews/ReviewFormModal.css"
 
 
 function EditReviewFormModal({ userId, gameId, reviewId }) {

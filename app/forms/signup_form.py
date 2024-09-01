@@ -36,7 +36,7 @@ class SignUpForm(FlaskForm):
             DataRequired(),
             Email(message="Invalid email address"),
             user_exists,
-            Length(min=5, max=60, message="Must be between 5 and 60 characters"),
+            Length(min=8, max=60, message="Must be between 8 and 60 characters"),
         ],
     )
     password = StringField(

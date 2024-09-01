@@ -1,5 +1,5 @@
-const GET_SCREENSHOTS = "getScreenshots/GET_ALL_SCREENSHOTS";
-const UPLOAD_SCREENSHOTS = "uploadScreenshots/UPLOAD_SCREENSHOTS"
+const GET_SCREENSHOTS = "get_all_screenshots/GET_SCREENSHOTS";
+const UPLOAD_SCREENSHOTS = "upload_screenshots/UPLOAD_SCREENSHOTS"
 
 const getScreenshots = (screenshots) => ({
   type: GET_SCREENSHOTS,

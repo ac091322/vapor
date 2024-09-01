@@ -1,7 +1,7 @@
-const GET_REVIEWS = "getAllReviews/GET_REVIEWS";
-const CREATE_REVIEW = "createReviewbyGameId/CREATE_REVIEW";
-const EDIT_REVIEW = "editReviewById/EDIT_REVIEW";
-const DELETE_REVIEW = "deleteReviewById/DELETE_REVIEW";
+const GET_REVIEWS = "get_all_reviews/GET_REVIEWS";
+const CREATE_REVIEW = "create_review/CREATE_REVIEW";
+const EDIT_REVIEW = "edit_review/EDIT_REVIEW";
+const DELETE_REVIEW = "delete_review/DELETE_REVIEW";
 
 const getReviews = (reviews) => ({
   type: GET_REVIEWS,

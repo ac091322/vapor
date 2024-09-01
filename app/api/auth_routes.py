@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import User, db
+from app.models import db, User, ShoppingCart
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user
@@ -59,7 +59,13 @@ def sign_up():
             password=form.data["password"],
         )
         db.session.add(user)
+        db.session.flush()
+
+        shopping_cart = ShoppingCart(user_id=user.id)
+        db.session.add(shopping_cart)
+
         db.session.commit()
+
         login_user(user)
         return user.to_dict()
     return form.errors, 401

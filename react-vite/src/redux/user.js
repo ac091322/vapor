@@ -1,4 +1,4 @@
-const GET_USERS = "getAllUsers/GET_USERS"
+const GET_USERS = "get_all_users/GET_USERS"
 
 const getUsers = (users) => ({
   type: GET_USERS,

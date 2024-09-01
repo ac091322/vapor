@@ -26,10 +26,8 @@ function MyReviews() {
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
-    if (currentUser) {
-      dispatch(thunkGamesGet());
-      dispatch(thunkReviewsGet());
-    }
+    dispatch(thunkGamesGet());
+    dispatch(thunkReviewsGet());
   }, [dispatch, currentUser]);
 
   useEffect(() => {

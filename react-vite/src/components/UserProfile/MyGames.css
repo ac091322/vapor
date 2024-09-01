@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
 #container-my-games-component img {
@@ -10,8 +10,9 @@
   height: 150px;
 }
 
-.container-own-game-inner {
+.container-own-games-inner {
   display: flex;
+  font-size: 0;
 }
 
 .container-game-details-my-games {
@@ -19,10 +20,9 @@
   flex-direction: column;
   justify-content: space-between;
   width: 325px;
-  height: 150px;
-  gap: 5px;
   background-color: rgb(0, 0, 0, 0.4);
   padding: 10px 10px 10px 10px;
+  height: 150px;
 }
 
 .container-title-date {
@@ -33,7 +33,6 @@
 
 .container-buttons-my-games {
   display: flex;
-  width: 100%;
   position: relative;
 }
 
@@ -42,14 +41,13 @@
   width: 100%;
   background-color: rgb(0, 0, 0, 0.4);
   color: var(--logo-color);
+  cursor: pointer;
 }
 
 .container-delete-game-confirmation {
   display: flex;
-  height: 50px;
   width: 100%;
   position: absolute;
-  bottom: 0;
   background-color: black;
   color: var(--logo-color);
 }
