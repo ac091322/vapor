@@ -856,7 +856,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/games/1/13/user/shopping-cart/post",
+					"raw": "http://localhost:8000/api/games/1/14/user/shopping-cart/post",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -866,7 +866,7 @@
 						"api",
 						"games",
 						"1",
-						"13",
+						"14",
 						"user",
 						"shopping-cart",
 						"post"

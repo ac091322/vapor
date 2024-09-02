@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useLoaderData, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { FaUnlockKeyhole } from "react-icons/fa6";
 import { thunkShoppingCartUserGet, thunkShoppingCartGameRemove } from "../../redux/shoppingCart";
 import { thunkLibraryGameAdd } from "../../redux/library";
@@ -17,7 +17,7 @@ function Checkout() {
   const shoppingCart = Object.values(shoppingCartObj);
   const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
 
-
+  const [purchasedGames, setPurchasedGames] = useState([]);
   const [confirmation, setConfirmation] = useState(false);
 
   useEffect(() => {
@@ -27,6 +27,8 @@ function Checkout() {
   }, [currentUser, shoppingCartId, navigate]);
 
   const handleConfirmPurchase = () => {
+    setPurchasedGames(myShoppingCart);
+
     myShoppingCart.forEach(game => {
       const gameData = {
         user_id: Number(currentUser.id),
@@ -66,7 +68,7 @@ function Checkout() {
       <div className="container-checkout-page-inner">
 
         <div className="container-checkout-page-inner-left">
-          {confirmation ? <Confirmation shoppingCartFromLoaderData={shoppingCartFromLoaderData} /> :
+          {confirmation ? <Confirmation purchasedGames={purchasedGames} /> :
             (<>
               <div className="container-title-checkout">
                 <h1>Checkout</h1>
@@ -110,7 +112,7 @@ function Checkout() {
                 display: "flex",
                 flexDirection: "column",
                 gap: "5px",
-                marginBottom: "20px"
+                marginTop: "20px"
               }}>
                 {myShoppingCart?.map(cartItem => (
                   <div
@@ -137,24 +139,26 @@ function Checkout() {
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={handleConfirmPurchase}
-              >
-                Confirm Purchase
-              </button>
-              <button
-                type="button"
-                onClick={() => { navigate(-1, { replace: true }) }}
-              >
-                Back
-              </button>
+              <div className="container-buttons-checkout">
+                <button
+                  type="button"
+                  onClick={handleConfirmPurchase}
+                >
+                  Confirm Purchase
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { navigate(-1, { replace: true }) }}
+                >
+                  Back
+                </button>
 
-              <span className="disclaimer-checkout"
-                style={{ fontSize: "0.75rem" }}
-              >
-                <FaUnlockKeyhole /> This is a NON-secure, TLS-encrypted transaction.
-              </span>
+                <span className="disclaimer-checkout"
+                  style={{ fontSize: "0.75rem" }}
+                >
+                  <FaUnlockKeyhole /> This is a NON-secure, TLS-encrypted transaction.
+                </span>
+              </div>
             </>)}
         </div>
 

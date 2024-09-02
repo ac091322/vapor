@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
 
 
-function Confirmation({ shoppingCartFromLoaderData }) {
-console.log("🚀 ~ Confirmation ~ shoppingCartFromLoaderData:", shoppingCartFromLoaderData)
-
-
-
+function Confirmation({ purchasedGames }) {
   return (
     <>
       <div className="container-title-checkout">
@@ -17,15 +13,18 @@ console.log("🚀 ~ Confirmation ~ shoppingCartFromLoaderData:", shoppingCartFro
         }}>step 2 of 2</span>
       </div>
 
-      <p>Congratulations, you have successfully "purchased" the following games, and you didn't even have to pay an actual dime!</p>
+      {purchasedGames.length === 1
+        ? <p>Congratulations, you&apos;ve successfully "purchased" the following game, and you didn&apos;t even have to pay an actual dime!</p>
+        : <p>Congratulations, you&apos;ve successfully "purchased" the following games, and you didn&apos;t even have to pay an actual dime!</p>}
+
 
       <div style={{
         display: "flex",
         flexDirection: "column",
         gap: "5px",
-        marginBottom: "20px"
+        marginTop: "20px"
       }}>
-        {shoppingCartFromLoaderData?.map(cartItem => (
+        {purchasedGames?.map(cartItem => (
           <div
             key={cartItem.game_id}
             className="container-games-in-shopping-cart"
@@ -36,9 +35,9 @@ console.log("🚀 ~ Confirmation ~ shoppingCartFromLoaderData:", shoppingCartFro
         ))}
       </div>
 
-      <span>Enjoy!</span>
-
-      <Link to="/user?activeTab=library">
+      <Link
+        className="container-buttons-checkout"
+        to="/user?activeTab=library">
         <button type="button">
           Go to Library
         </button>

@@ -103,6 +103,7 @@
 .container-create-game-page button {
   height: 40px;
   width: 100%;
+  border-radius: 2px;
   outline: none;
   color: white;
   background: linear-gradient(to right, rgb(37, 190, 251), rgb(48, 118, 249));
