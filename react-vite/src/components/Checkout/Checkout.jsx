@@ -24,7 +24,7 @@ function Checkout() {
     if (!currentUser) navigate("/");
     if (currentUser && myShoppingCart?.length === 0) navigate("/");
     if (currentUser) dispatch(thunkShoppingCartUserGet(shoppingCartId));
-  }, [currentUser, shoppingCartId, navigate]);
+  }, [dispatch, currentUser, shoppingCartId, myShoppingCart?.length, navigate]);
 
   const handleConfirmPurchase = () => {
     setPurchasedGames(myShoppingCart);

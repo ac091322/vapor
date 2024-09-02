@@ -14,8 +14,8 @@ function Confirmation({ purchasedGames }) {
       </div>
 
       {purchasedGames.length === 1
-        ? <p>Congratulations, you&apos;ve successfully "purchased" the following game, and you didn&apos;t even have to pay an actual dime!</p>
-        : <p>Congratulations, you&apos;ve successfully "purchased" the following games, and you didn&apos;t even have to pay an actual dime!</p>}
+        ? <p>Congratulations, you&apos;ve successfully &quot;purchased&quot; the following game, and you didn&apos;t even have to pay an actual dime!</p>
+        : <p>Congratulations, you&apos;ve successfully &quot;purchased&quot; the following games, and you didn&apos;t even have to pay an actual dime!</p>}
 
 
       <div style={{
