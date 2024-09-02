@@ -16,6 +16,7 @@ from .api.screenshot_routes import screenshot_routes
 from .api.review_routes import review_routes
 from .api.wishlist_routes import wishlist_routes
 from .api.shopping_cart_routes import shopping_cart_routes
+from .api.library_routes import library_routes
 
 
 app = Flask(__name__, static_folder="../react-vite/dist", static_url_path="/")
@@ -44,6 +45,7 @@ app.register_blueprint(screenshot_routes, url_prefix="/api/screenshots")
 app.register_blueprint(review_routes, url_prefix="/api/reviews")
 app.register_blueprint(wishlist_routes, url_prefix="/api/wishlists")
 app.register_blueprint(shopping_cart_routes, url_prefix="/api/shopping-carts")
+app.register_blueprint(library_routes, url_prefix="/api/libraries")
 
 db.init_app(app)
 Migrate(app, db)

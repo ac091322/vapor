@@ -14,11 +14,11 @@ function NavBar() {
   const currentUser = useSelector(state => state.session.user);
   const wishlistObj = useSelector(state => state.wishlist);
   const wishlist = Object.values(wishlistObj);
-  const myWishlist = wishlist?.filter(wishlist => wishlist.user_id === currentUser?.id);
-  const shoppingCartId = currentUser?.shopping_cart?.[0]?.id;
+  const myWishlist = wishlist?.filter(wishlist => wishlist?.user_id === currentUser?.id);
+  const shoppingCartId = currentUser ? currentUser.shopping_cart?.[0]?.id : null;
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
-  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId)
+  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId)
 
   useEffect(() => {
     if (currentUser) {

@@ -105,7 +105,7 @@
 #container-tab-items-user-profile {
   margin-top: 20px;
   background-color: rgb(0, 0, 0, 0.4);
-  padding: 15px 10px 45px 10px;
+  padding: 15px 10px 40px 10px;
 }
 
 #container-tab-items-user-profile nav {
@@ -119,4 +119,29 @@
 .active-link {
   text-decoration: underline;
   color: #67C1F5;
+}
+
+#container-shopping-cart-total-calculations {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 0, 0, 0.4);
+  color: white;
+  gap: 15px;
+  padding: 15px 10px 40px 10px;
+}
+
+#container-total-calculations {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+#container-shopping-cart-total-calculations button {
+  height: 32px;
+  background: linear-gradient(to right, rgb(62, 154, 232), rgb(38, 94, 201));
+  color: white;
+  border-radius: 2px;
+  width: 100%;
 }

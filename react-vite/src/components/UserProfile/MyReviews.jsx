@@ -113,7 +113,9 @@ function MyReviews() {
                     </div>
                     <GoStarFill style={{ color: "rgb(81, 106, 123)" }} />
                   </div>
+
                 ) : (
+
                   <div className="container-recommendation-my-reviews">
                     <div style={{ color: "var(--light-beige-font-color)" }}>
                       <IoThumbsDown
@@ -130,6 +132,7 @@ function MyReviews() {
                     <GoStar style={{ color: "rgb(81, 106, 123)" }} />
                   </div>
                 )}
+
                 <div id="container-my-reviews-right">
                   <span style={{ color: "#8091A2", fontSize: "11px" }}>
                     POSTED: {review.updated_at}
@@ -138,10 +141,11 @@ function MyReviews() {
                   <p style={{
                     color: "#ACB2B8",
                     fontSize: "13px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    width: "315px",
-                    paddingRight: "10px"
+                    height: "130px",
+                    width: "305px",
+                    overflow: "scroll",
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "#888 transparent"
                   }}>
                     {review.description}
                   </p>

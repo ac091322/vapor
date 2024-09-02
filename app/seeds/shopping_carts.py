@@ -16,7 +16,8 @@ def seed_shopping_carts():
     scopely = ShoppingCart(user_id=10)
     tobspr_games = ShoppingCart(user_id=11)
     massive_monster = ShoppingCart(user_id=12)
-    demo_developer = ShoppingCart(user_id=13)
+    crafts_and_meister_co_ltd = ShoppingCart(user_id=13)
+    demo_developer = ShoppingCart(user_id=14)
 
     db.session.add_all(
         [
@@ -32,6 +33,7 @@ def seed_shopping_carts():
             scopely,
             tobspr_games,
             massive_monster,
+            crafts_and_meister_co_ltd,
             demo_developer,
         ]
     )

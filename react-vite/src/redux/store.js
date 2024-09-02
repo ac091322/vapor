@@ -13,6 +13,7 @@ import reviewReducer from "./review";
 import screenshotReducer from "./screenshot";
 import wishlistReducer from "./wishlist";
 import shoppingCartReducer from "./shoppingCart";
+import libraryReducer from "./library";
 
 
 const rootReducer = combineReducers({
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   screenshot: screenshotReducer,
   review: reviewReducer,
   wishlist: wishlistReducer,
-  shoppingCart: shoppingCartReducer
+  shoppingCart: shoppingCartReducer,
+  library: libraryReducer
 });
 
 let enhancer;

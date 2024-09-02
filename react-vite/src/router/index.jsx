@@ -6,6 +6,7 @@ import Homepage from "../components/HomePage/Homepage";
 import GameDetails from "../components/Games/GameDetails";
 import CreateGameForm from "../components/Games/CreateGameForm";
 import EditGameForm from "../components/UserProfile/EditGameForm";
+import Checkout from "../components/Checkout/Checkout";
 import Layout from "./Layout";
 
 
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "/create-game",
         element: <CreateGameForm />
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />
       }
     ]
   },

@@ -166,7 +166,7 @@ def seed_games():
 
     stumble_guys = Game(
         title="Stumble Guys",
-        user_id=9,
+        user_id=10,
         price=0.10,
         release_date=datetime(2021, 10, 7).date(),
         description="Race through obstacle courses against up to 32 players online. Run, jump and dash to the finish line until the best player takes the crown!",

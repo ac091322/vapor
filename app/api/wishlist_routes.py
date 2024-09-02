@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, wishlist, Game, User, CoverArt
+from app.models import db, wishlist, Game, User
 
 
 wishlist_routes = Blueprint("wishlists", __name__)
