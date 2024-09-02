@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { NavLink, useNavigate, useSearchParams } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { NavLink, useNavigate, useSearchParams, Link } from "react-router-dom"
+import { thunkShoppingCartUserGet } from "../../redux/shoppingCart";
 import ShoppingCart from "./ShoppingCart";
 import MyWishlist from "./MyWishlist";
 import MyGames from "./MyGames"
@@ -9,6 +10,7 @@ import defaultAvatar from "../../../public/default-avatar.png"
 import "./UserProfile.css"
 
 function UserProfile() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const currentUser = useSelector(state => state.session.user);
@@ -18,6 +20,10 @@ function UserProfile() {
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);
   const filteredReviews = reviews?.filter(review => review.user_id === currentUser?.id);
+  const shoppingCartId = currentUser.shopping_cart?.[0]?.id;
+  const shoppingCartObj = useSelector(state => state.shoppingCart);
+  const shoppingCart = Object.values(shoppingCartObj);
+  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
 
   const [activeTab, setActiveTab] = useState(searchParams.get("activeTab") || "myGames");
   const [total, setTotal] = useState(0);
@@ -26,6 +32,9 @@ function UserProfile() {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
 
+  useEffect(() => {
+    dispatch(thunkShoppingCartUserGet(shoppingCartId));
+  }, [dispatch, shoppingCartId]);
 
   const calculateTotal = (roundedTotal) => {
     setTotal(roundedTotal);
@@ -34,7 +43,7 @@ function UserProfile() {
   if (!currentUser) return null;
 
   const createdGameCount = Array.isArray(filteredGames) ? filteredGames?.length : 0;
-  // const purchasedGameCount = Array.isArray(filteredGames) ? filteredGames?.length : 0;
+  const purchasedGameCount = Array.isArray(filteredGames) ? filteredGames?.length : 0;
   const reviewedGameCount = Array.isArray(filteredReviews) ? filteredReviews?.length : 0;
   const levelCalculation = createdGameCount * 5 + reviewedGameCount * 1;
 
@@ -77,7 +86,7 @@ function UserProfile() {
 
             <div id="container-points-accumulated">
               <span style={{ color: "#61686D", fontSize: "13px" }}>Created: {createdGameCount}</span>
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Purchased: None yet...</span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>Purchased: {purchasedGameCount}</span>
               <span style={{ color: "#61686D", fontSize: "13px" }}>Reviewed: {reviewedGameCount}</span>
             </div>
           </div>
@@ -121,13 +130,29 @@ function UserProfile() {
             <div id="container-shopping-cart-total-calculations">
               <div id="container-total-calculations">
                 <span>Estimated total</span>
-                <span style={{ fontWeight: "bold", fontSize: "20px" }}>${total}</span>
+                {myShoppingCart?.length === 0
+                  ? (
+                    <span style={{ fontWeight: "bold", fontSize: "20px" }}>None</span>
+                  ) : (
+                    <span style={{ fontWeight: "bold", fontSize: "20px" }}>${total}</span>
+                  )}
               </div>
               <p style={{ fontSize: "13px" }}>Sales tax will be calculated during checkout where applicable</p>
-              <button>Continue to Payment</button>
+              {myShoppingCart?.length === 0
+                ? (
+                  <button
+                    type="button"
+                    style={{
+                      cursor: "not-allowed",
+                      background: "gray"
+                    }}
+                  >Cart is Empty</button>
+                ) : (
+                  <Link to="/checkout"><button type="button">Continue to Payment</button></Link>
+                )}
             </div>}
         </div>
-      </div>
+      </div >
     </section >
   );
 }

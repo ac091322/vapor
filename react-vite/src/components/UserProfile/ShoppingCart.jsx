@@ -33,7 +33,6 @@ function ShoppingCart({ calculateTotal }) {
     }
   }, [calculateTotal, roundedTotal]);
 
-
   const handleRemoveGame = (shoppingCartId, gameId) => {
     dispatch(thunkShoppingCartGameRemove(shoppingCartId, gameId))
       .then(() => dispatch(thunkShoppingCartUserGet(shoppingCartId)));

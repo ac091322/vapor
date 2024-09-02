@@ -143,4 +143,5 @@
   background: linear-gradient(to right, rgb(62, 154, 232), rgb(38, 94, 201));
   color: white;
   border-radius: 2px;
+  width: 100%;
 }

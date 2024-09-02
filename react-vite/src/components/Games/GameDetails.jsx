@@ -281,7 +281,7 @@ function GameDetails() {
                         style={{ cursor: "not-allowed" }}>Own Game</button>
                     ) : (
 
-                      myShoppingCart.find(cartItem => cartItem.game_id === game.id)
+                      myShoppingCart?.find(cartItem => cartItem.game_id === game?.id)
                         ? (
                           <button
                             type="button"
