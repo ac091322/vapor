@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
 import { thunkGamesGet } from "../../redux/game";
 import { thunkShoppingCartUserGet, thunkShoppingCartGameAdd } from "../../redux/shoppingCart";
+import { thunkLibraryUserGet } from "../../redux/library";
 import "./MyWishlist.css"
 
 
@@ -20,6 +21,9 @@ function MyWishlist() {
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj)
   const wishlistGames = games?.filter(game => myWishlist.some(wishlistGame => wishlistGame.game_id === game.id));
+  const libraryOjb = useSelector(state => state.library);
+  const library = Object.values(libraryOjb);
+  const myLibrary = library.filter(game => game.user_id === currentUser.id);
 
   const [removeGame, setRemoveGame] = useState(null);
 
@@ -27,6 +31,7 @@ function MyWishlist() {
     dispatch(thunkWishlistUserGet());
     dispatch(thunkGamesGet());
     dispatch(thunkShoppingCartUserGet(shoppingCartId));
+    dispatch(thunkLibraryUserGet());
   }, [dispatch, shoppingCartId]);
 
   const handleRemoveGame = (gameId) => {
@@ -43,6 +48,7 @@ function MyWishlist() {
     < section id="container-my-wishlist-component" >
       {wishlistGames?.map(game => {
         const isInShoppingCart = myShoppingCart?.some(cartItem => cartItem.game_id === game.id)
+        const inLibrary = myLibrary?.some(libraryItem => libraryItem.game_id === game.id);
 
         return (
           < div
@@ -51,7 +57,10 @@ function MyWishlist() {
           >
             <Link to={`/games/${game.id}`} >
               <div style={{ width: "325px" }}>
-                <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+                <img
+                  style={{ width: "325px", height: "150px" }}
+                  src={game?.cover_art?.[0]?.cover_art_url}
+                  alt="game-cover-art" />
               </div>
             </Link>
 
@@ -66,22 +75,34 @@ function MyWishlist() {
               </div>
 
               <div className="container-buttons-my-games">
-                {isInShoppingCart
+                {inLibrary
                   ? (
                     <button
                       type="button"
                       style={{ cursor: "not-allowed" }}
                     >
-                      In Shopping Cart
+                      Already Purchased
                     </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => handleAddGameToShoppingCart(game.id)}
-                    >
-                      Add to Cart
-                    </button>
-                  )}
+
+                  ) : isInShoppingCart
+
+                    ? (
+                      <button
+                        type="button"
+                        style={{ cursor: "not-allowed" }}
+                      >
+                        In Shopping Cart
+                      </button>
+
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => handleAddGameToShoppingCart(game.id)}
+                      >
+                        Add to Cart
+                      </button>
+                    )
+                }
                 <button
                   type="button"
                   onClick={() => setRemoveGame(game.id)}

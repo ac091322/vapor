@@ -25,6 +25,10 @@ def seed_shopping_cart_items():
         {"shopping_cart_id": 5, "game_id": 10},
         {"shopping_cart_id": 5, "game_id": 11},
         {"shopping_cart_id": 5, "game_id": 14},
+        {"shopping_cart_id": 12, "game_id": 5},
+        {"shopping_cart_id": 12, "game_id": 8},
+        {"shopping_cart_id": 12, "game_id": 11},
+        {"shopping_cart_id": 12, "game_id": 15},
     ]
 
     for entry in shopping_cart_item_entries:

@@ -127,7 +127,7 @@ def seed_users():
         password="password",
         developer_name=None,
         avatar="https://vapor-ac.s3.amazonaws.com/01_black_myth_wukong/demo-avatar.png",
-        about="You are now logged in as Demo Developer. As Demo Developer, go create a game!",
+        about="You are now logged in as Demo Developer. As Demo Developer, you do not have any games added to your wishlist or shopping cart, and have not purchased any games so your library is also empty. By default you have not left any reviews for any game. And by default, you have not created any games... so... start by doing all that! Start by creating your own game!",
     )
 
     db.session.add_all(

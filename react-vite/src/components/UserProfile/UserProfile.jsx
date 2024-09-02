@@ -2,8 +2,10 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { NavLink, useNavigate, useSearchParams, Link } from "react-router-dom"
 import { thunkShoppingCartUserGet } from "../../redux/shoppingCart";
+import { thunkLibraryUserGet } from "../../redux/library";
 import ShoppingCart from "./ShoppingCart";
 import MyWishlist from "./MyWishlist";
+import Library from "./Library";
 import MyGames from "./MyGames"
 import MyReviews from "./MyReviews"
 import defaultAvatar from "../../../public/default-avatar.png"
@@ -24,8 +26,11 @@ function UserProfile() {
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
   const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
+  const libraryOjb = useSelector(state => state.library);
+  const myLibrary = Object.values(libraryOjb);
+  const libraryGames = games?.filter(game => myLibrary.some(libraryGame => libraryGame.game_id === game.id));
 
-  const [activeTab, setActiveTab] = useState(searchParams.get("activeTab") || "myGames");
+  const [activeTab, setActiveTab] = useState(searchParams.get("activeTab") || "library");
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -34,6 +39,7 @@ function UserProfile() {
 
   useEffect(() => {
     dispatch(thunkShoppingCartUserGet(shoppingCartId));
+    dispatch(thunkLibraryUserGet());
   }, [dispatch, shoppingCartId]);
 
   const calculateTotal = (roundedTotal) => {
@@ -43,9 +49,9 @@ function UserProfile() {
   if (!currentUser) return null;
 
   const createdGameCount = Array.isArray(filteredGames) ? filteredGames?.length : 0;
-  const purchasedGameCount = Array.isArray(filteredGames) ? filteredGames?.length : 0;
+  const purchasedGameCount = Array.isArray(filteredGames) ? libraryGames?.length : 0;
   const reviewedGameCount = Array.isArray(filteredReviews) ? filteredReviews?.length : 0;
-  const levelCalculation = createdGameCount * 5 + reviewedGameCount * 1;
+  const levelCalculation = createdGameCount * 5 + purchasedGameCount * 3 + reviewedGameCount * 1;
 
   return (
     <section id="container-user-profile-page">
@@ -62,13 +68,14 @@ function UserProfile() {
               <p style={{ color: "var(--light-beige-font-color)", fontSize: "13px" }}>
                 {currentUser.id === 14
                   ? currentUser.about
-                  : "No information given."}
+                  : "Welcome developer! Any game you add to your wishlist or shopping cart will appear here. Any game you purchase will appear in your Library. Any game you create will appear under My Games. And any review you've left for a game will appear under My Reviews."}
               </p>
             </div>
           </div>
 
           {activeTab === "shoppingCart" && <ShoppingCart calculateTotal={calculateTotal} />}
           {activeTab === "wishlist" && <MyWishlist />}
+          {activeTab === "library" && <Library />}
           {activeTab === "myGames" && <MyGames />}
           {activeTab === "myReviews" && <MyReviews />}
         </div>
@@ -106,8 +113,13 @@ function UserProfile() {
                 className={activeTab === "wishlist" ? "active-link" : ""}
                 onClick={() => setActiveTab("wishlist")}
               >Wishlist</NavLink>
-              <NavLink>Library</NavLink>
-
+              <NavLink
+                to="#"
+                className={activeTab === "library" ? "active-link" : ""}
+                onClick={() => setActiveTab("library")}
+              >
+                Library
+              </NavLink>
               <NavLink
                 to="#"
                 className={activeTab === "myGames" ? "active-link" : ""}
@@ -115,7 +127,6 @@ function UserProfile() {
               >
                 My Games
               </NavLink>
-
               <NavLink
                 to="#"
                 className={activeTab === "myReviews" ? "active-link" : ""}

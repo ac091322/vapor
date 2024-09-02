@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useLoaderData, useNavigate } from "react-router-dom"
 import { FaUnlockKeyhole } from "react-icons/fa6";
 import { thunkShoppingCartUserGet, thunkShoppingCartGameRemove } from "../../redux/shoppingCart";
 import { thunkLibraryGameAdd } from "../../redux/library";
@@ -17,17 +17,14 @@ function Checkout() {
   const shoppingCart = Object.values(shoppingCartObj);
   const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
 
+
   const [confirmation, setConfirmation] = useState(false);
 
   useEffect(() => {
     if (!currentUser) navigate("/");
-    if (currentUser) dispatch(thunkShoppingCartUserGet(shoppingCartId));
     if (currentUser && myShoppingCart?.length === 0) navigate("/");
+    if (currentUser) dispatch(thunkShoppingCartUserGet(shoppingCartId));
   }, [currentUser, shoppingCartId, navigate]);
-
-  useEffect(() => {
-    dispatch(thunkShoppingCartUserGet(shoppingCartId));
-  }, [dispatch, shoppingCartId]);
 
   const handleConfirmPurchase = () => {
     myShoppingCart.forEach(game => {
@@ -65,13 +62,13 @@ function Checkout() {
   if (!currentUser) return null;
 
   return (
-    <section id="container-checkout-page">
-      <div id="container-checkout-page-inner">
+    <section className="container-checkout-page">
+      <div className="container-checkout-page-inner">
 
-        <div id="container-checkout-page-inner-left">
-          {confirmation ? <Confirmation /> :
+        <div className="container-checkout-page-inner-left">
+          {confirmation ? <Confirmation shoppingCartFromLoaderData={shoppingCartFromLoaderData} /> :
             (<>
-              <div id="container-title-checkout">
+              <div className="container-title-checkout">
                 <h1>Checkout</h1>
                 <span style={{
                   paddingTop: "5px",
@@ -82,7 +79,7 @@ function Checkout() {
 
               <p>To finalize the tax and total, please provide your billing location:</p>
 
-              <div id="container-location-checkout">
+              <div className="container-location-checkout">
                 <label className="container-local-fields-checkout">
                   Country
                   <select>
@@ -118,7 +115,7 @@ function Checkout() {
                 {myShoppingCart?.map(cartItem => (
                   <div
                     key={cartItem.game_id}
-                    id="container-games-in-shopping-cart"
+                    className="container-games-in-shopping-cart"
                   >
                     <span>{cartItem.game_title}</span>
                     <span>{cartItem.price}</span>
@@ -126,14 +123,14 @@ function Checkout() {
                 ))}
               </div>
 
-              <div id="container-cost-calculations-checkout">
-                <div id="container-price-titles">
+              <div className="container-cost-calculations-checkout">
+                <div className="container-price-titles">
                   <span>subtotal</span>
                   <span>sales tax (7.25%)</span>
                   <span>total</span>
                 </div>
 
-                <div id="container-price-values">
+                <div className="container-price-values">
                   <span>{formattedSubtotal} USD</span>
                   <span>{formattedSalesTax} USD</span>
                   <span>{formattedTotal} USD</span>
@@ -153,7 +150,7 @@ function Checkout() {
                 Back
               </button>
 
-              <span id="disclaimer-checkout"
+              <span className="disclaimer-checkout"
                 style={{ fontSize: "0.75rem" }}
               >
                 <FaUnlockKeyhole /> This is a NON-secure, TLS-encrypted transaction.

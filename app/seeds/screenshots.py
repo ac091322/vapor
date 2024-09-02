@@ -77,8 +77,8 @@ def seed_screenshots():
     )
 
     overwatch_2_screenshot_1 = Screenshot(
-        screenshot_url="https://vapor-ac.s3.amazonaws.com/02_overwatch_2/screenshot1.jpg",
-        game_id=2,
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/03_overwatch_2/screenshot1.jpg",
+        game_id=3,
         filename="screenshot_0000000000012.png",
     )
 
@@ -164,30 +164,6 @@ def seed_screenshots():
         screenshot_url="https://vapor-ac.s3.amazonaws.com/04-maplestory/screenshot9.jpg",
         game_id=4,
         filename="screenshot_0000000000026.png",
-    )
-
-    maplestory_screenshot_10 = Screenshot(
-        screenshot_url="https://vapor-ac.s3.amazonaws.com/04-maplestory/screenshot10.jpg",
-        game_id=4,
-        filename="screenshot_0000000000027.png",
-    )
-
-    maplestory_screenshot_11 = Screenshot(
-        screenshot_url="https://vapor-ac.s3.amazonaws.com/04-maplestory/screenshot11.jpg",
-        game_id=4,
-        filename="screenshot_0000000000028.png",
-    )
-
-    maplestory_screenshot_12 = Screenshot(
-        screenshot_url="https://vapor-ac.s3.amazonaws.com/04-maplestory/screenshot12.jpg",
-        game_id=4,
-        filename="screenshot_0000000000029.png",
-    )
-
-    maplestory_screenshot_13 = Screenshot(
-        screenshot_url="https://vapor-ac.s3.amazonaws.com/04-maplestory/screenshot13.jpg",
-        game_id=4,
-        filename="screenshot_0000000000030.png",
     )
 
     space_marine_2_screenshot_1 = Screenshot(
@@ -700,10 +676,6 @@ def seed_screenshots():
             maplestory_screenshot_7,
             maplestory_screenshot_8,
             maplestory_screenshot_9,
-            maplestory_screenshot_10,
-            maplestory_screenshot_11,
-            maplestory_screenshot_12,
-            maplestory_screenshot_13,
             space_marine_2_screenshot_1,
             space_marine_2_screenshot_2,
             space_marine_2_screenshot_3,

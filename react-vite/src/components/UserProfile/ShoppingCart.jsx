@@ -49,7 +49,11 @@ function ShoppingCart({ calculateTotal }) {
         >
           <Link to={`/games/${game.id}`} >
             <div style={{ width: "325px" }}>
-              <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+              <img
+              style={{width: "325px", height: "150px"}}
+              src={game?.cover_art?.[0]?.cover_art_url}
+              alt="game-cover-art"
+              />
             </div>
           </Link>
 

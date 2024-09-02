@@ -43,7 +43,11 @@ function MyGames() {
 
             <div className="container-title-date">
               <span style={{ color: "white", fontSize: "15px" }}>{game?.title}</span>
-              <div style={{ color: "var(--logo-color)", fontSize: "13px", display: "flex", flexDirection: "column", gap: "5px" }}>
+              <div style={{
+                color: "var(--logo-color)",
+                fontSize: "13px", display: "flex",
+                flexDirection: "column", gap: "5px"
+              }}>
                 <span >{game?.release_date.split("00")[0].trim()}</span>
                 <span>${game?.price}</span>
               </div>
