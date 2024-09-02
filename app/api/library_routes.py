@@ -18,6 +18,7 @@ def get_libraries():
             Game.title,
             Game.release_date,
             Game.price,
+            library.c.created_at,
         )
         .join(User, User.id == library.c.user_id)
         .join(Game, Game.id == library.c.game_id)
@@ -32,8 +33,9 @@ def get_libraries():
             "game_title": title,
             "release_date": release_date,
             "price": price,
+            "created_at": created_at,
         }
-        for user_id, game_id, username, title, release_date, price in library_entries
+        for user_id, game_id, username, title, release_date, price, created_at in library_entries
     ]
 
     return libraries, 200
@@ -51,6 +53,7 @@ def get_user_library():
             Game.title,
             Game.release_date,
             Game.price,
+            library.c.created_at,
         )
         .join(User, User.id == library.c.user_id)
         .join(Game, Game.id == library.c.game_id)
@@ -66,8 +69,9 @@ def get_user_library():
             "game_title": title,
             "release_date": release_date,
             "price": price,
+            "created_at": created_at,
         }
-        for user_id, game_id, username, title, release_date, price in library_entries
+        for user_id, game_id, username, title, release_date, price, created_at in library_entries
     ]
 
     return libraries, 200

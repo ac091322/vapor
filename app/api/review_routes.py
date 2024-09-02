@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from app.models import db, Review
 from flask_login import current_user, login_required
-from app.models import db, Review
+from app.models import db, Review, User
 from app.forms import ReviewForm
 
 
@@ -12,6 +12,17 @@ review_routes = Blueprint("reviews", __name__)
 @review_routes.route("/all", methods=["GET"])
 def get_reviews():
     reviews = Review.query.all()
+    return [review.to_dict() for review in reviews], 200
+
+
+# get all reviews of a user
+@review_routes.route("/<int:user_id>/all")
+def get_user_reviews(user_id):
+    user = User.query.get(user_id)
+    if user is None:
+        return {"error": "User not found"}, 404
+
+    reviews = Review.query.filter_by(user_id=user.id)
     return [review.to_dict() for review in reviews], 200
 
 

@@ -18,7 +18,7 @@ function NavBar() {
   const shoppingCartId = currentUser ? currentUser.shopping_cart?.[0]?.id : null;
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
-  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId)
+  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId);
 
   useEffect(() => {
     if (currentUser) {
@@ -44,9 +44,9 @@ function NavBar() {
       </div>}
 
       <ul>
-        <Link to="/user?activeTab=myGames">
+        <Link to="#">
           <li
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "not-allowed" }}
             id="container-avatar-store-link">
             <img
               style={{ height: "16px", width: "16px" }}
