@@ -31,7 +31,7 @@ function GameDetails() {
   const reviews = Object.values(reviewsObj);
   const wishlistObj = useSelector(state => state.wishlist);
   const myWishlist = Object.values(wishlistObj);
-  const shoppingCartId = currentUser?.shopping_cart?.[0]?.id;
+  const shoppingCartId = currentUser ? currentUser.shopping_cart?.[0]?.id : null;
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
   const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
