@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { BiCurrentLocation, BiLogoWindows } from "react-icons/bi";
+import { BiLogoWindows } from "react-icons/bi";
+// import { BiCurrentLocation, BiLogoWindows } from "react-icons/bi";
 import { BiLogoApple } from "react-icons/bi";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
