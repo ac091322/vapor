@@ -29,7 +29,7 @@ function Checkout() {
     } else {
       dispatch(thunkShoppingCartUserGet(shoppingCartId));
     }
-  }, [dispatch, currentUser, startup, shoppingCartId, navigate]);
+  }, [dispatch, currentUser, startup, myShoppingCart.length, shoppingCartId, navigate]);
 
   const handleConfirmPurchase = () => {
     setPurchasedGames(myShoppingCart);

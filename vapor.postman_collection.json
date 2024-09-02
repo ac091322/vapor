@@ -856,7 +856,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/shopping-carts/3/user",
+					"raw": "http://localhost:8000/api/shopping-carts/14/user",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -865,7 +865,7 @@
 					"path": [
 						"api",
 						"shopping-carts",
-						"3",
+						"14",
 						"user"
 					]
 				}

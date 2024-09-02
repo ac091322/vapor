@@ -33,6 +33,8 @@ def get_games_in_shopping_cart(shopping_cart_id):
             Game.title,
             Game.release_date,
             Game.price,
+            shopping_cart_item.c.created_at,
+            shopping_cart_item.c.updated_at,
         )
         .join(Game, Game.id == shopping_cart_item.c.game_id)
         .join(ShoppingCart, ShoppingCart.id == shopping_cart_item.c.shopping_cart_id)
@@ -47,8 +49,10 @@ def get_games_in_shopping_cart(shopping_cart_id):
             "game_title": title,
             "release_date": release_date,
             "price": price,
+            "created_at": created_at,
+            "updated_at": updated_at,
         }
-        for shopping_cart_id, game_id, title, release_date, price in shopping_cart_entries
+        for shopping_cart_id, game_id, title, release_date, price, created_at, updated_at in shopping_cart_entries
     ]
 
     return user_shopping_cart, 200
