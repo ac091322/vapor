@@ -6,7 +6,6 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
-import userReducer from "./user";
 import gameReducer from "./game";
 import coverArtReducer from "./coverArt";
 import reviewReducer from "./review";
@@ -18,7 +17,6 @@ import libraryReducer from "./library";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  user: userReducer,
   game: gameReducer,
   coverArt: coverArtReducer,
   screenshot: screenshotReducer,

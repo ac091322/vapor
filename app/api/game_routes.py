@@ -19,13 +19,12 @@ def get_games():
 @game_routes.route("/<int:game_id>/get", methods=["GET", "DELETE"])
 def get_game(game_id):
     game = Game.query.get(game_id)
+    if game is None:
+        return {"error": "Game not found"}, 404
 
     if request.method == "DELETE":
         if not current_user.is_authenticated:
             return {"error": "User not authenticated"}, 401
-
-        if game is None:
-            return {"error": "Game not found"}, 404
 
         if game.user_id != current_user.id:
             return {"error": "Forbidden"}, 403
@@ -35,8 +34,6 @@ def get_game(game_id):
         return {"message": "Game deleted"}, 200
 
     else:
-        if game is None:
-            return {"error": "Game not found"}, 404
         return game.to_dict(), 200
 
 
@@ -129,6 +126,9 @@ def delete_game(game_id):
 @game_routes.route("/<int:game_id>/reviews", methods=["GET"])
 def get_game_reviews(game_id):
     game = Game.query.get(game_id)
+    if game is None:
+        return {"error": "Game not found"}, 404
+
     reviews = game.review
     return [review.to_dict() for review in reviews], 200
 

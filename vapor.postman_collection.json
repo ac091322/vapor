@@ -553,6 +553,28 @@
 			"response": []
 		},
 		{
+			"name": "get all reviews by user id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/1/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"1",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get reviews by game id",
 			"request": {
 				"method": "GET",
