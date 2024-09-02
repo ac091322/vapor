@@ -5,6 +5,7 @@ import { IoThumbsDown } from "react-icons/io5";
 import { useModal } from "../../context/Modal"
 import { thunkReviewCreate } from "../../redux/review";
 import "./ReviewFormModal.css"
+import { thunkUsersGet } from "../../redux/user";
 
 
 function ReviewFormModal({ userId, gameId }) {

@@ -23,7 +23,6 @@ const deleteReview = (reviewId) => ({
   payload: reviewId
 });
 
-
 export const thunkReviewsGet = () => async (dispatch) => {
   const response = await fetch("/api/reviews/all", {
     method: "GET"

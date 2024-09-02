@@ -5,7 +5,7 @@ import { IoThumbsUp } from "react-icons/io5";
 import { IoThumbsDown } from "react-icons/io5";
 import { GoStarFill } from "react-icons/go";
 import { GoStar } from "react-icons/go";
-import { thunkUsersGet } from "../../redux/user";
+// import { thunkUsersGet } from "../../redux/user";
 import { thunkReviewsGet } from "../../redux/review";
 import defaultAvatar from "../../../public/default-avatar.png"
 import "./Reviews.css";
@@ -15,21 +15,25 @@ function Reviews() {
   const dispatch = useDispatch();
   const { gameId } = useParams();
 
-  const users = useSelector(state => state.user);
+  const currentUser = useSelector(state => state.session.user);
+
+  // const usersObj = useSelector(state => state.user);
+  // const users = Object.values(usersObj);
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);
   const filteredReviews = reviews.filter(review => review.game_id === +gameId);
+  console.log("🚀 ~ Reviews ~ filteredReviews:", filteredReviews)
 
   useEffect(() => {
-    dispatch(thunkUsersGet());
+    // dispatch(thunkUsersGet());
     dispatch(thunkReviewsGet());
   }, [dispatch, gameId])
 
   return (
     <section id="container-review-component">
 
-      {filteredReviews?.length > 0 ? filteredReviews?.map((review) => {
-        const user = users[review.user_id];
+      {filteredReviews.length > 0 ? filteredReviews.map(review => {
+        // const user = users[review.user_id];
 
         return (
           <div
@@ -43,15 +47,15 @@ function Reviews() {
                 alt="default-avatar"
               />
               <div>
-                <span>{user?.username}</span>
+                <span>{review.username}</span>
 
                 <span style={{ fontSize: "12px" }}>
-                  {user?.reviews?.length === 1
+                  {/* {user?.reviews?.length === 1
                     ? (
                       <>{user?.reviews?.length} review</>
                     ) : (
                       <>{user?.reviews?.length} reviews</>
-                    )}
+                    )} */}
                 </span>
               </div>
             </div>

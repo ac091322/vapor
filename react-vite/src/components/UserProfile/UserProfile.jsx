@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { NavLink, useNavigate, useSearchParams, Link } from "react-router-dom"
 import { thunkShoppingCartUserGet } from "../../redux/shoppingCart";
 import { thunkLibraryUserGet } from "../../redux/library";
+import { thunkReviewsGet } from "../../redux/review";
 import ShoppingCart from "./ShoppingCart";
 import MyWishlist from "./MyWishlist";
 import Library from "./Library";
@@ -40,6 +41,7 @@ function UserProfile() {
   useEffect(() => {
     dispatch(thunkShoppingCartUserGet(shoppingCartId));
     dispatch(thunkLibraryUserGet());
+    dispatch(thunkReviewsGet());
   }, [dispatch, shoppingCartId]);
 
   const calculateTotal = (roundedTotal) => {

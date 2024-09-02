@@ -36,10 +36,10 @@ function GameDetails() {
   const shoppingCartId = currentUser ? currentUser.shopping_cart?.[0]?.id : null;
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
-  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
+  const myShoppingCart = currentUser ? shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId) : null;
   const libraryOjb = useSelector(state => state.library);
   const library = Object.values(libraryOjb);
-  const myLibrary = library.filter(game => game.user_id === currentUser.id);
+  const myLibrary = currentUser ? library.filter(libraryItem => libraryItem?.user_id === currentUser.id) : null;
 
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");
