@@ -44,9 +44,9 @@ function NavBar() {
       </div>}
 
       <ul>
-        <Link to="/user?activeTab=myGames">
+        <Link to="#">
           <li
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "not-allowed" }}
             id="container-avatar-store-link">
             <img
               style={{ height: "16px", width: "16px" }}

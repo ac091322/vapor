@@ -18,16 +18,22 @@ function Checkout() {
   const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
 
   const [purchasedGames, setPurchasedGames] = useState([]);
-  const [confirmation, setConfirmation] = useState(false);
+  const [confirmationComponent, setConfirmationComponent] = useState(false);
+  const [startup, setStartup] = useState(true);
 
   useEffect(() => {
-    if (!currentUser) navigate("/");
-    if (currentUser && myShoppingCart?.length === 0) navigate("/");
-    if (currentUser) dispatch(thunkShoppingCartUserGet(shoppingCartId));
-  }, [dispatch, currentUser, shoppingCartId, myShoppingCart?.length, navigate]);
+    if (!currentUser) {
+      navigate("/");
+    } else if (startup && myShoppingCart.length === 0) {
+      navigate("/");
+    } else {
+      dispatch(thunkShoppingCartUserGet(shoppingCartId));
+    }
+  }, [dispatch, currentUser, startup, shoppingCartId, navigate]);
 
   const handleConfirmPurchase = () => {
     setPurchasedGames(myShoppingCart);
+    setStartup(false);
 
     myShoppingCart.forEach(game => {
       const gameData = {
@@ -38,7 +44,7 @@ function Checkout() {
         .then(() => dispatch(thunkShoppingCartGameRemove(shoppingCartId, game.game_id)));
     });
 
-    setConfirmation(true);
+    setConfirmationComponent(true);
   };
 
   const calculateSubtotal = () => {
@@ -68,7 +74,7 @@ function Checkout() {
       <div className="container-checkout-page-inner">
 
         <div className="container-checkout-page-inner-left">
-          {confirmation ? <Confirmation purchasedGames={purchasedGames} /> :
+          {confirmationComponent ? <Confirmation purchasedGames={purchasedGames} /> :
             (<>
               <div className="container-title-checkout">
                 <h1>Checkout</h1>
