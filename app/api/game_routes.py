@@ -211,3 +211,22 @@ def add_game_to_shopping_cart(game_id, shopping_cart_id):
     db.session.commit()
 
     return {"message": "Game added to shopping cart"}, 201
+
+
+# add game to current user's library by game_id
+@game_routes.route("/<int:game_id>/user/library/post", methods=["POST"])
+@login_required
+def add_game_to_library(game_id):
+    game = Game.query.get(game_id)
+    if game is None:
+        return {"error": "Game not found"}, 404
+
+    if game.id == current_user.id:
+        return {"error": "Forbidden"}, 403
+
+    if game in current_user.game_in_library:
+        return {"error": "Game already in library"}, 409
+
+    current_user.game_in_library.append(game)
+    db.session.commit()
+    return {"message": "Game added to library"}, 201

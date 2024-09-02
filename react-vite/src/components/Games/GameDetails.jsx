@@ -36,7 +36,6 @@ function GameDetails() {
   const shoppingCart = Object.values(shoppingCartObj);
   const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
 
-
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");
   const [showMenu, setShowMenu] = useState(false);

@@ -67,6 +67,36 @@
 			"response": []
 		},
 		{
+			"name": "log in nexon user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"nexon@vapor.io\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get all users",
 			"request": {
 				"method": "GET",
@@ -475,12 +505,12 @@
 							"key": "screenshot_url",
 							"type": "file",
 							"src": [
-								"/Users/alanc/Desktop/screenshot1.jpg",
-								"/Users/alanc/Desktop/screenshot6.jpg",
-								"/Users/alanc/Desktop/screenshot5.jpg",
-								"/Users/alanc/Desktop/screenshot4.jpg",
-								"/Users/alanc/Desktop/screenshot3.jpg",
-								"/Users/alanc/Desktop/screenshot2.jpg"
+								"postman-cloud:///1ef66e04-d77d-40a0-914d-ecac6862e98b",
+								"postman-cloud:///1ef66e04-d6e5-4ac0-9ad1-9f5c83efacdf",
+								"postman-cloud:///1ef66e04-d387-4db0-8aa1-eafc67a92bf3",
+								"postman-cloud:///1ef66e04-d747-4540-b5e3-bd1613701b3b",
+								"postman-cloud:///1ef66e04-d840-45a0-97f1-5448f3a502be",
+								"postman-cloud:///1ef66e04-dd38-4530-ad4a-2ba1a5516ee9"
 							]
 						}
 					]
@@ -694,7 +724,7 @@
 			"response": []
 		},
 		{
-			"name": "add game to wishlist through user id",
+			"name": "add game to wishlist of current user",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -793,6 +823,143 @@
 						"api",
 						"shopping-carts",
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get games in shopping cart of current user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/shopping-carts/3/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shopping-carts",
+						"3",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add game to shopping cart of current user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/games/1/13/user/shopping-cart/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"1",
+						"13",
+						"user",
+						"shopping-cart",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove game from shopping cart of current user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/shopping-carts/13/1/user/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"shopping-carts",
+						"13",
+						"1",
+						"user",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all libraries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/libraries/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"libraries",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get library of current user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/libraries/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"libraries",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add game to library of current user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/games/1/user/library/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"games",
+						"1",
+						"user",
+						"library",
+						"post"
 					]
 				}
 			},

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { FaUnlockKeyhole } from "react-icons/fa6";
-import { thunkShoppingCartUserGet } from "../../redux/shoppingCart";
+import { thunkShoppingCartUserGet, thunkShoppingCartGameRemove } from "../../redux/shoppingCart";
+import { thunkLibraryGameAdd } from "../../redux/library";
 import Confirmation from "./Confirmation";
 import "./Checkout.css";
 
@@ -27,6 +28,19 @@ function Checkout() {
   useEffect(() => {
     dispatch(thunkShoppingCartUserGet(shoppingCartId));
   }, [dispatch, shoppingCartId]);
+
+  const handleConfirmPurchase = () => {
+    myShoppingCart.forEach(game => {
+      const gameData = {
+        user_id: Number(currentUser.id),
+        game_id: Number(game.game_id)
+      }
+      dispatch(thunkLibraryGameAdd(gameData))
+        .then(() => dispatch(thunkShoppingCartGameRemove(shoppingCartId, game.game_id)));
+    });
+
+    setConfirmation(true);
+  };
 
   const calculateSubtotal = () => {
     return Array.isArray(myShoppingCart) ? myShoppingCart?.reduce((accum, game) => accum + parseFloat(game.price), 0) : 0;
@@ -128,7 +142,7 @@ function Checkout() {
 
               <button
                 type="button"
-                onClick={() => setConfirmation(true)}
+                onClick={handleConfirmPurchase}
               >
                 Confirm Purchase
               </button>
