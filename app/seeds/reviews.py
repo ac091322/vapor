@@ -164,7 +164,7 @@ def seed_reviews():
     )
 
     gamescience_review_space_marine_2 = Review(
-        description="",
+        description="Can't wait til this game comes out!",
         thumbs_up=True,
         thumbs_down=False,
         user_id=1,
@@ -172,7 +172,7 @@ def seed_reviews():
     )
 
     blizzard_review_space_marine_2 = Review(
-        description="",
+        description="I've been waiting forever!!! Hurry up already Saber!",
         thumbs_up=True,
         thumbs_down=False,
         user_id=2,
@@ -180,7 +180,7 @@ def seed_reviews():
     )
 
     nexon_review_space_marine_2 = Review(
-        description="",
+        description="I'm excited. I've been waiting for 2 years.",
         thumbs_up=True,
         thumbs_down=False,
         user_id=3,
@@ -188,7 +188,7 @@ def seed_reviews():
     )
 
     arsi_review_space_marine_2 = Review(
-        description="",
+        description="if i have to wait any longer, i'm changing my thumbs up to a thumbs DOWN!!!",
         thumbs_up=True,
         thumbs_down=False,
         user_id=5,
@@ -196,9 +196,9 @@ def seed_reviews():
     )
 
     firaxis_review_space_marine_2 = Review(
-        description="",
-        thumbs_up=True,
-        thumbs_down=False,
+        description="tired of waiting...",
+        thumbs_up=False,
+        thumbs_down=True,
         user_id=6,
         game_id=5,
     )

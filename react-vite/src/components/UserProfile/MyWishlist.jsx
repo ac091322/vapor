@@ -5,6 +5,7 @@ import { thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishl
 import { thunkGamesGet } from "../../redux/game";
 import { thunkShoppingCartUserGet, thunkShoppingCartGameAdd } from "../../redux/shoppingCart";
 import { thunkLibraryUserGet } from "../../redux/library";
+import coverArtPlaceholder from "../../../public/cover-art-placeholder.png"
 import "./MyWishlist.css"
 
 
@@ -55,11 +56,11 @@ function MyWishlist() {
             key={game.id}
             className="container-wishlist-inner"
           >
-            <Link to={`/games/${game.id}`} >
+            <Link to={`/games/${game?.id}`} >
               <div style={{ width: "325px" }}>
                 <img
                   style={{ width: "325px", height: "150px" }}
-                  src={game?.cover_art?.[0]?.cover_art_url}
+                  src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder}
                   alt="game-cover-art" />
               </div>
             </Link>
@@ -97,7 +98,7 @@ function MyWishlist() {
                     ) : (
                       <button
                         type="button"
-                        onClick={() => handleAddGameToShoppingCart(game.id)}
+                        onClick={() => handleAddGameToShoppingCart(game?.id)}
                       >
                         Add to Cart
                       </button>
@@ -105,14 +106,14 @@ function MyWishlist() {
                 }
                 <button
                   type="button"
-                  onClick={() => setRemoveGame(game.id)}
+                  onClick={() => setRemoveGame(game?.id)}
                 >
                   Remove from Wishlist
                 </button>
 
                 {removeGame === game?.id &&
                   <div className="container-delete-game-confirmation">
-                    <button onClick={() => handleRemoveGame(game.id)}>
+                    <button onClick={() => handleRemoveGame(game?.id)}>
                       Yes
                     </button>
 

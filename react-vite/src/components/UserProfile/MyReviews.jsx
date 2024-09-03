@@ -9,6 +9,7 @@ import { thunkGamesGet } from "../../redux/game";
 import { thunkReviewsGet, thunkReviewDelete } from "../../redux/review";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import EditReviewFormModal from "./EditReviewFormModal";
+import coverArtPlaceholder from "../../../public/cover-art-placeholder.png"
 import "./MyReviews.css"
 
 
@@ -61,8 +62,8 @@ function MyReviews() {
           >
             <div id="container-game-cover-art-review">
               <div>
-                <Link to={`/games/${game.id}`}>
-                  <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+                <Link to={`/games/${game?.id}`}>
+                  <img src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder} alt="game-cover-art" />
                 </Link>
 
                 <div id="container-buttons-my-reviews">
@@ -70,7 +71,7 @@ function MyReviews() {
                     <OpenModalMenuItem
                       itemText="Edit"
                       onItemClick={closeMenu}
-                      modalComponent={<EditReviewFormModal userId={currentUser.id} gameId={game.id} reviewId={review.id} />}
+                      modalComponent={<EditReviewFormModal userId={currentUser?.id} gameId={game?.id} reviewId={review?.id} />}
                     />
                   </button>
 

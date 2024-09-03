@@ -34,7 +34,7 @@ function MyGames() {
           key={game.id}
           className="container-own-games-inner"
         >
-          <Link to={`/games/${game.id}`} >
+          <Link to={`/games/${game?.id}`} >
             <div style={{ width: "325px" }}>
               <img src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder} alt="game-cover-art" />
             </div>
@@ -62,14 +62,14 @@ function MyGames() {
               </button>
 
               <button type="button"
-                onClick={() => setDeleteGame(game.id)}
+                onClick={() => setDeleteGame(game?.id)}
               >
                 Delete
               </button>
 
               {deleteGame === game?.id &&
                 <div className="container-delete-game-confirmation">
-                  <button onClick={() => handleDeleteGame(game.id)}>
+                  <button onClick={() => handleDeleteGame(game?.id)}>
                     Yes
                   </button>
 
