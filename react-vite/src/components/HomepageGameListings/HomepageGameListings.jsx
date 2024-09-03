@@ -131,8 +131,8 @@ function HomepageGameListings() {
 
           <div id="container-overall-reviews">
             <span> Overall user reviews: {selectedGameDisplay?.reviews ? selectedGameDisplay?.reviews?.length : 0}</span>
-            <span>Positive reviews: {thumbsCount.thumbsUp}</span>
-            <span>Negative reviews: {thumbsCount.thumbsDown}</span>
+            <span>Positive reviews: {thumbsCount?.thumbsUp}</span>
+            <span>Negative reviews: {thumbsCount?.thumbsDown}</span>
           </div>
 
           <div id="container-genre-tags-game-listing">
