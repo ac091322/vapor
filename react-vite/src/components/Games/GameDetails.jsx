@@ -17,7 +17,8 @@ import NavBar from "../Navigation/NavBar";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../Reviews/ReviewFormModal";
 import Reviews from "../Reviews/Reviews";
-import screenshotPlaceholder from "../../../public/screenshot-placeholder.png"
+import coverArtPlaceholder from "../../../public/cover-art-placeholder.png";
+import screenshotPlaceholder from "../../../public/screenshot-placeholder.png";
 // import videoPlaceholder from "../../../public/video-placeholder.png"
 import "./GameDetails.css";
 
@@ -193,7 +194,7 @@ function GameDetails() {
           <div id="container-game-carousel-game-details-right">
             <img
               style={{ width: "325px", height: "150px" }}
-              src={game?.cover_art?.[0]?.cover_art_url} alt="cover-art"
+              src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder} alt="cover-art"
             />
             <p>{game?.description}</p>
 
