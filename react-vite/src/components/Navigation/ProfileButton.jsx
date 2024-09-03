@@ -71,11 +71,11 @@ function ProfileButton() {
             </Link>
           </div>
         ) : (
-          <>
-            <Link style={{ fontSize: "12px" }} to="/login">login</Link>
-            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-            <Link style={{ fontSize: "12px" }} to="/signup">signup</Link>
-          </>)
+          <div id="container-login-signup">
+            <Link className="login-signup-buttons" to="/login">login</Link>
+            <span style={{ color: "var(--logo-color" }}>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+            <Link className="login-signup-buttons" to="/signup">signup</Link>
+          </div>)
       }
     </>
   );

@@ -116,3 +116,7 @@
   font-size: 1.3rem;
   color: rgb(46, 67, 98);
 }
+
+#container-search-bar-nav button:hover {
+  background-color: rgb(135, 194, 231);
+}

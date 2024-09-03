@@ -248,11 +248,11 @@ function GameDetails() {
               < div className="sign-in-wish-list-bar">
                 Click on the button to remove the game from your wishlist
                 <button
+                  id="button-in-wishlist-game-details"
                   onClick={() => removeGameFromWishlist(gameId)}
-                  style={{
-                    color: "var(--logo-color)",
-                    background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))"
-                  }}>In Wishlist</button>
+                >
+                  In Wishlist
+                </button>
               </div>
             ) : (
               < div className="sign-in-wish-list-bar">
