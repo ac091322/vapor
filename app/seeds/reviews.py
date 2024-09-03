@@ -243,38 +243,146 @@ def seed_reviews():
         game_id=7,
     )
 
+    firaxis_review_gundam_breaker_4 = Review(
+        description="Fun addicting game with some obvious lack of budget issues like bad qol and choppy animations but still one of the best mecha games you can currently get for pc.",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=6,
+        game_id=15,
+    )
+
+    valve_review_gundam_breaker_4 = Review(
+        description="Extralarge Barbatos Mace ruined all the fun. Broken piece of *gear*. Every one running around it. Killed al the progression. FIX it!",
+        thumbs_up=False,
+        thumbs_down=True,
+        user_id=7,
+        game_id=15,
+    )
+
+    iron_clad_games_review_gundam_breaker_4 = Review(
+        description="U can still get hit and killed while listening to plot convos in the middle of battle while the boss is immune during the convos. And if u guys havent read other reviews, the story is ♥♥♥♥♥♥♥ bad.",
+        thumbs_up=False,
+        thumbs_down=True,
+        user_id=8,
+        game_id=15,
+    )
+
+    firaxis_review_cult_of_the_lamb = Review(
+        description="I am struggling with post game decisions in place after the sins updates. I started a new playthrough and was able to beat the main game with most all unlocks in a couple of evenings at most. You are immediately sent into challenge level dungeons and most of your resources burnt or stolen right after you win against the bishop. Not even 10 minutes of enjoying becoming a god or building up your base. To make it worse it locked me out of other quest lines for purgatory progression instead. This was my third playthrough and I was excited to get into the newer content, but its just soul sucking and time consuming unfun re-progression locked glorp I already had unlocked, but was taken away.",
+        thumbs_up=False,
+        thumbs_down=True,
+        user_id=6,
+        game_id=14,
+    )
+
+    valve_review_cult_of_the_lamb = Review(
+        description="this game rocks coop is a little jarring at first though, dislike that it is ONLY through steam streaming/couch coop but they explained that they'd have to recode the game otherwise",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=7,
+        game_id=14,
+    )
+
+    iron_clad_games_review_cult_of_the_lamb = Review(
+        description="not a big fan of it honestly, the combat was fine and the building was also just meh. It's clearly a labor of love but I think the hype made me a bit disapointed.",
+        thumbs_up=False,
+        thumbs_down=True,
+        user_id=8,
+        game_id=14,
+    )
+
+    suspicious_developments_inc_review_dota_2 = Review(
+        description="dont play it. its so broken now. LIterally a win once, lose 400 times, regardless of role or skill. That is if you even are matched with your skill. Dota used to be about the game and players, its clear the money is their only focus now.",
+        thumbs_up=False,
+        thumbs_down=True,
+        user_id=9,
+        game_id=12,
+    )
+
+    scopely_review_dota_2 = Review(
+        description="damn ♥♥♥♥ ranking system. Too many toxic behaviors and gutter trash like swines in ranking. This game is dead. Ranking system developers should go eat ♥♥♥♥.",
+        thumbs_up=False,
+        thumbs_down=True,
+        user_id=10,
+        game_id=12,
+    )
+
+    tobspr_games_review_dota_2 = Review(
+        description="I've been playing Dota 2 since 2017, and it's been an incredible journey. The game offers a perfect blend of strategy, teamwork, and individual skill, keeping it fresh and exciting even after all these years. The frequent updates and a vast roster of unique heroes mean there's always something new to explore. Whether you're playing with friends or solo, every match feels different and challenging. Dota 2's deep mechanics and high skill ceiling make every victory feel truly rewarding. It's more than just a game—it's a constantly evolving experience.",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=11,
+        game_id=12,
+    )
+
+    massive_monster_review_dota_2 = Review(
+        description="Its Dota, it embodies a classic. For players getting into the game, keep in mind its made with the pro scene in mind, so its balanced for them. Lower level play sees some heroes shine more easily (it wont take you long to specify them), so invest in learning strategies against them from early on. GLHF!",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=12,
+        game_id=12,
+    )
+
+    crafts_and_meister_co_ltd_review_tactical_breach_wizards = Review(
+        description="I did not play much, but it was just a bit too easy for me coming from Xcom and Fire Emblem. I also really was not a fan of the goofy dialogue, it felt very marvel-esque with its use of quips, one liners, and puns. Just not a good fit for me. Maybe you will like it though. I don't think its a BAD game.",
+        thumbs_up=False,
+        thumbs_down=True,
+        user_id=13,
+        game_id=10,
+    )
+
+    suspicious_developments_inc_review_sin_of_a_solar_empire_ii = Review(
+        description="Fast paced, highly enjoyable X4 game with RTS elements, similar to Stellaris but more tactical, less micro management, and faster paced. Most games are wrapped up in 3~10 hours depending on map size. My only criticism is the limited total fleet supply that prevents players from having many large fleets at once, which would be useful on the very large maps with many empires.",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=9,
+        game_id=6,
+    )
+
     db.session.add_all(
         [
-                blizzard_review_black_my_wukong,
-                nexon_review_black_my_wukong,
-                saber_review_black_my_wukong,
-                arsi_review_black_my_wukong,
-                firaxis_review_black_my_wukong,
-                gamescience_review_counterstrike_2,
-                blizzard_review_counterstrike_2,
-                saber_review_counterstrike_2,
-                nexon_review_counterstrike_2,
-                arsi_review_counterstrike_2,
-                gamescience_review_overwatch2,
-                nexon_review_overwatch_2,
-                saber_review_overwatch_2,
-                arsi_review_overwatch_2,
-                firaxis_review_overwatch_2,
-                gamescience_review_maplestory,
-                blizzard_review_maplestory,
-                saber_review_maplestory,
-                arsi_review_maplestory,
-                firaxis_review_maplestory,
-                gamescience_review_space_marine_2,
-                blizzard_review_space_marine_2,
-                nexon_review_space_marine_2,
-                arsi_review_space_marine_2,
-                firaxis_review_space_marine_2,
-                blizzard_review_art_of_war_red_tides,
-                nexon_review_art_of_war_red_tides,
-                saber_review_art_of_war_red_tides,
-                arsi_review_art_of_war_red_tides,
-                firaxis_review_art_of_war_red_tides,
+            blizzard_review_black_my_wukong,
+            nexon_review_black_my_wukong,
+            saber_review_black_my_wukong,
+            arsi_review_black_my_wukong,
+            firaxis_review_black_my_wukong,
+            gamescience_review_counterstrike_2,
+            blizzard_review_counterstrike_2,
+            saber_review_counterstrike_2,
+            nexon_review_counterstrike_2,
+            arsi_review_counterstrike_2,
+            gamescience_review_overwatch2,
+            nexon_review_overwatch_2,
+            saber_review_overwatch_2,
+            arsi_review_overwatch_2,
+            firaxis_review_overwatch_2,
+            gamescience_review_maplestory,
+            blizzard_review_maplestory,
+            saber_review_maplestory,
+            arsi_review_maplestory,
+            firaxis_review_maplestory,
+            gamescience_review_space_marine_2,
+            blizzard_review_space_marine_2,
+            nexon_review_space_marine_2,
+            arsi_review_space_marine_2,
+            firaxis_review_space_marine_2,
+            blizzard_review_art_of_war_red_tides,
+            nexon_review_art_of_war_red_tides,
+            saber_review_art_of_war_red_tides,
+            arsi_review_art_of_war_red_tides,
+            firaxis_review_art_of_war_red_tides,
+            firaxis_review_gundam_breaker_4,
+            valve_review_gundam_breaker_4,
+            iron_clad_games_review_gundam_breaker_4,
+            firaxis_review_cult_of_the_lamb,
+            valve_review_cult_of_the_lamb,
+            iron_clad_games_review_cult_of_the_lamb,
+            suspicious_developments_inc_review_dota_2,
+            scopely_review_dota_2,
+            tobspr_games_review_dota_2,
+            massive_monster_review_dota_2,
+            crafts_and_meister_co_ltd_review_tactical_breach_wizards,
+            suspicious_developments_inc_review_sin_of_a_solar_empire_ii,
         ]
     )
     db.session.commit()

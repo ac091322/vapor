@@ -23,7 +23,7 @@ function HomepageGameListings() {
     if (games.length > 0 && selectedGame === null) {
       setSelectedGame(games[0].id);
     }
-  }, [games]);
+  }, [games, selectedGame]);
 
   useEffect(() => {
     dispatch(thunkGamesGet());
@@ -40,9 +40,6 @@ function HomepageGameListings() {
   };
 
   const selectedGameDisplay = games.find(game => game.id === selectedGame);
-  console.log("🚀 ~ HomepageGameListings ~ selectedGameDisplay:", selectedGameDisplay)
-
-  // const thunbsUp = selectedGameDisplay.reviews.filter(review => review.thumbs_up === true)
 
   return (
     <section id="container-game-listing-component">
