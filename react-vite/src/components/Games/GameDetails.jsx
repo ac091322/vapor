@@ -37,10 +37,10 @@ function GameDetails() {
   const shoppingCartId = currentUser ? currentUser.shopping_cart?.[0]?.id : null;
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
-  const myShoppingCart = currentUser ? shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId) : null;
+  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId);
   const libraryOjb = useSelector(state => state.library);
   const library = Object.values(libraryOjb);
-  const myLibrary = currentUser ? library.filter(libraryItem => libraryItem?.user_id === currentUser.id) : null;
+  const myLibrary = library?.filter(libraryItem => libraryItem?.user_id === currentUser?.id);
 
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");
@@ -236,7 +236,7 @@ function GameDetails() {
 
         {currentUser ? (
 
-          game?.user.user_id === currentUser.id ? (
+          game?.user.user_id === currentUser?.id ? (
 
             <div className="sign-in-wish-list-bar">
               Cannot add your own game to your wishlist or shopping cart
@@ -244,7 +244,7 @@ function GameDetails() {
             </div>
 
           ) : (
-            myWishlist?.find(game => game.game_id === +gameId) ? (
+            myWishlist?.find(game => game?.game_id === +gameId) ? (
               < div className="sign-in-wish-list-bar">
                 Click on the button to remove the game from your wishlist
                 <button
@@ -287,13 +287,13 @@ function GameDetails() {
                 }}>${game?.price}</span>
 
                 {currentUser
-                  ? (game?.user.user_id === +currentUser.id
+                  ? (game?.user.user_id === currentUser?.id
                     ? (
                       <button
                         type="button"
                         style={{ cursor: "not-allowed" }}>Own Game</button>
                     ) : (
-                      myLibrary?.find(libraryItem => libraryItem.game_id === game?.id
+                      myLibrary?.find(libraryItem => libraryItem?.game_id === game?.id
                       ) ? (
                         <button
                           type="button"
@@ -302,7 +302,7 @@ function GameDetails() {
                           Already Purchased
                         </button>
                       ) : (
-                        myShoppingCart?.find(cartItem => cartItem.game_id === game?.id
+                        myShoppingCart?.find(cartItem => cartItem?.game_id === game?.id
 
                         ) ? (
                           <button
@@ -399,7 +399,7 @@ function GameDetails() {
                 </div>
                 <div>
                   <span className="requirements-title">USERNAME:&nbsp;</span>
-                  <span className="requirements-value">{game?.user?.username}</span>
+                  <span className="requirements-value">{game?.user.username}</span>
                 </div>
                 <div>
                   <span className="requirements-title">RELEASE DATE:&nbsp;</span>
@@ -458,7 +458,7 @@ function GameDetails() {
                   Own Game
                 </button>
 
-              ) : (reviews?.find(review => review.user_id === currentUser.id && review.game_id === +gameId)
+              ) : (reviews?.find(review => review?.user_id === currentUser?.id && review?.game_id === +gameId)
                 ? (
                   <button disabled={true}
                     style={{

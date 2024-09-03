@@ -33,12 +33,12 @@ function NavBar() {
       {currentUser && <div id="container-wishlist-shoppingcart-buttons">
         <Link to="/user?activeTab=wishlist">
           <button id="navbar-wishlist-button">
-            Wishlist ({myWishlist?.length ? myWishlist.length : 0})
+            Wishlist ({myWishlist?.length ? myWishlist?.length : 0})
           </button>
         </Link>
         <Link to="/user?activeTab=shoppingCart">
           <button id="navbar-shopping-cart-button">
-            <FaShoppingCart style={{ paddingBottom: "1px" }} /> Cart ({myShoppingCart.length})
+            <FaShoppingCart style={{ paddingBottom: "1px" }} /> Cart ({myShoppingCart?.length})
           </button>
         </Link>
       </div>}

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { thunkGamesGet } from "../../redux/game";
 import { thunkGameDelete } from "../../redux/game";
+import coverArtPlaceholder from "../../../public/cover-art-placeholder.png";
 import "./MyGames.css";
 
 
@@ -12,7 +13,7 @@ function MyGames() {
   const currentUser = useSelector(state => state.session.user);
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj);
-  const filteredGames = games?.filter(game => game.user.user_id === currentUser.id);
+  const filteredGames = games?.filter(game => game?.user.user_id === currentUser?.id);
 
   const [deleteGame, setDeleteGame] = useState(null);
 
@@ -35,7 +36,7 @@ function MyGames() {
         >
           <Link to={`/games/${game.id}`} >
             <div style={{ width: "325px" }}>
-              <img src={game?.cover_art?.[0]?.cover_art_url} alt="game-cover-art" />
+              <img src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder} alt="game-cover-art" />
             </div>
           </Link>
 
@@ -66,7 +67,7 @@ function MyGames() {
                 Delete
               </button>
 
-              {deleteGame === game.id &&
+              {deleteGame === game?.id &&
                 <div className="container-delete-game-confirmation">
                   <button onClick={() => handleDeleteGame(game.id)}>
                     Yes

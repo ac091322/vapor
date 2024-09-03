@@ -20,7 +20,7 @@ function MyReviews() {
   const games = Object.values(gamesObj);
   const reviewsObj = useSelector(state => state.review)
   const reviews = Object.values(reviewsObj);
-  const filteredReviews = reviews?.filter(review => review.user_id === currentUser.id);
+  const filteredReviews = reviews?.filter(review => review?.user_id === currentUser?.id);
 
   const [deleteReview, setDeleteReview] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
@@ -53,7 +53,7 @@ function MyReviews() {
     <section id="container-my-reviews-component">
 
       {filteredReviews?.map(review => {
-        const game = games.find(game => game.id === review.game_id)
+        const game = games?.find(game => game?.id === review?.game_id)
 
         return (
           <div
@@ -81,7 +81,7 @@ function MyReviews() {
                     Delete
                   </button>
 
-                  {deleteReview === review.id &&
+                  {deleteReview === review?.id &&
                     <div id="container-delete-review-confirmation">
                       <button onClick={() => handleDeleteReview(review.id)}>
                         Yes
@@ -96,7 +96,7 @@ function MyReviews() {
               </div>
 
               <div>
-                {review.thumbs_up ? (
+                {review?.thumbs_up ? (
                   <div className="container-recommendation-my-reviews">
                     <div style={{ color: "#D6D7D8" }}>
                       <IoThumbsUp
@@ -135,7 +135,7 @@ function MyReviews() {
 
                 <div id="container-my-reviews-right">
                   <span style={{ color: "#8091A2", fontSize: "11px" }}>
-                    POSTED: {review.updated_at}
+                    POSTED: {review?.updated_at}
                   </span>
 
                   <p style={{
@@ -147,7 +147,7 @@ function MyReviews() {
                     scrollbarWidth: "thin",
                     scrollbarColor: "#888 transparent"
                   }}>
-                    {review.description}
+                    {review?.description}
                   </p>
                 </div>
 

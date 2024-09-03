@@ -11,10 +11,10 @@ function Library() {
   const currentUser = useSelector(state => state.session.user);
   const libraryOjb = useSelector(state => state.library);
   const library = Object.values(libraryOjb);
-  const myLibrary = library?.filter(game => game.user_id === currentUser.id);
+  const myLibrary = library?.filter(game => game?.user_id === currentUser?.id);
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj);
-  const libraryGames = games?.filter(game => myLibrary?.some(libraryGame => libraryGame?.game_id === game.id));
+  const libraryGames = games?.filter(game => myLibrary?.some(libraryGame => libraryGame?.game_id === game?.id));
 
   useEffect(() => {
     dispatch(thunkLibraryUserGet());

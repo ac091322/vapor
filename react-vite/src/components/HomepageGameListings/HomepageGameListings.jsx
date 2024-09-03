@@ -53,7 +53,7 @@ function HomepageGameListings() {
     return { thumbsUp, thumbsDown };
   };
 
-  const thumbsCount = selectedGameDisplay ? countThumbsUpDown(selectedGameDisplay.reviews) : { thumbsUp: 0, thumbsDown: 0 };
+  const thumbsCount = selectedGameDisplay ? countThumbsUpDown(selectedGameDisplay?.reviews) : { thumbsUp: 0, thumbsDown: 0 };
 
   return (
     <section id="container-game-listing-component">

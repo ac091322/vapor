@@ -20,7 +20,7 @@ function MyWishlist() {
   const myWishlist = wishlist?.filter(wishlist => wishlist?.user_id === currentUser?.id);
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj)
-  const wishlistGames = games?.filter(game => myWishlist?.some(wishlistGame => wishlistGame?.game_id === game.id));
+  const wishlistGames = games?.filter(game => myWishlist?.some(wishlistGame => wishlistGame?.game_id === game?.id));
   const libraryOjb = useSelector(state => state.library);
   const library = Object.values(libraryOjb);
   const myLibrary = library?.filter(game => game?.user_id === currentUser?.id);
@@ -47,8 +47,8 @@ function MyWishlist() {
   return (
     < section id="container-my-wishlist-component" >
       {wishlistGames?.map(game => {
-        const isInShoppingCart = myShoppingCart?.some(cartItem => cartItem?.game_id === game.id)
-        const inLibrary = myLibrary?.some(libraryItem => libraryItem?.game_id === game.id);
+        const isInShoppingCart = myShoppingCart?.some(cartItem => cartItem?.game_id === game?.id)
+        const inLibrary = myLibrary?.some(libraryItem => libraryItem?.game_id === game?.id);
 
         return (
           < div
@@ -110,7 +110,7 @@ function MyWishlist() {
                   Remove from Wishlist
                 </button>
 
-                {removeGame === game.id &&
+                {removeGame === game?.id &&
                   <div className="container-delete-game-confirmation">
                     <button onClick={() => handleRemoveGame(game.id)}>
                       Yes

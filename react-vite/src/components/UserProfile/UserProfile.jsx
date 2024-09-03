@@ -19,17 +19,17 @@ function UserProfile() {
   const currentUser = useSelector(state => state.session.user);
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj);
-  const filteredGames = games?.filter(game => game.user.user_id === currentUser?.id);
+  const filteredGames = games?.filter(game => game?.user?.user_id === currentUser?.id);
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);
-  const filteredReviews = reviews?.filter(review => review.user_id === currentUser?.id);
+  const filteredReviews = reviews?.filter(review => review?.user_id === currentUser?.id);
   const shoppingCartId = currentUser ? currentUser?.shopping_cart?.[0]?.id : null;
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
   const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId);
   const libraryOjb = useSelector(state => state.library);
   const myLibrary = Object.values(libraryOjb);
-  const libraryGames = games?.filter(game => myLibrary?.some(libraryGame => libraryGame?.game_id === game.id));
+  const libraryGames = games?.filter(game => myLibrary?.some(libraryGame => libraryGame?.game_id === game?.id));
 
   const [activeTab, setActiveTab] = useState(searchParams.get("activeTab") || "library");
   const [total, setTotal] = useState(0);
@@ -61,15 +61,15 @@ function UserProfile() {
 
         <div id="container-profile-content-left">
           <div id="container-profile-details-left">
-            {currentUser.id === 14
-              ? <img src={currentUser.avatar} alt="demo-avatar" />
+            {currentUser?.id === 14
+              ? <img src={currentUser?.avatar} alt="demo-avatar" />
               : <img src={defaultAvatar} alt="default-avatar" />}
 
             <div id="container-profile-content-left-name">
-              <span style={{ color: "white", fontSize: "24px" }}>{currentUser.username}</span>
+              <span style={{ color: "white", fontSize: "24px" }}>{currentUser?.username}</span>
               <p style={{ color: "var(--light-beige-font-color)", fontSize: "13px" }}>
-                {currentUser.id === 14
-                  ? currentUser.about
+                {currentUser?.id === 14
+                  ? currentUser?.about
                   : "Welcome developer! Any game you add to your wishlist or shopping cart will appear here. Any game you purchase will appear in your Library. Any game you create will appear under My Games. And any review you've left for a game will appear under My Reviews."}
               </p>
             </div>

@@ -35,7 +35,7 @@ function Checkout() {
     setPurchasedGames(myShoppingCart);
     setStartup(false);
 
-    myShoppingCart.forEach(game => {
+    myShoppingCart?.forEach(game => {
       const gameData = {
         user_id: Number(currentUser.id),
         game_id: Number(game.game_id)

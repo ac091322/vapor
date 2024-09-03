@@ -16,7 +16,7 @@ def get_all_shopping_carts():
 
 # get shopping cart by user_id
 @shopping_cart_routes.route("/user", methods=["GET"])
-# @login_required
+@login_required
 def get_current_user_shopping_cart():
     shopping_cart = ShoppingCart.query.filter_by(user_id=current_user.id).first()
     return shopping_cart.to_dict(), 200
