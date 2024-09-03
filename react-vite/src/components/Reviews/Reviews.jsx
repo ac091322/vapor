@@ -16,7 +16,7 @@ function Reviews() {
 
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);
-  const filteredReviews = reviews.filter(review => review.game_id === +gameId);
+  const filteredReviews = reviews?.filter(review => review?.game_id === +gameId);
 
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function Reviews() {
   return (
     <section id="container-review-component">
 
-      {filteredReviews.length > 0 ? filteredReviews.map(review => {
+      {filteredReviews.length > 0 ? filteredReviews?.map(review => {
         return (
           <div
             key={review.id}
@@ -39,7 +39,7 @@ function Reviews() {
                 alt="default-avatar"
               />
               <div>
-                <span>{review.username}</span>
+                <span>{review?.username}</span>
 
                 <span style={{ fontSize: "12px" }}>
                   {/* {user?.reviews?.length === 1
@@ -53,7 +53,7 @@ function Reviews() {
             </div>
 
             <div id="container-review-right">
-              {review.thumbs_up ? (
+              {review?.thumbs_up ? (
                 <div className="container-recommendation-review">
                   <div style={{ color: "#D6D7D8" }}>
                     <IoThumbsUp
@@ -89,7 +89,7 @@ function Reviews() {
               )}
 
               <span style={{ color: "#8091A2", fontSize: "11px" }}>
-                POSTED: {review.updated_at}
+                POSTED: {review?.updated_at}
               </span>
               <p style={{
                 color: "#ACB2B8",
@@ -99,7 +99,7 @@ function Reviews() {
                 textOverflow: "ellipsis",
                 width: "663px"
               }}>
-                {review.description}
+                {review?.description}
               </p>
             </div>
 

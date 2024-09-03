@@ -61,9 +61,10 @@ const coverArtReducer = (state = initialState, action) => {
     case EDIT_COVER_ART:
       return {
         ...state,
-        posts: state.posts.map(post =>
-          post.id === action.payload.id ? action.payload : post
-        )
+        posts: state.posts.map(post => {
+          if (!post) return post;
+          return post.id === action.payload.id ? action.payload : post;
+        })
       }
 
     default:

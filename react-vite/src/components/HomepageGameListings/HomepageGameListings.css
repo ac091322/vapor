@@ -19,6 +19,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  position: relative;
 }
 
 #container-game-listing-bar {
@@ -45,4 +46,67 @@
 #container-game-listing-right {
   grid-area: right-listing;
   background: linear-gradient(to right, rgb(151, 187, 210), rgb(133, 155, 171));
+  width: 309.33px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.tab-title-game-listings {
+  position: absolute;
+  top: -36px;
+  left: 2px;
+  color: white;
+  background-color: rgb(43, 71, 93);
+  padding: 6px 8px;
+  font-size: 14px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+#container-overall-reviews {
+  font-size: 12px;
+  color: var(--logo-color);
+  background-color: #26364599;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 2px;
+}
+
+#container-genre-tags-game-listing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.tags-game-listing {
+  width: fit-content;
+  color: white;
+  font-size: 12px;
+  background-color: #26364599;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+#container-screenshots-game-listing {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+#container-game-listing-right button {
+  height: 30px;
+  background: linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46));
+  font-size: 16px;
+  padding: 0 20px;
+  color: var(--logo-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  position: absolute;
+  bottom: 20px;
+  width: 280px;
 }

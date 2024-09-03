@@ -22,7 +22,7 @@ function SignupFormPage() {
     const formErrors = {}
     if (username.length < 2 || username.length > 60) formErrors.username = "Must be between 2 and 60 characters";
     if (email.length < 8 || email.length > 60) formErrors.email = "Must be between 8 and 60 characters";
-    if (password.length < 4) formErrors.password = "Must be 4 characters or more"
+    if (password.length < 4) formErrors.password = "Must be 4 characters or more";
 
     setValidations(formErrors);
   }, [username, email, password]);

@@ -35,7 +35,7 @@ function Checkout() {
     setPurchasedGames(myShoppingCart);
     setStartup(false);
 
-    myShoppingCart.forEach(game => {
+    myShoppingCart?.forEach(game => {
       const gameData = {
         user_id: Number(currentUser.id),
         game_id: Number(game.game_id)
@@ -154,7 +154,7 @@ function Checkout() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => { navigate(-1, { replace: true }) }}
+                  onClick={() => { navigate("/user?activeTab=shoppingCart", { replace: true }) }}
                 >
                   Back
                 </button>

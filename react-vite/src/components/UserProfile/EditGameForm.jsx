@@ -415,6 +415,7 @@ function EditGameForm() {
                 style={{ width: "100%", maxHeight: "135px" }}
               />
             )}
+            {coverArtfileError && <p className="error-game" style={{ top: "55px", left: "0" }}>{coverArtfileError}</p>}
             {coverArtfilename && <span style={{ color: "#999", fontSize: "12px" }}>{coverArtfilename}</span>}
             {coverArtLoading && <p style={{ color: "#999", fontSize: "12px" }}>Uploading file...</p>}
           </div>

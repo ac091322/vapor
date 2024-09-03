@@ -72,7 +72,7 @@ function GameCarousel() {
               id="container-game-carousel-right"
             >
               <div id="container-game-title-carousel">
-                <h2 style={{ padding: "10px 25px 0 20px" }}>{currentGame.title}</h2>
+                <h2 style={{ padding: "10px 25px 0 20px" }}>{currentGame?.title}</h2>
               </div>
 
               <div id="container-screenshots-grid">
