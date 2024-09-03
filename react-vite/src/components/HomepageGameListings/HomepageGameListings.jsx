@@ -66,7 +66,7 @@ function HomepageGameListings() {
             .slice(0, 10)
             .map(game => (
               <Link
-                style={selectedGame === game.id ? { background: "linear-gradient(to right, rgb(151, 187, 210), rgb(133, 155, 171))", opacity: "1" } : { backgroundColor: "" }}
+                style={selectedGame === game.id ? { background: "linear-gradient(to right, rgb(188, 213, 228), rgb(133, 155, 171))", opacity: "1" } : { backgroundColor: "" }}
                 key={game.id}
                 to={`/games/${game.id}`}
                 id="container-game-listing-bar"

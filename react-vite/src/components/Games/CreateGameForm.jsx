@@ -242,7 +242,7 @@ function CreateGame() {
               style={release_date ? { color: "white" } : { color: "transparent" }}
             />
             <FaArrowRightFromBracket id="calendar-arrow" />
-            <div id="calendar-circle"></div>
+            <div id="calendar-circle"/>
             <div
               className="floating-placeholders"
               style={release_date ? { top: "-20.5px" } : null}
