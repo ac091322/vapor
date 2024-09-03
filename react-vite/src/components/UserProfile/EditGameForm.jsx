@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { thunkGameGetId, thunkGameEdit } from "../../redux/game";
 import { thunkCoverArtEdit } from "../../redux/coverArt";
+import { thunkScreenshotsAdd } from "../../redux/screenshot";
 
 
 function EditGameForm() {
@@ -30,13 +31,21 @@ function EditGameForm() {
   const [coverArtPreviewUrl, setCoverArtPreviewUrl] = useState("");
   const [coverArtfilename, setCoverArtFilename] = useState("");
   const [coverArtLoading, setCoverArtLoading] = useState(false);
+  const [screenshot_url, setScreenshotUrl] = useState([]); // state to store multiple files
+  const [screenshotPreviewUrls, setScreenshotPreviewUrls] = useState([]); // state to store multiple preview URLs
+  const [screenshotsLoading, setScreenshotsLoading] = useState(false);
   const [validations, setValidations] = useState({});
   const [submit, setSumbit] = useState(false);
   const [coverArtfileError, setCoverArtFileError] = useState("");
+  const [screenshotsFileError, setScreenshotsFileError] = useState("");
 
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
+
+  useEffect(() => {
+    dispatch(thunkGameGetId(gameId));
+  }, [dispatch, gameId]);
 
   useEffect(() => {
     if (game) {
@@ -81,10 +90,6 @@ function EditGameForm() {
     setValidations(formErrors);
   }, [title, price, description, min_requirements, min_os, min_processor, min_memory, min_graphics, min_directx, min_storage, min_sound_card, cover_art_url]);
 
-  useEffect(() => {
-    dispatch(thunkGameGetId(gameId));
-  }, [dispatch, gameId]);
-
   const fileWrap = (e) => {
     e.stopPropagation();
 
@@ -105,6 +110,41 @@ function EditGameForm() {
     setCoverArtUrl(newFile);
     setCoverArtFilename(newFile.name);
     setCoverArtFileError("");
+  };
+
+  const handleScreenshotFiles = (e) => {
+    const selectedFiles = Array.from(e.target.files);
+    const maxFileSize = 5000000;
+    const oversizedFiles = selectedFiles.filter(file => file.size > maxFileSize);
+
+    if (oversizedFiles.length > 0) {
+      setScreenshotsFileError("One or more images exceed the maximum file size of 5MB");
+      setScreenshotUrl([]); // clear any existing screenshots
+      setScreenshotPreviewUrls([]); // clear any existing previews
+      return;
+    }
+
+    setScreenshotsFileError("");
+
+    const newScreenshots = selectedFiles.map((file, index) => {
+      const newFilename = `screenshot_${gameId}_${Date.now()}_${index}.${file.name.split('.').pop()}`;
+      return new File([file], newFilename, { type: file.type });
+    });
+
+    const newPreviews = selectedFiles.map(file => URL.createObjectURL(file));
+    setScreenshotUrl(newScreenshots); // store the updated files
+    setScreenshotPreviewUrls(newPreviews); // store the preview URLs
+  };
+
+  const handleRemoveScreenshot = (index) => {
+    const screenshotToRemove = screenshot_url[index];
+    setScreenshotUrl(screenshot_url.filter((screenshot) => screenshot !== screenshotToRemove));
+    setScreenshotPreviewUrls(screenshotPreviewUrls.filter((_, i) => i !== index));
+
+    if (screenshot_url.length === 0) {
+      setScreenshotUrl([]);
+      setScreenshotPreviewUrls([]);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -144,6 +184,16 @@ function EditGameForm() {
       await dispatch(thunkCoverArtEdit(coverArtId, updatedCoverArtData));
       setCoverArtLoading(false);
     }
+
+    const screenshotsData = new FormData();
+    screenshot_url.forEach((file, index) => {
+      screenshotsData.append("screenshot_url", file);
+      screenshotsData.append(`filename_${index}`, file.name);
+    });
+    screenshotsData.append("game_id", gameId);
+    setScreenshotsLoading(true);
+    await dispatch(thunkScreenshotsAdd(screenshotsData));
+    setScreenshotsLoading(false);
 
     navigate(`/games/${gameId}`);
   };
@@ -392,6 +442,7 @@ function EditGameForm() {
         </div>
 
         <div className="container-create-game-form-right">
+
           <div style={{ position: "relative", height: "240px", marginTop: "6px" }}>
             <div className="container-label-input-image">
               <input
@@ -418,6 +469,50 @@ function EditGameForm() {
             {coverArtfilename && <span style={{ color: "#999", fontSize: "12px" }}>{coverArtfilename}</span>}
             {coverArtLoading && <p style={{ color: "#999", fontSize: "12px" }}>Uploading file...</p>}
           </div>
+
+          <div style={{ position: "relative" }}>
+            <div className="container-label-input-image">
+              <input
+                id="screenshot-upload"
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleScreenshotFiles}
+                className="input-file-image"
+              />
+              {screenshotsFileError && <p className="error-game" style={{ top: "55px", left: "0" }}>{screenshotsFileError}</p>}
+              <label htmlFor="screenshot-upload" className="image-label">
+                Upload optional screenshots
+              </label>
+            </div>
+
+            {screenshotPreviewUrls.length > 0 && (
+              <>
+                {screenshotPreviewUrls?.map((url, index) => (
+                  <div style={{ position: "relative" }} key={index}
+                  >
+                    <img
+                      src={url}
+                      alt={`preview ${index + 1}`}
+                      style={{ maxHeight: "165px", width: "100%" }}
+                    />
+                    <IoRemoveCircle
+                      onClick={() => handleRemoveScreenshot(index)}
+                      style={{
+                        fontSize: "3rem",
+                        color: "var(--body-background-color)",
+                        position: "absolute",
+                        left: "0",
+                        opacity: "0.7",
+                        cursor: "pointer"
+                      }} />
+                  </div>
+                ))}
+              </>
+            )}
+            {screenshotsLoading && <p style={{ color: "#999", fontSize: "12px" }}>Uploading screenshots...</p>}
+          </div>
+
         </div>
 
       </form>
