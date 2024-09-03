@@ -9,10 +9,10 @@ import "./ShoppingCart.css"
 function ShoppingCart({ calculateTotal }) {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-  const shoppingCartId = currentUser.shopping_cart?.[0]?.id;
+  const shoppingCartId = currentUser ? currentUser?.shopping_cart?.[0]?.id : null;
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
-  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
+  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId);
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj);
   const shoppingCartGames = games?.filter(game => myShoppingCart?.some(shoppingCart => shoppingCart.game_id === game.id));

@@ -43,6 +43,16 @@ export const thunkReviewsUserGet = (userId) => async (dispatch) => {
   }
 };
 
+export const thunkReviewsGameGet = (gameId) => async (dispatch) => {
+  const response = await fetch(`/api/games/${gameId}/reviews`, {
+    method: "GET"
+  });
+  if (response.ok) {
+    const data = response.json();
+    dispatch(getReviews(data));
+  }
+};
+
 export const thunkReviewsGetId = (gameId) => async (dispatch) => {
   const response = await fetch(`/api/games/${gameId}/reviews`, {
     method: "GET"

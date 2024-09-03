@@ -23,13 +23,13 @@ function UserProfile() {
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);
   const filteredReviews = reviews?.filter(review => review.user_id === currentUser?.id);
-  const shoppingCartId = currentUser.shopping_cart?.[0]?.id;
+  const shoppingCartId = currentUser ? currentUser?.shopping_cart?.[0]?.id : null;
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
-  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart.shopping_cart_id === +shoppingCartId);
+  const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId);
   const libraryOjb = useSelector(state => state.library);
   const myLibrary = Object.values(libraryOjb);
-  const libraryGames = games?.filter(game => myLibrary.some(libraryGame => libraryGame.game_id === game.id));
+  const libraryGames = games?.filter(game => myLibrary?.some(libraryGame => libraryGame?.game_id === game.id));
 
   const [activeTab, setActiveTab] = useState(searchParams.get("activeTab") || "library");
   const [total, setTotal] = useState(0);

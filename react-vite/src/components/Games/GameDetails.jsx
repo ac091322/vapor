@@ -125,7 +125,7 @@ function GameDetails() {
               /> */}
 
               {game?.screenshots?.length > 0 ? (
-                game?.screenshots?.map((screenshot) => (
+                game?.screenshots?.map(screenshot => (
                   <img
                     key={screenshot.id}
                     className="thumbnail-game-details"

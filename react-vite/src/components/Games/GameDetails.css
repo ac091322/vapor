@@ -114,6 +114,7 @@
   font-size: 12px;
   background-color: rgb(33, 56, 71);
   padding: 3px 10px;
+  border-radius: 2px;
 }
 
 .sign-in-wish-list-bar {
