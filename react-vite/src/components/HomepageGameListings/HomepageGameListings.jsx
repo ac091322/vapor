@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { thunkGamesGet } from "../../redux/game";
@@ -12,21 +12,31 @@ function HomepageGameListings() {
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj);
 
+  const [selectedGame, setSelectedGame] = useState(null);
+
   useEffect(() => {
     dispatch(thunkGamesGet());
     dispatch(thunkScreenshotsGet);
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
     <section id="container-game-listing-component">
+
       <div id="container-game-listing">
 
         <div id="container-game-listing-left">
+          <div className="tab-title-game-listings">New & Trending</div>
+
           {games?.map(game => (
             <Link
+              style={selectedGame === game.id ? { backgroundColor: "rgb(151, 187, 210)", opacity: "1" } : { backgroundColor: "" }}
               key={game.id}
               to={`/games/${game.id}`}
-              id="container-game-listing-bar">
+              id="container-game-listing-bar"
+              onMouseOver={() => setSelectedGame(game.id)}
+              onMouseOut={() => setSelectedGame(null)}
+            >
+
               {game?.screenshots?.[0]?.screenshot_url
                 ? (
                   <img
@@ -42,11 +52,11 @@ function HomepageGameListings() {
 
               <div id="container-game-listing-details-left">
                 <div id="container-game-listing-details-left-inner">
-                  <span style={{ color: "#C7D5E0" }}>{game.title}</span>
+                  <span style={selectedGame === game.id ? { color: "var(--nav-background-color)" } : { color: "#C7D5E0" }}>{game.title}</span>
                   <span style={{ color: "#384959", fontSize: "12px" }}>Mythology, Action RPG, Action, RPG</span>
                 </div>
 
-                <span style={{ color: "white" }}>${game.price}</span>
+                <span style={selectedGame === game.id ? { color: "var(--nav-background-color)" } : { color: "white" }}>${game.price}</span>
                 <span style={{
                   position: "absolute",
                   color: "#4C6C8C",
@@ -57,12 +67,26 @@ function HomepageGameListings() {
                 }}>
                   {game.release_date.split("00")[0].trim()}
                 </span>
+
+                {selectedGame === game.id &&
+                  <div style={{
+                    backgroundColor: "rgb(151, 187, 210)",
+                    height: "69px",
+                    width: "12px",
+                    position: "absolute",
+                    right: "-23px",
+                  }} />}
               </div>
             </Link>
           ))}
+
+          <div id="container-game-listing-right">
+
+            {/* <span>{game.title}</span> */}
+
+          </div>
         </div>
 
-        <div id="container-game-listing-right"></div>
 
       </div>
     </section>

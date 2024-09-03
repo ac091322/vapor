@@ -154,7 +154,7 @@ function Checkout() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => { navigate(-1, { replace: true }) }}
+                  onClick={() => { navigate("/user?activeTab=shoppingCart", { replace: true }) }}
                 >
                   Back
                 </button>

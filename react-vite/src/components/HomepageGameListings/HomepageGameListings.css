@@ -19,6 +19,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  position: relative;
 }
 
 #container-game-listing-bar {
@@ -45,4 +46,16 @@
 #container-game-listing-right {
   grid-area: right-listing;
   background: linear-gradient(to right, rgb(151, 187, 210), rgb(133, 155, 171));
+}
+
+.tab-title-game-listings {
+  position: absolute;
+  top: -36px;
+  left: 2px;
+  color: white;
+  background-color: rgb(43, 71, 93);
+  padding: 6px 8px;
+  font-size: 14px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
 }
