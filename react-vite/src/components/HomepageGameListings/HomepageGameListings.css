@@ -45,13 +45,15 @@
 
 #container-game-listing-right {
   grid-area: right-listing;
-  background: linear-gradient(to right, rgb(151, 187, 210), rgb(133, 155, 171));
+  background: linear-gradient(to left, rgb(151, 187, 210), rgb(133, 155, 171));
   width: 309.33px;
   padding: 20px 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   position: relative;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .tab-title-game-listings {
