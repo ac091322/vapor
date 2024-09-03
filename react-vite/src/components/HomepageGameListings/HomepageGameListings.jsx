@@ -41,6 +41,20 @@ function HomepageGameListings() {
 
   const selectedGameDisplay = games.find(game => game.id === selectedGame);
 
+  const countThumbsUpDown = () => {
+    let thumbsUp = 0;
+    let thumbsDown = 0;
+
+    selectedGameDisplay?.reviews?.forEach(review => {
+      if (review.thumbs_up) thumbsUp++;
+      if (review.thumbs_down) thumbsDown++;
+    });
+
+    return { thumbsUp, thumbsDown };
+  };
+
+  const thumbsCount = selectedGameDisplay ? countThumbsUpDown(selectedGameDisplay.reviews) : { thumbsUp: 0, thumbsDown: 0 };
+
   return (
     <section id="container-game-listing-component">
       <div id="container-game-listing">
@@ -116,8 +130,9 @@ function HomepageGameListings() {
           </span>
 
           <div id="container-overall-reviews">
-            <span>Overall user reviews:</span>
-            <span>{selectedGameDisplay?.reviews ? selectedGameDisplay?.reviews?.length : 0}</span>
+            <span> Overall user reviews: {selectedGameDisplay?.reviews ? selectedGameDisplay?.reviews?.length : 0}</span>
+            <span>Positive reviews: {thumbsCount.thumbsUp}</span>
+            <span>Negative reviews: {thumbsCount.thumbsDown}</span>
           </div>
 
           <div id="container-genre-tags-game-listing">
