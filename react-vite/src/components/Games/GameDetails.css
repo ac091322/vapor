@@ -129,7 +129,7 @@
   padding: 0 15px;
 }
 
-.sign-in-wish-list-bar button {
+.button-add-to-wishlist {
   height: 30px;
   padding: 0 20px;
   color: #67C1F5;
@@ -137,7 +137,7 @@
   border-radius: 2px;
 }
 
-.sign-in-wish-list-bar button:hover {
+.button-add-to-wishlist.hover:hover {
   background: linear-gradient(to right, rgb(135, 206, 250), rgb(70, 130, 180));
   color: white;
 }
@@ -178,7 +178,7 @@
   padding-right: 3px;
 }
 
-#container-price-add-button button {
+.button-add-to-cart {
   height: 30px;
   background: linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46));
   font-size: 16px;
@@ -188,7 +188,7 @@
   border-radius: 2px;
 }
 
-#container-price-add-button button:hover {
+.button-add-to-cart.hover:hover {
   background: linear-gradient(to right, rgb(149, 205, 89), rgb(111, 167, 56));
   color: white;
 }
@@ -273,16 +273,17 @@
   min-height: 200px;
 }
 
-#container-reviews-game-details button {
+.button-leave-review {
   height: 30px;
   width: 110px;
-  background-color: rgb(34, 186, 251);
+  background-color: rgb(24, 130, 176);
   color: white;
   font-size: 16px;
   border-radius: 2px;
+  cursor: not-allowed;
 }
 
-#container-reviews-game-details button:hover {
+.button-leave-review.hover:hover {
   background-color: rgb(59, 198, 255)
 }
 
@@ -290,14 +291,4 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-}
-
-#button-in-wishlist-game-details {
-  color: var(--logo-color);
-  background: linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46));
-}
-
-#button-in-wishlist-game-details:hover {
-  background: linear-gradient(to right, rgb(149, 205, 89), rgb(111, 167, 56));
-  color: white;
 }

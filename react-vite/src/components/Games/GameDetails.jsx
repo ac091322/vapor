@@ -235,20 +235,22 @@ function GameDetails() {
         </div>
 
         {currentUser ? (
-
           game?.user.user_id === currentUser?.id ? (
-
             <div className="sign-in-wish-list-bar">
               Cannot add your own game to your wishlist or shopping cart
-              <button style={{ cursor: "not-allowed", color: "var(--logo-color)" }}>Own Game</button>
+              <button
+                type="button"
+                className="button-add-to-wishlist"
+                style={{ cursor: "not-allowed", color: "var(--logo-color)" }}
+              >Own Game</button>
             </div>
-
           ) : (
             myWishlist?.find(game => game?.game_id === +gameId) ? (
               < div className="sign-in-wish-list-bar">
                 Click on the button to remove the game from your wishlist
                 <button
-                  id="button-in-wishlist-game-details"
+                  type="button"
+                  className="button-add-to-wishlist hover"
                   onClick={() => removeGameFromWishlist(gameId)}
                 >
                   In Wishlist
@@ -257,16 +259,25 @@ function GameDetails() {
             ) : (
               < div className="sign-in-wish-list-bar">
                 Add this game to your wishlist
-                <button onClick={() => addGameToWishlist(gameId)}>Add to Wishlist</button>
+                <button
+                  type="button"
+                  className="button-add-to-wishlist hover"
+                  onClick={() => addGameToWishlist(gameId)}
+                >
+                  Add to Wishlist</button>
               </div>
             )
           )
-
         ) : (
-
           <div className="sign-in-wish-list-bar">
             Sign in to add this game to your wishlist or shopping cart, or leave a review
-            <Link to="/login"><button>Add to Wishlist</button></Link>
+            <Link to="/login">
+              <button
+                className="button-add-to-wishlist hover"
+                type="button"
+              >
+                Add to Wishlist</button>
+            </Link>
           </div>
         )}
 
@@ -291,12 +302,14 @@ function GameDetails() {
                     ? (
                       <button
                         type="button"
+                        className="button-add-to-cart"
                         style={{ cursor: "not-allowed" }}>Own Game</button>
                     ) : (
                       myLibrary?.find(libraryItem => libraryItem?.game_id === game?.id
                       ) ? (
                         <button
                           type="button"
+                          className="button-add-to-cart"
                           style={{ cursor: "not-allowed" }}
                         >
                           Already Purchased
@@ -307,6 +320,7 @@ function GameDetails() {
                         ) ? (
                           <button
                             type="button"
+                            className="button-add-to-cart"
                             style={{ cursor: "not-allowed" }}
                           >
                             In Shopping Cart
@@ -314,6 +328,7 @@ function GameDetails() {
                         ) : (
                           < button
                             type="button"
+                            className="button-add-to-cart hover"
                             onClick={() => handleAddGameToShoppingCart(game.id)}
                           >
                             Add to Cart
@@ -323,7 +338,11 @@ function GameDetails() {
                     )
                   ) : (
                     <Link to="/login">
-                      <button type="button">Add to Cart</button>
+                      <button
+                        className="button-add-to-cart hover"
+                        type="button"
+                      >
+                        Add to Cart</button>
                     </Link>
                   )
                 }
@@ -448,30 +467,29 @@ function GameDetails() {
             {currentUser
 
               ? (game?.user.user_id === currentUser?.id ? (
-                <button disabled={true}
-                  style={{
-                    cursor: "not-allowed",
-                    background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))",
-                    color: "var(--logo-color)"
-                  }}
+                <button
+                  type="button"
+                  disabled={true}
+                  className="button-leave-review"
                 >
                   Own Game
                 </button>
 
               ) : (reviews?.find(review => review?.user_id === currentUser?.id && review?.game_id === +gameId)
                 ? (
-                  <button disabled={true}
-                    style={{
-                      cursor: "not-allowed",
-                      background: "linear-gradient(to right, rgb(119, 175, 59), rgb(91, 137, 46))",
-                      color: "var(--logo-color"
-                    }}
+                  <button
+                    type="button"
+                    disabled={true}
+                    className="button-leave-review"
                   >
                     Reviewed
                   </button>
 
                 ) : (
-                  <button>
+                  <button
+                    type="button"
+                    className="button-leave-review hover"
+                  >
                     <OpenModalMenuItem
                       itemText="Leave Review"
                       onItemClick={closeMenu}
@@ -481,7 +499,10 @@ function GameDetails() {
                 ))
 
               ) : (
-                <button onClick={() => navigate("/login")}>
+                <button
+                  type="button"
+                  className="button-leave-review hover"
+                  onClick={() => navigate("/login")}>
                   Review
                 </button>
               )}
