@@ -64,7 +64,7 @@ function NavBar() {
 
       <div id="container-search-bar-nav">
         <input placeholder="search" />
-        <div style={{ paddingTop: "2px", height: "25px", width: "25px", marginBottom: "2px" }}>
+        <div style={{ paddingTop: "2px", height: "25px", width: "25px", marginBottom: "3px" }}>
           <button><IoSearchSharp /></button>
         </div>
       </div>

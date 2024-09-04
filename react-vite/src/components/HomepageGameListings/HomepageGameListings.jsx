@@ -66,7 +66,7 @@ function HomepageGameListings() {
             .slice(0, 10)
             .map(game => (
               <Link
-                style={selectedGame === game.id ? { backgroundColor: "rgb(151, 187, 210)", opacity: "1" } : { backgroundColor: "" }}
+                style={selectedGame === game.id ? { background: "linear-gradient(to right, rgb(188, 213, 228), rgb(133, 155, 171))", opacity: "1" } : { backgroundColor: "" }}
                 key={game.id}
                 to={`/games/${game.id}`}
                 id="container-game-listing-bar"
@@ -106,7 +106,7 @@ function HomepageGameListings() {
 
                   {selectedGame === game?.id &&
                     <div style={{
-                      backgroundColor: "rgb(151, 187, 210)",
+                      backgroundColor: "rgb(133, 155, 171)",
                       height: "69px",
                       width: "12px",
                       position: "absolute",
@@ -130,9 +130,15 @@ function HomepageGameListings() {
           </span>
 
           <div id="container-overall-reviews">
-            <span> Overall user reviews: {selectedGameDisplay?.reviews ? selectedGameDisplay?.reviews?.length : 0}</span>
-            <span>Positive reviews: {thumbsCount?.thumbsUp}</span>
-            <span>Negative reviews: {thumbsCount?.thumbsDown}</span>
+            <span style={{ color: "#B9A074" }}> Overall user reviews:&nbsp;
+              <span style={{ color: "var(--logo-color" }}>{selectedGameDisplay?.reviews ? selectedGameDisplay?.reviews?.length : 0}</span>
+            </span>
+            <span style={{ color: "#66C0F4" }}>Positive reviews:&nbsp;
+              <span style={{ color: "var(--logo-color" }}>{thumbsCount?.thumbsUp}</span>
+            </span>
+            <span style={{ color: "rgb(223, 103, 104)" }}>Negative reviews:&nbsp;
+              <span style={{ color: "var(--logo-color)" }}>{thumbsCount?.thumbsDown}</span>
+            </span>
           </div>
 
           <div id="container-genre-tags-game-listing">

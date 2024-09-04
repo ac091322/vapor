@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { thunkShoppingCartGameRemove, thunkShoppingCartUserGet } from "../../redux/shoppingCart";
 import { thunkGamesGet } from "../../redux/game";
+import coverArtPlaceholder from "../../../public/cover-art-placeholder.png"
 import "./ShoppingCart.css"
 
 
@@ -46,11 +47,11 @@ function ShoppingCart({ calculateTotal }) {
           key={game.id}
           className="container-shopping-cart-inner"
         >
-          <Link to={`/games/${game.id}`} >
+          <Link to={`/games/${game?.id}`} >
             <div style={{ width: "325px" }}>
               <img
                 style={{ width: "325px", height: "150px" }}
-                src={game?.cover_art?.[0]?.cover_art_url}
+                src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder}
                 alt="game-cover-art"
               />
             </div>
@@ -68,14 +69,14 @@ function ShoppingCart({ calculateTotal }) {
 
             <div className="container-buttons-my-games">
               <button type="button"
-                onClick={() => setRemoveGame(game.id)}
+                onClick={() => setRemoveGame(game?.id)}
               >
                 Remove from Shopping Cart
               </button>
 
               {removeGame === game?.id &&
                 <div className="container-delete-game-confirmation">
-                  <button onClick={() => handleRemoveGame(shoppingCartId, game.id)}>
+                  <button onClick={() => handleRemoveGame(shoppingCartId, game?.id)}>
                     Yes
                   </button>
 

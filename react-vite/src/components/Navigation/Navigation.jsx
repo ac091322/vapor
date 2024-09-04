@@ -16,7 +16,7 @@ function Navigation() {
         <div id="container-logo-navlinks">
           <NavLink to="/"><img src={logo} alt="logo" /></NavLink>
           <ul>
-            <li><Link to="/">STORE</Link></li>
+            <li id="store-link"><Link to="/">STORE</Link></li>
             <li style={{ cursor: "not-allowed" }}>COMMUNITY</li>
             <li style={{ cursor: "not-allowed" }}>ABOUT</li>
             <li style={{ cursor: "not-allowed" }}>SUPPORT</li>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { thunkGameGetId, thunkGameEdit } from "../../redux/game";
 import { thunkCoverArtEdit } from "../../redux/coverArt";
 
@@ -206,6 +207,8 @@ function EditGameForm() {
               required
               style={release_date ? { color: "white" } : { color: "transparent" }}
             />
+            <FaArrowRightFromBracket id="calendar-arrow" />
+            <div id="calendar-circle"/>
             <div
               className="floating-placeholders"
               style={release_date ? { top: "-20.5px" } : null}

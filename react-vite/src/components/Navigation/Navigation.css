@@ -13,6 +13,11 @@
   gap: 60px;
 }
 
+#store-link {
+  color: #1A9FFF;
+  border-bottom: 2px solid #1A9FFF;
+}
+
 #container-navigation-inner img {
   height: 45px;
 }
@@ -34,10 +39,10 @@
 }
 
 #install-button {
-  height: 25px;
+  height: 22px;
   color: var(--light-beige-font-color);
-  padding: 0 10px;
-  font-size: 12px;
+  padding: 0 8px;
+  font-size: 11px;
   cursor: not-allowed;
 }
 
@@ -76,4 +81,18 @@
   width: fit-content;
   padding: 10px 20px;
   white-space: nowrap;
+}
+
+#container-login-signup {
+  display: flex;
+  align-items: center;
+}
+
+.login-signup-buttons {
+  color: var(--logo-color);
+  font-size: 11px;
+}
+
+.login-signup-buttons:hover {
+  color: white;
 }

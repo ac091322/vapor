@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import { thunkLibraryUserGet } from "../../redux/library";
 import { thunkGamesGet } from "../../redux/game";
+import coverArtPlaceholder from "../../../public/cover-art-placeholder.png"
 import "./Library.css";
 
 
@@ -29,11 +30,11 @@ function Library() {
           key={game.id}
           className="container-own-games-inner"
         >
-          <Link to={`/games/${game.id}`} >
+          <Link to={`/games/${game?.id}`} >
             <div style={{ width: "325px" }}>
               <img
                 style={{ width: "325px", height: "150px" }}
-                src={game?.cover_art?.[0]?.cover_art_url}
+                src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder}
                 alt="game-cover-art" />
             </div>
           </Link>

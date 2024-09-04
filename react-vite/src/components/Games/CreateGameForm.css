@@ -133,6 +133,7 @@
   color: white;
   font-size: 12px;
   color: #999;
+  cursor: pointer;
 }
 
 #container-screenshot-previews {
