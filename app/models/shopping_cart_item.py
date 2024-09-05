@@ -7,13 +7,13 @@ shopping_cart_item = db.Table(
     db.Column(
         "shopping_cart_id",
         db.Integer,
-        db.ForeignKey(add_prefix_for_prod("shopping_carts.id")),
+        db.ForeignKey(add_prefix_for_prod("shopping_carts.id"), ondelete="CASCADE"),
         primary_key=True,
     ),
     db.Column(
         "game_id",
         db.Integer,
-        db.ForeignKey(add_prefix_for_prod("games.id")),
+        db.ForeignKey(add_prefix_for_prod("games.id"), ondelete="CASCADE"),
         primary_key=True,
     ),
     db.Column(

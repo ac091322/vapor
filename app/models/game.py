@@ -41,25 +41,25 @@ class Game(db.Model):
         "Category",
         secondary=game_category,
         back_populates="game_in_game_category",
-        passive_deletes=True,
+        passive_deletes=False,
     )
     user_in_wishlist = db.relationship(
         "User",
         secondary=wishlist,
         back_populates="game_in_wishlist",
-        passive_deletes=True,
+        passive_deletes=False,
     )
     user_in_library = db.relationship(
         "User",
         secondary=library,
         back_populates="game_in_library",
-        passive_deletes=True,
+        passive_deletes=False,
     )
     shopping_cart_in_shopping_cart_item = db.relationship(
         "ShoppingCart",
         secondary=shopping_cart_item,
         back_populates="game_in_shopping_cart_item",
-        passive_deletes=True,
+        passive_deletes=False,
     )
 
     # many-to-one relationships:
