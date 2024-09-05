@@ -18,7 +18,7 @@ function CreateGame() {
   const [title, setTitle] = useState("The Legend of Zelda: Breath of the Wild");
   const [price, setPrice] = useState("35.99");
   const [release_date, setReleaseDate] = useState("2024-07-11")
-  const [description, setDescription] = useState("The Legend of Zelda: Breath of the Wild is an open-world action-adventure game that emphasizes exploration, freedom, and immersive interactions. Players can explore a dynamic world without set paths, discovering hidden areas and solving puzzles organically. Its physics-based engine supports climbing, gliding, and combat, while stamina, weather, and AI systems enrich the experience. The game aims to inspire adventure and wonder through innovative mechanics and a detailed world.")
+  const [description, setDescription] = useState("The Legend of Zelda: Breath of the Wild is an open-world action-adventure game that emphasizes exploration, freedom, and immersive interactions. Players can explore a dynamic world without set paths, discovering hidden areas and solving puzzles organically. Its physics-based engine supports climbing, gliding, and combat, while stamina, weather, and AI systems enrich the experience. The game aims to inspire adventure and wonder through innovative mechanics and a detailed world.");
   const [min_requirements, setMinRequirements] = useState("Requires a 64-bit processor and operating system");
   const [min_os, setMinOs] = useState("Windows 10 64-bit");
   const [min_processor, setMinProcessor] = useState("Intel Core i5-8400 / AMD Ryzen 5 1600");
