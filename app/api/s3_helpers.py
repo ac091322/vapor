@@ -25,7 +25,7 @@ def upload_file_to_s3(file, acl="public-read"):
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
-            file.filename,
+            f"new-folder/{file.filename}",
             ExtraArgs={"ACL": acl, "ContentType": file.content_type},
         )
 
@@ -33,7 +33,7 @@ def upload_file_to_s3(file, acl="public-read"):
         # in case the your s3 upload fails
         return {"errors": str(e)}
 
-    return {"url": f"{S3_LOCATION}{file.filename}"}
+    return {"url": f"{S3_LOCATION}new-folder/{file.filename}"}
 
 
 def remove_file_from_s3(image_url):

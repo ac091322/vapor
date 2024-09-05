@@ -15,30 +15,30 @@ function CreateGame() {
   const currentUser = useSelector((state) => state.session.user);
   let gameId;
 
-  // const [title, setTitle] = useState("The Legend of Zelda: Breath of the Wild");
-  // const [price, setPrice] = useState("35.99");
-  // const [release_date, setReleaseDate] = useState("2024-07-11")
-  // const [description, setDescription] = useState("The Legend of Zelda: Breath of the Wild is an open-world action-adventure game that emphasizes exploration, freedom, and immersive interactions. Players can explore a dynamic world without set paths, discovering hidden areas and solving puzzles organically. Its physics-based engine supports climbing, gliding, and combat, while stamina, weather, and AI systems enrich the experience. The game aims to inspire adventure and wonder through innovative mechanics and a detailed world.")
-  // const [min_requirements, setMinRequirements] = useState("Requires a 64-bit processor and operating system");
-  // const [min_os, setMinOs] = useState("Windows 10 64-bit");
-  // const [min_processor, setMinProcessor] = useState("Intel Core i5-8400 / AMD Ryzen 5 1600");
-  // const [min_memory, setMinMemory] = useState("16 GB RAM");
-  // const [min_graphics, setMinGraphics] = useState("NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB");
-  // const [min_directx, setMinDirectX] = useState("Version 11");
-  // const [min_storage, setMinStorage] = useState("130 GB available space");
-  // const [min_sound_card, setMinSoundCard] = useState("Windows Compatible Audio Device");
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [release_date, setReleaseDate] = useState("")
-  const [description, setDescription] = useState("")
-  const [min_requirements, setMinRequirements] = useState("");
-  const [min_os, setMinOs] = useState("");
-  const [min_processor, setMinProcessor] = useState("");
-  const [min_memory, setMinMemory] = useState("");
-  const [min_graphics, setMinGraphics] = useState("");
-  const [min_directx, setMinDirectX] = useState("");
-  const [min_storage, setMinStorage] = useState("");
-  const [min_sound_card, setMinSoundCard] = useState("");
+  const [title, setTitle] = useState("The Legend of Zelda: Breath of the Wild");
+  const [price, setPrice] = useState("35.99");
+  const [release_date, setReleaseDate] = useState("2024-07-11")
+  const [description, setDescription] = useState("The Legend of Zelda: Breath of the Wild is an open-world action-adventure game that emphasizes exploration, freedom, and immersive interactions. Players can explore a dynamic world without set paths, discovering hidden areas and solving puzzles organically. Its physics-based engine supports climbing, gliding, and combat, while stamina, weather, and AI systems enrich the experience. The game aims to inspire adventure and wonder through innovative mechanics and a detailed world.")
+  const [min_requirements, setMinRequirements] = useState("Requires a 64-bit processor and operating system");
+  const [min_os, setMinOs] = useState("Windows 10 64-bit");
+  const [min_processor, setMinProcessor] = useState("Intel Core i5-8400 / AMD Ryzen 5 1600");
+  const [min_memory, setMinMemory] = useState("16 GB RAM");
+  const [min_graphics, setMinGraphics] = useState("NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB");
+  const [min_directx, setMinDirectX] = useState("Version 11");
+  const [min_storage, setMinStorage] = useState("130 GB available space");
+  const [min_sound_card, setMinSoundCard] = useState("Windows Compatible Audio Device");
+  // const [title, setTitle] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [release_date, setReleaseDate] = useState("")
+  // const [description, setDescription] = useState("")
+  // const [min_requirements, setMinRequirements] = useState("");
+  // const [min_os, setMinOs] = useState("");
+  // const [min_processor, setMinProcessor] = useState("");
+  // const [min_memory, setMinMemory] = useState("");
+  // const [min_graphics, setMinGraphics] = useState("");
+  // const [min_directx, setMinDirectX] = useState("");
+  // const [min_storage, setMinStorage] = useState("");
+  // const [min_sound_card, setMinSoundCard] = useState("");
   const [cover_art_url, setCoverArtUrl] = useState("");
   const [coverArtPreviewUrl, setCoverArtPreviewUrl] = useState(""); // store image preview URL
   const [coverArtfilename, setCoverArtFilename] = useState(""); // store the image file name
@@ -242,7 +242,7 @@ function CreateGame() {
               style={release_date ? { color: "white" } : { color: "transparent" }}
             />
             <FaArrowRightFromBracket id="calendar-arrow" />
-            <div id="calendar-circle"/>
+            <div id="calendar-circle" />
             <div
               className="floating-placeholders"
               style={release_date ? { top: "-20.5px" } : null}
