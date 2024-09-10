@@ -48,9 +48,6 @@
   background: linear-gradient(to left, rgb(151, 187, 210), rgb(133, 155, 171));
   width: 309.33px;
   padding: 20px 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   position: relative;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -117,4 +114,20 @@
 #container-game-listing-right button:hover {
   background: linear-gradient(to right, rgb(149, 205, 89), rgb(111, 167, 56));
   color: white;
+}
+
+.right-side-content {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.right-side-content.fade-in {
+  opacity: 1;
+}
+
+.right-side-content.fade-out {
+  opacity: 0;
 }

@@ -17,6 +17,7 @@ function GameCarousel() {
   const screenshots = Object.values(screenshotsObj);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [fadeIn, setFadeIn] = useState(false);
 
   useEffect(() => {
     dispatch(thunkGamesGet());
@@ -24,16 +25,28 @@ function GameCarousel() {
   }, [dispatch]);
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === gameKeys.length - 1 ? 0 : prevIndex + 1
-    );
+    setFadeIn(false);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === gameKeys.length - 1 ? 0 : prevIndex + 1
+      );
+      setFadeIn(true);
+    }, 200);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? gameKeys.length - 1 : prevIndex - 1
-    );
+    setFadeIn(false);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? gameKeys.length - 1 : prevIndex - 1
+      );
+      setFadeIn(true);
+    }, 200);
   };
+
+  useEffect(() => {
+    setFadeIn(true);
+  }, [currentIndex]);
 
   const currentGame = gamesObj[gameKeys[currentIndex]];
   const filteredScreenshots = screenshots?.filter(screenshot => screenshot.game_id === currentGame?.id);
@@ -52,6 +65,7 @@ function GameCarousel() {
             <Link
               to={`/games/${currentGame.id}`}
               id="container-game-carousel-left"
+              className={`fade-in ${fadeIn ? "active" : ""}`}
             >
               {filteredScreenshots.length > 0
                 ? <img
@@ -70,6 +84,7 @@ function GameCarousel() {
             <Link
               to={`/games/${currentGame.id}`}
               id="container-game-carousel-right"
+              className={`fade-in ${fadeIn ? "active" : ""}`}
             >
               <div id="container-game-title-carousel">
                 <h2 style={{ padding: "10px 25px 0 20px" }}>{currentGame?.title}</h2>

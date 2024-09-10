@@ -48,7 +48,8 @@ function Library() {
                 fontSize: "13px",
                 display: "flex",
                 flexDirection: "column",
-                gap: "5px"
+                gap: "5px",
+                height: "105px"
               }}>
                 <span >{game?.release_date.split("00")[0].trim()}</span>
                 <span>${game?.price}</span>
@@ -56,7 +57,7 @@ function Library() {
                 <p style={{
                   paddingTop: "5px",
                   height: "75px",
-                  overflow: "scroll",
+                  overflowY: "scroll",
                   scrollbarWidth: "thin",
                   scrollbarColor: "#888 transparent"
                 }}>
