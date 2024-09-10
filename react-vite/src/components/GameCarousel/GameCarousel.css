@@ -86,6 +86,7 @@
   height: 108px;
   position: absolute;
   top: 115px;
+  cursor: pointer;
 }
 
 #carousel-left-button {
@@ -99,7 +100,7 @@
 
 #carousel-right-button {
   background: linear-gradient(to right, rgb(27, 40, 55), rgb(20, 29, 41));
-  right: -50px;
+  right: -50px;;
 }
 
 #carousel-right-button:hover {

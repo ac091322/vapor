@@ -44,6 +44,7 @@ function GameDetails() {
 
   const [selectedScreenshot, setSelectedScreenshot] = useState("");
   const [selectedVideo, setSelectedVideo] = useState("");
+  const [imageClass, setImageClass] = useState("");
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
@@ -84,6 +85,12 @@ function GameDetails() {
 
   const mainImage = selectedScreenshot || selectedVideo || game?.screenshots?.[0]?.screenshot_url || screenshotPlaceholder;
 
+  useEffect(() => {
+    setImageClass("fade-in");
+    const timer = setTimeout(() => setImageClass(""), 500);
+    return () => clearTimeout(timer);
+  }, [mainImage]);
+
   return (
     <section
       id="container-game-details-page"
@@ -102,6 +109,7 @@ function GameDetails() {
           <div id="container-game-carousel-game-details-left">
 
             <img
+              className={`main-image ${imageClass}`}
               id="main-image-game-details"
               src={mainImage}
               alt="main-screenshot"

@@ -144,9 +144,11 @@ function MyReviews() {
                     fontSize: "13px",
                     height: "130px",
                     width: "305px",
-                    overflow: "scroll",
+                    verflowX: "scroll",
                     scrollbarWidth: "thin",
-                    scrollbarColor: "#888 transparent"
+                    scrollbarColor: "#888 transparent",
+                    textOverflow: "ellipsis",
+                    overflowX: "hidden"
                   }}>
                     {review?.description}
                   </p>
