@@ -100,7 +100,8 @@
 
 #carousel-right-button {
   background: linear-gradient(to right, rgb(27, 40, 55), rgb(20, 29, 41));
-  right: -50px;;
+  right: -50px;
+  ;
 }
 
 #carousel-right-button:hover {
@@ -110,4 +111,13 @@
 .carousel-arrows {
   font-size: 3.2rem;
   color: white;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.fade-in.active {
+  opacity: 1;
 }
