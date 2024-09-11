@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
+import { IoRemoveCircle } from "react-icons/io5";
 import { thunkGameGetId, thunkGameEdit } from "../../redux/game";
+import { thunkScreenshotsGet, thunkScreenshotDelete, thunkScreenshotsAdd } from "../../redux/screenshot";
 import { thunkCoverArtEdit } from "../../redux/coverArt";
 
 
@@ -14,6 +16,9 @@ function EditGameForm() {
   const game = useSelector(state => state.game[gameId]);
   const coverArt = game?.cover_art?.[0];
   const coverArtId = coverArt?.id
+  const screenshotsObj = useSelector(state => state.screenshot);
+  const screenshots = Object.values(screenshotsObj);
+  const filteredScreenshots = screenshots.filter(screenshot => screenshot?.game_id === +gameId);
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -34,10 +39,20 @@ function EditGameForm() {
   const [validations, setValidations] = useState({});
   const [submit, setSumbit] = useState(false);
   const [coverArtfileError, setCoverArtFileError] = useState("");
+  const [screenshot_url, setScreenshotUrl] = useState([]);
+  const [screenshotPreviewUrls, setScreenshotPreviewUrls] = useState([]);
+  const [screenshotsUpdating, setScreenshotsUpdating] = useState(false);
+  const [screenshotsFileError, setScreenshotsFileError] = useState("");
+  const [screenshotsToDelete, setScreenshotsToDelete] = useState([]);
 
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [currentUser, navigate]);
+
+  useEffect(() => {
+    dispatch(thunkGameGetId(gameId));
+    dispatch(thunkScreenshotsGet());
+  }, [dispatch, gameId]);
 
   useEffect(() => {
     if (game) {
@@ -61,7 +76,13 @@ function EditGameForm() {
       setCoverArtFilename(coverArt.filename);
       setCoverArtPreviewUrl(coverArt.cover_art_url)
     }
-  }, [game, coverArt]);
+
+    if (filteredScreenshots.length > 0) {
+      const existingScreenshotUrls = filteredScreenshots.map(screenshot => screenshot.screenshot_url);
+      setScreenshotUrl(existingScreenshotUrls);
+      setScreenshotPreviewUrls(existingScreenshotUrls);
+    }
+  }, [game, coverArt, filteredScreenshots.length]);
 
   useEffect(() => {
     const formErrors = {}
@@ -81,10 +102,6 @@ function EditGameForm() {
 
     setValidations(formErrors);
   }, [title, price, description, min_requirements, min_os, min_processor, min_memory, min_graphics, min_directx, min_storage, min_sound_card, cover_art_url]);
-
-  useEffect(() => {
-    dispatch(thunkGameGetId(gameId));
-  }, [dispatch, gameId]);
 
   const fileWrap = (e) => {
     e.stopPropagation();
@@ -106,6 +123,39 @@ function EditGameForm() {
     setCoverArtUrl(newFile);
     setCoverArtFilename(newFile.name);
     setCoverArtFileError("");
+  };
+
+  const handleScreenshotFiles = (e) => {
+    const selectedFiles = Array.from(e.target.files);
+    const maxFileSize = 5000000;
+    const oversizedFiles = selectedFiles.filter(file => file.size > maxFileSize);
+
+    if (oversizedFiles.length > 0) {
+      setScreenshotsFileError("One or more images exceed the maximum file size of 5MB");
+      setScreenshotUrl([]); // clear any existing screenshots
+      setScreenshotPreviewUrls([]); // clear any existing previews
+      return;
+    }
+    setScreenshotsFileError("");
+    const newScreenshots = selectedFiles.map((file, index) => {
+      const newFilename = `screenshot_${gameId}_${Date.now()}_${index}.${file.name.split('.').pop()}`;
+      return new File([file], newFilename, { type: file.type });
+    });
+
+    const newPreviews = selectedFiles.map(file => URL.createObjectURL(file));
+    setScreenshotUrl(newScreenshots); // store the updated files
+    setScreenshotPreviewUrls(newPreviews); // store the preview URLs
+  };
+
+  const handleRemoveScreenshot = (screenshotId, index) => {
+    const screenshotToRemove = screenshot_url[index];
+    setScreenshotUrl(screenshot_url.filter((screenshot) => screenshot !== screenshotToRemove));
+    setScreenshotPreviewUrls(screenshotPreviewUrls.filter((_, i) => i !== index));
+
+    if (screenshot_url.length === 0) {
+      setScreenshotUrl([]);
+      setScreenshotPreviewUrls([]);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -135,7 +185,7 @@ function EditGameForm() {
 
     dispatch(thunkGameEdit(updatedGame));
 
-    if (cover_art_url) {
+    if (cover_art_url && coverArtfilename && coverArtfilename !== coverArt.filename) {
       const updatedCoverArtData = new FormData();
       updatedCoverArtData.append("cover_art_url", cover_art_url);
       updatedCoverArtData.append("game_id", gameId);
@@ -144,6 +194,17 @@ function EditGameForm() {
       setCoverArtLoading(true);
       await dispatch(thunkCoverArtEdit(coverArtId, updatedCoverArtData));
       setCoverArtLoading(false);
+    };
+
+    if (screenshotsToDelete.length > 0) {
+      setScreenshotsUpdating(true);
+      const deleteScreenshot = async (screenshotId) => {
+        await dispatch(thunkScreenshotDelete(screenshotId));
+      };
+      for (const screenshotId of screenshotsToDelete) {
+        await deleteScreenshot(screenshotId);
+      }
+      setScreenshotsUpdating(false);
     }
 
     navigate(`/games/${gameId}`);
@@ -208,7 +269,7 @@ function EditGameForm() {
               style={release_date ? { color: "white" } : { color: "transparent" }}
             />
             <FaArrowRightFromBracket id="calendar-arrow" />
-            <div id="calendar-circle"/>
+            <div id="calendar-circle" />
             <div
               className="floating-placeholders"
               style={release_date ? { top: "-20.5px" } : null}
@@ -422,6 +483,50 @@ function EditGameForm() {
             {coverArtfilename && <span style={{ color: "#999", fontSize: "12px" }}>{coverArtfilename}</span>}
             {coverArtLoading && <p style={{ color: "#999", fontSize: "12px" }}>Uploading file...</p>}
           </div>
+
+          <div style={{ position: "relative" }}>
+            <div className="container-label-input-image">
+              <input
+                id="screenshot-upload"
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleScreenshotFiles}
+                className="input-file-image"
+              />
+              {screenshotsFileError && <p className="error-game" style={{ top: "55px", left: "0" }}>{screenshotsFileError}</p>}
+              <label htmlFor="screenshot-upload" className="image-label">
+                Edit optional screenshots
+              </label>
+            </div>
+
+            {screenshotPreviewUrls.length > 0 && (
+              <>
+                {screenshotPreviewUrls.map((url, index) => (
+                  <div style={{ position: "relative" }} key={index}>
+                    <img
+                      src={url}
+                      alt={`preview ${index + 1}`}
+                      style={{ maxHeight: "165px", width: "100%" }}
+                    />
+                    <IoRemoveCircle
+                      onClick={() => handleRemoveScreenshot(screenshots[index].id, index)}
+                      style={{
+                        fontSize: "3rem",
+                        color: "var(--body-background-color)",
+                        position: "absolute",
+                        left: "0",
+                        opacity: "0.7",
+                        cursor: "pointer"
+                      }}
+                    />
+                  </div>
+                ))}
+              </>
+            )}
+            {screenshotsUpdating && <p style={{ color: "#999", fontSize: "12px" }}>Updating screenshots...</p>}
+          </div>
+
         </div>
 
       </form>

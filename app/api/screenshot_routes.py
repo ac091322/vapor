@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.api.s3_helpers import upload_file_to_s3
+from app.api.s3_helpers import upload_file_to_s3, remove_file_from_s3
 from app.models import db, Screenshot
 
 
@@ -39,3 +39,21 @@ def upload_screenshot():
         return {"urls": urls}, 201
 
     return {"error": "No files uploaded"}, 400
+
+
+# delete screenshot by screenshot id
+@screenshot_routes.route("/<int:screenshot_id>/delete", methods=["DELETE"])
+@login_required
+def delete_screenshot(screenshot_id):
+    screenshot = Screenshot.query.get(screenshot_id)
+    if screenshot is None:
+        return {"error": "Screenshot not found"}, 404
+
+    s3_response = remove_file_from_s3(screenshot.screenshot_url)
+    if s3_response != True:
+        return {"error": "Failed to delete file from S3"}, 500
+
+    db.session.delete(screenshot)
+    db.session.commit()
+
+    return {"message": "Screenshot deleted"}, 200

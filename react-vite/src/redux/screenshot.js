@@ -1,5 +1,6 @@
 const GET_SCREENSHOTS = "get_all_screenshots/GET_SCREENSHOTS";
 const UPLOAD_SCREENSHOTS = "upload_screenshots/UPLOAD_SCREENSHOTS"
+const DELETE_SCREENSHOT = "delete_screenshot/DELETE_SCREENSHOT"
 
 const getScreenshots = (screenshots) => ({
   type: GET_SCREENSHOTS,
@@ -9,6 +10,11 @@ const getScreenshots = (screenshots) => ({
 const uploadScreenshots = (posts) => ({
   type: UPLOAD_SCREENSHOTS,
   payload: posts
+});
+
+const deleteSCreenshot = (screenshotId) => ({
+  type: DELETE_SCREENSHOT,
+  payload: screenshotId
 });
 
 export const thunkScreenshotsGet = () => async (dispatch) => {
@@ -36,6 +42,15 @@ export const thunkScreenshotsAdd = (posts) => async (dispatch) => {
   }
 };
 
+export const thunkScreenshotDelete = (screenshotId) => async (dispatch) => {
+  const response = await fetch(`/api/screenshots/${screenshotId}/delete`, {
+    method: "DELETE"
+  });
+  if (response.ok) {
+    dispatch(deleteSCreenshot(screenshotId))
+  }
+};
+
 const initialState = {
   posts: []
 };
@@ -56,6 +71,12 @@ const screenshotReducer = (state = initialState, action) => {
         ...state,
         posts: [...state.posts, action.payload]
       }
+
+    case DELETE_SCREENSHOT: {
+      const newState = {...state}
+      delete newState[action.payload]
+      return newState
+    }
 
     default:
       return state;
