@@ -196,17 +196,6 @@ function EditGameForm() {
       setCoverArtLoading(false);
     };
 
-    if (screenshotsToDelete.length > 0) {
-      setScreenshotsUpdating(true);
-      const deleteScreenshot = async (screenshotId) => {
-        await dispatch(thunkScreenshotDelete(screenshotId));
-      };
-      for (const screenshotId of screenshotsToDelete) {
-        await deleteScreenshot(screenshotId);
-      }
-      setScreenshotsUpdating(false);
-    }
-
     navigate(`/games/${gameId}`);
   };
 
