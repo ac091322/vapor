@@ -376,6 +376,14 @@
   .sign-in-wishlist-bar {
     gap: 5px;
   }
+
+  #container-game-details-page h1 {
+    font-size: 22px;
+  }
+
+  #container-buy-bar h2 {
+    font-size: 20px;
+  }
 }
 
 @media screen and (max-width: 500px) {

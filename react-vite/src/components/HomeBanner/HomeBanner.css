@@ -17,5 +17,6 @@
   #container-homepage-banner {
     top: 210px;
     margin-bottom: 20vh;
+    min-width: 390px;
   }
 }
