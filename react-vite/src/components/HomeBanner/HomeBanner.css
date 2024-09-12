@@ -15,7 +15,6 @@
 
 @media screen and (max-width: 1000px) {
   #container-homepage-banner {
-    /* position: absolute; */
     top: 240px;
     margin-bottom: 21vh;
   }
