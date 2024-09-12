@@ -116,6 +116,14 @@
   color: white;
 }
 
+#small-divider-game-listings {
+  background-color: rgb(133, 155, 171);
+  height: 69px;
+  width: 12px;
+  position: absolute;
+  right: -23px
+}
+
 .right-side-content {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
@@ -124,10 +132,45 @@
   gap: 10px;
 }
 
+#date-game-listings {
+  position: absolute;
+  color: #4C6C8C;
+  font-size: 12px;
+  right: 0;
+  bottom: 0;
+  padding-bottom: 3px;
+}
+
 .right-side-content.fade-in {
   opacity: 1;
 }
 
 .right-side-content.fade-out {
   opacity: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  #container-game-listing {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #container-game-listing-details-left {
+    width: 100%;
+    padding-right: 20px;
+  }
+
+  #container-game-listing-right {
+    display: none;
+  }
+
+  #small-divider-game-listings {
+    display: none;
+  }
+
+  #date-game-listings {
+    right: 20px;
+  }
+
 }

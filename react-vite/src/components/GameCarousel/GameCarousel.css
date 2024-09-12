@@ -8,7 +8,6 @@
   box-shadow: 0 0 10px 1px black;
   margin-top: 90px;
   position: relative;
-  ;
 }
 
 #container-game-carousel h3 {
@@ -19,7 +18,7 @@
 
 #container-game-carousel-left {
   grid-area: left-carousel;
-  width: 606px;
+  max-width: 606px;
   z-index: 1;
 }
 
@@ -101,7 +100,6 @@
 #carousel-right-button {
   background: linear-gradient(to right, rgb(27, 40, 55), rgb(20, 29, 41));
   right: -50px;
-  ;
 }
 
 #carousel-right-button:hover {
@@ -120,4 +118,92 @@
 
 .fade-in.active {
   opacity: 1;
+}
+
+@media screen and (max-width: 1000px) {
+  #container-game-carousel {
+    width: fit-content;
+    margin-bottom: 22%;
+  }
+
+  #container-game-carousel-left {
+    max-width: 700px;
+  }
+
+  #container-game-carousel-right {
+    display: none;
+  }
+
+  #carousel-left-button {
+    top: 140px;
+  }
+
+  #carousel-right-button {
+    top: 140px;
+  }
+}
+
+
+@media screen and (max-width: 850px) {
+  #container-game-carousel {
+    width: 600px;
+    margin-bottom: 20px;
+  }
+
+  #carousel-left-button {
+    top: 115px;
+  }
+
+  #carousel-right-button {
+    top: 115px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #container-game-carousel {
+    width: 600px;
+    margin-bottom: 20px;
+  }
+
+  #carousel-left-button {
+    top: 115px;
+  }
+
+  #carousel-right-button {
+    top: 115px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #container-game-carousel {
+    width: 400px;
+    height: 100%;
+  }
+
+  #carousel-left-button {
+    top: 55px;
+  }
+
+  #carousel-right-button {
+    top: 55px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #container-game-carousel {
+    width: 300px;
+    height: 100%;
+  }
+
+  #carousel-left-button {
+    top: 43px;
+    width: 10%;
+    height: 50%;
+  }
+
+  #carousel-right-button {
+    top: 43px;
+    width: 10%;
+    height: 50%;
+  }
 }

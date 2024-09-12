@@ -12,7 +12,7 @@ function Homepage() {
 
       <HomeBanner />
       <GameCarousel />
-      <HomepageGameListings />
+      <HomepageGameListings id="game-listing-component-homepage"/>
 
     </section >
   );
