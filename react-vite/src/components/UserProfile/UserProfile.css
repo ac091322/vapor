@@ -167,7 +167,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   #container-profile-details-left>img {
     width: 100px;
     height: 100px;

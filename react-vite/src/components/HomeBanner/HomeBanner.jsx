@@ -1,4 +1,3 @@
-import NavBar from "../Navigation/NavBar";
 import homeBanner from "../../../public/wukong-banner.png";
 import "./HomeBanner.css"
 

@@ -70,7 +70,7 @@ function UserProfile() {
               <span style={{ color: "white", fontSize: "24px" }}>{currentUser?.username}</span>
 
               {currentUser?.id === 14
-                ? <p>Welcome developer! Any game you add to your wishlist or shopping cart will appear here. Any game you purchase will appear in your Library. Any game you create will appear under My Games. And any review you've left for a game will appear under My Reviews.</p>
+                ? <p>Welcome developer! Any game you add to your wishlist or shopping cart will appear here. Any game you purchase will appear in your Library. Any game you create will appear under My Games. And any review you&apos;ve left for a game will appear under My Reviews.</p>
                 : <p>currentUser?.about</p>
               }
             </div>

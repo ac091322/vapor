@@ -14,7 +14,7 @@
 }
 
 #container-game-details-page-inner {
-  width: 940px;
+  max-width: 940px;
   margin: 0 auto;
 }
 
@@ -49,14 +49,14 @@
   z-index: 1;
 }
 
-#video-placeholder-game-details {
+/* #video-placeholder-game-details {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: gray;
   font-size: 14px;
   color: var(--logo-color);
-}
+} */
 
 .thumbnail-game-details {
   width: 115.56px;
@@ -120,7 +120,7 @@
   border-radius: 2px;
 }
 
-.sign-in-wish-list-bar {
+.sign-in-wishlist-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -354,4 +354,36 @@
     width: 100%;
   }
 
+  #container-bottom-section-game-details {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  #container-thumbnail-images-game-details {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #container-game-details-page {
+    padding: 0 10px;
+  }
+
+  #container-game-carousel-game-details-right-outer {
+    flex-direction: column;
+  }
+
+  .sign-in-wishlist-bar {
+    gap: 5px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #container-thumbnail-images-game-details {
+    width: 357px;
+  }
+
+  .button-add-to-wishlist {
+    white-space: nowrap;
+  }
 }

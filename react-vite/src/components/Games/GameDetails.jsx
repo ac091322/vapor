@@ -13,7 +13,6 @@ import { thunkGameGetId } from "../../redux/game";
 import { thunkWishlistGameAdd, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
 import { thunkShoppingCartUserGet, thunkShoppingCartGameAdd } from "../../redux/shoppingCart";
 import { thunkLibraryUserGet } from "../../redux/library";
-import { thunkReviewsGet } from "../../redux/review";
 import NavBar from "../Navigation/NavBar";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../Reviews/ReviewFormModal";
@@ -119,6 +118,7 @@ function GameDetails() {
       <NavBar />
 
       <h1>{game?.title}</h1>
+
       <div id="container-game-details-page-inner">
         <div id="container-game-carousel-game-details">
           <div id="container-game-carousel-game-details-left">
@@ -294,7 +294,7 @@ function GameDetails() {
 
         {currentUser ? (
           game?.user.user_id === currentUser?.id ? (
-            <div className="sign-in-wish-list-bar">
+            <div className="sign-in-wishlist-bar">
               Cannot add your own game to your wishlist or shopping cart
               <button
                 type="button"
@@ -304,7 +304,7 @@ function GameDetails() {
             </div>
           ) : (
             myWishlist?.find(game => game?.game_id === +gameId) ? (
-              < div className="sign-in-wish-list-bar">
+              < div className="sign-in-wishlist-bar">
                 Click on the button to remove the game from your wishlist
                 <button
                   type="button"
@@ -315,7 +315,7 @@ function GameDetails() {
                 </button>
               </div>
             ) : (
-              < div className="sign-in-wish-list-bar">
+              < div className="sign-in-wishlist-bar">
                 Add this game to your wishlist
                 <button
                   type="button"
@@ -327,7 +327,7 @@ function GameDetails() {
             )
           )
         ) : (
-          <div className="sign-in-wish-list-bar">
+          <div className="sign-in-wishlist-bar">
             Sign in to add this game to your wishlist or shopping cart, or leave a review
             <Link to="/login">
               <button
@@ -411,7 +411,6 @@ function GameDetails() {
               <h4 style={{ color: "white" }}>ABOUT THIS GAME</h4>
               <hr />
               <p style={{
-                width: "613px",
                 paddingRight: "15px",
                 color: "var(--logo-color)",
                 fontSize: "14px",
@@ -565,6 +564,7 @@ function GameDetails() {
           <hr />
           <Reviews />
         </div>
+
       </div>
     </section >
   );
