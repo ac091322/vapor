@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import { thunkShoppingCartGameRemove, thunkShoppingCartUserGet } from "../../redux/shoppingCart";
 import { thunkGamesGet } from "../../redux/game";
 import coverArtPlaceholder from "../../../public/cover-art-placeholder.png"
-import "./ShoppingCart.css"
 
 
 function ShoppingCart({ calculateTotal }) {
@@ -40,12 +39,12 @@ function ShoppingCart({ calculateTotal }) {
   };
 
   return (
-    < section id="container-shopping-cart-component" >
+    <section className="container-my-games-component">
 
       {shoppingCartGames?.map(game => (
         <div
           key={game.id}
-          className="container-shopping-cart-inner"
+          className="container-own-games-inner"
         >
           <Link to={`/games/${game?.id}`} >
             <div style={{ width: "325px" }}>

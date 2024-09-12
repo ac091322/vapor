@@ -12,6 +12,7 @@ import MyReviews from "./MyReviews"
 import defaultAvatar from "../../../public/default-avatar.png"
 import "./UserProfile.css"
 
+
 function UserProfile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -169,5 +170,6 @@ function UserProfile() {
     </section >
   );
 }
+
 
 export default UserProfile

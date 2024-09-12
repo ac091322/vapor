@@ -68,6 +68,12 @@ function GameDetails() {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  useEffect(() => {
+    if (game?.screenshots?.length > 0) {
+      setSelectedScreenshot(game.screenshots[0].screenshot_url);
+    }
+  }, [game?.screenshots]);
+
   const addGameToWishlist = (gameId) => {
     dispatch(thunkWishlistGameAdd(gameId))
       .then(() => dispatch(thunkWishlistUserGet()));
@@ -153,12 +159,39 @@ function GameDetails() {
                       setSelectedScreenshot(screenshot.screenshot_url)
                       setSelectedVideo("")
                     }}
+                    style={selectedScreenshot === screenshot?.screenshot_url ? { border: "2px solid white" } : { border: "" }}
                   />
                 ))
               ) : (
                 <>
                   <img
-                    style={{ width: "115.56px", height: "65px" }}
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                  <img
                     className="thumbnail-game-details"
                     alt="screenshot-placeholder"
                     src={screenshotPlaceholder}
@@ -499,7 +532,6 @@ function GameDetails() {
                 >
                   Own Game
                 </button>
-
               ) : (reviews?.find(review => review?.user_id === currentUser?.id && review?.game_id === +gameId)
                 ? (
                   <button
@@ -509,7 +541,6 @@ function GameDetails() {
                   >
                     Reviewed
                   </button>
-
                 ) : (
                   <button
                     type="button"
@@ -522,7 +553,6 @@ function GameDetails() {
                     />
                   </button>
                 ))
-
               ) : (
                 <button
                   type="button"

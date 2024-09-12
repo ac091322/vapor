@@ -6,7 +6,6 @@ import { thunkGamesGet } from "../../redux/game";
 import { thunkShoppingCartUserGet, thunkShoppingCartGameAdd } from "../../redux/shoppingCart";
 import { thunkLibraryUserGet } from "../../redux/library";
 import coverArtPlaceholder from "../../../public/cover-art-placeholder.png"
-import "./MyWishlist.css"
 
 
 function MyWishlist() {
@@ -46,7 +45,8 @@ function MyWishlist() {
   };
 
   return (
-    < section id="container-my-wishlist-component" >
+    <section className="container-my-games-component">
+
       {wishlistGames?.map(game => {
         const isInShoppingCart = myShoppingCart?.some(cartItem => cartItem?.game_id === game?.id)
         const inLibrary = myLibrary?.some(libraryItem => libraryItem?.game_id === game?.id);
@@ -54,7 +54,7 @@ function MyWishlist() {
         return (
           < div
             key={game.id}
-            className="container-wishlist-inner"
+            className="container-own-games-inner"
           >
             <Link to={`/games/${game?.id}`} >
               <div style={{ width: "325px" }}>
@@ -128,6 +128,7 @@ function MyWishlist() {
         )
 
       })}
+
     </section >
   );
 }
