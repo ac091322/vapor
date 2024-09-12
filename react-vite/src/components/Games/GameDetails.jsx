@@ -13,6 +13,7 @@ import { thunkGameGetId } from "../../redux/game";
 import { thunkWishlistGameAdd, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
 import { thunkShoppingCartUserGet, thunkShoppingCartGameAdd } from "../../redux/shoppingCart";
 import { thunkLibraryUserGet } from "../../redux/library";
+import { thunkReviewsGet } from "../../redux/review";
 import NavBar from "../Navigation/NavBar";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import ReviewFormModal from "../Reviews/ReviewFormModal";
@@ -90,6 +91,20 @@ function GameDetails() {
     const timer = setTimeout(() => setImageClass(""), 500);
     return () => clearTimeout(timer);
   }, [mainImage]);
+
+  const countThumbsUpDown = () => {
+    let thumbsUp = 0;
+    let thumbsDown = 0;
+
+    game?.reviews?.forEach(review => {
+      if (review.thumbs_up) thumbsUp++;
+      if (review.thumbs_down) thumbsDown++;
+    });
+
+    return { thumbsUp, thumbsDown };
+  };
+
+  const thumbsCount = game ? countThumbsUpDown(game?.reviews) : { thumbsUp: 0, thumbsDown: 0 };
 
   return (
     <section
@@ -211,8 +226,14 @@ function GameDetails() {
                 </div>
 
                 <div id="container-description-game-details-right">
-                  <span>50,000 reviews</span>
-                  <span>310 reviews</span>
+                  {thumbsCount?.thumbsUp === 1
+                    ? <span>{thumbsCount?.thumbsUp} review</span>
+                    : <span>{thumbsCount?.thumbsUp} reviews</span>
+                  }
+                  {thumbsCount?.thumbsDown === 1
+                    ? <span>{thumbsCount?.thumbsDown} review</span>
+                    : <span>{thumbsCount?.thumbsDown} reviews</span>
+                  }
                   <span>{game?.release_date.split("00")[0].trim()}</span>
                   <span style={{
                     color: "#67C1F5",

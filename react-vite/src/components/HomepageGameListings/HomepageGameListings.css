@@ -1,7 +1,7 @@
 #container-game-listing-component {
   margin-top: 80px;
   background: linear-gradient(to bottom, rgb(43, 71, 93), var(--body-background-color));
-  padding-bottom: 100px;
+  padding-bottom: 150px;
 }
 
 #container-game-listing {
