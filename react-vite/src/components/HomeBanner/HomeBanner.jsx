@@ -6,7 +6,6 @@ import "./HomeBanner.css"
 function HomeBanner() {
   return (
     <div id="container-homepage-banner">
-      <NavBar />
       <div>
         <img src={homeBanner} alt="homepage_banner" />
       </div>

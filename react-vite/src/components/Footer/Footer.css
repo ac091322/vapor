@@ -17,3 +17,16 @@ footer div {
 footer img {
   height: 45px;
 }
+
+@media screen and (max-width: 1000px) {
+  footer {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 600px){
+  footer div{
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -93,13 +93,7 @@ function GameDetails() {
 
   return (
     <section
-      id="container-game-details-page"
-      style={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-      }}>
+      id="container-game-details-page">
 
       <NavBar />
 
@@ -199,45 +193,47 @@ function GameDetails() {
             </div>
           </div>
 
-          <div id="container-game-carousel-game-details-right">
+          <div id="container-game-carousel-game-details-right-outer">
             <img
               style={{ width: "325px", height: "150px" }}
               src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder} alt="cover-art"
             />
-            <p>{game?.description}</p>
+            <div id="container-game-carousel-game-details-right">
+              <p>{game?.description}</p>
 
-            <div id="container-description-game-details">
-              <div id="container-description-game-details-left">
-                <span>POSITIVE REVIEWS:</span>
-                <span>NEGATIVE REVIEWS:</span>
-                <span>RELEASE DATE:</span>
-                <span>DEVELOPER:</span>
-                <span>USERNAME:</span>
+              <div id="container-description-game-details">
+                <div id="container-description-game-details-left">
+                  <span>POSITIVE REVIEWS:</span>
+                  <span>NEGATIVE REVIEWS:</span>
+                  <span>RELEASE DATE:</span>
+                  <span>DEVELOPER:</span>
+                  <span>USERNAME:</span>
+                </div>
+
+                <div id="container-description-game-details-right">
+                  <span>50,000 reviews</span>
+                  <span>310 reviews</span>
+                  <span>{game?.release_date.split("00")[0].trim()}</span>
+                  <span style={{
+                    color: "#67C1F5",
+                    fontWeight: "bold",
+                    fontSize: "12px"
+                  }}>{game?.user?.username}</span>
+                  <span >{game?.user?.username}</span>
+                </div>
               </div>
 
-              <div id="container-description-game-details-right">
-                <span>50,000 reviews</span>
-                <span>310 reviews</span>
-                <span>{game?.release_date.split("00")[0].trim()}</span>
-                <span style={{
-                  color: "#67C1F5",
-                  fontWeight: "bold",
-                  fontSize: "12px"
-                }}>{game?.user?.username}</span>
-                <span >{game?.user?.username}</span>
+              <div id="container-categories-game-details">
+                <span style={{ color: "#556772", fontSize: "11px" }}>CATEGORIES:</span>
+
+                <div id="container-tags-game-details">
+                  <span className="tags">Role Playing</span >
+                  <span className="tags">Story-Rich</span>
+                  <span className="tags">Adventure</span>
+                  <span className="tags">Action</span>
+                </div>
+
               </div>
-            </div>
-
-            <div id="container-categories-game-details">
-              <span style={{ color: "#556772", fontSize: "11px" }}>CATEGORIES:</span>
-
-              <div id="container-tags-game-details">
-                <span className="tags">Role Playing</span >
-                <span className="tags">Story-Rich</span>
-                <span className="tags">Adventure</span>
-                <span className="tags">Action</span>
-              </div>
-
             </div>
           </div>
         </div>
