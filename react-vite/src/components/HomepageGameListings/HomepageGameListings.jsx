@@ -94,24 +94,10 @@ function HomepageGameListings() {
                     <span style={{ color: "#384959", fontSize: "12px" }}>Mythology, Action RPG, Action, RPG</span>
                   </div>
                   <span style={selectedGame === game?.id ? { color: "var(--nav-background-color)" } : { color: "white" }}>${game?.price}</span>
-                  <span style={{
-                    position: "absolute",
-                    color: "#4C6C8C",
-                    fontSize: "12px",
-                    right: "0",
-                    bottom: "0",
-                    paddingBottom: "3px"
-                  }}>
+                  <span id="date-game-listings">
                     {game?.release_date.split("00")[0].trim()}
                   </span>
-                  {selectedGame === game?.id &&
-                    <div style={{
-                      backgroundColor: "rgb(133, 155, 171)",
-                      height: "69px",
-                      width: "12px",
-                      position: "absolute",
-                      right: "-23px",
-                    }} />}
+                  {selectedGame === game?.id && <div id="small-divider-game-listings" />}
                 </div>
               </Link>
             ))}

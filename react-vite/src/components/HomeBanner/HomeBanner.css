@@ -3,11 +3,20 @@
   background-color: black;
   justify-content: center;
   align-items: center;
-  height: 450px;
+  max-height: 450px;
   position: relative;
 }
 
 #container-homepage-banner img {
   mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  max-width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  #container-homepage-banner {
+    top: 210px;
+    margin-bottom: 20vh;
+    min-width: 390px;
+  }
 }

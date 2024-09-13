@@ -10,14 +10,14 @@
 }
 
 .container-create-game-page form {
-  width: 940px;
+  max-width: 940px;
   background:
     linear-gradient(5deg, rgba(102, 51, 0, 0.6) 0%, rgba(153, 76, 0, 0.6) 50%, rgba(102, 51, 0, 0.6) 80%),
     linear-gradient(25deg, rgba(102, 51, 0, 0.6) 0%, rgba(153, 76, 0, 0.6) 50%, rgba(102, 51, 0, 0.6) 80%);
   background-blend-mode: overlay;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   grid-template-areas: "left-create-game right-create-game";
   column-gap: 20px;
   padding: 40px 15px 100px 15px;
@@ -82,7 +82,10 @@
 
 .container-create-game-form-left input {
   height: 40px;
-  width: 600px;
+  width: 100%;
+  /* Changed to allow textarea to resize */
+  max-width: 100%;
+  /* Ensures it doesn't overflow */
   background-color: rgb(0, 0, 0, 0.4);
   z-index: 1;
   position: relative;
@@ -91,7 +94,7 @@
 
 .container-create-game-form-left textarea {
   height: 150px;
-  width: 600px;
+  width: 100%;
   outline: none;
   background-color: rgb(0, 0, 0, 0.3);
   z-index: 1;
@@ -136,7 +139,9 @@
   cursor: pointer;
 }
 
-#container-screenshot-previews {
-  display: flex;
-  flex-direction: column;
+@media screen and (max-width: 600px) {
+  .container-create-game-page form {
+    display: flex;
+    flex-direction: column;
+  }
 }

@@ -12,31 +12,31 @@ On Vapor, you take on the role of both developer and user. You can create, edit,
 
 ### Vapor Homepage
 
-![Homepage](react-vite/public/homepage-screenshot.png)
+![homepage](react-vite/public/homepage-screenshot.png)
 
 ### Game Details
 
-![Game Details](react-vite/public/game-details-screenshot.png)
+![game details](react-vite/public/game-details-screenshot.png)
 
 ### Sign In
 
-![Sign In](react-vite/public/signin-screenshot.png)
+![sign in](react-vite/public/signin-screenshot.png)
 
 ### Uesr Hub
 
-![User Hub](react-vite/public/user-hub-screenshot.png)
+![user hub](react-vite/public/user-hub-screenshot.png)
 
 ### Create Game
 
-![User Page](react-vite/public/create-game-screenshot.png)
+![create game](react-vite/public/create-game-screenshot.png)
 
 ### Edit Game
 
-![User Page](react-vite/public/edit-game-screenshot.png)
+![edit game](react-vite/public/edit-game-screenshot.png)
 
 ### Checkout Process
 
-![Checkout](react-vite/public/checkout-screenshot.png)
+![Checkout process](react-vite/public/checkout-screenshot.png)
 
 
 ## Key Features

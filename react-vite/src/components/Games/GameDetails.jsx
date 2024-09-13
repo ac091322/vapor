@@ -67,6 +67,12 @@ function GameDetails() {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  useEffect(() => {
+    if (game?.screenshots?.length > 0) {
+      setSelectedScreenshot(game.screenshots[0].screenshot_url);
+    }
+  }, [game?.screenshots]);
+
   const addGameToWishlist = (gameId) => {
     dispatch(thunkWishlistGameAdd(gameId))
       .then(() => dispatch(thunkWishlistUserGet()));
@@ -91,19 +97,28 @@ function GameDetails() {
     return () => clearTimeout(timer);
   }, [mainImage]);
 
+  const countThumbsUpDown = () => {
+    let thumbsUp = 0;
+    let thumbsDown = 0;
+
+    game?.reviews?.forEach(review => {
+      if (review.thumbs_up) thumbsUp++;
+      if (review.thumbs_down) thumbsDown++;
+    });
+
+    return { thumbsUp, thumbsDown };
+  };
+
+  const thumbsCount = game ? countThumbsUpDown(game?.reviews) : { thumbsUp: 0, thumbsDown: 0 };
+
   return (
     <section
-      id="container-game-details-page"
-      style={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-      }}>
+      id="container-game-details-page">
 
       <NavBar />
 
       <h1>{game?.title}</h1>
+
       <div id="container-game-details-page-inner">
         <div id="container-game-carousel-game-details">
           <div id="container-game-carousel-game-details-left">
@@ -144,12 +159,39 @@ function GameDetails() {
                       setSelectedScreenshot(screenshot.screenshot_url)
                       setSelectedVideo("")
                     }}
+                    style={selectedScreenshot === screenshot?.screenshot_url ? { border: "2px solid white" } : { border: "" }}
                   />
                 ))
               ) : (
                 <>
                   <img
-                    style={{ width: "115.56px", height: "65px" }}
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                  <img
+                    className="thumbnail-game-details"
+                    alt="screenshot-placeholder"
+                    src={screenshotPlaceholder}
+                    onClick={() => {
+                      setSelectedScreenshot(screenshotPlaceholder)
+                      setSelectedVideo("")
+                    }}
+                  />
+                  <img
                     className="thumbnail-game-details"
                     alt="screenshot-placeholder"
                     src={screenshotPlaceholder}
@@ -199,52 +241,60 @@ function GameDetails() {
             </div>
           </div>
 
-          <div id="container-game-carousel-game-details-right">
+          <div id="container-game-carousel-game-details-right-outer">
             <img
               style={{ width: "325px", height: "150px" }}
               src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder} alt="cover-art"
             />
-            <p>{game?.description}</p>
+            <div id="container-game-carousel-game-details-right">
+              <p>{game?.description}</p>
 
-            <div id="container-description-game-details">
-              <div id="container-description-game-details-left">
-                <span>POSITIVE REVIEWS:</span>
-                <span>NEGATIVE REVIEWS:</span>
-                <span>RELEASE DATE:</span>
-                <span>DEVELOPER:</span>
-                <span>USERNAME:</span>
+              <div id="container-description-game-details">
+                <div id="container-description-game-details-left">
+                  <span>POSITIVE REVIEWS:</span>
+                  <span>NEGATIVE REVIEWS:</span>
+                  <span>RELEASE DATE:</span>
+                  <span>DEVELOPER:</span>
+                  <span>USERNAME:</span>
+                </div>
+
+                <div id="container-description-game-details-right">
+                  {thumbsCount?.thumbsUp === 1
+                    ? <span>{thumbsCount?.thumbsUp} review</span>
+                    : <span>{thumbsCount?.thumbsUp} reviews</span>
+                  }
+                  {thumbsCount?.thumbsDown === 1
+                    ? <span>{thumbsCount?.thumbsDown} review</span>
+                    : <span>{thumbsCount?.thumbsDown} reviews</span>
+                  }
+                  <span>{game?.release_date.split("00")[0].trim()}</span>
+                  <span style={{
+                    color: "#67C1F5",
+                    fontWeight: "bold",
+                    fontSize: "12px"
+                  }}>{game?.user?.username}</span>
+                  <span >{game?.user?.username}</span>
+                </div>
               </div>
 
-              <div id="container-description-game-details-right">
-                <span>50,000 reviews</span>
-                <span>310 reviews</span>
-                <span>{game?.release_date.split("00")[0].trim()}</span>
-                <span style={{
-                  color: "#67C1F5",
-                  fontWeight: "bold",
-                  fontSize: "12px"
-                }}>{game?.user?.username}</span>
-                <span >{game?.user?.username}</span>
+              <div id="container-categories-game-details">
+                <span style={{ color: "#556772", fontSize: "11px" }}>CATEGORIES:</span>
+
+                <div id="container-tags-game-details">
+                  <span className="tags">Role Playing</span >
+                  <span className="tags">Story-Rich</span>
+                  <span className="tags">Adventure</span>
+                  <span className="tags">Action</span>
+                </div>
+
               </div>
-            </div>
-
-            <div id="container-categories-game-details">
-              <span style={{ color: "#556772", fontSize: "11px" }}>CATEGORIES:</span>
-
-              <div id="container-tags-game-details">
-                <span className="tags">Role Playing</span >
-                <span className="tags">Story-Rich</span>
-                <span className="tags">Adventure</span>
-                <span className="tags">Action</span>
-              </div>
-
             </div>
           </div>
         </div>
 
         {currentUser ? (
           game?.user.user_id === currentUser?.id ? (
-            <div className="sign-in-wish-list-bar">
+            <div className="sign-in-wishlist-bar">
               Cannot add your own game to your wishlist or shopping cart
               <button
                 type="button"
@@ -254,7 +304,7 @@ function GameDetails() {
             </div>
           ) : (
             myWishlist?.find(game => game?.game_id === +gameId) ? (
-              < div className="sign-in-wish-list-bar">
+              < div className="sign-in-wishlist-bar">
                 Click on the button to remove the game from your wishlist
                 <button
                   type="button"
@@ -265,7 +315,7 @@ function GameDetails() {
                 </button>
               </div>
             ) : (
-              < div className="sign-in-wish-list-bar">
+              < div className="sign-in-wishlist-bar">
                 Add this game to your wishlist
                 <button
                   type="button"
@@ -277,7 +327,7 @@ function GameDetails() {
             )
           )
         ) : (
-          <div className="sign-in-wish-list-bar">
+          <div className="sign-in-wishlist-bar">
             Sign in to add this game to your wishlist or shopping cart, or leave a review
             <Link to="/login">
               <button
@@ -360,14 +410,7 @@ function GameDetails() {
             <div id="container-bottom-description-game-details">
               <h4 style={{ color: "white" }}>ABOUT THIS GAME</h4>
               <hr />
-              <p style={{
-                width: "613px",
-                paddingRight: "15px",
-                color: "var(--logo-color)",
-                fontSize: "14px",
-                overflow: "hidden",
-                textOverflow: "ellipsis"
-              }}>{game?.description}</p>
+              <p>{game?.description}</p>
             </div>
 
             <div style={{ marginTop: "45px" }}>
@@ -482,7 +525,6 @@ function GameDetails() {
                 >
                   Own Game
                 </button>
-
               ) : (reviews?.find(review => review?.user_id === currentUser?.id && review?.game_id === +gameId)
                 ? (
                   <button
@@ -492,7 +534,6 @@ function GameDetails() {
                   >
                     Reviewed
                   </button>
-
                 ) : (
                   <button
                     type="button"
@@ -505,7 +546,6 @@ function GameDetails() {
                     />
                   </button>
                 ))
-
               ) : (
                 <button
                   type="button"
@@ -518,6 +558,7 @@ function GameDetails() {
           <hr />
           <Reviews />
         </div>
+
       </div>
     </section >
   );

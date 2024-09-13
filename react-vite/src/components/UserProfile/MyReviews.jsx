@@ -61,7 +61,7 @@ function MyReviews() {
             key={review.id}
           >
             <div id="container-game-cover-art-review">
-              <div>
+              <div style={{ paddingBottom: "10px" }}>
                 <Link to={`/games/${game?.id}`}>
                   <img src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder} alt="game-cover-art" />
                 </Link>
@@ -96,7 +96,7 @@ function MyReviews() {
                 </div>
               </div>
 
-              <div>
+              <div style={{ width: "315px" }}>
                 {review?.thumbs_up ? (
                   <div className="container-recommendation-my-reviews">
                     <div style={{ color: "#D6D7D8" }}>
@@ -114,9 +114,7 @@ function MyReviews() {
                     </div>
                     <GoStarFill style={{ color: "rgb(81, 106, 123)" }} />
                   </div>
-
                 ) : (
-
                   <div className="container-recommendation-my-reviews">
                     <div style={{ color: "var(--light-beige-font-color)" }}>
                       <IoThumbsDown
@@ -143,12 +141,11 @@ function MyReviews() {
                     color: "#ACB2B8",
                     fontSize: "13px",
                     height: "130px",
-                    width: "305px",
                     verflowX: "scroll",
                     scrollbarWidth: "thin",
                     scrollbarColor: "#888 transparent",
                     textOverflow: "ellipsis",
-                    overflowX: "hidden"
+                    overflowX: "hidden",
                   }}>
                     {review?.description}
                   </p>

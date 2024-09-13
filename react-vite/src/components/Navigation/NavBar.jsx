@@ -28,46 +28,48 @@ function NavBar() {
   }, [dispatch, currentUser, shoppingCartId]);
 
   return (
-    <section id="container-navbar">
+    <section id="container-navbar-outer">
+      <section id="container-navbar">
 
-      {currentUser && <div id="container-wishlist-shoppingcart-buttons">
-        <Link to="/user?activeTab=wishlist">
-          <button id="navbar-wishlist-button">
-            Wishlist ({myWishlist?.length ? myWishlist?.length : 0})
-          </button>
-        </Link>
-        <Link to="/user?activeTab=shoppingCart">
-          <button id="navbar-shopping-cart-button">
-            <FaShoppingCart style={{ paddingBottom: "1px" }} /> Cart ({myShoppingCart?.length})
-          </button>
-        </Link>
-      </div>}
+        {currentUser && <div id="container-wishlist-shoppingcart-buttons">
+          <Link to="/user?activeTab=wishlist">
+            <button id="navbar-wishlist-button">
+              Wishlist ({myWishlist?.length ? myWishlist?.length : 0})
+            </button>
+          </Link>
+          <Link to="/user?activeTab=shoppingCart">
+            <button id="navbar-shopping-cart-button">
+              <FaShoppingCart style={{ paddingBottom: "1px" }} /> Cart ({myShoppingCart?.length})
+            </button>
+          </Link>
+        </div>}
 
-      <ul>
-        <Link to="#">
-          <li
-            style={{ cursor: "not-allowed" }}
-            id="container-avatar-store-link">
-            <img
-              style={{ height: "16px", width: "16px" }}
-              src={defaultAvatar}
-              alt="mini-avatar" />
-            Your Store
-          </li>
-        </Link>
-        <li >New & Noteworthy</li>
-        <li >Categories</li>
-        <li >Points Shop</li>
-        <li >News</li>
-        <li >Labs</li>
-      </ul>
+        <ul>
+          <Link to="#">
+            <li
+              style={{ cursor: "not-allowed" }}
+              id="container-avatar-store-link">
+              <img
+                style={{ height: "16px", width: "16px" }}
+                src={defaultAvatar}
+                alt="mini-avatar" />
+              Your Store
+            </li>
+          </Link>
+          <li >New & Noteworthy</li>
+          <li >Categories</li>
+          <li >Points Shop</li>
+          <li >News</li>
+          <li >Labs</li>
+        </ul>
 
-      <div id="container-search-bar-nav">
-        <input placeholder="search" />
-        <div style={{ paddingTop: "2px", height: "25px", width: "25px", marginBottom: "3px" }}>
-          <button><IoSearchSharp /></button>
+        <div id="container-search-bar-nav">
+          <input placeholder="search" />
+          <div style={{ paddingTop: "2px", height: "25px", width: "25px", marginBottom: "3px" }}>
+            <button><IoSearchSharp /></button>
+          </div>
         </div>
-      </div>
+      </section>
     </section>
   );
 }

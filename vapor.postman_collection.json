@@ -532,6 +532,28 @@
 			"response": []
 		},
 		{
+			"name": "delete screenshots",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/screenshots/113/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"screenshots",
+						"113",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get all reviews",
 			"request": {
 				"method": "GET",
