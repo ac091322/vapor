@@ -62,14 +62,14 @@ function UserProfile() {
 
         <div id="container-profile-content-left">
           <div id="container-profile-details-left">
-            {currentUser?.id === 14
+            {currentUser?.id === 15
               ? <img src={currentUser?.avatar} alt="demo-avatar" />
               : <img src={defaultAvatar} alt="default-avatar" />}
 
             <div id="container-profile-content-left-name">
               <span style={{ color: "white", fontSize: "24px" }}>{currentUser?.username}</span>
 
-              {currentUser?.id === 14
+              {currentUser?.id === 15
                 ? <p>Welcome developer! Any game you add to your wishlist or shopping cart will appear here. Any game you purchase will appear in your Library. Any game you create will appear under My Games. And any review you&apos;ve left for a game will appear under My Reviews.</p>
                 : <p>currentUser?.about</p>
               }

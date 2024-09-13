@@ -244,6 +244,22 @@ def seed_games():
         min_sound_card="Windows Compatible Audio Device",
     )
 
+    satisfactory = Game(
+        title="Satisfactory",
+        user_id=14,
+        price=35.99,
+        release_date=datetime(2024, 9, 10).date(),
+        description="Satisfactory is a first-person open-world factory building game with a dash of exploration and combat. Play alone or with friends, explore an alien planet, create multi-story factories, and enter conveyor belt heaven!",
+        min_requirements="Requires a 64-bit processor and operating system",
+        min_os="Windows 10 or later (64-Bit)",
+        min_processor="i5-3570 3.4 GHz 4 Core",
+        min_memory="8 GB RAM",
+        min_graphics="Nvidia GTX 1650/GTX 1050-ti, or AMD RX 470/RX 570, or equivalent performance & VRAM",
+        min_directx="Version 11",
+        min_storage="20 GB available space",
+        min_sound_card="Windows Compatible Audio Device",
+    )
+
     db.session.add_all(
         [
             black_myth_wukong,
@@ -261,6 +277,7 @@ def seed_games():
             shapez_2,
             cult_of_the_lamb,
             gundam_breaker_4,
+            satisfactory,
         ]
     )
     db.session.commit()

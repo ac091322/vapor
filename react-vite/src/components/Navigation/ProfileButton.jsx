@@ -64,7 +64,7 @@ function ProfileButton() {
               </ul>
             )}
             <Link to="/user">
-              {user.id === 14
+              {user.id === 15
                 ? <img src={user.avatar} alt="demo-avatar" />
                 : <img src={defaultAvatar} alt="default-avatar" />
               }

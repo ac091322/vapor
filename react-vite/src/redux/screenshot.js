@@ -12,7 +12,7 @@ const uploadScreenshots = (posts) => ({
   payload: posts
 });
 
-const deleteSCreenshot = (screenshotId) => ({
+const deleteSCreenshots = (screenshotId) => ({
   type: DELETE_SCREENSHOT,
   payload: screenshotId
 });
@@ -42,13 +42,16 @@ export const thunkScreenshotsAdd = (posts) => async (dispatch) => {
   }
 };
 
-export const thunkScreenshotDelete = (screenshotId) => async (dispatch) => {
-  const response = await fetch(`/api/screenshots/${screenshotId}/delete`, {
-    method: "DELETE"
+export const thunkScreenshotDelete = (screenshotIds) => async (dispatch) => {
+  const deletePromises = screenshotIds.map(async (screenshotId) => {
+    const response = await fetch(`/api/screenshots/${screenshotId}/delete`, {
+      method: "DELETE"
+    });
+    if (response.ok) {
+      dispatch(deleteSCreenshots(screenshotId));
+    }
   });
-  if (response.ok) {
-    dispatch(deleteSCreenshot(screenshotId))
-  }
+  await Promise.all(deletePromises);
 };
 
 const initialState = {
@@ -73,7 +76,7 @@ const screenshotReducer = (state = initialState, action) => {
       }
 
     case DELETE_SCREENSHOT: {
-      const newState = {...state}
+      const newState = { ...state }
       delete newState[action.payload]
       return newState
     }

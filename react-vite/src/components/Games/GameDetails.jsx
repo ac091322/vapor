@@ -50,8 +50,8 @@ function GameDetails() {
   useEffect(() => {
     dispatch(thunkGameGetId(gameId));
     if (currentUser) {
-      dispatch(thunkWishlistUserGet());
       dispatch(thunkShoppingCartUserGet(shoppingCartId));
+      dispatch(thunkWishlistUserGet());
       dispatch(thunkLibraryUserGet());
     }
   }, [dispatch, currentUser, gameId, shoppingCartId]);
@@ -70,6 +70,8 @@ function GameDetails() {
   useEffect(() => {
     if (game?.screenshots?.length > 0) {
       setSelectedScreenshot(game.screenshots[0].screenshot_url);
+    } else {
+      setSelectedScreenshot(screenshotPlaceholder);
     }
   }, [game?.screenshots]);
 
@@ -159,7 +161,7 @@ function GameDetails() {
                       setSelectedScreenshot(screenshot.screenshot_url)
                       setSelectedVideo("")
                     }}
-                    style={selectedScreenshot === screenshot?.screenshot_url ? { border: "2px solid white" } : { border: "" }}
+                    style={selectedScreenshot === screenshot?.screenshot_url ? { border: "1px solid white" } : { border: "" }}
                   />
                 ))
               ) : (
