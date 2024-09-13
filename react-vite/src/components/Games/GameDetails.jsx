@@ -410,13 +410,7 @@ function GameDetails() {
             <div id="container-bottom-description-game-details">
               <h4 style={{ color: "white" }}>ABOUT THIS GAME</h4>
               <hr />
-              <p style={{
-                paddingRight: "15px",
-                color: "var(--logo-color)",
-                fontSize: "14px",
-                overflow: "hidden",
-                textOverflow: "ellipsis"
-              }}>{game?.description}</p>
+              <p>{game?.description}</p>
             </div>
 
             <div style={{ marginTop: "45px" }}>

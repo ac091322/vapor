@@ -200,6 +200,15 @@
   margin-top: 45px;
 }
 
+#container-bottom-description-game-details p {
+  padding-right: 15px;
+  color: var(--logo-color);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 613.33px;
+}
+
 #container-game-details-page hr {
   border: 0;
   height: 1px;
@@ -342,7 +351,11 @@
   }
 
   #container-game-carousel-game-details-right p {
-    max-width: 100%;
+    max-width: 605px;
+  }
+
+  #container-bottom-description-game-details p {
+    max-width: 940px;
   }
 
   #main-image-game-details {
@@ -383,6 +396,14 @@
 
   #container-buy-bar h2 {
     font-size: 20px;
+  }
+
+  #container-game-carousel-game-details-right p {
+    max-width: 624px;
+  }
+
+  #container-bottom-description-game-details p {
+    max-width: 624px;
   }
 }
 

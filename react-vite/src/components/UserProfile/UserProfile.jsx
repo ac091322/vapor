@@ -95,9 +95,15 @@ function UserProfile() {
             </p>
 
             <div id="container-points-accumulated">
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Created: {createdGameCount}</span>
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Purchased: {purchasedGameCount}</span>
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Reviewed: {reviewedGameCount}</span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>
+                Created: <span style={{ color: "var(--logo-color)" }}>{createdGameCount}</span>
+              </span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>
+                Purchased: <span style={{ color: "var(--logo-color)" }}>{purchasedGameCount}</span>
+              </span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>
+                Reviewed: <span style={{ color: "var(--logo-color)" }}>{reviewedGameCount}</span>
+              </span>
             </div>
           </div>
 
