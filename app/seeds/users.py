@@ -121,6 +121,15 @@ def seed_users():
         about=None,
     )
 
+    coffee_stain_studios = User(
+        username="Coffee Stain Studios",
+        email="coffeestainstudios@vapor.io",
+        password="password",
+        developer_name=None,
+        avatar=None,
+        about=None,
+    )
+
     demo_developer = User(
         username="Demo Developer",
         email="demodeveloper@vapor.io",
@@ -145,6 +154,7 @@ def seed_users():
             tobspr_games,
             massive_monster,
             crafts_and_meister_co_ltd,
+            coffee_stain_studios,
             demo_developer,
         ]
     )

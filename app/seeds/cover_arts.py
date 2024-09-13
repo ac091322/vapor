@@ -93,6 +93,12 @@ def seed_cover_arts():
         filename="cover_art_0000000000014.png",
     )
 
+    satisfactory = CoverArt(
+        cover_art_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/cover-art-satisfactory.png",
+        game_id=16,
+        filename="cover_art_0000000000015.png",
+    )
+
     db.session.add_all(
         [
             black_myth_wukong,
@@ -110,6 +116,7 @@ def seed_cover_arts():
             shapez_2,
             cult_of_the_lamb,
             gundam_breaker_4,
+            satisfactory,
         ]
     )
     db.session.commit()

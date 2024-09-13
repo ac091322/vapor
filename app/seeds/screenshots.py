@@ -647,6 +647,52 @@ def seed_screenshots():
         filename="screenshot_0000000000111.png",
     )
 
+    satisfactory_screenshot_1 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot1.jpg",
+        game_id=16,
+        filename="screenshot_0000000000112.png",
+    )
+    satisfactory_screenshot_2 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot2.jpg",
+        game_id=16,
+        filename="screenshot_0000000000113.png",
+    )
+    satisfactory_screenshot_3 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot3.jpg",
+        game_id=16,
+        filename="screenshot_0000000000114.png",
+    )
+    satisfactory_screenshot_4 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot4.jpg",
+        game_id=16,
+        filename="screenshot_0000000000115.png",
+    )
+    satisfactory_screenshot_5 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot5.jpg",
+        game_id=16,
+        filename="screenshot_0000000000116.png",
+    )
+    satisfactory_screenshot_6 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot6.jpg",
+        game_id=16,
+        filename="screenshot_0000000000117.png",
+    )
+    satisfactory_screenshot_7 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot7.jpg",
+        game_id=16,
+        filename="screenshot_0000000000118.png",
+    )
+    satisfactory_screenshot_8 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot8.jpg",
+        game_id=16,
+        filename="screenshot_0000000000119.png",
+    )
+    satisfactory_screenshot_9 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot9.jpg",
+        game_id=16,
+        filename="screenshot_0000000000120.png",
+    )
+
     db.session.add_all(
         [
             black_myth_wukong_screenshot_1,
@@ -757,6 +803,15 @@ def seed_screenshots():
             gundam_breaker_4_screenshot_4,
             gundam_breaker_4_screenshot_5,
             gundam_breaker_4_screenshot_6,
+            satisfactory_screenshot_1,
+            satisfactory_screenshot_2,
+            satisfactory_screenshot_3,
+            satisfactory_screenshot_4,
+            satisfactory_screenshot_5,
+            satisfactory_screenshot_6,
+            satisfactory_screenshot_7,
+            satisfactory_screenshot_8,
+            satisfactory_screenshot_9,
         ]
     )
     db.session.commit()

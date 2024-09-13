@@ -291,7 +291,7 @@ def seed_reviews():
         game_id=14,
     )
 
-    suspicious_developments_inc_review_dota_2 = Review(
+    suspicious_developments_review_dota_2 = Review(
         description="dont play it. its so broken now. LIterally a win once, lose 400 times, regardless of role or skill. That is if you even are matched with your skill. Dota used to be about the game and players, its clear the money is their only focus now.",
         thumbs_up=False,
         thumbs_down=True,
@@ -323,7 +323,7 @@ def seed_reviews():
         game_id=12,
     )
 
-    crafts_and_meister_co_ltd_review_tactical_breach_wizards = Review(
+    crafts_and_meister_review_tactical_breach_wizards = Review(
         description="I did not play much, but it was just a bit too easy for me coming from Xcom and Fire Emblem. I also really was not a fan of the goofy dialogue, it felt very marvel-esque with its use of quips, one liners, and puns. Just not a good fit for me. Maybe you will like it though. I don't think its a BAD game.",
         thumbs_up=False,
         thumbs_down=True,
@@ -331,12 +331,76 @@ def seed_reviews():
         game_id=10,
     )
 
-    suspicious_developments_inc_review_sin_of_a_solar_empire_ii = Review(
+    suspicious_developments_review_sin_of_a_solar_empire_ii = Review(
         description="Fast paced, highly enjoyable X4 game with RTS elements, similar to Stellaris but more tactical, less micro management, and faster paced. Most games are wrapped up in 3~10 hours depending on map size. My only criticism is the limited total fleet supply that prevents players from having many large fleets at once, which would be useful on the very large maps with many empires.",
         thumbs_up=True,
         thumbs_down=False,
         user_id=9,
         game_id=6,
+    )
+
+    game_science_review_satisfactory = Review(
+        description="I played Satisfactory a lot on Epic. I liked the game but didn't like Epic, so I bought it on Steam and waited for full release to play it again. Sadly the game now crashes on startup every time. I hope this gets fixed...",
+        thumbs_up=False,
+        thumbs_down=True,
+        user_id=1,
+        game_id=16,
+    )
+
+    nexon_review_satisfactory = Review(
+        description="This game is worth buying, playing and re-visiting super fun and different. Glad to be alive when Minecraft Came out, and Glad to be alive when Satisfactory Came out. Its perfect to play when watching a movie or video on the other monitor. Eazy to pick up and hard to get good at it.",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=3,
+        game_id=16,
+    )
+
+    arsi_hakita_patala_review_satisfactory = Review(
+        description="正式リリースで盛り上がってたので改めてプレイ開始したけどやっぱり最高ですねこのゲーム他に工場シミュ系をあまり持っていないけどfactorioやdyson sphere programとは差別化出来てると思うし、不便に思う所は大抵Modで解決出来る(今はアプデ直後なのでしばらくModは使えませんがw)ので自分に合った難易度やプレイ感にちょうど良く落とし込めるのも最高ですｂ",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=5,
+        game_id=16,
+    )
+
+    suspicious_developments_review_satisfactory = Review(
+        description="This game is far more than 'satisfactory' its interesting, exciting, silly, fun. Lots to explore, discover, build, invent, explode. This game really does the factory game genre the best of any i have tried and it superbly. I can't recommend this game enough. And now you can play with friends too. Get ready to spend hours, days, weeks, months, and years lost in this game. Lots of replayability which makes it value for money too. Highly recommended.",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=9,
+        game_id=16,
+    )
+
+    tobspr_games_review_satisfactory = Review(
+        description="Been playing since lockdown and I was surprised at how quickly I became addicted to building and exploring and coming up with solutions to becoming a more efficient Ficsit Pioneer. The 1.0 release is faster, smoother, more polished, and I can't wait to discover all the cool things they've packed in here. Following the development and the way the developers interact with the community has been such a positive experience too. Great work!",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=11,
+        game_id=16,
+    )
+
+    massive_monster_review_satisfactory = Review(
+        description="This is the first review I have ever left. Play this game. The blend of story and open world is perfect. Play this game. There is nothing better than optimizing your factories, you need this game. Play this game. If you like exploration and resource exploitation buy this game. I love no game more than this. Buy this game.",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=12,
+        game_id=16,
+    )
+
+    crafts_and_meister_review_satisfactory = Review(
+        description="One of my fav games of all time. It's a perfect combo of artistic creativity and in-depth strategic calculation. Now that there's a plot/story and a tonne of QOL improvements this is a no-brainer. Glad its finally getting the attention it deserves.",
+        thumbs_up=True,
+        thumbs_down=False,
+        user_id=13,
+        game_id=16,
+    )
+
+    valve_review_satisfactory = Review(
+        description="After years of early access... releases in a horrible state! About as buggy as any of the other numbered updates.... dedicated servers are still pretty much not functioning. foliage will still respawn with the added new bonus of crashing the game when you use chainsaw!",
+        thumbs_up=False,
+        thumbs_down=True,
+        user_id=7,
+        game_id=16,
     )
 
     db.session.add_all(
@@ -377,12 +441,20 @@ def seed_reviews():
             firaxis_review_cult_of_the_lamb,
             valve_review_cult_of_the_lamb,
             iron_clad_games_review_cult_of_the_lamb,
-            suspicious_developments_inc_review_dota_2,
+            suspicious_developments_review_dota_2,
             scopely_review_dota_2,
             tobspr_games_review_dota_2,
             massive_monster_review_dota_2,
-            crafts_and_meister_co_ltd_review_tactical_breach_wizards,
-            suspicious_developments_inc_review_sin_of_a_solar_empire_ii,
+            crafts_and_meister_review_tactical_breach_wizards,
+            suspicious_developments_review_sin_of_a_solar_empire_ii,
+            game_science_review_satisfactory,
+            nexon_review_satisfactory,
+            arsi_hakita_patala_review_satisfactory,
+            suspicious_developments_review_satisfactory,
+            tobspr_games_review_satisfactory,
+            massive_monster_review_satisfactory,
+            crafts_and_meister_review_satisfactory,
+            valve_review_satisfactory,
         ]
     )
     db.session.commit()

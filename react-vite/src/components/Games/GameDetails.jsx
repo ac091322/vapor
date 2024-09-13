@@ -159,7 +159,7 @@ function GameDetails() {
                       setSelectedScreenshot(screenshot.screenshot_url)
                       setSelectedVideo("")
                     }}
-                    style={selectedScreenshot === screenshot?.screenshot_url ? { border: "2px solid white" } : { border: "" }}
+                    style={selectedScreenshot === screenshot?.screenshot_url ? { border: "1px solid white" } : { border: "" }}
                   />
                 ))
               ) : (
