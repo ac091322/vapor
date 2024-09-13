@@ -82,7 +82,7 @@ function EditGameForm() {
       setScreenshotUrl(existingScreenshotUrls);
       setScreenshotPreviewUrls(existingScreenshotUrls);
     }
-  }, [game, coverArt, filteredScreenshots.length]);
+  }, [game, coverArt]);
 
   useEffect(() => {
     const formErrors = {}
@@ -181,7 +181,7 @@ function EditGameForm() {
       min_storage,
       min_sound_card,
       user_id: Number(currentUser.id),
-    };
+    }
 
     dispatch(thunkGameEdit(updatedGame));
 
@@ -194,7 +194,7 @@ function EditGameForm() {
       setCoverArtLoading(true);
       await dispatch(thunkCoverArtEdit(coverArtId, updatedCoverArtData));
       setCoverArtLoading(false);
-    };
+    }
 
     navigate(`/games/${gameId}`);
   };

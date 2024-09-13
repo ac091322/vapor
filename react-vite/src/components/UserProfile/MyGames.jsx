@@ -27,7 +27,7 @@ function MyGames() {
   };
 
   return (
-    <section id="container-my-games-component">
+    <section className="container-my-games-component">
 
       {filteredGames?.map(game => (
         <div
@@ -35,7 +35,9 @@ function MyGames() {
           className="container-own-games-inner"
         >
           <Link to={`/games/${game?.id}`} >
-            <div style={{ width: "325px" }}>
+            <div
+              style={{ width: "325px" }}
+            >
               <img src={game?.cover_art?.[0]?.cover_art_url ? game?.cover_art?.[0]?.cover_art_url : coverArtPlaceholder} alt="game-cover-art" />
             </div>
           </Link>

@@ -7,11 +7,10 @@
     linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.7) 75%);
   background-size: 10px 10px;
   background-blend-mode: overlay;
-  position: relative;
 }
 
 .container-checkout-page-inner {
-  width: 940px;
+  max-width: 940px;
   background:
     linear-gradient(5deg, rgba(70, 85, 45, 0.7) 0%, rgba(90, 105, 60, 0.7) 50%, rgba(70, 85, 45, 0.7) 80%),
     linear-gradient(25deg, rgba(70, 85, 45, 0.7) 0%, rgba(90, 105, 60, 0.7) 50%, rgba(70, 85, 45, 0.7) 80%);
@@ -22,7 +21,7 @@
 }
 
 .container-checkout-page-inner-left {
-  width: 600px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -104,15 +103,27 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  position: absolute;
-  bottom: 0;
-  padding-bottom: 150px;
-  width: 600px;
+  margin-top: 10vh;
 }
 
-.container-checkout-page button {
+.container-buttons-checkout button {
   height: 40px;
   background: linear-gradient(to right, rgb(62, 154, 232), rgb(38, 94, 201));
   color: white;
   border-radius: 2px;
+  width: 100%;
+}
+
+@media screen and (max-width: 650px) {
+  .container-checkout-page-inner {
+    min-width: 380px;
+  }
+
+  .container-location-checkout {
+    flex-direction: column;
+  }
+
+  .container-checkout-page-inner {
+    padding-right: 10px;
+  }
 }

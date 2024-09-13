@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import { thunkLibraryUserGet } from "../../redux/library";
 import { thunkGamesGet } from "../../redux/game";
 import coverArtPlaceholder from "../../../public/cover-art-placeholder.png"
-import "./Library.css";
 
 
 function Library() {
@@ -23,7 +22,7 @@ function Library() {
   }, [dispatch]);
 
   return (
-    <section id="container-library-component">
+    <section className="container-my-games-component">
 
       {libraryGames?.map(game => (
         <div

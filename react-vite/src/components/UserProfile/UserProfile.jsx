@@ -12,6 +12,7 @@ import MyReviews from "./MyReviews"
 import defaultAvatar from "../../../public/default-avatar.png"
 import "./UserProfile.css"
 
+
 function UserProfile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -67,11 +68,11 @@ function UserProfile() {
 
             <div id="container-profile-content-left-name">
               <span style={{ color: "white", fontSize: "24px" }}>{currentUser?.username}</span>
-              <p style={{ color: "var(--light-beige-font-color)", fontSize: "13px" }}>
-                {currentUser?.id === 14
-                  ? currentUser?.about
-                  : "Welcome developer! Any game you add to your wishlist or shopping cart will appear here. Any game you purchase will appear in your Library. Any game you create will appear under My Games. And any review you've left for a game will appear under My Reviews."}
-              </p>
+
+              {currentUser?.id === 14
+                ? <p>Welcome developer! Any game you add to your wishlist or shopping cart will appear here. Any game you purchase will appear in your Library. Any game you create will appear under My Games. And any review you&apos;ve left for a game will appear under My Reviews.</p>
+                : <p>currentUser?.about</p>
+              }
             </div>
           </div>
 
@@ -94,9 +95,15 @@ function UserProfile() {
             </p>
 
             <div id="container-points-accumulated">
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Created: {createdGameCount}</span>
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Purchased: {purchasedGameCount}</span>
-              <span style={{ color: "#61686D", fontSize: "13px" }}>Reviewed: {reviewedGameCount}</span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>
+                Created: <span style={{ color: "var(--logo-color)" }}>{createdGameCount}</span>
+              </span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>
+                Purchased: <span style={{ color: "var(--logo-color)" }}>{purchasedGameCount}</span>
+              </span>
+              <span style={{ color: "#61686D", fontSize: "13px" }}>
+                Reviewed: <span style={{ color: "var(--logo-color)" }}>{reviewedGameCount}</span>
+              </span>
             </div>
           </div>
 
@@ -169,5 +176,6 @@ function UserProfile() {
     </section >
   );
 }
+
 
 export default UserProfile

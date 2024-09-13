@@ -13,11 +13,9 @@ import "./Reviews.css";
 function Reviews() {
   const dispatch = useDispatch();
   const { gameId } = useParams();
-
   const reviewsObj = useSelector(state => state.review);
   const reviews = Object.values(reviewsObj);
   const filteredReviews = reviews?.filter(review => review?.game_id === +gameId);
-
 
   useEffect(() => {
     dispatch(thunkReviewsGet());
@@ -40,19 +38,11 @@ function Reviews() {
               />
               <div>
                 <span>{review?.username}</span>
-
-                <span style={{ fontSize: "12px" }}>
-                  {/* {user?.reviews?.length === 1
-                    ? (
-                      <>{user?.reviews?.length} review</>
-                    ) : (
-                      <>{user?.reviews?.length} reviews</>
-                    )} */}
-                </span>
               </div>
             </div>
 
             <div id="container-review-right">
+
               {review?.thumbs_up ? (
                 <div className="container-recommendation-review">
                   <div style={{ color: "#D6D7D8" }}>
@@ -91,23 +81,14 @@ function Reviews() {
               <span style={{ color: "#8091A2", fontSize: "11px" }}>
                 POSTED: {review?.updated_at}
               </span>
-              <p style={{
-                color: "#ACB2B8",
-                paddingRight: "10px",
-                fontSize: "13px",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                width: "663px"
-              }}>
+              <p id="review-review">
                 {review?.description}
               </p>
             </div>
 
           </div>
         );
-
       }) : (
-
         <div style={{
           color: "var(--logo-color)",
           fontSize: "20px"
