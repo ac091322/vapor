@@ -37,7 +37,7 @@ function EditGameForm() {
   const [coverArtfilename, setCoverArtFilename] = useState("");
   const [coverArtLoading, setCoverArtLoading] = useState(false);
   const [validations, setValidations] = useState({});
-  const [submit, setSumbit] = useState(false);
+  const [submit, setSubmit] = useState(false);
   const [coverArtfileError, setCoverArtFileError] = useState("");
   const [screenshot_url, setScreenshotUrl] = useState([]);
   const [screenshotPreviewUrls, setScreenshotPreviewUrls] = useState([]);
@@ -147,20 +147,27 @@ function EditGameForm() {
     setScreenshotPreviewUrls(newPreviews); // store the preview URLs
   };
 
-  const handleRemoveScreenshot = (screenshotId, index) => {
+  const handleRemoveScreenshot = (index) => {
     const screenshotToRemove = screenshot_url[index];
-    setScreenshotUrl(screenshot_url.filter((screenshot) => screenshot !== screenshotToRemove));
+    const screenshotToDelete = filteredScreenshots.find(
+      screenshot => screenshot.screenshot_url === screenshotToRemove
+    );
+
+    if (screenshotToDelete) {
+      setScreenshotsToDelete(prevState => [...prevState, screenshotToDelete.id]);
+    }
+    setScreenshotUrl(screenshot_url.filter((_, i) => i !== index));
     setScreenshotPreviewUrls(screenshotPreviewUrls.filter((_, i) => i !== index));
 
     if (screenshot_url.length === 0) {
       setScreenshotUrl([]);
       setScreenshotPreviewUrls([]);
     }
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSumbit(true);
+    setSubmit(true)
 
     if (Object.keys(validations).length > 0
       || Object.keys(coverArtfileError).length > 0
@@ -194,6 +201,26 @@ function EditGameForm() {
       setCoverArtLoading(true);
       await dispatch(thunkCoverArtEdit(coverArtId, updatedCoverArtData));
       setCoverArtLoading(false);
+    }
+
+    if (screenshotsToDelete.length > 0) {
+      setScreenshotsUpdating(true);
+      await dispatch(thunkScreenshotDelete(screenshotsToDelete));
+      setScreenshotsUpdating(false);
+      await dispatch(thunkScreenshotsGet());
+    }
+
+    if (screenshot_url.length > 0) {
+      const screenshotsData = new FormData();
+      screenshot_url.forEach((file, index) => {
+        screenshotsData.append("screenshot_url", file);
+        screenshotsData.append(`filename_${index}`, file.name);
+      });
+      screenshotsData.append("game_id", gameId);
+
+      setScreenshotsUpdating(true);
+      await dispatch(thunkScreenshotsAdd(screenshotsData));
+      setScreenshotsUpdating(false);
     }
 
     navigate(`/games/${gameId}`);
@@ -430,8 +457,8 @@ function EditGameForm() {
 
           <div className="container-buttons-game-form-left">
             <button type="submit"
-              style={coverArtLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
-              disabled={coverArtLoading}
+              style={coverArtLoading || screenshotsUpdating ? { cursor: "not-allowed" } : { cursor: "pointer" }}
+              disabled={coverArtLoading || screenshotsUpdating}
             >
               Update Game
             </button>
@@ -491,15 +518,16 @@ function EditGameForm() {
 
             {screenshotPreviewUrls.length > 0 && (
               <>
-                {screenshotPreviewUrls.map((url, index) => (
-                  <div style={{ position: "relative" }} key={index}>
+                {screenshotPreviewUrls?.map((url, index) => (
+                  <div style={{ position: "relative" }} key={index}
+                  >
                     <img
                       src={url}
                       alt={`preview ${index + 1}`}
                       style={{ maxHeight: "165px", width: "100%" }}
                     />
                     <IoRemoveCircle
-                      onClick={() => handleRemoveScreenshot(screenshots[index].id, index)}
+                      onClick={() => handleRemoveScreenshot(index)}
                       style={{
                         fontSize: "3rem",
                         color: "var(--body-background-color)",
@@ -507,8 +535,7 @@ function EditGameForm() {
                         left: "0",
                         opacity: "0.7",
                         cursor: "pointer"
-                      }}
-                    />
+                      }} />
                   </div>
                 ))}
               </>

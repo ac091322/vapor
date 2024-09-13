@@ -50,8 +50,8 @@ function GameDetails() {
   useEffect(() => {
     dispatch(thunkGameGetId(gameId));
     if (currentUser) {
-      dispatch(thunkWishlistUserGet());
       dispatch(thunkShoppingCartUserGet(shoppingCartId));
+      dispatch(thunkWishlistUserGet());
       dispatch(thunkLibraryUserGet());
     }
   }, [dispatch, currentUser, gameId, shoppingCartId]);
@@ -70,6 +70,8 @@ function GameDetails() {
   useEffect(() => {
     if (game?.screenshots?.length > 0) {
       setSelectedScreenshot(game.screenshots[0].screenshot_url);
+    } else {
+      setSelectedScreenshot(screenshotPlaceholder);
     }
   }, [game?.screenshots]);
 

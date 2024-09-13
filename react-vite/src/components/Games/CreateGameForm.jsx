@@ -13,7 +13,6 @@ function CreateGame() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.session.user);
-  let gameId;
 
   const [title, setTitle] = useState("The Legend of Zelda: Breath of the Wild");
   const [price, setPrice] = useState("35.99");
@@ -110,7 +109,7 @@ function CreateGame() {
     setScreenshotsFileError("");
 
     const newScreenshots = selectedFiles.map((file, index) => {
-      const newFilename = `screenshot_${gameId}_${Date.now()}_${index}.${file.name.split('.').pop()}`;
+      const newFilename = `screenshot_${index}_${Date.now()}_${index}.${file.name.split('.').pop()}`;
       return new File([file], newFilename, { type: file.type });
     });
 
@@ -414,7 +413,7 @@ function CreateGame() {
 
           <div className="container-buttons-game-form-left">
             <button type="submit"
-              style={coverArtLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
+              style={coverArtLoading || screenshotsLoading ? { cursor: "not-allowed" } : { cursor: "pointer" }}
               disabled={coverArtLoading || screenshotsLoading}
             >
               Create Game
