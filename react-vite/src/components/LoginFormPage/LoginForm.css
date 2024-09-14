@@ -1,23 +1,29 @@
 #container-login-page {
-  display: flex;
-  justify-content: center;
   height: 1150px;
   background-image: url("../../../public/login-banner.jpg");
-  background-position: center;
+  position: relative;
+  z-index: -2;
 }
 
 #container-login-page::before {
   content: "";
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 #container-login-form {
-  position: absolute;
+  margin: 0 auto;
+  max-width: 715px;
 }
 
 #container-login-form h1 {
-  margin-top: 100px;
+  padding-top: 100px;
   margin-bottom: 40px;
   font-weight: 900;
   color: white;
@@ -40,7 +46,7 @@
 }
 
 #container-login-form input {
-  width: 395px;
+  width: 100%;
   height: 40px;
   background-color: var(--input-background-color);
   color: white;
@@ -74,4 +80,25 @@
 
 #container-login-form-right img {
   box-shadow: 0 0 10px 3px rgba(100, 100, 100, 0.5);
+}
+
+@media screen and (max-width: 750px) {
+  #container-login-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    min-width: 325px;
+  }
+
+  #container-login-form-left button {
+    width: 100%;
+  }
+
+  #container-login-form-right {
+    align-items: center;
+  }
+
+  #container-login-form-right img {
+    margin-top: 5px;
+  }
 }

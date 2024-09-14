@@ -99,6 +99,12 @@ def seed_cover_arts():
         filename="cover_art_0000000000015.png",
     )
 
+    wild_bastards = CoverArt(
+        cover_art_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/cover-art-wild-bastards.png",
+        game_id=17,
+        filename="cover_art_0000000000016.png",
+    )
+
     db.session.add_all(
         [
             black_myth_wukong,
@@ -117,6 +123,7 @@ def seed_cover_arts():
             cult_of_the_lamb,
             gundam_breaker_4,
             satisfactory,
+            wild_bastards
         ]
     )
     db.session.commit()
