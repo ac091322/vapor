@@ -260,6 +260,22 @@ def seed_games():
         min_sound_card="Windows Compatible Audio Device",
     )
 
+    wild_bastards = Game(
+        title="Wild Bastards",
+        user_id=16,
+        price=29.74,
+        release_date=datetime(2024, 9, 12).date(),
+        description="The spiritual successor to the award-winning game Void Bastards, Wild Bastards is a roguelike strategy shooter with heart-pounding FPS action, mod management, and a tactical campaign. Saddle up and lead the most notorious outlaws in the galaxy.",
+        min_requirements="Requires a 64-bit processor and operating system",
+        min_os="Windows 10 (64-bit versions)",
+        min_processor="Intel Quad Core 2GHz",
+        min_memory="8 GB RAM",
+        min_graphics="NVIDIA GeForce GTX 970",
+        min_directx="Version 11",
+        min_storage="10 GB available space",
+        min_sound_card="Windows Compatible Audio Device",
+    )
+
     db.session.add_all(
         [
             black_myth_wukong,
@@ -278,6 +294,7 @@ def seed_games():
             cult_of_the_lamb,
             gundam_breaker_4,
             satisfactory,
+            wild_bastards,
         ]
     )
     db.session.commit()

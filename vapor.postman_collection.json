@@ -322,7 +322,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/games/15/put",
+					"raw": "http://localhost:8000/api/games/19/put",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -331,7 +331,7 @@
 					"path": [
 						"api",
 						"games",
-						"15",
+						"19",
 						"put"
 					]
 				}
@@ -379,7 +379,7 @@
 					"formdata": [
 						{
 							"key": "game_id",
-							"value": "100",
+							"value": "18",
 							"type": "text"
 						},
 						{
@@ -421,22 +421,17 @@
 						{
 							"key": "cover_art_url",
 							"type": "file",
-							"src": "postman-cloud:///1ef63f35-ba53-4090-887c-1977862f3b6f"
+							"src": "postman-cloud:///1ef669ed-abe8-4680-991d-bf74ca12d9da"
 						},
 						{
 							"key": "game_id",
-							"value": "2",
-							"type": "text"
-						},
-						{
-							"key": "filename",
-							"value": "cover_art_172470297.png2",
+							"value": "1",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/cover-arts/2/put",
+					"raw": "http://localhost:8000/api/cover-arts/1/put",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -445,7 +440,7 @@
 					"path": [
 						"api",
 						"cover-arts",
-						"2",
+						"1",
 						"put"
 					]
 				}
@@ -483,22 +478,7 @@
 					"formdata": [
 						{
 							"key": "game_id",
-							"value": "100",
-							"type": "text"
-						},
-						{
-							"key": "filename",
-							"value": "screenshot_0000000000000.png",
-							"type": "text"
-						},
-						{
-							"key": "filename",
-							"value": "screenshot_0000000000001png",
-							"type": "text"
-						},
-						{
-							"key": "filename",
-							"value": "screenshot_0000000000002.png",
+							"value": "102",
 							"type": "text"
 						},
 						{
@@ -512,6 +492,36 @@
 								"postman-cloud:///1ef66e04-d840-45a0-97f1-5448f3a502be",
 								"postman-cloud:///1ef66e04-dd38-4530-ad4a-2ba1a5516ee9"
 							]
+						},
+						{
+							"key": "filename",
+							"value": "screenshot_0000000000000.png",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "screenshot_0000000000001.png",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "screenshot_0000000000002.png",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "screenshot_0000000000003.png",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "screenshot_0000000000004.png",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "screenshot_0000000000005.png",
+							"type": "text"
 						}
 					]
 				},
@@ -782,7 +792,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/games/1/wishlist/post",
+					"raw": "http://localhost:8000/api/games/1/user/wishlist/post",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -792,6 +802,7 @@
 						"api",
 						"games",
 						"1",
+						"user",
 						"wishlist",
 						"post"
 					]
@@ -814,7 +825,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/wishlists/1/delete",
+					"raw": "http://localhost:8000/api/wishlists/1/user/delete",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -824,6 +835,7 @@
 						"api",
 						"wishlists",
 						"1",
+						"user",
 						"delete"
 					]
 				}
@@ -878,7 +890,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/shopping-carts/14/user",
+					"raw": "http://localhost:8000/api/shopping-carts/1/user",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -887,7 +899,7 @@
 					"path": [
 						"api",
 						"shopping-carts",
-						"14",
+						"1",
 						"user"
 					]
 				}
@@ -900,7 +912,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/games/1/14/user/shopping-cart/post",
+					"raw": "http://localhost:8000/api/games/5/1/user/shopping-cart/post",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -909,8 +921,8 @@
 					"path": [
 						"api",
 						"games",
+						"5",
 						"1",
-						"14",
 						"user",
 						"shopping-cart",
 						"post"

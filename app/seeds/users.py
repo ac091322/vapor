@@ -139,6 +139,15 @@ def seed_users():
         about="You are now logged in as Demo Developer. As Demo Developer, you do not have any games added to your wishlist or shopping cart, and have not purchased any games so your library is also empty. By default you have not left any reviews for any game. And by default, you have not created any games... so... start by doing all that! Start by creating your own game!",
     )
 
+    blue_manchu = User(
+        username="Blue Manchu",
+        email="bluemanchu@vapor.io",
+        password="password",
+        developer_name=None,
+        avatar=None,
+        about=None,
+    )
+
     db.session.add_all(
         [
             game_science,
@@ -156,6 +165,7 @@ def seed_users():
             crafts_and_meister_co_ltd,
             coffee_stain_studios,
             demo_developer,
+            blue_manchu,
         ]
     )
     db.session.commit()

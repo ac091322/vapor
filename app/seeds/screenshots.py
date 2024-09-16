@@ -621,26 +621,31 @@ def seed_screenshots():
         game_id=15,
         filename="screenshot_0000000000106.png",
     )
+
     gundam_breaker_4_screenshot_2 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/15-gundam-breaker-4/screenshot2.jpg",
         game_id=15,
         filename="screenshot_0000000000107.png",
     )
+
     gundam_breaker_4_screenshot_3 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/15-gundam-breaker-4/screenshot3.jpg",
         game_id=15,
         filename="screenshot_0000000000108.png",
     )
+
     gundam_breaker_4_screenshot_4 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/15-gundam-breaker-4/screenshot4.jpg",
         game_id=15,
         filename="screenshot_0000000000109.png",
     )
+
     gundam_breaker_4_screenshot_5 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/15-gundam-breaker-4/screenshot5.jpg",
         game_id=15,
         filename="screenshot_0000000000110.png",
     )
+
     gundam_breaker_4_screenshot_6 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/15-gundam-breaker-4/screenshot6.jpg",
         game_id=15,
@@ -652,45 +657,107 @@ def seed_screenshots():
         game_id=16,
         filename="screenshot_0000000000112.png",
     )
+
     satisfactory_screenshot_2 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot2.jpg",
         game_id=16,
         filename="screenshot_0000000000113.png",
     )
+
     satisfactory_screenshot_3 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot3.jpg",
         game_id=16,
         filename="screenshot_0000000000114.png",
     )
+
     satisfactory_screenshot_4 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot4.jpg",
         game_id=16,
         filename="screenshot_0000000000115.png",
     )
+
     satisfactory_screenshot_5 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot5.jpg",
         game_id=16,
         filename="screenshot_0000000000116.png",
     )
+
     satisfactory_screenshot_6 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot6.jpg",
         game_id=16,
         filename="screenshot_0000000000117.png",
     )
+
     satisfactory_screenshot_7 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot7.jpg",
         game_id=16,
         filename="screenshot_0000000000118.png",
     )
+
     satisfactory_screenshot_8 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot8.jpg",
         game_id=16,
         filename="screenshot_0000000000119.png",
     )
+
     satisfactory_screenshot_9 = Screenshot(
         screenshot_url="https://vapor-ac.s3.amazonaws.com/16-satisfactory/screenshot9.jpg",
         game_id=16,
         filename="screenshot_0000000000120.png",
+    )
+
+    wild_bastards_screenshot_1 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/screenshot1.jpg",
+        game_id=17,
+        filename="screenshot_0000000000121.png",
+    )
+
+    wild_bastards_screenshot_2 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/screenshot2.jpg",
+        game_id=17,
+        filename="screenshot_0000000000122.png",
+    )
+
+    wild_bastards_screenshot_3 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/screenshot3.jpg",
+        game_id=17,
+        filename="screenshot_0000000000123.png",
+    )
+
+    wild_bastards_screenshot_4 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/screenshot4.jpg",
+        game_id=17,
+        filename="screenshot_0000000000124.png",
+    )
+
+    wild_bastards_screenshot_5 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/screenshot5.jpg",
+        game_id=17,
+        filename="screenshot_0000000000125.png",
+    )
+
+    wild_bastards_screenshot_6 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/screenshot6.jpg",
+        game_id=17,
+        filename="screenshot_0000000000126.png",
+    )
+
+    wild_bastards_screenshot_7 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/screenshot7.jpg",
+        game_id=17,
+        filename="screenshot_0000000000127.png",
+    )
+
+    wild_bastards_screenshot_8 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/screenshot8.jpg",
+        game_id=17,
+        filename="screenshot_0000000000128.png",
+    )
+
+    wild_bastards_screenshot_9 = Screenshot(
+        screenshot_url="https://vapor-ac.s3.amazonaws.com/17-wild-bastards/screenshot9.jpg",
+        game_id=17,
+        filename="screenshot_0000000000129.png",
     )
 
     db.session.add_all(
@@ -812,6 +879,15 @@ def seed_screenshots():
             satisfactory_screenshot_7,
             satisfactory_screenshot_8,
             satisfactory_screenshot_9,
+            wild_bastards_screenshot_1,
+            wild_bastards_screenshot_2,
+            wild_bastards_screenshot_3,
+            wild_bastards_screenshot_4,
+            wild_bastards_screenshot_5,
+            wild_bastards_screenshot_6,
+            wild_bastards_screenshot_7,
+            wild_bastards_screenshot_8,
+            wild_bastards_screenshot_9,
         ]
     )
     db.session.commit()

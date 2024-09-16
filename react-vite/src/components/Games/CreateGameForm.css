@@ -83,9 +83,6 @@
 .container-create-game-form-left input {
   height: 40px;
   width: 100%;
-  /* Changed to allow textarea to resize */
-  max-width: 100%;
-  /* Ensures it doesn't overflow */
   background-color: rgb(0, 0, 0, 0.4);
   z-index: 1;
   position: relative;
