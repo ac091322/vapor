@@ -225,7 +225,7 @@ def add_game_to_library(game_id):
         return {"error": "Game not found"}, 404
 
     if game.user_id == current_user.id:
-        return {"error": "Forbidden"}, 403
+        return {"error": "Cannot add own game to library"}, 403
 
     if game in current_user.game_in_library:
         return {"error": "Game already in library"}, 409

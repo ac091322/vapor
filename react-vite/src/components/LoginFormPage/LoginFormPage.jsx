@@ -69,13 +69,15 @@ function LoginFormPage() {
 
           <div id="container-login-form-right">
             <span style={{ color: "var(--nav-font-color-selected)" }}>OR SIGN IN WITH DEMO DEVELOPER</span>
+
             <button
-              type="submit"
+              type="button"
               onClick={e => handleSubmit(e, true)}
               style={{ backgroundColor: "transparent" }}
             >
               <img src={demoAvatar} alt="demo-developer-avatar" />
             </button>
+
             <span style={{ color: "var(--logo-color)", marginTop: "5px", alignSelf: "center" }}>Click on Wukong&apos;s avatar</span>
           </div>
 

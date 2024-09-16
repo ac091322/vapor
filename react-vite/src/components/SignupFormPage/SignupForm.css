@@ -4,7 +4,7 @@
   height: 1150px;
   background-image: url("../../../public/login-banner.jpg");
   position: relative;
-  z-index: -2;
+  z-index: 0;
 }
 
 #container-signup-page::before {
@@ -23,6 +23,7 @@
   max-width: 715px;
   margin: auto;
   min-width: 325px;
+  z-index: 1;
 }
 
 #container-signup-form h1 {
