@@ -5,10 +5,24 @@ import { BiLogoWindows } from "react-icons/bi";
 // import { BiCurrentLocation, BiLogoWindows } from "react-icons/bi";
 import { BiLogoApple } from "react-icons/bi";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaYoutube } from "react-icons/fa";
-import { FaDiscord } from "react-icons/fa";
+// import { FaFacebookSquare } from "react-icons/fa";
+// import { FaXTwitter } from "react-icons/fa6";
+// import { FaYoutube } from "react-icons/fa";
+// import { FaDiscord } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaGithubSquare } from "react-icons/fa";
+import { FaGitAlt } from "react-icons/fa6";
+import { BiSolidUserRectangle } from "react-icons/bi";
+import { FaReact } from "react-icons/fa";
+import { SiRedux } from "react-icons/si";
+import { SiFlask } from "react-icons/si";
+import { FaPython } from "react-icons/fa";
+import { SiPowershell } from "react-icons/si";
+import { IoLogoJavascript } from "react-icons/io5";
+import { FaHtml5 } from "react-icons/fa";
+import { FaCss3Alt } from "react-icons/fa6";
+import { FaAws } from "react-icons/fa";
+import { RiNpmjsFill } from "react-icons/ri";
 import { thunkGameGetId } from "../../redux/game";
 import { thunkWishlistGameAdd, thunkWishlistUserGet, thunkWishlistGameRemove } from "../../redux/wishlist";
 import { thunkShoppingCartUserGet, thunkShoppingCartGameAdd } from "../../redux/shoppingCart";
@@ -480,7 +494,7 @@ function GameDetails() {
               </div>
 
               <div id="container-external-links-outer">
-                <div className="external-links-container">
+                {/* <div className="external-links-container">
                   Visit the website&nbsp;
                   <FaExternalLinkAlt className="external-links-icon" />
                 </div>
@@ -503,11 +517,39 @@ function GameDetails() {
                   <FaDiscord className="social-media-icons" />
                   &nbsp;Discord&nbsp;
                   <FaExternalLinkAlt className="external-links-icon" />
+                </div> */}
+                <div className="external-links-container">
+                  <BiSolidUserRectangle className="external-links-icon" />
+                  &nbsp;My Portfolio&nbsp;
+                  <Link to="https://ac091322.github.io/my-portfolio/" target="_blank"><FaExternalLinkAlt className="external-links-icon" /></Link>
                 </div>
-                <div className="external-links-container">View update history</div>
-                <div className="external-links-container">Read related news</div>
-                <div className="external-links-container">View discussions</div>
-                <div className="external-links-container">Find community groups</div>
+                <div className="external-links-container">
+                  <FaLinkedin className="external-links-icon" />
+                  &nbsp;LinkedIn&nbsp;
+                  <Link to="https://www.linkedin.com/in/alanchang091322/" target="_blank"><FaExternalLinkAlt className="external-links-icon" /></Link>
+                </div>
+                <div className="external-links-container">
+                  <FaGithubSquare className="external-links-icon" />
+                  &nbsp;GitHub&nbsp;
+                  <Link to="https://www.linkedin.com/in/alanchang091322/" target="_blank"><FaExternalLinkAlt className="external-links-icon" /></Link>
+                </div>
+
+                <div className="external-links-container">
+                  <FaGitAlt className="external-links-icon" />
+                  &nbsp;Git Repository&nbsp;
+                  <Link to="https://github.com/ac091322/vapor" target="_blank"><FaExternalLinkAlt className="external-links-icon" /></Link>
+                </div>
+
+                <div className="external-links-container"><IoLogoJavascript className="external-links-icon" />&nbsp;JavaScript</div>
+                <div className="external-links-container"><FaPython className="external-links-icon" />&nbsp;Python</div>
+                <div className="external-links-container"><FaReact className="external-links-icon" />&nbsp;React</div>
+                <div className="external-links-container"><SiRedux className="external-links-icon" />&nbsp;Redux</div>
+                <div className="external-links-container"><SiFlask className="external-links-icon" />&nbsp;Flask</div>
+                <div className="external-links-container"><RiNpmjsFill className="external-links-icon" />&nbsp;Node Package Manager</div>
+                <div className="external-links-container"><SiPowershell className="external-links-icon" />&nbsp;Pipenv</div>
+                <div className="external-links-container"><FaAws className="external-links-icon" />&nbsp;AWS</div>
+                <div className="external-links-container"><FaHtml5 className="external-links-icon" />&nbsp;HTML</div>
+                <div className="external-links-container"><FaCss3Alt className="external-links-icon" />&nbsp;CSS</div>
               </div>
             </div>
 
