@@ -5,6 +5,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { thunkWishlistUserGet } from "../../redux/wishlist";
 import { thunkShoppingCartUserGet } from "../../redux/shoppingCart";
+import { thunkGamesGet } from "../../redux/game";
 import defaultAvatar from "../../../public/default-avatar.png"
 import "./NavBar.css"
 
@@ -19,6 +20,8 @@ function NavBar() {
   const shoppingCartObj = useSelector(state => state.shoppingCart);
   const shoppingCart = Object.values(shoppingCartObj);
   const myShoppingCart = shoppingCart?.filter(shoppingCart => shoppingCart?.shopping_cart_id === +shoppingCartId);
+  const gamesObj = useSelector(state => state.game);
+  const games = Object.values(gamesObj);
 
   useEffect(() => {
     if (currentUser) {
@@ -26,6 +29,26 @@ function NavBar() {
       dispatch(thunkShoppingCartUserGet(shoppingCartId));
     }
   }, [dispatch, currentUser, shoppingCartId]);
+
+  useEffect(() => {
+    dispatch(thunkGamesGet());
+  }, [dispatch]);
+
+  const randomGames = () => {
+    const selectedGames = [];
+    const numberOfGames = Math.min(games.length, 3);
+
+    while (selectedGames.length < numberOfGames) {
+      const randomIndex = Math.floor(Math.random() * games.length);
+      const randomGame = games[randomIndex]
+      if (!selectedGames.includes(randomGame)) {
+        selectedGames.push(randomGame)
+      }
+    }
+    return selectedGames
+  };
+
+  const randomGameList = randomGames(games);
 
   return (
     <section id="container-navbar-outer">
@@ -45,10 +68,8 @@ function NavBar() {
         </div>}
 
         <ul>
-          <Link to="#">
-            <li
-              style={{ cursor: "not-allowed" }}
-              id="container-avatar-store-link">
+          <Link to="/user">
+            <li id="container-avatar-store-link">
               <img
                 style={{ height: "16px", width: "16px" }}
                 src={defaultAvatar}
@@ -56,11 +77,11 @@ function NavBar() {
               Your Store
             </li>
           </Link>
-          <li >New & Noteworthy</li>
-          <li >Categories</li>
-          <li >Points Shop</li>
-          <li >News</li>
-          <li >Labs</li>
+          <li>Top Games:</li>
+
+          {randomGameList.map((game, index) => (
+            <li key={index}><Link to={`/games/${game.id}`}>{game.title}</Link></li>
+          ))}
         </ul>
 
         <div id="container-search-bar-nav">

@@ -17,9 +17,9 @@ function Navigation() {
           <NavLink to="/"><img src={logo} alt="logo" /></NavLink>
           <ul>
             <li id="store-link"><Link to="/">STORE</Link></li>
-            <li style={{ cursor: "not-allowed" }}>COMMUNITY</li>
-            <li style={{ cursor: "not-allowed" }}>ABOUT</li>
-            <li style={{ cursor: "not-allowed" }}>SUPPORT</li>
+            <li><Link to="https://www.linkedin.com/in/alanchang091322/" target="_blank">LINKEDIN</Link></li>
+            <li><Link to="https://github.com/ac091322" target="_blank">GITHUB</Link></li>
+            <li><Link to="https://ac091322.github.io/my-portfolio/" target="_blank">PORTFOLIO</Link></li>
           </ul>
         </div>
 

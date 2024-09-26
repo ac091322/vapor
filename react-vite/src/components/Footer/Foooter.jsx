@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithubSquare } from "react-icons/fa";
+import { BiSolidUserRectangle } from "react-icons/bi";
 import logo from "../../../public/logo.png"
 import "./Footer.css"
 
@@ -33,6 +34,13 @@ function Footer() {
           style={{ display: "flex", alignItems: "center", gap: "3px" }}
         >
           <FaGithubSquare /> GITHUB
+        </Link>
+
+        <Link to="https://ac091322.github.io/my-portfolio/"
+          target="_blank"
+          style={{ display: "flex", alignItems: "center", gap: "3px" }}
+        >
+          <BiSolidUserRectangle /> PORTFOLIO
         </Link>
 
         <span>©{year} VAPOR, INC.</span>

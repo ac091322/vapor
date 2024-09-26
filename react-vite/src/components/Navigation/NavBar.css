@@ -71,7 +71,6 @@
 }
 
 #container-navbar li {
-  cursor: not-allowed;
   color: white;
   font-weight: bold;
   text-shadow: 1.5px 1.5px 3px rgb(0, 0, 0, 0.6);
