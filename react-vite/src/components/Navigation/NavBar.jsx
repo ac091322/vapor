@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { IoSearchSharp } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
+import { IoCloseSharp } from "react-icons/io5";
 import { thunkWishlistUserGet } from "../../redux/wishlist";
 import { thunkShoppingCartUserGet } from "../../redux/shoppingCart";
 import { thunkGamesGet } from "../../redux/game";
@@ -23,6 +24,10 @@ function NavBar() {
   const gamesObj = useSelector(state => state.game);
   const games = Object.values(gamesObj);
 
+  const [query, setQuery] = useState("");
+  const [searchedGames, setSearchedGames] = useState([]);
+  // const [randomGameList, setRandomGameList] = useState([]);
+
   useEffect(() => {
     if (currentUser) {
       dispatch(thunkWishlistUserGet());
@@ -34,18 +39,22 @@ function NavBar() {
     dispatch(thunkGamesGet());
   }, [dispatch]);
 
-  const randomGames = () => {
-    const selectedGames = [];
-    const numberOfGames = Math.min(games.length, 3);
-
-    while (selectedGames.length < numberOfGames) {
-      const randomIndex = Math.floor(Math.random() * games.length);
-      const randomGame = games[randomIndex]
-      if (!selectedGames.includes(randomGame)) {
-        selectedGames.push(randomGame)
-      }
+  useEffect(() => {
+    if (games.length > 0) {
+      const filteredGames = games.filter(game => game.title.toLowerCase().includes(query.toLowerCase()));
+      setSearchedGames(filteredGames);
     }
-    return selectedGames
+  }, [query]);
+
+  const randomGames = (games) => {
+    const selectedRandomGames = new Set();
+    const numberOfGamesToSelect = Math.min(games.length, 3);
+
+    while (selectedRandomGames.size < numberOfGamesToSelect) {
+      const randomGame = games[Math.floor(Math.random() * games.length)];
+      selectedRandomGames.add(randomGame);
+    }
+    return Array.from(selectedRandomGames);
   };
 
   const randomGameList = randomGames(games);
@@ -85,11 +94,38 @@ function NavBar() {
         </ul>
 
         <div id="container-search-bar-nav">
-          <input placeholder="search" />
-          <div style={{ paddingTop: "2px", height: "25px", width: "25px", marginBottom: "3px" }}>
+          <input
+            placeholder="search"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+          />
+
+          {query && <IoCloseSharp
+            id="reset-search-button"
+            onClick={() => setQuery("")}
+          />}
+
+          <div style={{ paddingTop: "2px", height: "25px", width: "25px", marginBottom: "4px" }}>
             <button><IoSearchSharp /></button>
           </div>
         </div>
+
+        {query && (
+          <div id="search-results-box" style={{ opacity: "1" }}>
+            {searchedGames.length ? (
+              searchedGames.map(game => (
+                <span key={game.id} className="highlighted-search-result">
+                  <Link
+                    to={`/games/${game.id}`}
+                    onClick={() => setQuery("")}
+                  >{game.title}</Link>
+                </span>
+              ))
+            ) : (
+              <span>No games found</span>
+            )}
+          </div>
+        )}
       </section>
     </section>
   );
