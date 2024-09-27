@@ -26,7 +26,7 @@ function NavBar() {
 
   const [query, setQuery] = useState("");
   const [searchedGames, setSearchedGames] = useState([]);
-  // const [randomGameList, setRandomGameList] = useState([]);
+  const [randomGameList, setRandomGameList] = useState([]);
 
   useEffect(() => {
     if (currentUser) {
@@ -46,18 +46,21 @@ function NavBar() {
     }
   }, [query]);
 
-  const randomGames = (games) => {
-    const selectedRandomGames = new Set();
-    const numberOfGamesToSelect = Math.min(games.length, 3);
+  useEffect(() => {
+    if (games.length > 0) {
+      const generateRandomGames = () => {
+        const selectedRandomGames = new Set();
+        const numberOfGamesToSelect = Math.min(games.length, 3);
 
-    while (selectedRandomGames.size < numberOfGamesToSelect) {
-      const randomGame = games[Math.floor(Math.random() * games.length)];
-      selectedRandomGames.add(randomGame);
+        while (selectedRandomGames.size < numberOfGamesToSelect) {
+          const randomGame = games[Math.floor(Math.random() * games.length)];
+          selectedRandomGames.add(randomGame);
+        }
+        setRandomGameList(Array.from(selectedRandomGames));
+      };
+      generateRandomGames();
     }
-    return Array.from(selectedRandomGames);
-  };
-
-  const randomGameList = randomGames(games);
+  }, [games.length]);
 
   return (
     <section id="container-navbar-outer">
@@ -77,7 +80,8 @@ function NavBar() {
         </div>}
 
         <ul>
-          <Link to="/user">
+
+          {currentUser ? (<Link to="/user">
             <li id="container-avatar-store-link">
               <img
                 style={{ height: "16px", width: "16px" }}
@@ -86,6 +90,18 @@ function NavBar() {
               Your Store
             </li>
           </Link>
+          ) : (
+            <Link to="/login">
+              <li id="container-avatar-store-link">
+                <img
+                  style={{ height: "16px", width: "16px" }}
+                  src={defaultAvatar}
+                  alt="mini-avatar" />
+                Your Store
+              </li>
+            </Link>
+          )}
+
           <li>Top Games:</li>
 
           {randomGameList.map((game, index) => (
