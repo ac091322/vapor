@@ -30,6 +30,14 @@ This is the starter for the Flask React project.
    ```
 
    ```bash
+   flask db migrate -m "initial migration"
+   ```
+
+   ```bash
+   flask db revision -m "description of changes"
+   ```
+
+   ```bash
    flask db upgrade
    ```
 
